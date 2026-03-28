@@ -163,7 +163,7 @@ const Navbar = () => {
 
         {/* Mobile menu – fullscreen overlay */}
         {mobileOpen && (
-          <div className="fixed inset-0 bg-foreground/95 backdrop-blur-xl z-[60] md:hidden overflow-y-auto">
+          <div className="fixed inset-0 backdrop-blur-xl z-[60] md:hidden overflow-y-auto" style={{ background: 'linear-gradient(135deg, #1F1E1D 0%, #1E1C1C 35%, #201E1D 65%, #1E1D1D 100%)' }}>
             {/* Header with logo + close */}
             <div className="flex items-center justify-between px-4 py-4">
               <Link to="/" onClick={() => setMobileOpen(false)}>

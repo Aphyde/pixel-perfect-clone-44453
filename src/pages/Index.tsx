@@ -71,7 +71,7 @@ const Index = () => {
 
     {/* Mobile hero menu dropdown with product swipe cards */}
     {heroMenuOpen && (
-      <div className="md:hidden fixed top-14 left-0 right-0 bottom-0 z-[55] bg-foreground/95 backdrop-blur-xl border-t border-primary-foreground/10 overflow-y-auto">
+      <div className="md:hidden fixed top-14 left-0 right-0 bottom-0 z-[55] backdrop-blur-xl border-t border-primary-foreground/10 overflow-y-auto" style={{ background: 'linear-gradient(135deg, #1F1E1D 0%, #1E1C1C 35%, #201E1D 65%, #1E1D1D 100%)' }}>
         <div className="flex flex-col p-6 gap-4">
           <span className="font-headline uppercase tracking-widest text-sm text-primary-foreground/70">
             Produkte
