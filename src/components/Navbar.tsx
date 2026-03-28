@@ -163,7 +163,7 @@ const Navbar = () => {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="absolute top-full left-0 w-full bg-card/95 backdrop-blur-xl border-t border-border md:hidden">
+          <div className="absolute top-full left-0 w-full bg-foreground/95 backdrop-blur-xl border-t border-primary-foreground/10 md:hidden">
             <div className="flex flex-col p-6 gap-4">
 
               {/* Mobile products – always open */}
