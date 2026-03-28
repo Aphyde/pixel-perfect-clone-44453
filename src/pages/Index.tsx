@@ -48,12 +48,23 @@ const Index = () => {
   const [heroOverlayVisible, setHeroOverlayVisible] = useState(true);
 
   useEffect(() => {
+    const getOverlayThreshold = () => (window.innerWidth < 768 ? window.innerHeight * 0.7 : 100);
+
     const onScroll = () => {
-      setHeroOverlayVisible(window.scrollY < 100);
-      if (window.scrollY >= 100) setHeroMenuOpen(false);
+      const shouldShowOverlay = window.scrollY < getOverlayThreshold();
+
+      setHeroOverlayVisible(shouldShowOverlay);
+      if (!shouldShowOverlay) setHeroMenuOpen(false);
     };
+
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   return (
