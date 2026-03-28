@@ -81,7 +81,7 @@ const Index = () => (
           <div className="md:col-span-7">
             <FadeIn delay={0}>
               <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 md:mb-4 block">Qualität &amp; Handwerk</label>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter">Warum Breitüberdachungen?</h2>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter">Warum Brait Überdachungen?</h2>
             </FadeIn>
           </div>
           <FadeIn delay={0.2} direction="left" className="md:col-span-5 border-l-2 border-primary pl-6 md:pl-8 pb-2">

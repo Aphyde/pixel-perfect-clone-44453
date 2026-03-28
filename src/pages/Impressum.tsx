@@ -127,7 +127,7 @@ const Impressum = () => (
           <StaggerItem direction="right">
             <div className="bg-surface-container-highest p-8 md:p-12 flex flex-col justify-center h-full">
               <p className="text-[10px] md:text-xs uppercase tracking-widest text-primary font-bold mb-2">Email</p>
-              <p className="text-lg md:text-2xl font-headline break-all">info@breitueberdachungen.de</p>
+              <p className="text-lg md:text-2xl font-headline break-all">info@braitueberdachungen.de</p>
             </div>
           </StaggerItem>
         </StaggerContainer>
