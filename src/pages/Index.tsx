@@ -5,15 +5,63 @@ import ref1 from "@/assets/ref-1.jpg";
 import ref2 from "@/assets/ref-2.jpg";
 import ref3 from "@/assets/ref-3.jpg";
 import mapUlm from "@/assets/map-ulm.jpg";
-import { Award, Wrench, ShieldCheck, MapPin, Clock, ArrowRight } from "lucide-react";
+import logoLight from "@/assets/logo-brait-light.svg";
+import { Award, Wrench, ShieldCheck, MapPin, Clock, ArrowRight, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
-const Index = () => (
+const navLinks = [
+  { label: "Startseite", path: "/" },
+  { label: "Konfigurator", path: "/konfigurator" },
+  { label: "Service", path: "/service" },
+  { label: "Kontakt", path: "/kontakt" },
+];
+
+const Index = () => {
+  const [heroMenuOpen, setHeroMenuOpen] = useState(false);
+
+  return (
   <Layout>
+    {/* Mobile Hero Overlay: Logo + Hamburger */}
+    <div className="md:hidden fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-4 pointer-events-none">
+      <div />
+      <button
+        className="pointer-events-auto p-2 text-primary-foreground"
+        onClick={() => setHeroMenuOpen(!heroMenuOpen)}
+      >
+        <Menu size={24} />
+      </button>
+    </div>
+
+    {/* Mobile hero menu dropdown */}
+    {heroMenuOpen && (
+      <div className="md:hidden fixed top-14 left-0 right-0 z-40 bg-foreground/95 backdrop-blur-xl border-t border-primary-foreground/10">
+        <div className="flex flex-col p-6 gap-5">
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              to={link.path}
+              onClick={() => setHeroMenuOpen(false)}
+              className="font-headline uppercase tracking-widest text-sm text-primary-foreground hover:text-primary transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            to="/kontakt"
+            onClick={() => setHeroMenuOpen(false)}
+            className="bg-primary text-primary-foreground px-6 py-3 font-headline uppercase tracking-widest text-xs font-bold text-center mt-2"
+          >
+            Angebot Anfordern
+          </Link>
+        </div>
+      </div>
+    )}
+
     {/* Hero */}
-    <section className="relative h-[100svh] min-h-[520px] max-h-[780px] flex items-center pt-16 md:pt-20 overflow-hidden bg-foreground">
+    <section className="relative h-[100svh] min-h-[520px] max-h-[780px] flex items-center pt-0 md:pt-20 overflow-hidden bg-foreground">
       <div className="absolute inset-0 opacity-60">
         <motion.img
           src={heroHome}
@@ -27,6 +75,17 @@ const Index = () => (
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/50 to-transparent md:from-foreground/80 md:via-foreground/40" />
+
+      {/* Mobile centered logo in hero */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="md:hidden absolute top-6 left-0 right-0 z-20 flex justify-center"
+      >
+        <img src={logoLight} alt="Brait Überdachungen" className="h-12" />
+      </motion.div>
+
       <div className="container mx-auto px-5 md:px-8 relative z-10">
         <div className="max-w-4xl">
           <motion.span
@@ -224,6 +283,7 @@ const Index = () => (
       </div>
     </section>
   </Layout>
-);
+  );
+};
 
 export default Index;
