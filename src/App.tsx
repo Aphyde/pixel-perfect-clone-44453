@@ -9,6 +9,7 @@ import Kontakt from "./pages/Kontakt";
 import Konfigurator from "./pages/Konfigurator";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
+import Anfrage from "./pages/Anfrage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/konfigurator" element={<Konfigurator />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
+          <Route path="/anfrage" element={<Anfrage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
