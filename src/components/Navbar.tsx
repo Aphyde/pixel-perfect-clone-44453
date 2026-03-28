@@ -191,30 +191,41 @@ const Navbar = () => {
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileProductsOpen ? "rotate-180" : ""}`} />
               </button>
               {mobileProductsOpen && (
-                <div className="flex flex-col gap-3 pl-4 border-l-2 border-primary/20">
-                  {products.map((p) => (
+                <div className="mt-2 -mx-6">
+                  <div className="flex gap-3 overflow-x-auto px-6 pb-3 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
+                    {products.map((p) => (
+                      <Link
+                        key={p.label}
+                        to={p.path}
+                        onClick={() => setMobileOpen(false)}
+                        className="snap-start shrink-0 w-[72vw] max-w-[300px] group"
+                      >
+                        <div className="relative aspect-[4/3] overflow-hidden mb-3">
+                          <img src={p.image} alt={p.label} className="w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
+                          <div className="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 className={`font-headline uppercase tracking-widest text-xs font-bold text-white mb-1 ${location.pathname === p.path ? "text-primary" : ""}`}>
+                              {p.label}
+                            </h3>
+                            <p className="text-[10px] text-white/80 leading-tight">{p.desc}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between px-1">
+                          <span className="text-[10px] font-headline uppercase tracking-widest text-primary font-bold">Mehr erfahren</span>
+                          <ArrowRight className="w-3.5 h-3.5 text-primary" />
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="px-6 mt-1">
                     <Link
-                      key={p.label}
-                      to={p.path}
+                      to="/konfigurator"
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-center gap-3"
+                      className="flex items-center gap-2 text-primary font-headline uppercase tracking-widest text-[10px] font-bold"
                     >
-                      <img src={p.image} alt={p.label} className="w-12 h-12 object-cover shrink-0" />
-                      <div>
-                        <span className={`font-headline uppercase tracking-widest text-xs block ${location.pathname === p.path ? "text-primary font-bold" : "text-foreground"}`}>
-                          {p.label}
-                        </span>
-                        <span className="text-[10px] text-secondary leading-tight block">{p.desc}</span>
-                      </div>
+                      Konfigurator öffnen <ArrowRight className="w-3 h-3" />
                     </Link>
-                  ))}
-                  <Link
-                    to="/konfigurator"
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-2 text-primary font-headline uppercase tracking-widest text-[10px] font-bold mt-1"
-                  >
-                    Konfigurator öffnen <ArrowRight className="w-3 h-3" />
-                  </Link>
+                  </div>
                 </div>
               )}
 
