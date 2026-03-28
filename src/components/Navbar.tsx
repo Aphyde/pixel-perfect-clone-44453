@@ -165,9 +165,9 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            initial={{ clipPath: "inset(0 0 calc(100% - 64px) 0)" }}
             animate={{ clipPath: "inset(0 0 0% 0)" }}
-            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            exit={{ clipPath: "inset(0 0 calc(100% - 64px) 0)" }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-[60] md:hidden overflow-y-auto"
             style={{ background: 'linear-gradient(135deg, #1F1E1D 0%, #1E1C1C 35%, #201E1D 65%, #1E1D1D 100%)' }}
