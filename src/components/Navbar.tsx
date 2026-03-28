@@ -235,8 +235,9 @@ const Navbar = () => {
               Angebot Anfordern
             </Link>
           </div>
-        </div>
-      )}
+        </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Desktop Mega Menu */}
       <AnimatePresence>
