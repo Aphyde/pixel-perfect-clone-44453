@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 import { MapPin, Clock, ArrowRight, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const products = [
@@ -70,8 +70,20 @@ const Index = () => {
     </div>
 
     {/* Mobile hero menu dropdown with product swipe cards */}
+    <AnimatePresence>
     {heroMenuOpen && (
-      <div className="md:hidden fixed top-14 left-0 right-0 bottom-0 z-[55] backdrop-blur-xl border-t border-primary-foreground/10 overflow-y-auto" style={{ background: 'linear-gradient(135deg, #1F1E1D 0%, #1E1C1C 35%, #201E1D 65%, #1E1D1D 100%)' }}>
+      <motion.div
+        initial={{ scaleY: 0, opacity: 0.98 }}
+        animate={{ scaleY: 1, opacity: 1 }}
+        exit={{ scaleY: 0, opacity: 0.98 }}
+        transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+        className="md:hidden fixed top-14 left-0 right-0 bottom-0 z-[55] origin-top backdrop-blur-xl border-t border-primary-foreground/10 overflow-y-auto"
+        style={{
+          background: 'linear-gradient(135deg, #1F1E1D 0%, #1E1C1C 35%, #201E1D 65%, #1E1D1D 100%)',
+          willChange: 'transform, opacity',
+          backfaceVisibility: 'hidden',
+        }}
+      >
         <div className="flex flex-col p-6 gap-4">
           <span className="font-headline uppercase tracking-widest text-sm text-primary-foreground/70">
             Produkte
@@ -122,8 +134,9 @@ const Index = () => {
             Angebot Anfordern
           </Link>
         </div>
-      </div>
+      </motion.div>
     )}
+    </AnimatePresence>
 
     {/* Hero */}
     <section className="relative h-[100svh] min-h-[520px] max-h-[780px] flex items-center pt-0 md:pt-20 overflow-hidden bg-foreground">
