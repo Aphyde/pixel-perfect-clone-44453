@@ -205,7 +205,7 @@ const Navbar = () => {
                   to={link.path}
                   onClick={() => setMobileOpen(false)}
                   className={`font-headline uppercase tracking-widest text-sm transition-colors ${
-                    location.pathname === link.path ? "text-primary font-bold" : "text-foreground hover:text-primary"
+                    location.pathname === link.path ? "text-primary font-bold" : "text-primary-foreground hover:text-primary"
                   }`}
                 >
                   {link.label}
