@@ -107,9 +107,9 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="text-[2rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground leading-[0.9] tracking-tighter mb-5 md:mb-8 break-words"
           >
-            Exklusive <br />
-            <span className="text-primary-fixed-dim">Terrassensysteme</span> <br />
-            aus Ulm.
+            Terrassendach &amp; <br />
+            <span className="text-primary-fixed-dim">Carport vom Profi</span> <br />
+            in Ulm.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
