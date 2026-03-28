@@ -5,7 +5,7 @@ const Footer = () => (
   <footer className="bg-foreground text-primary-foreground p-6 pt-10 md:p-12 md:pt-16">
     <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
       <div>
-        <img src={logoLight} alt="Brait Überdachungen" className="h-10 mb-4 md:mb-6" />
+        <img src={logoLight} alt="Brait Überdachungen" className="h-14 md:h-16 mb-4 md:mb-6" />
         <p className="font-body text-xs md:text-sm leading-relaxed text-primary-foreground/60 mb-6 md:mb-8">
           Ihr Spezialist für Aluminium-Terrassendächer und Glashäuser in Ulm. Seit über 10 Jahren Qualität aus der Region.
         </p>

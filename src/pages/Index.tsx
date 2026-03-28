@@ -26,7 +26,7 @@ const Index = () => {
   <Layout>
     {/* Mobile Hero Overlay: Logo left + Hamburger right */}
     <div className="md:hidden fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-4 pointer-events-none">
-      <img src={logoLight} alt="Brait Überdachungen" className="h-10 pointer-events-auto" />
+      <img src={logoLight} alt="Brait Überdachungen" className="h-14 pointer-events-auto" />
       <button
         className="pointer-events-auto p-2 text-primary-foreground"
         onClick={() => setHeroMenuOpen(!heroMenuOpen)}
