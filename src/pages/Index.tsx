@@ -6,7 +6,10 @@ import ref2 from "@/assets/ref-2.jpg";
 import ref3 from "@/assets/ref-3.jpg";
 import mapUlm from "@/assets/map-ulm.jpg";
 import logoLight from "@/assets/logo-brait-light.svg";
-import { Award, Wrench, ShieldCheck, MapPin, Clock, ArrowRight, Menu } from "lucide-react";
+import productTerrasse from "@/assets/product-terrassenueberdachung.jpg";
+import productCarport from "@/assets/product-carport.jpg";
+import productWintergarten from "@/assets/product-wintergarten.jpg";
+import { MapPin, Clock, ArrowRight, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
 import { motion } from "framer-motion";
@@ -133,32 +136,33 @@ const Index = () => {
       />
     </section>
 
-    {/* Why Us */}
+    {/* Products */}
     <section className="py-16 md:py-32 bg-surface">
       <div className="container mx-auto px-5 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-end mb-12 md:mb-24">
-          <div className="md:col-span-7">
-            <FadeIn delay={0}>
-              <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 md:mb-4 block">Qualität &amp; Handwerk</label>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter">Warum Brait Überdachungen?</h2>
-            </FadeIn>
-          </div>
-          <FadeIn delay={0.2} direction="left" className="md:col-span-5 border-l-2 border-primary pl-6 md:pl-8 pb-2">
-            <p className="text-secondary font-body leading-relaxed text-sm md:text-base">Seit über einem Jahrzehnt stehen wir für strukturelle Integrität und ästhetische Brillanz im Terrassenbau. Jedes Projekt ist ein Unikat.</p>
+        <div className="mb-10 md:mb-20">
+          <FadeIn>
+            <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 md:mb-4 block">Unsere Produkte</label>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter">Drei Systeme. Eine Philosophie.</h2>
           </FadeIn>
         </div>
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-1" staggerDelay={0.15}>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4" staggerDelay={0.15}>
           {[
-            { icon: <Award className="w-8 h-8 md:w-10 md:h-10 text-primary mb-5 md:mb-8" />, title: "Höchste Qualität", desc: "Zertifizierte Aluminium-Profile und Sicherheitsglas für maximale Langlebigkeit unter allen Witterungsbedingungen." },
-            { icon: <Wrench className="w-8 h-8 md:w-10 md:h-10 text-primary mb-5 md:mb-8" />, title: "Montage-Service", desc: "Eigene Festangestellte Montageteams garantieren saubere, präzise und termingerechte Ausführung in Ihrem Zuhause." },
-            { icon: <ShieldCheck className="w-8 h-8 md:w-10 md:h-10 text-primary mb-5 md:mb-8" />, title: "Langlebigkeit", desc: "Wartungsarme Konstruktionen mit bis zu 10 Jahren Garantie auf die Statik und Oberflächenveredelung." },
+            { img: productTerrasse, title: "Terrassenüberdachungen", desc: "Ganzjährig geschützt genießen – mit Aluminium-Glas-Systemen, die architektonisch überzeugen.", link: "/konfigurator" },
+            { img: productCarport, title: "Carports", desc: "Stilvoller Schutz für Ihr Fahrzeug – freistehend oder am Gebäude angebaut, individuell geplant.", link: "/konfigurator" },
+            { img: productWintergarten, title: "Wintergärten", desc: "Wohnraum trifft Natur – lichtdurchflutete Konstruktionen mit höchster Wärmedämmung.", link: "/konfigurator" },
           ].map((item) => (
             <StaggerItem key={item.title}>
-              <div className="bg-surface-container-low p-8 md:p-12 hover:bg-surface-container-high transition-colors h-full">
-                {item.icon}
-                <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">{item.title}</h3>
-                <p className="text-secondary leading-relaxed text-sm md:text-base">{item.desc}</p>
-              </div>
+              <Link to={item.link} className="group block h-full">
+                <div className="relative overflow-hidden aspect-[3/4] mb-5 md:mb-6">
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width={960} height={1280} />
+                  <div className="absolute inset-0 bg-foreground/10 group-hover:bg-transparent transition-all duration-300" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 group-hover:text-primary transition-colors">{item.title}</h3>
+                <p className="text-secondary leading-relaxed text-sm md:text-base mb-3 md:mb-4">{item.desc}</p>
+                <span className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs group-hover:gap-3 transition-all">
+                  Mehr erfahren <ArrowRight className="w-4 h-4" />
+                </span>
+              </Link>
             </StaggerItem>
           ))}
         </StaggerContainer>
