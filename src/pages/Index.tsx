@@ -10,16 +10,34 @@ import productTerrasse from "@/assets/product-terrassenueberdachung.jpg";
 import productCarport from "@/assets/product-carport.jpg";
 import productWintergarten from "@/assets/product-wintergarten.jpg";
 import { useLocation } from "react-router-dom";
-import { MapPin, Clock, ArrowRight, Menu } from "lucide-react";
+import { MapPin, Clock, ArrowRight, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
-const navLinks = [
-  { label: "Terrassenüberdachungen", path: "/terrassenueberdachungen" },
-  { label: "Carports", path: "/carports" },
-  { label: "Wintergärten", path: "/wintergaerten" },
+const products = [
+  {
+    label: "Terrassenüberdachungen",
+    path: "/terrassenueberdachungen",
+    image: productTerrasse,
+    desc: "Aluminium-Glas-Systeme für ganzjährigen Terrassengenuss.",
+  },
+  {
+    label: "Carports",
+    path: "/carports",
+    image: productCarport,
+    desc: "Stilvoller Schutz – freistehend oder als Anbau.",
+  },
+  {
+    label: "Wintergärten",
+    path: "/wintergaerten",
+    image: productWintergarten,
+    desc: "Lichtdurchfluteter Wohnraum mit höchster Wärmedämmung.",
+  },
+];
+
+const simpleLinks = [
   { label: "Konfigurator", path: "/konfigurator" },
   { label: "Service", path: "/service" },
   { label: "Kontakt", path: "/kontakt" },
