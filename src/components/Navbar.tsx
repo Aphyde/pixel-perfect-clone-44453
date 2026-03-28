@@ -114,14 +114,6 @@ const Navbar = () => {
 
         {/* Desktop nav */}
         <div className="hidden md:flex gap-7 items-center">
-          <Link
-            to="/"
-            className={`font-headline uppercase tracking-widest text-sm transition-colors ${
-              location.pathname === "/" ? "text-primary font-bold border-b-2 border-primary pb-1" : "text-foreground hover:text-primary"
-            }`}
-          >
-            Startseite
-          </Link>
 
           {/* Produkte trigger */}
           <div
@@ -170,15 +162,6 @@ const Navbar = () => {
         {mobileOpen && (
           <div className="absolute top-full left-0 w-full bg-card/95 backdrop-blur-xl border-t border-border md:hidden">
             <div className="flex flex-col p-6 gap-4">
-              <Link
-                to="/"
-                onClick={() => setMobileOpen(false)}
-                className={`font-headline uppercase tracking-widest text-sm transition-colors ${
-                  location.pathname === "/" ? "text-primary font-bold" : "text-foreground hover:text-primary"
-                }`}
-              >
-                Startseite
-              </Link>
 
               {/* Mobile products – always open */}
               <span className={`font-headline uppercase tracking-widest text-sm ${isProductPage ? "text-primary font-bold" : "text-foreground"}`}>
