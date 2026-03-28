@@ -45,6 +45,7 @@ const Kontakt = () => {
     e.preventDefault();
     if (!privacy) return;
     setSubmitted(true);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const canNext = () => {
