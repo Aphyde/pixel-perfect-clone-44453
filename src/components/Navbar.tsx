@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo-brait.svg";
 
 const navLinks = [
   { label: "Startseite", path: "/" },
@@ -15,8 +16,8 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 w-full flex justify-between items-center px-4 py-4 md:px-8 md:py-6 bg-card/80 backdrop-blur-xl z-50">
-      <Link to="/" className="text-lg md:text-2xl font-bold tracking-tighter font-headline">
-        Brait Überdachungen
+      <Link to="/" className="flex items-center">
+        <img src={logo} alt="Brait Überdachungen" className="h-8 md:h-10" />
       </Link>
       <div className="hidden md:flex gap-8 items-center">
         {navLinks.map((link) => (
