@@ -22,7 +22,7 @@ const Kontakt = () => (
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] mb-5 md:mb-8"
+            className="text-[2rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] mb-5 md:mb-8 break-words"
           >
             Ihr Projekt in <br /><span className="text-primary">Meisterhand.</span>
           </motion.h1>
