@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import heroWartung from "@/assets/hero-wartung.jpg";
-import { Check, Send, ArrowRight, ArrowLeft, ShieldCheck, Sparkles, Wrench, X, Image as ImageIcon } from "lucide-react";
+import { Check, Send, ArrowRight, ArrowLeft, ShieldCheck, Sparkles, Wrench, Droplets, X, Image as ImageIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, RevealLine } from "@/components/ScrollAnimations";
 import { motion, AnimatePresence } from "framer-motion";
