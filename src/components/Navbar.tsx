@@ -69,7 +69,7 @@ const Navbar = () => {
       }`}
     >
       <Link to="/" className="flex items-center">
-        <img src={logo} alt="Brait Überdachungen" className="h-8 md:h-10" />
+        <img src={logo} alt="Brait Überdachungen" className="h-12 md:h-14" />
       </Link>
       <div className="hidden md:flex gap-8 items-center">
         {navLinks.map((link) => (
