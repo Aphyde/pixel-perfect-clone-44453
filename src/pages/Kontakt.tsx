@@ -95,7 +95,7 @@ const Kontakt = () => (
             <div className="flex items-start gap-3 md:gap-4">
               <input className="w-5 h-5 border-2 border-outline-variant text-primary focus:ring-primary mt-0.5 shrink-0" id="privacy" type="checkbox" />
               <label className="text-[11px] md:text-xs text-secondary leading-tight" htmlFor="privacy">
-                Ich habe die <a className="text-primary underline" href="#">Datenschutzerklärung</a> zur Kenntnis genommen und stimme der Verarbeitung meiner Daten zu.
+                Ich habe die <a className="text-primary underline" href="/datenschutz">Datenschutzerklärung</a> zur Kenntnis genommen und stimme der Verarbeitung meiner Daten zu.
               </label>
             </div>
             <button className="w-full md:w-auto bg-primary text-primary-foreground font-headline uppercase tracking-widest text-xs md:text-sm px-10 py-4 md:px-12 md:py-5 hover:bg-primary-container transition-all duration-150" type="submit">

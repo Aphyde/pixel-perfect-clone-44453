@@ -172,7 +172,7 @@ const Service = () => (
         <FadeIn direction="right" delay={0.2}>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-6 w-full md:w-auto">
             <Link to="/kontakt" className="bg-primary text-primary-foreground px-8 py-4 md:px-10 md:py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all text-center">Jetzt Anfragen</Link>
-            <button className="border border-primary-foreground/20 text-primary-foreground px-8 py-4 md:px-10 md:py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground/10 transition-all">Montage-Hotline</button>
+            <a href="tel:+4973112345678" className="border border-primary-foreground/20 text-primary-foreground px-8 py-4 md:px-10 md:py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground/10 transition-all text-center">0731 / 123 456 78</a>
           </div>
         </FadeIn>
       </div>
