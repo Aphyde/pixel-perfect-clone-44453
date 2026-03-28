@@ -13,7 +13,7 @@ const Footer = () => (
       <div className="flex flex-col gap-3 md:gap-4">
         <h4 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary">Services</h4>
         <Link to="/service" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Montage-Service Ulm</Link>
-        <Link to="/service" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Wartungspakete</Link>
+        <Link to="/wartungspakete" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Wartungspakete</Link>
         <Link to="/service" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Maßanfertigung</Link>
         <Link to="/konfigurator" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Konfigurator</Link>
       </div>

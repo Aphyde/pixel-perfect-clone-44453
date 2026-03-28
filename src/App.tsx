@@ -13,6 +13,7 @@ import Anfrage from "./pages/Anfrage";
 import Terrassenueberdachungen from "./pages/Terrassenueberdachungen";
 import Carports from "./pages/Carports";
 import Wintergaerten from "./pages/Wintergaerten";
+import Wartungspakete from "./pages/Wartungspakete";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/terrassenueberdachungen" element={<Terrassenueberdachungen />} />
           <Route path="/carports" element={<Carports />} />
           <Route path="/wintergaerten" element={<Wintergaerten />} />
+          <Route path="/wartungspakete" element={<Wartungspakete />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
