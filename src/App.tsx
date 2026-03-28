@@ -10,6 +10,9 @@ import Konfigurator from "./pages/Konfigurator";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
 import Anfrage from "./pages/Anfrage";
+import Terrassenueberdachungen from "./pages/Terrassenueberdachungen";
+import Carports from "./pages/Carports";
+import Wintergaerten from "./pages/Wintergaerten";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -30,6 +33,9 @@ const App = () => (
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="/anfrage" element={<Anfrage />} />
+          <Route path="/terrassenueberdachungen" element={<Terrassenueberdachungen />} />
+          <Route path="/carports" element={<Carports />} />
+          <Route path="/wintergaerten" element={<Wintergaerten />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
