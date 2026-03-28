@@ -200,22 +200,24 @@ const Index = () => {
 
         {/* Mobile: horizontal swipe */}
         <div className="md:hidden -mx-5">
-          <div className="flex gap-4 overflow-x-auto px-5 pb-4 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
+          <div className="flex gap-4 overflow-x-auto px-3 pb-4 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
             {[
               { img: productTerrasse, title: "Terrassenüberdachungen", desc: "Ganzjährig geschützt genießen – mit Aluminium-Glas-Systemen, die architektonisch überzeugen.", link: "/terrassenueberdachungen" },
               { img: productCarport, title: "Carports", desc: "Stilvoller Schutz für Ihr Fahrzeug – freistehend oder am Gebäude angebaut, individuell geplant.", link: "/carports" },
               { img: productWintergarten, title: "Wintergärten", desc: "Wohnraum trifft Natur – lichtdurchflutete Konstruktionen mit höchster Wärmedämmung.", link: "/wintergaerten" },
             ].map((item) => (
-              <Link key={item.title} to={item.link} className="snap-start shrink-0 w-[78vw] max-w-[320px] group block">
+              <Link key={item.title} to={item.link} className="snap-start shrink-0 w-[85vw] max-w-[340px] group block">
                 <div className="relative overflow-hidden aspect-[3/4] mb-4">
                   <img src={item.img} alt={item.title} className="w-full h-full object-cover" loading="lazy" width={960} height={1280} />
                   <div className="absolute inset-0 bg-foreground/10" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
-                <p className="text-secondary leading-relaxed text-sm mb-3">{item.desc}</p>
-                <span className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs">
-                  Mehr erfahren <ArrowRight className="w-4 h-4" />
-                </span>
+                <div className="px-2">
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
+                  <p className="text-secondary leading-relaxed text-sm mb-3">{item.desc}</p>
+                  <span className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs">
+                    Mehr erfahren <ArrowRight className="w-4 h-4" />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
