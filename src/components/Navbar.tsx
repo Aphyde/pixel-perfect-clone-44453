@@ -29,6 +29,7 @@ const products = [
 ];
 
 const simpleLinks = [
+  { label: "Konfigurator", path: "/konfigurator" },
   { label: "Service", path: "/service" },
   { label: "Kontakt", path: "/kontakt" },
 ];
