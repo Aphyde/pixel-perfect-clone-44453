@@ -38,6 +38,22 @@ const packages = [
     popular: true,
   },
   {
+    id: "impraegnierung",
+    name: "Glas-Imprägnierung",
+    price: "ab 249 €",
+    icon: Droplets,
+    desc: "Langanhaltender Lotus-Effekt für selbstreinigende Glasflächen – weniger Schmutz, weniger Pflegeaufwand.",
+    features: [
+      "Professionelle Glasreinigung vorab",
+      "Nano-Imprägnierung aller Glasflächen",
+      "Lotus-Effekt für Selbstreinigung",
+      "Schutz vor Kalk & Grünbelag",
+      "Haltbarkeit bis zu 5 Jahre",
+      "Reduziert künftigen Reinigungsaufwand",
+    ],
+    popular: false,
+  },
+  {
     id: "reparatur",
     name: "Reparatur-Service",
     price: "auf Anfrage",
