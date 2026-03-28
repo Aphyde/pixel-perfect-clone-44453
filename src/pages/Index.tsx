@@ -65,7 +65,7 @@ const Index = () => {
         className="pointer-events-auto p-2 text-primary-foreground"
         onClick={() => setHeroMenuOpen(!heroMenuOpen)}
       >
-        <Menu size={24} />
+        {heroMenuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
     </div>
 
