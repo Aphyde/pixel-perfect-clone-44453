@@ -51,6 +51,7 @@ const Impressum = () => (
                 <article>
                   <h2 className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-primary mb-4 md:mb-6 font-bold">Angaben gemäß § 5 TMG</h2>
                   <p className="text-2xl md:text-3xl font-medium tracking-tight">SMT Konzepte GmbH</p>
+                  <p className="text-sm md:text-base text-primary font-bold mt-2">Brait Überdachungen ist eine Marke von <a href="https://bau-braitinger.de/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-70 transition-opacity">SMT Konzepte</a></p>
                   <p className="text-on-surface-variant font-light leading-loose mt-3 md:mt-4 text-sm md:text-base">Graf-Albrecht-Str. 34/1<br />89160 Dornstadt</p>
                 </article>
               </StaggerItem>
