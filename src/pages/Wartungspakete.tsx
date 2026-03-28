@@ -240,7 +240,7 @@ const Wartungspakete = () => {
           </div>
 
           {/* Desktop: grid */}
-          <StaggerContainer className="hidden md:grid grid-cols-3 gap-6" staggerDelay={0.15}>
+          <StaggerContainer className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.15}>
             {packages.map((pkg) => (
               <StaggerItem key={pkg.id}>
                 <PackageCard
