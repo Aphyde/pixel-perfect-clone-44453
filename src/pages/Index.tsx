@@ -10,7 +10,7 @@ import { Award, Wrench, ShieldCheck, MapPin, Clock, ArrowRight, Menu } from "luc
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navLinks = [
   { label: "Startseite", path: "/" },
@@ -21,11 +21,21 @@ const navLinks = [
 
 const Index = () => {
   const [heroMenuOpen, setHeroMenuOpen] = useState(false);
+  const [heroOverlayVisible, setHeroOverlayVisible] = useState(true);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setHeroOverlayVisible(window.scrollY < 100);
+      if (window.scrollY >= 100) setHeroMenuOpen(false);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
   <Layout>
     {/* Mobile Hero Overlay: Logo left + Hamburger right */}
-    <div className="md:hidden fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-4 pointer-events-none">
+    <div className={`md:hidden fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-4 pointer-events-none transition-opacity duration-300 ${heroOverlayVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
       <img src={logoLight} alt="Brait Überdachungen" className="h-14 pointer-events-auto" />
       <button
         className="pointer-events-auto p-2 text-primary-foreground"
