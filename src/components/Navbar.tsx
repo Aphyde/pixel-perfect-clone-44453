@@ -161,12 +161,21 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile menu – fullscreen overlay */}
         {mobileOpen && (
-          <div className="absolute top-full left-0 w-full bg-foreground/95 backdrop-blur-xl border-t border-primary-foreground/10 md:hidden">
-            <div className="flex flex-col p-6 gap-4">
+          <div className="fixed inset-0 bg-foreground/95 backdrop-blur-xl z-[60] md:hidden overflow-y-auto">
+            {/* Header with logo + close */}
+            <div className="flex items-center justify-between px-4 py-4">
+              <Link to="/" onClick={() => setMobileOpen(false)}>
+                <img src={logoLight} alt="Brait Überdachungen" className="h-12" />
+              </Link>
+              <button className="p-1 text-primary-foreground" onClick={() => setMobileOpen(false)}>
+                <X size={22} />
+              </button>
+            </div>
 
-              {/* Mobile products – always open */}
+            <div className="flex flex-col p-6 gap-4">
+              {/* Mobile products */}
               <span className={`font-headline uppercase tracking-widest text-sm ${isProductPage ? "text-primary font-bold" : "text-primary-foreground/70"}`}>
                 Produkte
               </span>
@@ -197,7 +206,6 @@ const Navbar = () => {
                   ))}
                 </div>
               </div>
-
 
               {simpleLinks.map((link) => (
                 <Link
