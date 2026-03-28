@@ -167,7 +167,7 @@ const Navbar = () => {
             <div className="flex flex-col p-6 gap-4">
 
               {/* Mobile products – always open */}
-              <span className={`font-headline uppercase tracking-widest text-sm ${isProductPage ? "text-primary font-bold" : "text-foreground"}`}>
+              <span className={`font-headline uppercase tracking-widest text-sm ${isProductPage ? "text-primary font-bold" : "text-primary-foreground/70"}`}>
                 Produkte
               </span>
               <div className="mt-1 -mx-6">
