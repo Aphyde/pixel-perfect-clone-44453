@@ -24,9 +24,12 @@ const Footer = () => (
         <Link to="/kontakt" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Kontakt</Link>
       </div>
     </div>
-    <div className="max-w-7xl mx-auto mt-10 md:mt-16 pt-6 md:pt-8 border-t border-primary-foreground/10">
+    <div className="max-w-7xl mx-auto mt-10 md:mt-16 pt-6 md:pt-8 border-t border-primary-foreground/10 flex flex-col items-center gap-2">
       <p className="font-body text-[11px] md:text-sm text-primary-foreground/40 text-center">
-        © 2024 Brait Überdachungen Ulm. Ihr Partner für exklusive Terrassensysteme.
+        © 2025 Brait Überdachungen – eine Marke von <a href="https://bau-braitinger.de/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-primary transition-colors underline underline-offset-2">SMT Konzepte</a>
+      </p>
+      <p className="font-body text-[10px] md:text-xs text-primary-foreground/30 text-center">
+        Website & Marketing von <a href="https://rossigroup.de" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/40 hover:text-primary transition-colors underline underline-offset-2">rossigroup.de</a>
       </p>
     </div>
   </footer>
