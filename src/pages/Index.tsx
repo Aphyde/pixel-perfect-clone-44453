@@ -317,7 +317,6 @@ const Index = () => {
               title="Standort Ulm"
             />
           </FadeIn>
-          </FadeIn>
         </div>
       </div>
     </section>
