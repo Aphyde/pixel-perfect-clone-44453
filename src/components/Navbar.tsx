@@ -160,76 +160,76 @@ const Navbar = () => {
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-
-        {/* Mobile menu – fullscreen overlay */}
-        {mobileOpen && (
-          <div className="fixed inset-0 backdrop-blur-xl z-[60] md:hidden overflow-y-auto" style={{ background: 'linear-gradient(135deg, #1F1E1D 0%, #1E1C1C 35%, #201E1D 65%, #1E1D1D 100%)' }}>
-            {/* Header with logo + close */}
-            <div className="flex items-center justify-between px-4 py-4">
-              <Link to="/" onClick={() => setMobileOpen(false)}>
-                <img src={logoLight} alt="Brait Überdachungen" className="h-12" />
-              </Link>
-              <button className="p-1 text-primary-foreground" onClick={() => setMobileOpen(false)}>
-                <X size={22} />
-              </button>
-            </div>
-
-            <div className="flex flex-col p-6 gap-4">
-              {/* Mobile products */}
-              <span className={`font-headline uppercase tracking-widest text-sm ${isProductPage ? "text-primary font-bold" : "text-primary-foreground/70"}`}>
-                Produkte
-              </span>
-              <div className="mt-1 -mx-6">
-                <div className="flex gap-3 overflow-x-auto px-6 pb-3 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
-                  {products.map((p) => (
-                    <Link
-                      key={p.label}
-                      to={p.path}
-                      onClick={() => setMobileOpen(false)}
-                      className="snap-start shrink-0 w-[72vw] max-w-[300px] group"
-                    >
-                      <div className="relative aspect-[4/3] overflow-hidden mb-3">
-                        <img src={p.image} alt={p.label} className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
-                        <div className="absolute bottom-0 left-0 right-0 p-4">
-                          <h3 className={`font-headline uppercase tracking-widest text-xs font-bold text-white mb-1 ${location.pathname === p.path ? "text-primary" : ""}`}>
-                            {p.label}
-                          </h3>
-                          <p className="text-[10px] text-white/80 leading-tight">{p.desc}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between px-1">
-                        <span className="text-[10px] font-headline uppercase tracking-widest text-primary font-bold">Mehr erfahren</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-primary" />
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {simpleLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.path}
-                  onClick={() => setMobileOpen(false)}
-                  className={`font-headline uppercase tracking-widest text-sm transition-colors ${
-                    location.pathname === link.path ? "text-primary font-bold" : "text-primary-foreground hover:text-primary"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Link
-                to="/kontakt"
-                onClick={() => setMobileOpen(false)}
-                className="sm:hidden bg-primary text-primary-foreground px-6 py-3 font-headline uppercase tracking-widest text-xs font-bold text-center mt-2"
-              >
-                Angebot Anfordern
-              </Link>
-            </div>
-          </div>
-        )}
       </nav>
+
+      {/* Mobile menu – fullscreen overlay (outside nav for proper z-index) */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-[60] md:hidden overflow-y-auto" style={{ background: 'linear-gradient(135deg, #1F1E1D 0%, #1E1C1C 35%, #201E1D 65%, #1E1D1D 100%)' }}>
+          {/* Header with logo + close */}
+          <div className="flex items-center justify-between px-4 py-4">
+            <Link to="/" onClick={() => setMobileOpen(false)}>
+              <img src={logoLight} alt="Brait Überdachungen" className="h-12" />
+            </Link>
+            <button className="p-1 text-primary-foreground" onClick={() => setMobileOpen(false)}>
+              <X size={22} />
+            </button>
+          </div>
+
+          <div className="flex flex-col p-6 gap-4">
+            {/* Mobile products */}
+            <span className={`font-headline uppercase tracking-widest text-sm ${isProductPage ? "text-primary font-bold" : "text-primary-foreground/70"}`}>
+              Produkte
+            </span>
+            <div className="mt-1 -mx-6">
+              <div className="flex gap-3 overflow-x-auto px-6 pb-3 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
+                {products.map((p) => (
+                  <Link
+                    key={p.label}
+                    to={p.path}
+                    onClick={() => setMobileOpen(false)}
+                    className="snap-start shrink-0 w-[72vw] max-w-[300px] group"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden mb-3">
+                      <img src={p.image} alt={p.label} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-4">
+                        <h3 className={`font-headline uppercase tracking-widest text-xs font-bold text-white mb-1 ${location.pathname === p.path ? "text-primary" : ""}`}>
+                          {p.label}
+                        </h3>
+                        <p className="text-[10px] text-white/80 leading-tight">{p.desc}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between px-1">
+                      <span className="text-[10px] font-headline uppercase tracking-widest text-primary font-bold">Mehr erfahren</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-primary" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {simpleLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.path}
+                onClick={() => setMobileOpen(false)}
+                className={`font-headline uppercase tracking-widest text-sm transition-colors ${
+                  location.pathname === link.path ? "text-primary font-bold" : "text-primary-foreground hover:text-primary"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              to="/kontakt"
+              onClick={() => setMobileOpen(false)}
+              className="sm:hidden bg-primary text-primary-foreground px-6 py-3 font-headline uppercase tracking-widest text-xs font-bold text-center mt-2"
+            >
+              Angebot Anfordern
+            </Link>
+          </div>
+        </div>
+      )}
 
       {/* Desktop Mega Menu */}
       <AnimatePresence>
