@@ -147,9 +147,9 @@ const Index = () => {
         </div>
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4" staggerDelay={0.15}>
           {[
-            { img: productTerrasse, title: "Terrassenüberdachungen", desc: "Ganzjährig geschützt genießen – mit Aluminium-Glas-Systemen, die architektonisch überzeugen.", link: "/konfigurator" },
-            { img: productCarport, title: "Carports", desc: "Stilvoller Schutz für Ihr Fahrzeug – freistehend oder am Gebäude angebaut, individuell geplant.", link: "/konfigurator" },
-            { img: productWintergarten, title: "Wintergärten", desc: "Wohnraum trifft Natur – lichtdurchflutete Konstruktionen mit höchster Wärmedämmung.", link: "/konfigurator" },
+            { img: productTerrasse, title: "Terrassenüberdachungen", desc: "Ganzjährig geschützt genießen – mit Aluminium-Glas-Systemen, die architektonisch überzeugen.", link: "/terrassenueberdachungen" },
+            { img: productCarport, title: "Carports", desc: "Stilvoller Schutz für Ihr Fahrzeug – freistehend oder am Gebäude angebaut, individuell geplant.", link: "/carports" },
+            { img: productWintergarten, title: "Wintergärten", desc: "Wohnraum trifft Natur – lichtdurchflutete Konstruktionen mit höchster Wärmedämmung.", link: "/wintergaerten" },
           ].map((item) => (
             <StaggerItem key={item.title}>
               <Link to={item.link} className="group block h-full">
