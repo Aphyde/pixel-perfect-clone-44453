@@ -156,7 +156,7 @@ const Navbar = () => {
           >
             Angebot Anfordern
           </Link>
-          <button className="md:hidden p-1" onClick={() => setMobileOpen(!mobileOpen)}>
+          <button className="md:hidden p-1 text-primary-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
