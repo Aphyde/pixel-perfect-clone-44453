@@ -9,6 +9,7 @@ import logoLight from "@/assets/logo-brait-light.svg";
 import productTerrasse from "@/assets/product-terrassenueberdachung.jpg";
 import productCarport from "@/assets/product-carport.jpg";
 import productWintergarten from "@/assets/product-wintergarten.jpg";
+import { useLocation } from "react-router-dom";
 import { MapPin, Clock, ArrowRight, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
