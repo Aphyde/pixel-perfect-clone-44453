@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo-brait.svg";
+import logoLight from "@/assets/logo-brait-light.svg";
 import productTerrasse from "@/assets/product-terrassenueberdachung.jpg";
 import productCarport from "@/assets/product-carport.jpg";
 import productWintergarten from "@/assets/product-wintergarten.jpg";
