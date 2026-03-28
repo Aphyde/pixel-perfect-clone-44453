@@ -147,7 +147,32 @@ const Index = () => {
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter">Drei Systeme. Eine Philosophie.</h2>
           </FadeIn>
         </div>
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4" staggerDelay={0.15}>
+
+        {/* Mobile: horizontal swipe */}
+        <div className="md:hidden -mx-5">
+          <div className="flex gap-4 overflow-x-auto px-5 pb-4 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
+            {[
+              { img: productTerrasse, title: "Terrassenüberdachungen", desc: "Ganzjährig geschützt genießen – mit Aluminium-Glas-Systemen, die architektonisch überzeugen.", link: "/terrassenueberdachungen" },
+              { img: productCarport, title: "Carports", desc: "Stilvoller Schutz für Ihr Fahrzeug – freistehend oder am Gebäude angebaut, individuell geplant.", link: "/carports" },
+              { img: productWintergarten, title: "Wintergärten", desc: "Wohnraum trifft Natur – lichtdurchflutete Konstruktionen mit höchster Wärmedämmung.", link: "/wintergaerten" },
+            ].map((item) => (
+              <Link key={item.title} to={item.link} className="snap-start shrink-0 w-[78vw] max-w-[320px] group block">
+                <div className="relative overflow-hidden aspect-[3/4] mb-4">
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover" loading="lazy" width={960} height={1280} />
+                  <div className="absolute inset-0 bg-foreground/10" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
+                <p className="text-secondary leading-relaxed text-sm mb-3">{item.desc}</p>
+                <span className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs">
+                  Mehr erfahren <ArrowRight className="w-4 h-4" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: grid */}
+        <StaggerContainer className="hidden md:grid grid-cols-3 gap-4" staggerDelay={0.15}>
           {[
             { img: productTerrasse, title: "Terrassenüberdachungen", desc: "Ganzjährig geschützt genießen – mit Aluminium-Glas-Systemen, die architektonisch überzeugen.", link: "/terrassenueberdachungen" },
             { img: productCarport, title: "Carports", desc: "Stilvoller Schutz für Ihr Fahrzeug – freistehend oder am Gebäude angebaut, individuell geplant.", link: "/carports" },
@@ -159,8 +184,8 @@ const Index = () => {
                   <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width={960} height={1280} />
                   <div className="absolute inset-0 bg-foreground/10 group-hover:bg-transparent transition-all duration-300" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 group-hover:text-primary transition-colors">{item.title}</h3>
-                <p className="text-secondary leading-relaxed text-sm md:text-base mb-3 md:mb-4">{item.desc}</p>
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{item.title}</h3>
+                <p className="text-secondary leading-relaxed text-base mb-4">{item.desc}</p>
                 <span className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs group-hover:gap-3 transition-all">
                   Mehr erfahren <ArrowRight className="w-4 h-4" />
                 </span>
