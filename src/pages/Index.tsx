@@ -16,10 +16,10 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const navLinks = [
-  { label: "Startseite", path: "/" },
   { label: "Terrassenüberdachungen", path: "/terrassenueberdachungen" },
   { label: "Carports", path: "/carports" },
   { label: "Wintergärten", path: "/wintergaerten" },
+  { label: "Konfigurator", path: "/konfigurator" },
   { label: "Service", path: "/service" },
   { label: "Kontakt", path: "/kontakt" },
 ];
@@ -40,7 +40,7 @@ const Index = () => {
   return (
   <Layout>
     {/* Mobile Hero Overlay: Logo left + Hamburger right */}
-    <div className={`md:hidden fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-4 pointer-events-none transition-opacity duration-300 ${heroOverlayVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+    <div className={`md:hidden fixed top-0 left-0 right-0 z-[55] flex items-center justify-between px-4 py-4 pointer-events-none transition-opacity duration-300 ${heroOverlayVisible ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
       <img src={logoLight} alt="Brait Überdachungen" className="h-14 pointer-events-auto" />
       <button
         className="pointer-events-auto p-2 text-primary-foreground"
@@ -52,7 +52,7 @@ const Index = () => {
 
     {/* Mobile hero menu dropdown */}
     {heroMenuOpen && (
-      <div className="md:hidden fixed top-14 left-0 right-0 z-40 bg-foreground/95 backdrop-blur-xl border-t border-primary-foreground/10">
+      <div className="md:hidden fixed top-14 left-0 right-0 z-[55] bg-foreground/95 backdrop-blur-xl border-t border-primary-foreground/10">
         <div className="flex flex-col p-6 gap-5">
           {navLinks.map((link) => (
             <Link
