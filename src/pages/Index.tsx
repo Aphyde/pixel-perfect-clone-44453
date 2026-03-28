@@ -308,7 +308,14 @@ const Index = () => {
             </div>
           </FadeIn>
           <FadeIn direction="right" delay={0.2} className="w-full md:w-2/3 h-[250px] md:h-[400px]">
-            <img src={mapUlm} alt="Karte Ulm" className="w-full h-full object-cover grayscale" loading="lazy" width={1200} height={800} />
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42584.29839498498!2d9.9455!3d48.4011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4799a5b3b0b4e3c7%3A0x42d5e03d5e5c5f0!2sUlm!5e0!3m2!1sde!2sde!4v1700000000000!5m2!1sde!2sde"
+              className="w-full h-full border-0 grayscale"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Standort Ulm"
+            />
           </FadeIn>
         </div>
       </div>
