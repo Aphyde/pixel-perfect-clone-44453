@@ -162,9 +162,16 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile menu – fullscreen overlay (outside nav for proper z-index) */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-[60] md:hidden overflow-y-auto" style={{ background: 'linear-gradient(135deg, #1F1E1D 0%, #1E1C1C 35%, #201E1D 65%, #1E1D1D 100%)' }}>
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-[60] md:hidden overflow-y-auto"
+            style={{ background: 'linear-gradient(135deg, #1F1E1D 0%, #1E1C1C 35%, #201E1D 65%, #1E1D1D 100%)' }}
+          >
           {/* Header with logo + close */}
           <div className="flex items-center justify-between px-4 py-4">
             <Link to="/" onClick={() => setMobileOpen(false)}>
