@@ -254,7 +254,7 @@ const Navbar = () => {
             onMouseEnter={openMega}
             onMouseLeave={closeMega}
           >
-            <div className="bg-card/98 backdrop-blur-2xl border-t border-border shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+            <div className="bg-card border-t border-border shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
               <div className="container mx-auto px-8 py-10">
                 <div className="grid grid-cols-3 gap-6">
                   {products.map((p) => (
