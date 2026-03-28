@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo-brait.svg";
+import logoLight from "@/assets/logo-brait-light.svg";
 import productTerrasse from "@/assets/product-terrassenueberdachung.jpg";
 import productCarport from "@/assets/product-carport.jpg";
 import productWintergarten from "@/assets/product-wintergarten.jpg";
@@ -105,12 +106,13 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full flex justify-between items-center px-4 py-4 md:px-8 md:py-5 bg-card/80 backdrop-blur-xl z-50 transition-transform duration-300 ${
+        className={`fixed top-0 w-full flex justify-between items-center px-4 py-4 md:px-8 md:py-5 bg-foreground/95 md:bg-card/80 backdrop-blur-xl z-50 transition-transform duration-300 ${
           visible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="Brait Überdachungen" className="h-12 md:h-14" />
+          <img src={logoLight} alt="Brait Überdachungen" className="h-12 md:hidden" />
+          <img src={logo} alt="Brait Überdachungen" className="hidden md:block h-14" />
         </Link>
 
         {/* Desktop nav */}
@@ -154,18 +156,18 @@ const Navbar = () => {
           >
             Angebot Anfordern
           </Link>
-          <button className="md:hidden p-1" onClick={() => setMobileOpen(!mobileOpen)}>
+          <button className="md:hidden p-1 text-primary-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="absolute top-full left-0 w-full bg-card/95 backdrop-blur-xl border-t border-border md:hidden">
+          <div className="absolute top-full left-0 w-full bg-foreground/95 backdrop-blur-xl border-t border-primary-foreground/10 md:hidden">
             <div className="flex flex-col p-6 gap-4">
 
               {/* Mobile products – always open */}
-              <span className={`font-headline uppercase tracking-widest text-sm ${isProductPage ? "text-primary font-bold" : "text-foreground"}`}>
+              <span className={`font-headline uppercase tracking-widest text-sm ${isProductPage ? "text-primary font-bold" : "text-primary-foreground/70"}`}>
                 Produkte
               </span>
               <div className="mt-1 -mx-6">
@@ -203,7 +205,7 @@ const Navbar = () => {
                   to={link.path}
                   onClick={() => setMobileOpen(false)}
                   className={`font-headline uppercase tracking-widest text-sm transition-colors ${
-                    location.pathname === link.path ? "text-primary font-bold" : "text-foreground hover:text-primary"
+                    location.pathname === link.path ? "text-primary font-bold" : "text-primary-foreground hover:text-primary"
                   }`}
                 >
                   {link.label}
