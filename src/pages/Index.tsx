@@ -69,11 +69,42 @@ const Index = () => {
       </button>
     </div>
 
-    {/* Mobile hero menu dropdown */}
+    {/* Mobile hero menu dropdown with product swipe cards */}
     {heroMenuOpen && (
-      <div className="md:hidden fixed top-14 left-0 right-0 z-[55] bg-foreground/95 backdrop-blur-xl border-t border-primary-foreground/10">
-        <div className="flex flex-col p-6 gap-5">
-          {navLinks.map((link) => (
+      <div className="md:hidden fixed top-14 left-0 right-0 bottom-0 z-[55] bg-foreground/95 backdrop-blur-xl border-t border-primary-foreground/10 overflow-y-auto">
+        <div className="flex flex-col p-6 gap-4">
+          <span className="font-headline uppercase tracking-widest text-sm text-primary-foreground/70">
+            Produkte
+          </span>
+          <div className="-mx-6">
+            <div className="flex gap-3 overflow-x-auto px-6 pb-3 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
+              {products.map((p) => (
+                <Link
+                  key={p.label}
+                  to={p.path}
+                  onClick={() => setHeroMenuOpen(false)}
+                  className="snap-start shrink-0 w-[72vw] max-w-[300px] group"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden mb-3">
+                    <img src={p.image} alt={p.label} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <h3 className="font-headline uppercase tracking-widest text-xs font-bold text-white mb-1">
+                        {p.label}
+                      </h3>
+                      <p className="text-[10px] text-white/80 leading-tight">{p.desc}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between px-1">
+                    <span className="text-[10px] font-headline uppercase tracking-widest text-primary font-bold">Mehr erfahren</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-primary" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {simpleLinks.map((link) => (
             <Link
               key={link.label}
               to={link.path}
