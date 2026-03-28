@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import konfBg from "@/assets/konfigurator-bg.jpg";
 import { Home, Fence, Sun, Moon, Check, Plus, Minus, ChevronRight, ChevronDown, Lightbulb, Sparkles, ShieldCheck, Droplets } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const models = [
   { name: "Lamellendach", desc: "Bio-Klimatisch & Regensicher", basePrice: 12500 },
@@ -55,6 +55,7 @@ const MobilePreview = ({
 );
 
 const Konfigurator = () => {
+  const navigate = useNavigate();
   const [selectedModel, setSelectedModel] = useState(0);
   const [montage, setMontage] = useState(0);
   const [selectedColor, setSelectedColor] = useState(2);
@@ -318,12 +319,22 @@ const Konfigurator = () => {
               </button>
 
               {/* CTA button */}
-              <Link
-                to="/kontakt"
+              <button
+                onClick={() => navigate("/anfrage", {
+                  state: {
+                    model: models[selectedModel].name,
+                    width,
+                    depth,
+                    color: colors[selectedColor].label,
+                    montage: montage === 0 ? "Wandmontage" : "Freistehend",
+                    extras: extras.filter((e) => selectedExtras.has(e.id)).map((e) => e.label),
+                    totalPrice,
+                  }
+                })}
                 className="flex-1 block text-center bg-foreground text-primary-foreground py-3 md:py-4 font-headline uppercase tracking-[0.15em] text-xs md:text-sm font-bold hover:bg-primary transition-all active:scale-[0.98] ml-auto"
               >
                 Abschließen
-              </Link>
+              </button>
             </div>
           </div>
         </aside>
