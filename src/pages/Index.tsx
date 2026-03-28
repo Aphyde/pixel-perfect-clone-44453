@@ -17,7 +17,9 @@ import { useState, useEffect } from "react";
 
 const navLinks = [
   { label: "Startseite", path: "/" },
-  { label: "Konfigurator", path: "/konfigurator" },
+  { label: "Terrassenüberdachungen", path: "/terrassenueberdachungen" },
+  { label: "Carports", path: "/carports" },
+  { label: "Wintergärten", path: "/wintergaerten" },
   { label: "Service", path: "/service" },
   { label: "Kontakt", path: "/kontakt" },
 ];
