@@ -22,7 +22,7 @@ const extras = [
   { id: "led", label: "Dimmbare LED-Spots", desc: "Integriert in Sparren", price: 890, icon: <Lightbulb className="w-5 h-5" /> },
   { id: "rgb", label: "Ambiente RGB-Strips", desc: "Per App steuerbar", price: 650, icon: <Sparkles className="w-5 h-5" /> },
   { id: "wartung", label: "Wartungspaket (3 Jahre)", desc: "Jährlicher Check & Justierung", price: 499, icon: <ShieldCheck className="w-5 h-5" /> },
-  { id: "reinigung", label: "Professionelle Reinigung", desc: "Halbjährlich glänzende Optik", price: 349, icon: <Droplets className="w-5 h-5" /> },
+  { id: "nanoversiegelung", label: "Glas-Nanoversiegelung", desc: "Langlebige Imprägnierung für Glasdach", price: 349, icon: <Droplets className="w-5 h-5" /> },
 ];
 
 /** Small inline preview shown between config steps on mobile */
