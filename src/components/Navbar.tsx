@@ -196,15 +196,6 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <Link
-                to="/konfigurator"
-                onClick={() => setMobileOpen(false)}
-                className={`font-headline uppercase tracking-widest text-sm transition-colors ${
-                  location.pathname === "/konfigurator" ? "text-primary font-bold" : "text-foreground hover:text-primary"
-                }`}
-              >
-                Konfigurator
-              </Link>
 
               {simpleLinks.map((link) => (
                 <Link
