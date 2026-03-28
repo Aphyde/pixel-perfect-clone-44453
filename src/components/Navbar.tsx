@@ -111,7 +111,8 @@ const Navbar = () => {
         }`}
       >
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="Brait Überdachungen" className="h-12 md:h-14" />
+          <img src={logoLight} alt="Brait Überdachungen" className="h-12 md:hidden" />
+          <img src={logo} alt="Brait Überdachungen" className="hidden md:block h-14" />
         </Link>
 
         {/* Desktop nav */}
