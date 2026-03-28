@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo-brait.svg";
 
@@ -13,9 +13,61 @@ const navLinks = [
 const Navbar = () => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const isHome = location.pathname === "/";
+
+  useEffect(() => {
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      const heroThreshold = window.innerHeight * 0.7;
+
+      // On homepage mobile: hide navbar until past hero, then show/hide on scroll direction
+      if (isHome && window.innerWidth < 768) {
+        if (currentY < heroThreshold) {
+          setVisible(false);
+        } else if (currentY < lastScrollY.current) {
+          // scrolling up
+          setVisible(true);
+        } else {
+          // scrolling down
+          setVisible(false);
+        }
+      } else {
+        // Non-home pages or desktop: always visible, but hide/show on scroll direction on mobile
+        if (window.innerWidth < 768) {
+          if (currentY < 80) {
+            setVisible(true);
+          } else if (currentY < lastScrollY.current) {
+            setVisible(true);
+          } else {
+            setVisible(false);
+          }
+        } else {
+          setVisible(true);
+        }
+      }
+
+      lastScrollY.current = currentY;
+    };
+
+    // Initial state for homepage mobile
+    if (isHome && window.innerWidth < 768) {
+      setVisible(false);
+    } else {
+      setVisible(true);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
 
   return (
-    <nav className="fixed top-0 w-full flex justify-between items-center px-4 py-4 md:px-8 md:py-6 bg-card/80 backdrop-blur-xl z-50">
+    <nav
+      className={`fixed top-0 w-full flex justify-between items-center px-4 py-4 md:px-8 md:py-6 bg-card/80 backdrop-blur-xl z-50 transition-transform duration-300 ${
+        visible ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <Link to="/" className="flex items-center">
         <img src={logo} alt="Brait Überdachungen" className="h-8 md:h-10" />
       </Link>

@@ -5,15 +5,63 @@ import ref1 from "@/assets/ref-1.jpg";
 import ref2 from "@/assets/ref-2.jpg";
 import ref3 from "@/assets/ref-3.jpg";
 import mapUlm from "@/assets/map-ulm.jpg";
-import { Award, Wrench, ShieldCheck, MapPin, Clock, ArrowRight } from "lucide-react";
+import logoLight from "@/assets/logo-brait-light.svg";
+import { Award, Wrench, ShieldCheck, MapPin, Clock, ArrowRight, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
-const Index = () => (
+const navLinks = [
+  { label: "Startseite", path: "/" },
+  { label: "Konfigurator", path: "/konfigurator" },
+  { label: "Service", path: "/service" },
+  { label: "Kontakt", path: "/kontakt" },
+];
+
+const Index = () => {
+  const [heroMenuOpen, setHeroMenuOpen] = useState(false);
+
+  return (
   <Layout>
+    {/* Mobile Hero Overlay: Logo + Hamburger */}
+    <div className="md:hidden fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-4 pointer-events-none">
+      <div />
+      <button
+        className="pointer-events-auto p-2 text-primary-foreground"
+        onClick={() => setHeroMenuOpen(!heroMenuOpen)}
+      >
+        <Menu size={24} />
+      </button>
+    </div>
+
+    {/* Mobile hero menu dropdown */}
+    {heroMenuOpen && (
+      <div className="md:hidden fixed top-14 left-0 right-0 z-40 bg-foreground/95 backdrop-blur-xl border-t border-primary-foreground/10">
+        <div className="flex flex-col p-6 gap-5">
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              to={link.path}
+              onClick={() => setHeroMenuOpen(false)}
+              className="font-headline uppercase tracking-widest text-sm text-primary-foreground hover:text-primary transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            to="/kontakt"
+            onClick={() => setHeroMenuOpen(false)}
+            className="bg-primary text-primary-foreground px-6 py-3 font-headline uppercase tracking-widest text-xs font-bold text-center mt-2"
+          >
+            Angebot Anfordern
+          </Link>
+        </div>
+      </div>
+    )}
+
     {/* Hero */}
-    <section className="relative h-[100svh] min-h-[520px] max-h-[780px] flex items-center pt-16 md:pt-20 overflow-hidden bg-foreground">
+    <section className="relative h-[100svh] min-h-[520px] max-h-[780px] flex items-center pt-0 md:pt-20 overflow-hidden bg-foreground">
       <div className="absolute inset-0 opacity-60">
         <motion.img
           src={heroHome}
