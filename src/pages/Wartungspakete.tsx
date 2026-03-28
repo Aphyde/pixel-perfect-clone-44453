@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import heroWartung from "@/assets/hero-wartung.jpg";
-import { Check, Send, ArrowRight, ArrowLeft, ShieldCheck, Sparkles, Wrench, X, Image as ImageIcon } from "lucide-react";
+import { Check, Send, ArrowRight, ArrowLeft, ShieldCheck, Sparkles, Wrench, Droplets, X, Image as ImageIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, RevealLine } from "@/components/ScrollAnimations";
 import { motion, AnimatePresence } from "framer-motion";
@@ -36,6 +36,22 @@ const packages = [
       "10% Rabatt auf Ersatzteile",
     ],
     popular: true,
+  },
+  {
+    id: "impraegnierung",
+    name: "Glas-Imprägnierung",
+    price: "ab 249 €",
+    icon: Droplets,
+    desc: "Langanhaltender Lotus-Effekt für selbstreinigende Glasflächen – weniger Schmutz, weniger Pflegeaufwand.",
+    features: [
+      "Professionelle Glasreinigung vorab",
+      "Nano-Imprägnierung aller Glasflächen",
+      "Lotus-Effekt für Selbstreinigung",
+      "Schutz vor Kalk & Grünbelag",
+      "Haltbarkeit bis zu 5 Jahre",
+      "Reduziert künftigen Reinigungsaufwand",
+    ],
+    popular: false,
   },
   {
     id: "reparatur",
