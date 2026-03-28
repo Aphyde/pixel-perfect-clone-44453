@@ -62,7 +62,7 @@ const Index = () => (
             className="flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
             <Link to="/konfigurator" className="bg-primary text-primary-foreground px-8 py-4 md:px-10 md:py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all text-center">Konfigurieren</Link>
-            <button className="border border-primary-foreground/20 text-primary-foreground backdrop-blur-sm px-8 py-4 md:px-10 md:py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all">Modelle Entdecken</button>
+            <Link to="/konfigurator" className="border border-primary-foreground/20 text-primary-foreground backdrop-blur-sm px-8 py-4 md:px-10 md:py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all text-center">Modelle Entdecken</Link>
           </motion.div>
         </div>
       </div>
@@ -129,7 +129,7 @@ const Index = () => (
                 <span className="text-[10px] md:text-xs uppercase tracking-widest text-secondary">Reaktionszeit</span>
               </StaggerItem>
             </StaggerContainer>
-            <button className="self-start border-b-2 border-primary text-primary font-bold uppercase tracking-widest pb-1 hover:opacity-70 transition-all text-sm">Region Prüfen</button>
+            <Link to="/kontakt" className="self-start border-b-2 border-primary text-primary font-bold uppercase tracking-widest pb-1 hover:opacity-70 transition-all text-sm">Region Prüfen</Link>
           </FadeIn>
         </div>
       </div>
@@ -144,9 +144,9 @@ const Index = () => (
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter">Referenzprojekte</h2>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <button className="hidden md:flex items-center gap-2 font-bold uppercase tracking-widest text-sm text-primary">
+            <Link to="/kontakt" className="hidden md:flex items-center gap-2 font-bold uppercase tracking-widest text-sm text-primary hover:opacity-70 transition-opacity">
               Alle Projekte <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </FadeIn>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 md:h-[800px]">

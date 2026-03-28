@@ -3,24 +3,15 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Modelle", path: "/" },
+  { label: "Startseite", path: "/" },
   { label: "Konfigurator", path: "/konfigurator" },
   { label: "Service", path: "/service" },
-  { label: "Referenzen", path: "/" },
   { label: "Kontakt", path: "/kontakt" },
 ];
 
 const Navbar = () => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  const isActive = (path: string, label: string) => {
-    if (label === "Modelle" && location.pathname === "/") return true;
-    if (label === "Service" && location.pathname === "/service") return true;
-    if (label === "Konfigurator" && location.pathname === "/konfigurator") return true;
-    if (label === "Kontakt" && location.pathname === "/kontakt") return true;
-    return false;
-  };
 
   return (
     <nav className="fixed top-0 w-full flex justify-between items-center px-4 py-4 md:px-8 md:py-6 bg-card/80 backdrop-blur-xl z-50">
@@ -33,7 +24,7 @@ const Navbar = () => {
             key={link.label}
             to={link.path}
             className={`font-headline uppercase tracking-widest text-sm transition-colors ${
-              isActive(link.path, link.label)
+              location.pathname === link.path
                 ? "text-primary font-bold border-b-2 border-primary pb-1"
                 : "text-foreground hover:text-primary"
             }`}
@@ -62,7 +53,7 @@ const Navbar = () => {
                 to={link.path}
                 onClick={() => setMobileOpen(false)}
                 className={`font-headline uppercase tracking-widest text-sm transition-colors ${
-                  isActive(link.path, link.label) ? "text-primary font-bold" : "text-foreground hover:text-primary"
+                  location.pathname === link.path ? "text-primary font-bold" : "text-foreground hover:text-primary"
                 }`}
               >
                 {link.label}

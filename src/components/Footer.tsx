@@ -12,15 +12,14 @@ const Footer = () => (
       <div className="flex flex-col gap-3 md:gap-4">
         <h4 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary">Services</h4>
         <Link to="/service" className="font-body text-xs md:text-sm text-secondary hover:text-foreground transition-colors">Montage-Service Ulm</Link>
-        <span className="font-body text-xs md:text-sm text-secondary">Wartungspakete</span>
-        <span className="font-body text-xs md:text-sm text-secondary">Maßanfertigung</span>
-        <span className="font-body text-xs md:text-sm text-secondary">Baugenehmigung</span>
+        <Link to="/service" className="font-body text-xs md:text-sm text-secondary hover:text-foreground transition-colors">Wartungspakete</Link>
+        <Link to="/service" className="font-body text-xs md:text-sm text-secondary hover:text-foreground transition-colors">Maßanfertigung</Link>
+        <Link to="/konfigurator" className="font-body text-xs md:text-sm text-secondary hover:text-foreground transition-colors">Konfigurator</Link>
       </div>
       <div className="flex flex-col gap-3 md:gap-4">
         <h4 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary">Rechtliches</h4>
         <Link to="/impressum" className="font-body text-xs md:text-sm text-secondary hover:text-foreground transition-colors">Impressum</Link>
-        <span className="font-body text-xs md:text-sm text-secondary">Datenschutz</span>
-        <span className="font-body text-xs md:text-sm text-secondary">AGB</span>
+        <Link to="/datenschutz" className="font-body text-xs md:text-sm text-secondary hover:text-foreground transition-colors">Datenschutz</Link>
         <Link to="/kontakt" className="font-body text-xs md:text-sm text-secondary hover:text-foreground transition-colors">Kontakt</Link>
       </div>
     </div>
