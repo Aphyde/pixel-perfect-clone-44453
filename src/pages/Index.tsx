@@ -41,7 +41,7 @@ const Index = () => (
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground leading-[0.9] tracking-tighter mb-5 md:mb-8"
+            className="text-[2rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground leading-[0.9] tracking-tighter mb-5 md:mb-8 break-words"
           >
             Exklusive <br />
             <span className="text-primary-fixed-dim">Terrassensysteme</span> <br />
@@ -181,7 +181,7 @@ const Index = () => (
       </div>
       <div className="container mx-auto px-5 md:px-8 relative z-10 text-center">
         <FadeIn distance={60}>
-          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground tracking-tighter mb-6 md:mb-8">Bereit für Ihren Traumplatz?</h2>
+          <h2 className="text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground tracking-tighter mb-6 md:mb-8 break-words">Bereit für Ihren Traumplatz?</h2>
         </FadeIn>
         <FadeIn delay={0.2}>
           <p className="text-base md:text-xl text-primary-foreground/60 max-w-2xl mx-auto mb-8 md:mb-12">Nutzen Sie unseren Online-Konfigurator für eine unverbindliche erste Preisschätzung in unter 3 Minuten.</p>

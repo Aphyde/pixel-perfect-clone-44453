@@ -23,7 +23,7 @@ const Impressum = () => (
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none mb-6 md:mb-8"
+              className="text-[2rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none mb-6 md:mb-8 break-words"
             >
               Impressum.
             </motion.h1>
