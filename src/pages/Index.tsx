@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 const Index = () => (
   <Layout>
     {/* Hero */}
-    <section className="relative h-[972px] flex items-center pt-20 overflow-hidden bg-foreground">
+    <section className="relative h-[680px] md:h-[780px] flex items-center pt-20 overflow-hidden bg-foreground">
       <div className="absolute inset-0 opacity-60">
         <motion.img
           src={heroHome}
