@@ -6,7 +6,7 @@ import { Shield } from "lucide-react";
 const sections = [
   {
     title: "1. Verantwortlicher",
-    text: `Verantwortlich für die Datenverarbeitung auf dieser Website ist:\n\nSMT Konzepte GmbH\nGraf-Albrecht-Str. 34/1\n89160 Dornstadt\n\nVertreten durch: Nico Braitinger\nTelefon: +49 (0) 7348 123456\nE-Mail: info@breitueberdachungen.de`,
+    text: `Verantwortlich für die Datenverarbeitung auf dieser Website ist:\n\nSMT Konzepte GmbH\nGraf-Albrecht-Str. 34/1\n89160 Dornstadt\n\nVertreten durch: Nico Braitinger\nTelefon: +49 (0) 7348 123456\nE-Mail: info@braitueberdachungen.de`,
   },
   {
     title: "2. Erhebung und Speicherung personenbezogener Daten",
@@ -85,7 +85,7 @@ const Datenschutz = () => (
 
         {/* Last updated */}
         <FadeIn className="mt-16 md:mt-24 pt-8 border-t border-outline-variant/20">
-          <p className="text-xs text-secondary">Stand: März 2026 · Bei Fragen zum Datenschutz wenden Sie sich an info@breitueberdachungen.de</p>
+          <p className="text-xs text-secondary">Stand: März 2026 · Bei Fragen zum Datenschutz wenden Sie sich an info@braitueberdachungen.de</p>
         </FadeIn>
       </section>
     </div>

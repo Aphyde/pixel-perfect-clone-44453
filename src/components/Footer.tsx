@@ -4,7 +4,7 @@ const Footer = () => (
   <footer className="bg-surface border-t border-primary/10 p-6 pt-10 md:p-12 md:pt-16">
     <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
       <div>
-        <div className="text-lg md:text-xl font-bold mb-4 md:mb-6 uppercase tracking-widest font-headline">Breitüberdachungen</div>
+        <div className="text-lg md:text-xl font-bold mb-4 md:mb-6 uppercase tracking-widest font-headline">Brait Überdachungen</div>
         <p className="font-body text-xs md:text-sm leading-relaxed text-secondary mb-6 md:mb-8">
           Ihr Spezialist für Aluminium-Terrassendächer und Glashäuser in Ulm. Seit über 10 Jahren Qualität aus der Region.
         </p>
@@ -25,7 +25,7 @@ const Footer = () => (
     </div>
     <div className="max-w-7xl mx-auto mt-10 md:mt-16 pt-6 md:pt-8 border-t border-border">
       <p className="font-body text-[11px] md:text-sm text-secondary text-center">
-        © 2024 Breitüberdachungen Ulm. Ihr Partner für exklusive Terrassensysteme.
+        © 2024 Brait Überdachungen Ulm. Ihr Partner für exklusive Terrassensysteme.
       </p>
     </div>
   </footer>

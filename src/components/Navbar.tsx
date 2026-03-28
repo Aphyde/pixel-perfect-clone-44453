@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 w-full flex justify-between items-center px-4 py-4 md:px-8 md:py-6 bg-card/80 backdrop-blur-xl z-50">
       <Link to="/" className="text-lg md:text-2xl font-bold tracking-tighter font-headline">
-        Breitüberdachungen
+        Brait Überdachungen
       </Link>
       <div className="hidden md:flex gap-8 items-center">
         {navLinks.map((link) => (
