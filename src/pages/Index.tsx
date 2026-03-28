@@ -24,9 +24,9 @@ const Index = () => {
 
   return (
   <Layout>
-    {/* Mobile Hero Overlay: Logo + Hamburger */}
+    {/* Mobile Hero Overlay: Logo left + Hamburger right */}
     <div className="md:hidden fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-4 pointer-events-none">
-      <div />
+      <img src={logoLight} alt="Brait Überdachungen" className="h-10 pointer-events-auto" />
       <button
         className="pointer-events-auto p-2 text-primary-foreground"
         onClick={() => setHeroMenuOpen(!heroMenuOpen)}
@@ -75,16 +75,6 @@ const Index = () => {
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/50 to-transparent md:from-foreground/80 md:via-foreground/40" />
-
-      {/* Mobile centered logo in hero */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="md:hidden absolute top-6 left-0 right-0 z-20 flex justify-center"
-      >
-        <img src={logoLight} alt="Brait Überdachungen" className="h-12" />
-      </motion.div>
 
       <div className="container mx-auto px-5 md:px-8 relative z-10">
         <div className="max-w-4xl">
