@@ -143,7 +143,7 @@ const Kontakt = () => (
                 <ShieldCheck className="w-5 h-5 text-primary shrink-0" />
                 Region Ulm &amp; Umland
               </h4>
-              <p className="text-xs md:text-sm text-secondary leading-relaxed">Wir sind Ihr regionaler Partner im Umkreis von 100km um Ulm.</p>
+              <p className="text-xs md:text-sm text-secondary leading-relaxed">Wir sind Ihr regionaler Partner in Ulm und Umgebung.</p>
               <div className="mt-6 md:mt-8 grayscale opacity-50 contrast-125">
                 <img src={mapUlm} alt="Map" className="w-full h-24 md:h-32 object-cover" loading="lazy" width={1200} height={800} />
               </div>

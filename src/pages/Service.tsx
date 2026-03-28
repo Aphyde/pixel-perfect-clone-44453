@@ -62,7 +62,7 @@ const Service = () => (
             transition={{ duration: 0.6, delay: 1 }}
             className="text-primary-foreground/90 text-base md:text-xl max-w-xl leading-relaxed font-body"
           >
-            Ihr Partner für exklusive Terrassensysteme im Umkreis von 100km um Ulm.
+            Ihr Partner für exklusive Terrassensysteme in Ulm und Umgebung.
           </motion.p>
         </motion.div>
       </div>

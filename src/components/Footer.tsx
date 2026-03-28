@@ -25,7 +25,7 @@ const Footer = () => (
     </div>
     <div className="max-w-7xl mx-auto mt-10 md:mt-16 pt-6 md:pt-8 border-t border-border">
       <p className="font-body text-[11px] md:text-sm text-secondary text-center">
-        © 2024 Breitüberdachungen Ulm. Ihr Partner für exklusive Terrassensysteme im Umkreis von 100km.
+        © 2024 Breitüberdachungen Ulm. Ihr Partner für exklusive Terrassensysteme.
       </p>
     </div>
   </footer>
