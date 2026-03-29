@@ -359,7 +359,7 @@ const Index = () => {
     </section>
 
     {/* Map/Showroom */}
-    <section className="py-12 md:py-20 bg-surface-container">
+    <section className="py-16 md:py-32 bg-surface-container">
       <div className="container mx-auto px-5 md:px-8">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <FadeIn direction="left" className="w-full md:w-1/3">
