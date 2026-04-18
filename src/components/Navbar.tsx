@@ -48,6 +48,8 @@ const Navbar = () => {
     const onScroll = () => {
       const currentY = window.scrollY;
 
+      setScrolled(currentY > 20);
+
       if (window.innerWidth < 768) {
         if (currentY < 80) {
           setVisible(true);
@@ -64,6 +66,7 @@ const Navbar = () => {
     };
 
     setVisible(true);
+    onScroll();
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
