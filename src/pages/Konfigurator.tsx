@@ -293,33 +293,58 @@ const Konfigurator = () => {
               </div>
             </ConfigSection>
 
-            {/* Colors */}
-            <ConfigSection num="04" title="Farbauswahl">
-              <div className="flex gap-2 md:gap-3 flex-wrap">
-                {colors.map((c, i) => (
-                  <div key={c.name} className="cursor-pointer group" onClick={() => setSelectedColor(i)}>
-                    <div className={`w-11 h-11 md:w-14 md:h-14 p-0.5 transition-all duration-200 ${i === selectedColor ? "border-2 border-primary scale-110 shadow-lg" : "border border-transparent hover:border-primary/50"}`}>
-                      <div className="w-full h-full relative" style={{ backgroundColor: c.hex }}>
-                        {i === selectedColor && (
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <Check className={`w-3 h-3 md:w-4 md:h-4 ${c.hex === "#2E2E2E" || c.hex === "#6B6B6B" ? "text-primary-foreground" : "text-foreground"}`} />
-                          </div>
-                        )}
-                      </div>
+            {/* Roof covering */}
+            <ConfigSection num="04" title="Dachdeckung">
+              <div className="grid grid-cols-1 gap-2 md:gap-3">
+                {currentModel.roofs.map((r, i) => (
+                  <button
+                    key={r.id}
+                    onClick={() => setRoofIdx(i)}
+                    className={`flex items-center justify-between p-3 md:p-4 text-left transition-all duration-200 ${i === roofIdx ? "border-2 border-primary bg-primary/5 shadow-md" : "border border-outline-variant/30 hover:border-primary/50"}`}
+                  >
+                    <span className="text-xs md:text-sm font-bold">{r.label}</span>
+                    <div className="flex items-center gap-2 shrink-0 ml-2">
+                      {r.surcharge > 0 && (
+                        <span className="text-[11px] md:text-xs text-primary font-bold">+ {formatPrice(r.surcharge)}</span>
+                      )}
+                      {i === roofIdx && <Check className="w-4 h-4 md:w-5 md:h-5 text-primary" />}
                     </div>
-                    <p className="text-[9px] md:text-[10px] mt-1 md:mt-2 text-center text-secondary uppercase tracking-tighter">{c.name}</p>
-                  </div>
+                  </button>
                 ))}
               </div>
             </ConfigSection>
 
-            {/* Mobile preview after step 4 */}
+            {/* Colors */}
+            <ConfigSection num="05" title="Farbauswahl (RAL)">
+              <div className="flex gap-2 md:gap-3 flex-wrap">
+                {colors.map((c, i) => {
+                  // helle Farben → dunkles Häkchen
+                  const isDark = ["RAL 7016", "RAL 9005"].includes(c.name);
+                  return (
+                    <div key={c.name} className="cursor-pointer group" onClick={() => setSelectedColor(i)}>
+                      <div className={`w-11 h-11 md:w-14 md:h-14 p-0.5 transition-all duration-200 ${i === selectedColor ? "border-2 border-primary scale-110 shadow-lg" : "border border-transparent hover:border-primary/50"}`}>
+                        <div className="w-full h-full relative" style={{ backgroundColor: c.hex }}>
+                          {i === selectedColor && (
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <Check className={`w-3 h-3 md:w-4 md:h-4 ${isDark ? "text-primary-foreground" : "text-foreground"}`} />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <p className="text-[9px] md:text-[10px] mt-1 md:mt-2 text-center text-secondary uppercase tracking-tighter">{c.name}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </ConfigSection>
+
+            {/* Mobile preview */}
             <MobilePreview {...previewProps} />
 
-            {/* Extras */}
-            <ConfigSection num="05" title="Extras & Services">
+            {/* Extras + Module */}
+            <ConfigSection num="06" title="Erweiterungen & Services">
               <div className="grid grid-cols-1 gap-2 md:gap-3">
-                {extras.map((e) => {
+                {allExtras.map((e) => {
                   const active = selectedExtras.has(e.id);
                   return (
                     <button
@@ -327,15 +352,15 @@ const Konfigurator = () => {
                       onClick={() => toggleExtra(e.id)}
                       className={`p-3 md:p-4 flex justify-between items-center text-left transition-all duration-200 ${active ? "bg-primary/5 border-l-4 border-primary shadow-sm" : "bg-surface-container-low hover:bg-surface-container border-l-4 border-transparent"}`}
                     >
-                      <div className="flex items-center gap-3 md:gap-4">
+                      <div className="flex items-center gap-3 md:gap-4 min-w-0">
                         <span className={`${active ? "text-primary" : "text-secondary"} shrink-0`}>{e.icon}</span>
-                        <div>
+                        <div className="min-w-0">
                           <p className="text-xs md:text-sm font-bold">{e.label}</p>
-                          <p className="text-[11px] md:text-xs text-secondary">{e.desc}</p>
+                          <p className="text-[11px] md:text-xs text-secondary truncate">{e.desc}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 md:gap-3 shrink-0 ml-2">
-                        <span className="text-xs md:text-sm font-headline font-bold">{formatPrice(e.price)}</span>
+                        <span className="text-xs md:text-sm font-headline font-bold whitespace-nowrap">{formatPrice(e.price)}</span>
                         <div className={`w-5 h-5 md:w-6 md:h-6 flex items-center justify-center transition-all ${active ? "bg-primary text-primary-foreground" : "border border-outline-variant/50"}`}>
                           {active ? <Check className="w-3 h-3" /> : <Plus className="w-3 h-3 text-secondary" />}
                         </div>
