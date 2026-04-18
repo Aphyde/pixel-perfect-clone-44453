@@ -1,5 +1,6 @@
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
+import NotFound from "@/pages/NotFound";
 import { categories, findCategory, findProduct, toProductPageData } from "@/data/products";
 
 const ProductRoute = () => {
@@ -7,11 +8,11 @@ const ProductRoute = () => {
     categorySlug: string;
     productSlug: string;
   }>();
-  if (!categorySlug || !productSlug) return <Navigate to="/" replace />;
+  if (!categorySlug || !productSlug) return <NotFound />;
 
   const category = findCategory(categorySlug);
   const product = findProduct(categorySlug, productSlug);
-  if (!category || !product) return <Navigate to={`/${categorySlug}`} replace />;
+  if (!category || !product) return <NotFound />;
 
   // Other products in same category, plus a fallback to other categories.
   const siblings = category.products

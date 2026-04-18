@@ -1,14 +1,15 @@
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CategoryPageTemplate from "@/components/CategoryPageTemplate";
 import ProductPageTemplate from "@/components/ProductPageTemplate";
+import NotFound from "@/pages/NotFound";
 import { categories, findCategory, toProductPageData } from "@/data/products";
 
 const CategoryRoute = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
-  if (!categorySlug) return <Navigate to="/" replace />;
+  if (!categorySlug) return <NotFound />;
 
   const category = findCategory(categorySlug);
-  if (!category) return <Navigate to="/" replace />;
+  if (!category) return <NotFound />;
 
   // Single-product category → render ProductPageTemplate directly.
   if (category.singleProduct) {
