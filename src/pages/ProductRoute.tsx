@@ -35,7 +35,7 @@ const ProductRoute = () => {
             .map((c) => ({ title: c.label, image: c.image, link: `/${c.slug}` })),
         ];
 
-  return <ProductPageTemplate data={toProductPageData(product, others)} />;
+  return <ProductPageTemplate data={toProductPageData(product, others, category.slug)} />;
 };
 
 export default ProductRoute;
