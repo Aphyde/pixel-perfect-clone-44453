@@ -1,29 +1,84 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import konfBg from "@/assets/konfigurator-bg.jpg";
-import { Home, Fence, Sun, Moon, Check, Plus, Minus, ChevronRight, ChevronDown, Lightbulb, Sparkles, ShieldCheck, Droplets } from "lucide-react";
+import { Home, Fence, Sun, Moon, Check, Plus, Minus, ChevronDown, Lightbulb, Sparkles, ShieldCheck, Droplets } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { terraceModules, premiumColors } from "@/data/products";
 
-const models = [
-  { name: "Lamellendach", desc: "Bio-Klimatisch & Regensicher", basePrice: 12500 },
-  { name: "Klassisches Glasdach", desc: "VSG-Sicherheitsglas 10mm", basePrice: 9800 },
-  { name: "Kubische Flat-Dach", desc: "Puristisches Design ohne Gefälleoptik", basePrice: 11200 },
+interface Model {
+  id: string;
+  name: string;
+  desc: string;
+  basePrice: number;
+  minW: number; maxW: number;
+  minD: number; maxD: number;
+  pfosten: string;
+  roofs: { id: string; label: string; surcharge: number }[];
+}
+
+const models: Model[] = [
+  {
+    id: "pro-line",
+    name: "PRO-LINE",
+    desc: "Standard-Überdachung, Polycarbonat oder VSG-Glas",
+    basePrice: 7900,
+    minW: 3, maxW: 12, minD: 2, maxD: 5,
+    pfosten: "14 × 14 cm",
+    roofs: [
+      { id: "polycarbonat", label: "Polycarbonat 16 mm", surcharge: 0 },
+      { id: "vsg", label: "VSG 44.2 Sicherheitsglas", surcharge: 1800 },
+    ],
+  },
+  {
+    id: "luxaline-cube",
+    name: "LUXALINE CUBE",
+    desc: "Premium Glasdach, kubisch, LED serienmäßig",
+    basePrice: 11900,
+    minW: 3, maxW: 7, minD: 3, maxD: 4.5,
+    pfosten: "15 × 15 cm",
+    roofs: [
+      { id: "vsg-clear", label: "VSG 44.2 klar", surcharge: 0 },
+      { id: "vsg-tint", label: "VSG 44.2 getönt", surcharge: 600 },
+    ],
+  },
+  {
+    id: "lameldak-cabrio",
+    name: "LAMELDAK CABRIO",
+    desc: "Premium-Lamellendach, elektrisch (Somfy IO)",
+    basePrice: 13900,
+    minW: 3, maxW: 7, minD: 3, maxD: 4.5,
+    pfosten: "15 × 15 cm",
+    roofs: [
+      { id: "alu-lamellen", label: "Aluminium-Lamellen, motorisch", surcharge: 0 },
+    ],
+  },
 ];
 
-const colors = [
-  { name: "RAL 7032", hex: "#D1D1D1", label: "Kieselgrau" },
-  { name: "RAL 1019", hex: "#B8A796", label: "Graubeige" },
-  { name: "Anthrazit", hex: "#2E2E2E", label: "Anthrazit" },
-  { name: "RAL 9016", hex: "#F1F0EA", label: "Verkehrsweiß" },
-  { name: "DB 703", hex: "#6B6B6B", label: "Eisenglimmer" },
-];
+// 5 echte RAL-Farben aus dem Katalog
+const colors = premiumColors.map((c) => ({
+  name: c.ral,
+  hex: c.hex,
+  label: c.label,
+}));
 
-const extras = [
+// Service-Extras
+const serviceExtras = [
   { id: "led", label: "Dimmbare LED-Spots", desc: "Integriert in Sparren", price: 890, icon: <Lightbulb className="w-5 h-5" /> },
   { id: "rgb", label: "Ambiente RGB-Strips", desc: "Per App steuerbar", price: 650, icon: <Sparkles className="w-5 h-5" /> },
   { id: "wartung", label: "Wartungspaket (3 Jahre)", desc: "Jährlicher Check & Justierung", price: 499, icon: <ShieldCheck className="w-5 h-5" /> },
-  { id: "nanoversiegelung", label: "Glas-Nanoversiegelung", desc: "Langlebige Imprägnierung für Glasdach", price: 349, icon: <Droplets className="w-5 h-5" /> },
+  { id: "nanoversiegelung", label: "Glas-Nanoversiegelung", desc: "Langlebige Imprägnierung", price: 349, icon: <Droplets className="w-5 h-5" /> },
 ];
+
+// Terrassen-Module (kommen aus products.ts)
+const moduleExtras = terraceModules.map((m) => ({
+  id: `mod-${m.id}`,
+  label: m.label,
+  desc: m.shortDesc,
+  price: m.price,
+  icon: <Plus className="w-5 h-5" />,
+}));
+
+const allExtras = [...moduleExtras, ...serviceExtras];
 
 /** Small inline preview shown between config steps on mobile */
 const MobilePreview = ({
