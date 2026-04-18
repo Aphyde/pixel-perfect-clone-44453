@@ -2,7 +2,8 @@ import Layout from "@/components/Layout";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, ParallaxImage } from "@/components/ScrollAnimations";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Plus } from "lucide-react";
+import { terraceModules } from "@/data/products";
 
 export interface ProductFeature {
   title: string;
@@ -24,6 +25,8 @@ export interface ProductPageData {
   ctaTitle: string;
   ctaText: string;
   otherProducts: { title: string; image: string; link: string }[];
+  /** Wenn true, wird die "Erweiterungen & Module"-Sektion eingeblendet (nur Terrassen). */
+  showModules?: boolean;
 }
 
 const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
