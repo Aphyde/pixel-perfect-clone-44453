@@ -1,6 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Menu, X, ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown, ChevronRight, Phone } from "lucide-react";
+
+const PHONE_DISPLAY = "0173 530 358 1";
+const PHONE_HREF = "tel:+4917353035881";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo-brait.svg";
 import logoLight from "@/assets/logo-brait-light.svg";
@@ -136,7 +139,23 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3">
+          {/* Call button: full on desktop, icon-only on mobile */}
+          <a
+            href={PHONE_HREF}
+            aria-label={`Anrufen: ${PHONE_DISPLAY}`}
+            className="hidden md:inline-flex items-center gap-2 border border-foreground/15 hover:border-primary text-foreground hover:text-primary px-4 py-3 font-headline uppercase tracking-widest text-xs font-bold transition-all"
+          >
+            <Phone className="w-3.5 h-3.5" />
+            {PHONE_DISPLAY}
+          </a>
+          <a
+            href={PHONE_HREF}
+            aria-label={`Anrufen: ${PHONE_DISPLAY}`}
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 border border-primary-foreground/20 text-primary-foreground hover:text-primary hover:border-primary transition-all"
+          >
+            <Phone className="w-4 h-4" />
+          </a>
           <Link
             to="/kontakt"
             className="hidden sm:inline-block bg-primary text-primary-foreground px-5 py-3 md:px-8 md:py-4 font-headline uppercase tracking-widest text-[10px] md:text-xs font-bold hover:bg-primary-container transition-all active:scale-[0.99]"
