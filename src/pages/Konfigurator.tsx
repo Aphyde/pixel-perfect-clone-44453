@@ -387,7 +387,13 @@ const Konfigurator = () => {
                     <span>{formatPrice(1200)}</span>
                   </div>
                 )}
-                {extras.filter((e) => selectedExtras.has(e.id)).map((e) => (
+                {currentModel.roofs[roofIdx]?.surcharge > 0 && (
+                  <div className="flex justify-between text-xs md:text-sm">
+                    <span className="text-secondary">{currentModel.roofs[roofIdx].label}</span>
+                    <span>{formatPrice(currentModel.roofs[roofIdx].surcharge)}</span>
+                  </div>
+                )}
+                {allExtras.filter((e) => selectedExtras.has(e.id)).map((e) => (
                   <div key={e.id} className="flex justify-between text-xs md:text-sm">
                     <span className="text-secondary">{e.label}</span>
                     <span>{formatPrice(e.price)}</span>
@@ -418,7 +424,8 @@ const Konfigurator = () => {
                     depth,
                     color: colors[selectedColor].label,
                     montage: montage === 0 ? "Wandmontage" : "Freistehend",
-                    extras: extras.filter((e) => selectedExtras.has(e.id)).map((e) => e.label),
+                    roof: currentModel.roofs[roofIdx]?.label,
+                    extras: allExtras.filter((e) => selectedExtras.has(e.id)).map((e) => e.label),
                     totalPrice,
                   }
                 })}
