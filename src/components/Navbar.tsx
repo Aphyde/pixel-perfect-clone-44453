@@ -45,38 +45,23 @@ const Navbar = () => {
   useEffect(() => {
     const onScroll = () => {
       const currentY = window.scrollY;
-      const heroThreshold = window.innerHeight * 0.7;
 
-      if (isHome && window.innerWidth < 768) {
-        if (currentY < heroThreshold) {
-          setVisible(false);
+      if (window.innerWidth < 768) {
+        if (currentY < 80) {
+          setVisible(true);
         } else if (currentY < lastScrollY.current) {
           setVisible(true);
         } else {
           setVisible(false);
         }
       } else {
-        if (window.innerWidth < 768) {
-          if (currentY < 80) {
-            setVisible(true);
-          } else if (currentY < lastScrollY.current) {
-            setVisible(true);
-          } else {
-            setVisible(false);
-          }
-        } else {
-          setVisible(true);
-        }
+        setVisible(true);
       }
 
       lastScrollY.current = currentY;
     };
 
-    if (isHome && window.innerWidth < 768) {
-      setVisible(false);
-    } else {
-      setVisible(true);
-    }
+    setVisible(true);
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
