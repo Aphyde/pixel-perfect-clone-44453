@@ -348,14 +348,14 @@ const StepRenderer = ({
       )}
 
       {step.type === "radio-icon" && step.options && (
-        <div className="flex gap-2 md:gap-3 flex-wrap">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
           {step.options.map((o, i) => (
             <button
               key={o.id}
               onClick={() => onSelect(i)}
-              className={`flex-1 min-w-[120px] p-3 md:p-4 text-center transition-all duration-200 ${i === selectedIdx ? "border-2 border-primary bg-primary/5 shadow-md" : "border border-outline-variant/30 hover:border-primary/50"}`}
+              className={`p-3 md:p-4 text-center transition-all duration-200 flex flex-col items-center justify-center min-h-[72px] ${i === selectedIdx ? "border-2 border-primary bg-primary/5 shadow-md" : "border border-outline-variant/30 hover:border-primary/50"}`}
             >
-              <span className="text-[11px] md:text-xs font-bold uppercase tracking-wider block">{o.label}</span>
+              <span className="text-[11px] md:text-xs font-bold uppercase tracking-wider block break-words hyphens-auto leading-tight">{o.label}</span>
               {o.price ? <span className="text-[10px] text-primary mt-1 block">+ {formatPrice(o.price)}</span> : null}
             </button>
           ))}
