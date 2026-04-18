@@ -8,7 +8,7 @@ import mapUlm from "@/assets/map-ulm.jpg";
 import logoLight from "@/assets/logo-brait-light.svg";
 import { categories } from "@/data/products";
 import { useLocation } from "react-router-dom";
-import { MapPin, Clock, ArrowRight, Menu, X } from "lucide-react";
+import { MapPin, Clock, ArrowRight, Menu, X, ShieldCheck, Sparkles, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
 import { motion, AnimatePresence } from "framer-motion";
