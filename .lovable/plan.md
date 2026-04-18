@@ -1,52 +1,93 @@
 
 
-## Plan: Katalog-Integration (ohne SO Aluminium Branding)
+## Plan: Kategorie-spezifische Konfiguratoren + unverbindlicher CTA
 
-### Entscheidungen
-- **Keine Zubehör-Kategorie** – Module nur im Konfigurator + als Sektion auf Terrassen-Detailseiten
-- **Lamellendach** als 3. Unterprodukt unter Terrassenüberdachungen (neben Wandbefestigt/Freistehend)
-- **Logo-Wasserzeichen** bleiben auf Bildern
-- **SO Aluminium nirgends erwähnen** – Brait tritt als Hersteller/Anbieter auf
-- **Qualitätsstufen** für Terrassendächer: PRO-LINE (Standard) / LUXALINE CUBE (Premium Glas) / LAMELDAK CABRIO (Premium Lamellen) – auch als Konfigurator-Auswahl
+### Konzept
 
-### Schritte
+Aktuell ist `/konfigurator` nur für Terrassenüberdachungen. Wir machen daraus **6 spezialisierte Konfiguratoren** – einen pro Produktkategorie – mit jeweils sinnvollen Schritten/Optionen, getrieben aus einer zentralen Config-Datei.
 
-**1. Bilder extrahieren** (~60 aus PDF) → `src/assets/catalog/`, sinnvoll umbenennen, ohne SO-Aluminium-Texte in Dateinamen
+### Routing-Struktur
 
-**2. `src/data/products.ts` erweitern**
-- Wandbefestigt + Freistehend: echte PRO-LINE Specs (3-12×2-5m, Polycarbonat 16mm / VSG 44.2, Pfosten 14×14, 120 km/h, integrierte Dachrinne, RAL 7016/9005/9001/9010 + Maßanfertigung)
-- **Neu: Lamellendach** als drittes Unterprodukt unter `/terrassenueberdachungen/lamellendach` (Cabrio-Specs: elektrisch Somfy IO, Verkehrsweiß zusätzlich, Pfosten 15×15)
-- Q-Bus mit echten Cube-Specs füllen (3-7×3-4,5m, serienmäßige LED, Verkehrsweiß-Option)
-- Carports/Eingangsüberdachungen: Specs übernehmen wo passend
+```text
+/konfigurator                       → Übersichtsseite (6 Kategorien als Auswahl)
+/konfigurator/markisen              → Markisen-Konfigurator
+/konfigurator/terrassenueberdachungen → bestehender Terrassen-Konfigurator (3 Modelle)
+/konfigurator/schirme               → Schirm-Konfigurator
+/konfigurator/q-bus                 → Q-Bus-Konfigurator
+/konfigurator/eingangsueberdachungen → Eingangs-Konfigurator
+/konfigurator/carports              → Carport-Konfigurator
+```
 
-**3. Module-Sektion auf Terrassen-Detailseiten** (`ProductPageTemplate.tsx` erweitern)
-- Neue optionale Sektion „Erweiterungen & Module" für Terrassen-Produkte
-- 8 Module als Cards: Glasschiebewände, Schiebetür, Festrahmen, Keilblende, Seitenwand, Zipscreen, Plissee, Sonnenschutz Oberdach
-- Jeweils Bild + Kurzbeschreibung + Specs – kein eigener Routing-Layer
-- Daten in `products.ts` als `modules: []` pro Produkt
+Außerdem: „Konfigurieren"-Buttons auf den Kategorie- und Produktseiten verlinken jetzt direkt auf den passenden Kategorie-Konfigurator (mit ggf. vorausgewähltem Modell).
 
-**4. Konfigurator-Erweiterung (`/konfigurator`)**
-- **Modell-Stufe**: PRO-LINE / LUXALINE CUBE / LAMELDAK CABRIO mit korrekten Min/Max-Maßen pro Modell
-- **5 echte RAL-Farben** statt Platzhalter
-- **Dachdeckung**: Polycarbonat 16mm / VSG 44.2 (klar/opal/getönt) – abhängig vom Modell
-- **Module als Extras** (Checkboxen): Glasschiebewand, Schiebetür, Festrahmen, Screen, Plissee, Sonnenschutz, LED, Somfy IO Steuerung
-- **Pfostenstärke** automatisch je Modell (14×14 vs. 15×15)
+### Schritte pro Konfigurator (kategorie-spezifisch)
 
-**5. Vertrauens-Sektion auf Startseite** (neu zwischen Produkten und Karte)
-- KPI-Bar (umformuliert für Brait): „15+ Jahre Erfahrung", „3000+ realisierte Projekte", „9.4 Kundenbewertung"
-- Qualitätshinweis: „Premium Pulverbeschichtung", „Aluminium 6063 T6", „CE-zertifiziert"
-- **Keine** Erwähnung von SO Aluminium oder Tiger Drylac (Markenname des Lieferanten)
+| Kategorie | Schritte |
+|---|---|
+| **Markisen** | Typ (Fallarm/Gelenkarm/Senkrecht/Aufglas) → Maße (Breite/Ausfall) → Tuchfarbe → Gestellfarbe → Antrieb (Kurbel/Motor) → Sensoren (Wind/Sonne) → LED-Beleuchtung |
+| **Terrassenüberdachungen** | (bestehend) Modell → Maße → Montage → Dachdeckung → Farbe → Module |
+| **Schirme** | Typ (Schwenkbar/sonst.) → Größe → Farbe Stoff → Mast-Position → Beleuchtung → Heizung |
+| **Q-Bus** | Maße (3-7×3-4,5m) → Glasart (klar/getönt) → Farbe inkl. Verkehrsweiß → LED-Stufen → Glasschiebewände → Screens |
+| **Eingangsüberdachungen** | Form (gerade/gebogen) → Breite/Tiefe → Material Dach (Glas/Polycarbonat) → Farbe → Seitenteile |
+| **Carports** | Typ (Einzel/Doppel/Reihe) → Maße → Dachform → Farbe → Wände/Tore → Solar-Vorbereitung |
 
-**6. Routing**
-- Neu: `/terrassenueberdachungen/lamellendach` (automatisch via dynamischem ProductRoute, sobald in `products.ts`)
-- Mega-Menu Navbar zeigt automatisch die 3 Terrassen-Unterprodukte
+### Architektur
 
-### Was NICHT gebaut wird
-- Keine Top-Level „Zubehör"-Kategorie
-- Keine Modul-Detailseiten mit eigenem Routing
-- Keine B2B-Partner-Seite
-- Kein 4-Phasen-Lieferanten-Prozess
+**Neue Datei `src/data/configurators.ts`** – zentrale Config:
+```ts
+export const configurators = {
+  markisen: { label, hero, steps: [...], extras: [...] },
+  terrassenueberdachungen: { ... },
+  schirme: { ... },
+  ...
+}
+```
 
-### Offene Punkte (entscheide ich pragmatisch, falls nichts kommt)
-- KPIs (15+ Jahre, 3000+ Projekte) sind Lieferanten-Zahlen – ich formuliere sie generisch („Mit Aluminium-Systemen aus europäischer Premium-Fertigung") oder lasse sie weg, falls sie für Brait nicht stimmen. **Sag Bescheid, ob deine Brait-Werte anders sind.**
+**Neue Datei `src/pages/KonfiguratorRoute.tsx`** – dynamischer Loader, der die richtige Konfig zur URL lädt und an eine generische Konfigurator-Komponente weitergibt.
+
+**Refactoring `src/pages/Konfigurator.tsx`**:
+- Wird zur Übersichts-/Auswahlseite (6 große Kategorie-Karten, Hover-Bilder, kurze Beschreibung).
+- Bestehende Konfigurator-Logik wandert in eine neue Komponente `src/components/konfigurator/ConfiguratorEngine.tsx`, die generisch über die Step-Definitionen rendert.
+
+**Generische Engine-Schritttypen**:
+- `select-cards` (z.B. Modell, Typ, Form)
+- `dimensions` (Slider mit Min/Max)
+- `colors` (RAL-Palette)
+- `radio-icon` (z.B. Antrieb Kurbel/Motor)
+- `extras-toggle` (Checkbox-Module)
+
+So ist jede Kategorie nur Daten – kein neuer Code.
+
+### CTA-Button: unverbindlich + kostenlos kommunizieren
+
+**Aktueller Button**: „Abschließen" (impliziert Kauf)
+
+**Neu** im Footer-Bereich des Konfigurators:
+- Großer Button-Text: **„Unverbindliche Anfrage senden"**
+- Untertext direkt darunter: **„Kostenlos & unverbindlich · Antwort innerhalb von 24 h"**
+- Mini-Vertrauensicons: ✓ Kostenfrei  ✓ Ohne Kaufverpflichtung  ✓ Persönliche Beratung
+- Auf der **`Anfrage`-Seite** zusätzlich oben einen Vertrauens-Banner: „Diese Anfrage ist 100 % kostenlos und unverbindlich."
+
+### Anfrage-Seite anpassen
+`Anfrage.tsx` erhält in `ConfigData` zusätzliche Felder (Kategorie, dynamische Optionen), damit z.B. „Antrieb: Funkmotor" oder „Tuchfarbe: …" sauber dargestellt werden – generisch via Liste statt fester Felder.
+
+### Navbar / Verlinkungen
+- Navbar-Link „Konfigurator" zeigt weiterhin auf `/konfigurator` (jetzt Übersicht).
+- Mega-Menu jeder Kategorie bekommt einen kleinen „→ Konfigurator starten"-Link.
+- „Konfigurieren"-Buttons auf Produkt-Detailseiten verlinken auf `/konfigurator/{categorySlug}` mit `?model={productSlug}` als Vorbelegung.
+
+### Schritte (Implementierung)
+
+1. `src/data/configurators.ts` mit allen 6 Kategorie-Configs anlegen
+2. `ConfiguratorEngine.tsx` als generische Render-Komponente bauen (alle Step-Typen)
+3. `KonfiguratorRoute.tsx` für `/konfigurator/:categorySlug` anlegen + in `App.tsx` routen
+4. `Konfigurator.tsx` zur Übersichtsseite umbauen
+5. CTA-Button + Vertrauens-Texte umformulieren (auch im Anfrage-Flow)
+6. `Anfrage.tsx` für dynamische Optionen erweitern
+7. Verlinkungen in Navbar, ProductPageTemplate, CategoryPageTemplate, Index aktualisieren
+8. End-to-End testen: alle 6 Konfiguratoren, Anfrage-Flow, Mobile
+
+### Was nicht gebaut wird
+- Keine echten Live-3D-Renderings für jede Kategorie – Bilder bleiben statisch (Tag/Nacht-Toggle nur wo sinnvoll, z.B. Terrassen, Q-Bus, Carport)
+- Keine echten Preise für Markisen/Schirme/Eingang – dort Richtpreise als Anhalt (kann später verfeinert werden)
 
