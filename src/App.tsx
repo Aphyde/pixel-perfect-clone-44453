@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Service from "./pages/Service";
 import Kontakt from "./pages/Kontakt";
 import Konfigurator from "./pages/Konfigurator";
+import KonfiguratorRoute from "./pages/KonfiguratorRoute";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
 import Anfrage from "./pages/Anfrage";
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/service" element={<Service />} />
           <Route path="/kontakt" element={<Kontakt />} />
           <Route path="/konfigurator" element={<Konfigurator />} />
+          <Route path="/konfigurator/:categorySlug" element={<KonfiguratorRoute />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="/anfrage" element={<Anfrage />} />
