@@ -5,9 +5,25 @@ import heroCarport from "@/assets/hero-carport.jpg";
 import detailCarport from "@/assets/detail-carport.jpg";
 import productCarport from "@/assets/product-carport.jpg";
 import architectureDetail from "@/assets/architecture-detail.jpg";
-import heroHome from "@/assets/hero-home.jpg";
-import heroWintergarten from "@/assets/hero-wintergarten.jpg";
-import detailWintergarten from "@/assets/detail-wintergarten.jpg";
+
+// Catalog images (real product photography)
+import proline1 from "@/assets/catalog/proline-1.jpg";
+import proline2 from "@/assets/catalog/proline-2.jpg";
+import proline3 from "@/assets/catalog/proline-3.jpg";
+import cube1 from "@/assets/catalog/cube-1.jpg";
+import cube2 from "@/assets/catalog/cube-2.jpg";
+import cube3 from "@/assets/catalog/cube-3.jpg";
+import lamellen1 from "@/assets/catalog/lamellendach-1.jpg";
+import lamellen2 from "@/assets/catalog/lamellendach-2.jpg";
+import lamellen3 from "@/assets/catalog/lamellendach-3.jpg";
+import imgGlasschiebewand from "@/assets/catalog/glasschiebewand.jpg";
+import imgSchiebetuer from "@/assets/catalog/schiebetuer.jpg";
+import imgFestrahmen from "@/assets/catalog/festrahmen.jpg";
+import imgKeilblende from "@/assets/catalog/keilblende.jpg";
+import imgSeitenwand from "@/assets/catalog/seitenwand.jpg";
+import imgZipscreen from "@/assets/catalog/zipscreen.jpg";
+import imgSonnenOberdach from "@/assets/catalog/sonnenschutz-oberdach.jpg";
+import imgPlissee from "@/assets/catalog/plissee.jpg";
 
 export interface ProductFeature {
   title: string;
@@ -16,6 +32,17 @@ export interface ProductFeature {
 export interface ProductSpec {
   label: string;
   value: string;
+}
+
+export interface TerraceModule {
+  id: string;
+  label: string;
+  shortDesc: string;
+  longDesc: string;
+  image: string;
+  /** Konfigurator-Aufpreis (€) */
+  price: number;
+  specs: ProductSpec[];
 }
 
 export interface ProductDetail {
@@ -42,6 +69,8 @@ export interface ProductDetail {
     title: string;
     text: string;
   };
+  /** Wenn true, wird die "Erweiterungen & Module"-Sektion auf der Detailseite angezeigt. */
+  showModules?: boolean;
 }
 
 export interface Category {
@@ -55,6 +84,145 @@ export interface Category {
   /** Used when products is empty. */
   singleProduct?: ProductDetail;
 }
+
+// ============================================================
+// MODULE / ERWEITERUNGEN für Terrassenüberdachungen
+// (Werden auf den Terrassen-Detailseiten + im Konfigurator genutzt)
+// ============================================================
+export const terraceModules: TerraceModule[] = [
+  {
+    id: "glasschiebewand",
+    label: "Glasschiebewände",
+    shortDesc: "Flexibler Windschutz aus 10 mm gehärtetem Glas – 2- bis 7-spurig.",
+    longDesc:
+      "Schließen Sie Ihre Überdachung an kühlen Tagen mit transparenten Schiebewänden aus 10 mm gehärtetem Sicherheitsglas. Die Elemente lassen sich vollständig zur Seite schieben – maximale Öffnung, minimaler Sichtbruch.",
+    image: imgGlasschiebewand,
+    price: 2400,
+    specs: [
+      { label: "Glas", value: "10 mm gehärtet (ESG)" },
+      { label: "Spuren", value: "2- bis 7-spurig" },
+      { label: "Max. Höhe", value: "3.000 mm" },
+      { label: "Maßanfertigung", value: "ja" },
+    ],
+  },
+  {
+    id: "schiebetuer",
+    label: "Schiebetür",
+    shortDesc: "Eleganter Übergang vom Wohnraum nach draußen – 2- oder 4-teilig.",
+    longDesc:
+      "Aluminium-Schiebetüren in zwei- oder vierteiliger Ausführung verbinden Innen- und Außenraum stilvoll. Robuste Konstruktion, leichter Lauf, schmale Profile.",
+    image: imgSchiebetuer,
+    price: 1850,
+    specs: [
+      { label: "Zweiteilig", value: "1 – 4 m" },
+      { label: "Vierteilig", value: "4 – 7 m" },
+      { label: "Material", value: "Aluminium 6063 T6" },
+      { label: "Maßanfertigung", value: "ja" },
+    ],
+  },
+  {
+    id: "festrahmen",
+    label: "Festrahmen",
+    shortDesc: "Geschlossene Glasfront mit Isolier- oder VSG-Verglasung.",
+    longDesc:
+      "Wenn dauerhaft geschlossen werden soll: Festrahmen mit VSG- oder 24 mm Isolierglas. Halten Wind, Regen und Lärm zuverlässig draußen.",
+    image: imgFestrahmen,
+    price: 1450,
+    specs: [
+      { label: "Max. Größe", value: "5.000 × 2.750 mm" },
+      { label: "Glas", value: "VSG 44.2 oder Isolierglas 24 mm" },
+      { label: "Profil", value: "Aluminium pulverbeschichtet" },
+      { label: "Maßanfertigung", value: "ja" },
+    ],
+  },
+  {
+    id: "keilblende",
+    label: "Keilblende",
+    shortDesc: "Eleganter Wind- und Sichtschutz im oberen Dachbereich.",
+    longDesc:
+      "Maßgefertigte Keilblenden schließen den oberen Bereich zwischen Dach und Hauswand sauber ab – Wind, Regen und unerwünschte Einblicke bleiben draußen.",
+    image: imgKeilblende,
+    price: 690,
+    specs: [
+      { label: "Material", value: "Aluminium 6063 T6" },
+      { label: "Beschichtung", value: "Pulverbeschichtung" },
+      { label: "Farben", value: "5 RAL-Standardfarben + Maßanfertigung" },
+      { label: "Maßanfertigung", value: "ja" },
+    ],
+  },
+  {
+    id: "seitenwand",
+    label: "Seitenwand",
+    shortDesc: "Geschlossene Aluminium-Seitenwand für sauberen Abschluss.",
+    longDesc:
+      "Maßgeschneiderte Seitenwände setzen den seitlichen Abschluss Ihrer Überdachung perfekt in Szene und schützen vor Seitenwind.",
+    image: imgSeitenwand,
+    price: 980,
+    specs: [
+      { label: "Material", value: "Aluminium 6063 T6" },
+      { label: "Beschichtung", value: "Pulverbeschichtung" },
+      { label: "Farben", value: "Anthrazit, Schwarz, Weiß, Crème + Maßanfertigung" },
+      { label: "Maßanfertigung", value: "ja" },
+    ],
+  },
+  {
+    id: "zipscreen",
+    label: "Zipscreen",
+    shortDesc: "Senkrechter Sicht- und Sonnenschutz mit Reißverschluss-Führung.",
+    longDesc:
+      "Elektrisch fahrbare Zipscreens mit Somfy IO-Steuerung. Reißverschluss-Führung verhindert Auswehen und schützt zuverlässig vor Sonne, Insekten und Blicken.",
+    image: imgZipscreen,
+    price: 1290,
+    specs: [
+      { label: "Max. Größe", value: "5.000 × 3.000 mm" },
+      { label: "Steuerung", value: "Somfy IO" },
+      { label: "Führung", value: "Zip / Reißverschluss" },
+      { label: "Maßanfertigung", value: "ja" },
+    ],
+  },
+  {
+    id: "plissee",
+    label: "Sonnenschutz Plissee",
+    shortDesc: "Wabenplissee zwischen den Dachsparren – 25 mm Wabenstruktur.",
+    longDesc:
+      "Plissees mit 25 mm Wabenstruktur werden zwischen den Sparren montiert und sorgen für angenehme Beschattung direkt unter dem Dach.",
+    image: imgPlissee,
+    price: 850,
+    specs: [
+      { label: "Wabenstruktur", value: "25 mm" },
+      { label: "Montage", value: "zwischen Trägern" },
+      { label: "Bedienung", value: "manuell oder elektrisch" },
+      { label: "Maßanfertigung", value: "ja" },
+    ],
+  },
+  {
+    id: "sonnenschutz-oberdach",
+    label: "Sonnenschutz Oberdach",
+    shortDesc: "Beschattung direkt auf dem Dach – bis zu 90 % Hitzereduktion.",
+    longDesc:
+      "Aufdach-Sonnenschutz reflektiert die Sonne, bevor sie das Glas erreicht. Maximale Hitzereduktion, gleichzeitig Schutz für die Dachkonstruktion.",
+    image: imgSonnenOberdach,
+    price: 1690,
+    specs: [
+      { label: "Max. Größe", value: "6.000 × 4.500 mm" },
+      { label: "Hitzereduktion", value: "bis zu 90 %" },
+      { label: "Steuerung", value: "Funkmotor mit Sensor" },
+      { label: "Maßanfertigung", value: "ja" },
+    ],
+  },
+];
+
+// Standard-Farbpalette aus Katalog (Aluminium-Pulverbeschichtung)
+export const standardColors = [
+  { ral: "RAL 7016", hex: "#293133", label: "Anthrazit" },
+  { ral: "RAL 9005", hex: "#0A0A0A", label: "Schwarz" },
+  { ral: "RAL 9001", hex: "#FDF4E3", label: "Weiß" },
+  { ral: "RAL 9010", hex: "#F1ECDB", label: "Crème" },
+];
+export const premiumColors = [
+  ...standardColors,
+  { ral: "RAL 9016", hex: "#F6F6F6", label: "Verkehrsweiß" },
+];
 
 // ============================================================
 // MARKISEN
@@ -228,42 +396,45 @@ const markisenProducts: ProductDetail[] = [
 
 // ============================================================
 // TERRASSENÜBERDACHUNGEN
+// 3 Qualitätsstufen: Wandbefestigt (PRO-LINE) / Freistehend (PRO-LINE) / Lamellendach (Premium Cabrio)
+// + Q-Bus = LUXALINE CUBE (eigene Kategorie)
 // ============================================================
 const terrassenueberdachungenProducts: ProductDetail[] = [
   {
     slug: "wandbefestigt",
     label: "Wandbefestigt",
     shortDesc: "Direkt am Haus angebaut – nahtlose Verbindung von Wohn- und Außenraum.",
-    image: heroTerrasse,
+    image: proline1,
+    showModules: true,
     hero: {
       badge: "Terrassenüberdachung",
       title: "Wandbefestigt.",
       titleAccent: "Erweiterung Ihres Zuhauses.",
       subtitle: "Direkt an Ihr Gebäude angebaut – für eine fließende Verbindung zwischen Wohnraum und Terrasse.",
-      heroImage: heroTerrasse,
-      detailImage: detailTerrasse,
+      heroImage: proline1,
+      detailImage: proline2,
     },
     intro: {
-      label: "Das Konzept",
-      title: "Eine Erweiterung, kein Anbau.",
-      text: "Eine wandbefestigte Terrassenüberdachung wird statisch und gestalterisch als Teil Ihres Hauses geplant. Schlanke Aluminium-Profile, Glasdächer ohne sichtbare Verschraubungen und integrierte Regenrinnen sorgen für ein architektonisch klares Erscheinungsbild – innen wie außen.",
+      label: "PRO-LINE",
+      title: "Klares Design, hochwertige Materialien.",
+      text: "Unsere wandbefestigten Aluminium-Überdachungen verbinden klares Design mit hochwertigsten Materialien. Schlanke Profile aus 6063 T6 Aluminium mit Premium-Pulverbeschichtung, Eindeckung wahlweise aus 16 mm Polycarbonat oder VSG 44.2 Sicherheitsglas. Die Regenrinne ist vollständig in das Profil integriert – nichts stört die Linienführung.",
     },
     features: [
-      { title: "Nahtlose Anbindung", desc: "Direkter Anschluss an die Hauswand – ohne Wasser- oder Wärmebrücken." },
-      { title: "Integrierte Entwässerung", desc: "Regenrinne in den Profilen verborgen – kein Sichtbruch." },
-      { title: "Glasdach", desc: "VSG aus 2× 6 mm – kratzfest, hagelsicher, selbstreinigend optional." },
-      { title: "LED-Lichtleisten", desc: "Indirekte Beleuchtung in den Profilen integriert – stimmungsvoll und blendfrei." },
-      { title: "Beschattung optional", desc: "Aufglas- oder Untermarkise nachträglich integrierbar." },
-      { title: "Statisch geprüft", desc: "Berechnung nach DIN für Schnee- und Windlastzonen Ihrer Region." },
+      { title: "Premium-Aluminium", desc: "Profile aus 6063 T6 Aluminium mit professioneller Pulverbeschichtung – jahrzehntelang farbstabil." },
+      { title: "Polycarbonat oder VSG-Glas", desc: "Wahlweise 16 mm Polycarbonat (leicht & bruchfest) oder VSG 44.2 Sicherheitsglas." },
+      { title: "Integrierte Dachrinne", desc: "Regenwasserableitung verborgen in den Profilen – kein Sichtbruch." },
+      { title: "Stabile Pfosten 14×14", desc: "Pfostenquerschnitt 14 × 14 cm – schlank, dennoch hochbelastbar." },
+      { title: "Windlast bis 120 km/h", desc: "Statisch geprüft für anspruchsvolle Wetterlagen." },
+      { title: "Erweiterbar mit Modulen", desc: "Glasschiebewände, Screens, Plissees, LED u.v.m. jederzeit nachrüstbar." },
     ],
     specs: [
-      { label: "Material Tragwerk", value: "Aluminium EN AW-6060 T66" },
-      { label: "Eindeckung", value: "VSG 2× 6 mm, optional selbstreinigend" },
-      { label: "Max. Breite", value: "10.000 mm" },
-      { label: "Max. Ausladung", value: "4.500 mm" },
-      { label: "Schneelast", value: "bis 200 kg/m²" },
-      { label: "Lichte Höhe", value: "2.200 – 3.000 mm" },
-      { label: "Farben", value: "Pulverbeschichtung, RAL nach Wahl" },
+      { label: "Material", value: "Aluminium 6063 T6, pulverbeschichtet" },
+      { label: "Eindeckung", value: "Polycarbonat 16 mm oder VSG 44.2" },
+      { label: "Maße", value: "3 – 12 m × 2 – 5 m" },
+      { label: "Dachneigung", value: "5° – 15°" },
+      { label: "Pfosten", value: "14 × 14 cm" },
+      { label: "Windlast", value: "bis 120 km/h" },
+      { label: "Standardfarben", value: "RAL 7016, 9005, 9001, 9010 + Maßanfertigung" },
       { label: "Garantie", value: "10 Jahre Struktur" },
     ],
     cta: {
@@ -275,36 +446,37 @@ const terrassenueberdachungenProducts: ProductDetail[] = [
     slug: "freistehend",
     label: "Freistehend",
     shortDesc: "Überdachung als eigenständige Architektur im Garten.",
-    image: detailTerrasse,
+    image: proline3,
+    showModules: true,
     hero: {
       badge: "Terrassenüberdachung",
       title: "Freistehend.",
       titleAccent: "Architektur im Garten.",
       subtitle: "Eigenständige Konstruktion – platziert dort, wo Sie sie haben möchten.",
-      heroImage: detailTerrasse,
-      detailImage: heroTerrasse,
+      heroImage: proline3,
+      detailImage: proline2,
     },
     intro: {
-      label: "Das Konzept",
+      label: "PRO-LINE",
       title: "Frei platziert, klar gestaltet.",
-      text: "Freistehende Terrassenüberdachungen sind unabhängig vom Gebäude – ideal für Poolbereiche, Outdoor-Küchen oder Gartensitzplätze. Vier oder mehr Pfosten tragen das Glasdach, das auch große Spannweiten bewältigt. Die Konstruktion fügt sich wie ein architektonisches Objekt in den Garten ein.",
+      text: "Die freistehende PRO-LINE Variante ist unabhängig vom Gebäude – ideal für Poolbereiche, Outdoor-Küchen oder Gartensitzplätze. Vier oder mehr Pfosten (14 × 14 cm) tragen das Dach mit Polycarbonat- oder VSG-Eindeckung. Statisch ausgelegt für Windlasten bis 120 km/h.",
     },
     features: [
-      { title: "Standortunabhängig", desc: "Platzieren, wo der schönste Garten- oder Poolbereich ist." },
-      { title: "Allseits offen", desc: "360°-Einsicht auf den Garten – oder mit Senkrechtmarkisen schließbar." },
-      { title: "Stabile Pfosten", desc: "Pfostenstärke 120×120 mm – schlank und dennoch tragfähig." },
-      { title: "Punktfundamente", desc: "Saubere Montage auf Streifen- oder Punktfundamenten." },
-      { title: "Kombinierbar", desc: "Ergänzbar mit Markisen, Heizstrahlern, LED, Lautsprechern." },
-      { title: "Großzügige Spannweiten", desc: "Bis 7 m × 5 m ohne Mittelpfosten möglich." },
+      { title: "Standortunabhängig", desc: "Platzieren Sie die Überdachung dort, wo der schönste Garten- oder Poolbereich ist." },
+      { title: "Allseits offen", desc: "360°-Einsicht auf den Garten – oder mit Senkrechtmarkisen / Glasschiebewänden schließbar." },
+      { title: "Stabile Pfosten 14×14", desc: "Quadratische Aluminium-Pfosten – schlank und dennoch tragfähig." },
+      { title: "Polycarbonat oder VSG-Glas", desc: "Eindeckung nach Wahl – leicht & bruchfest oder maximal transparent." },
+      { title: "Integrierte Entwässerung", desc: "Regenrinne in Profil und Pfosten geführt – kein sichtbarer Wasserablauf." },
+      { title: "Modular erweiterbar", desc: "Mit Screens, Plissees, Glasschiebewänden und LED jederzeit ausbaubar." },
     ],
     specs: [
-      { label: "Material Tragwerk", value: "Aluminium EN AW-6060 T66" },
-      { label: "Eindeckung", value: "VSG 2× 6 mm" },
-      { label: "Max. Größe", value: "10.000 × 6.000 mm" },
-      { label: "Pfostenquerschnitt", value: "120 × 120 mm" },
-      { label: "Schneelast", value: "bis 200 kg/m²" },
-      { label: "Lichte Höhe", value: "2.200 – 3.000 mm" },
-      { label: "Fundament", value: "Punkt- oder Streifenfundament" },
+      { label: "Material", value: "Aluminium 6063 T6, pulverbeschichtet" },
+      { label: "Eindeckung", value: "Polycarbonat 16 mm oder VSG 44.2" },
+      { label: "Maße", value: "3 – 12 m × 2 – 5 m" },
+      { label: "Pfosten", value: "14 × 14 cm" },
+      { label: "Dachneigung", value: "5° – 15°" },
+      { label: "Windlast", value: "bis 120 km/h" },
+      { label: "Standardfarben", value: "RAL 7016, 9005, 9001, 9010 + Maßanfertigung" },
       { label: "Garantie", value: "10 Jahre Struktur" },
     ],
     cta: {
@@ -312,10 +484,52 @@ const terrassenueberdachungenProducts: ProductDetail[] = [
       text: "Erleben Sie Ihre Möglichkeiten – planen Sie mit uns Ihre freistehende Überdachung.",
     },
   },
+  {
+    slug: "lamellendach",
+    label: "Lamellendach",
+    shortDesc: "Premium-Lamellendach mit elektrisch verstellbaren Lamellen – Somfy IO.",
+    image: lamellen1,
+    showModules: true,
+    hero: {
+      badge: "Terrassenüberdachung",
+      title: "Lamellendach.",
+      titleAccent: "Volle Kontrolle.",
+      subtitle: "Eine luxuriöse Lösung mit vollständiger Kontrolle über Licht, Luft und Schutz – per Knopfdruck.",
+      heroImage: lamellen1,
+      detailImage: lamellen2,
+    },
+    intro: {
+      label: "Premium-Klasse",
+      title: "Licht, Luft und Schutz – jederzeit steuerbar.",
+      text: "Das Lamellendach ist die luxuriöseste Stufe unserer Terrassenüberdachungen. Elektrisch verstellbare Aluminium-Lamellen lassen Sie zwischen offenem Himmel, dosierter Beschattung und vollständig geschlossenem Dach wählen – per Somfy IO Funksteuerung. Bei Regen schließen die Lamellen automatisch und leiten das Wasser über integrierte Rinnen in den Pfosten ab.",
+    },
+    features: [
+      { title: "Elektrisch verstellbare Lamellen", desc: "Stufenlos drehbar von 0° bis 135° – Licht und Luft präzise dosieren." },
+      { title: "Somfy IO Steuerung", desc: "Funksteuerung Serie – per Handsender, Wandtaster oder Smartphone." },
+      { title: "Regenfest geschlossen", desc: "Bei vollständig geschlossenen Lamellen 100 % wasserdicht." },
+      { title: "Integrierte Wasserableitung", desc: "Regenrinne in Profil und Pfosten – verdeckter Wasserablauf." },
+      { title: "Stabile Pfosten 15×15", desc: "Verstärkter Pfostenquerschnitt für die Lamellenkonstruktion." },
+      { title: "Premium-Farbpalette", desc: "5 Standardfarben inkl. Verkehrsweiß RAL 9016 + Maßanfertigung." },
+    ],
+    specs: [
+      { label: "Material", value: "Aluminium 6063 T6, pulverbeschichtet" },
+      { label: "Lamellen", value: "Aluminium, motorisch drehbar 0° – 135°" },
+      { label: "Steuerung", value: "Somfy IO (Funk, Wandtaster, App)" },
+      { label: "Maße", value: "3 – 7 m × 3 – 4,5 m" },
+      { label: "Pfosten", value: "15 × 15 cm" },
+      { label: "Wasserableitung", value: "Integriert in Profil & Pfosten" },
+      { label: "Farben", value: "RAL 7016, 9005, 9001, 9010, 9016 + Maßanfertigung" },
+      { label: "Garantie", value: "10 Jahre Struktur" },
+    ],
+    cta: {
+      title: "Ihr Premium-Outdoor-Raum.",
+      text: "Erleben Sie das Lamellendach live – wir beraten Sie unverbindlich vor Ort.",
+    },
+  },
 ];
 
 // ============================================================
-// SCHIRME (Einzelkategorie – schwenkbare Ampelschirme)
+// SCHIRME
 // ============================================================
 const schirmeProduct: ProductDetail = {
   slug: "schirme",
@@ -360,47 +574,47 @@ const schirmeProduct: ProductDetail = {
 };
 
 // ============================================================
-// Q-BUS
+// Q-BUS  =  LUXALINE CUBE
 // ============================================================
 const qbusProduct: ProductDetail = {
   slug: "q-bus",
   label: "Q-Bus",
-  shortDesc: "Kubische Outdoor-Lounge mit System – modulare Architektur.",
-  image: architectureDetail,
+  shortDesc: "Kubische Premium-Überdachung mit Glasdach und serienmäßiger LED.",
+  image: cube1,
   hero: {
     badge: "Q-Bus",
     title: "Q-Bus.",
-    titleAccent: "Outdoor-Architektur.",
-    subtitle: "Der kubische Outdoor-Raum – frei kombinierbar, vollständig integriert, jederzeit erweiterbar.",
-    heroImage: architectureDetail,
-    detailImage: detailTerrasse,
+    titleAccent: "Kubische Architektur.",
+    subtitle: "Die kubische Premium-Überdachung – klare Linien, vollverglastes Dach, serienmäßige LED-Beleuchtung.",
+    heroImage: cube1,
+    detailImage: cube2,
   },
   intro: {
-    label: "Das Konzept",
-    title: "Ein Würfel – unendliche Möglichkeiten.",
-    text: "Der Q-Bus ist mehr als eine Überdachung: Er ist ein modulares Outdoor-System aus klar geschnittenen Aluminium-Modulen. Senkrechtmarkisen, Lamellendach, integrierte Beleuchtung und Heizung lassen sich frei kombinieren – aus einer offenen Terrasse wird eine geschlossene Lounge per Knopfdruck.",
+    label: "Premium-Klasse",
+    title: "Ein Würfel, der Eindruck macht.",
+    text: "Der Q-Bus ist unsere kubische Premium-Überdachung. Die rein kubische Form mit vollverglastem Dach (VSG 44.2) erzeugt eine Architektursprache, die zu modernen wie klassischen Gebäuden passt. Serienmäßige integrierte LED-Beleuchtung verleiht dem Außenraum auch abends die richtige Atmosphäre. Verstärkte Pfosten 15 × 15 cm tragen das schwere Glasdach souverän.",
   },
   features: [
-    { title: "Modulare Bauweise", desc: "Kombinierbar zu größeren Anlagen – wachsen Sie mit Ihrem Bedarf." },
-    { title: "Lamellendach", desc: "Stufenlos verstellbare Lamellen – von offen bis vollständig geschlossen." },
-    { title: "Senkrechtmarkisen integriert", desc: "Alle vier Seiten optional schließbar – wettergeschützter Raum entsteht." },
-    { title: "Smart-Home-Steuerung", desc: "App-Steuerung von Lamellen, Markisen, Licht und Heizung." },
-    { title: "Klare Architektur", desc: "Reduziertes Design – passt zu modernen wie klassischen Gebäuden." },
-    { title: "Ganzjahresnutzung", desc: "Mit Heizstrahlern und Beleuchtung das ganze Jahr nutzbar." },
+    { title: "Vollverglastes Glasdach", desc: "VSG 44.2 Sicherheitsglas – maximale Transparenz, hagelsicher." },
+    { title: "Kubische Architektur", desc: "Reduziertes, klares Design – keine Dachneigung sichtbar, perfekte Geometrie." },
+    { title: "LED serienmäßig", desc: "Integrierte LED-Beleuchtung im Profil – stimmungsvoll und blendfrei." },
+    { title: "Premium-Aluminium", desc: "Profile aus 6063 T6 Aluminium mit professioneller Pulverbeschichtung." },
+    { title: "Verstärkte Pfosten", desc: "15 × 15 cm Pfostenquerschnitt – tragen auch große Glasflächen souverän." },
+    { title: "Erweiterbar", desc: "Glasschiebewände, Zipscreens, Plissees jederzeit nachrüstbar." },
   ],
   specs: [
-    { label: "Material Tragwerk", value: "Aluminium EN AW-6060 T66" },
-    { label: "Dachsystem", value: "Lamellendach, motorisch verstellbar" },
-    { label: "Max. Modulgröße", value: "7.000 × 4.500 mm" },
-    { label: "Pfostenquerschnitt", value: "150 × 150 mm" },
-    { label: "Wasserableitung", value: "Integriert in Pfosten" },
-    { label: "Steuerung", value: "Funk + App (optional)" },
-    { label: "Erweiterbarkeit", value: "Modular kombinierbar" },
+    { label: "Material", value: "Aluminium 6063 T6, pulverbeschichtet" },
+    { label: "Eindeckung", value: "VSG 44.2 Sicherheitsglas" },
+    { label: "Maße", value: "3 – 7 m × 3 – 4,5 m" },
+    { label: "Pfosten", value: "15 × 15 cm" },
+    { label: "Beleuchtung", value: "Integrierte LED serienmäßig" },
+    { label: "Wasserableitung", value: "Integriert in Profil & Pfosten" },
+    { label: "Farben", value: "RAL 7016, 9005, 9001, 9010, 9016 + Maßanfertigung" },
     { label: "Garantie", value: "10 Jahre Struktur" },
   ],
   cta: {
-    title: "Ihr Outdoor-Raum, nach Ihren Regeln.",
-    text: "Entdecken Sie das Q-Bus-System – wir konfigurieren Ihre individuelle Lösung.",
+    title: "Premium-Architektur für Ihren Garten.",
+    text: "Entdecken Sie den Q-Bus – wir konfigurieren Ihre individuelle Lösung.",
   },
 };
 
@@ -423,7 +637,7 @@ const eingangProduct: ProductDetail = {
   intro: {
     label: "Das Konzept",
     title: "Willkommen, wettergeschützt.",
-    text: "Eingangsüberdachungen schützen Sie und Ihre Gäste beim Auf- und Abschließen der Tür vor Regen und Schnee. Filigrane Aluminiumprofile mit VSG-Glas wirken modern und unaufdringlich – und werten gleichzeitig die Hausfassade auf. Maßanfertigung passend zu Ihrer Architektur.",
+    text: "Eingangsüberdachungen schützen Sie und Ihre Gäste beim Auf- und Abschließen der Tür vor Regen und Schnee. Filigrane Aluminium-Profile (6063 T6) mit VSG-Glas wirken modern und unaufdringlich – und werten gleichzeitig die Hausfassade auf. Maßanfertigung passend zu Ihrer Architektur.",
   },
   features: [
     { title: "Maßanfertigung", desc: "Genau auf Ihren Eingang abgestimmt – Breite, Tiefe, Form." },
@@ -434,13 +648,13 @@ const eingangProduct: ProductDetail = {
     { title: "Schnelle Montage", desc: "Vormontiert geliefert – Installation an einem Tag." },
   ],
   specs: [
-    { label: "Material Tragwerk", value: "Aluminium EN AW-6060 T66" },
+    { label: "Material", value: "Aluminium 6063 T6, pulverbeschichtet" },
     { label: "Eindeckung", value: "VSG 2× 6 mm, klar oder satiniert" },
     { label: "Max. Breite", value: "3.000 mm" },
     { label: "Max. Ausladung", value: "1.500 mm" },
     { label: "Halterung", value: "Edelstahl V2A, verdeckt" },
     { label: "Schneelast", value: "bis 200 kg/m²" },
-    { label: "Farben", value: "Pulverbeschichtung, RAL nach Wahl" },
+    { label: "Standardfarben", value: "RAL 7016, 9005, 9001, 9010 + Maßanfertigung" },
     { label: "Garantie", value: "10 Jahre Struktur" },
   ],
   cta: {
@@ -468,7 +682,7 @@ const carportsProduct: ProductDetail = {
   intro: {
     label: "Das Konzept",
     title: "Mehr als nur ein Unterstand.",
-    text: "Ein Brait-Carport ist ein architektonisches Statement. Schlanke Aluminium-Profile tragen Dachflächen aus VSG-Glas oder HPL-Platten – und schützen Ihr Fahrzeug dabei zuverlässig vor Regen, Hagel und UV-Strahlung. Ob Einzel-, Doppel- oder Reihencarport: Wir planen nach Ihren Maßen und Wünschen.",
+    text: "Ein Brait-Carport ist ein architektonisches Statement. Schlanke Aluminium-Profile (6063 T6) tragen Dachflächen aus VSG-Glas oder HPL-Platten – und schützen Ihr Fahrzeug dabei zuverlässig vor Regen, Hagel und UV-Strahlung. Ob Einzel-, Doppel- oder Reihencarport: Wir planen nach Ihren Maßen und Wünschen.",
   },
   features: [
     { title: "Freistehend oder Anbau", desc: "Flexible Konstruktion als freistehende Variante oder direkt an Ihr Gebäude angebaut." },
@@ -479,7 +693,7 @@ const carportsProduct: ProductDetail = {
     { title: "Schneelastgeprüft", desc: "Statisch berechnet für regionale Schneelastzonen – Sicherheit garantiert." },
   ],
   specs: [
-    { label: "Material Tragwerk", value: "Aluminium EN AW-6060 T66" },
+    { label: "Material", value: "Aluminium 6063 T6, pulverbeschichtet" },
     { label: "Eindeckung", value: "VSG-Glas oder HPL-Platten" },
     { label: "Max. Breite (Einzelstellplatz)", value: "3.500 mm" },
     { label: "Max. Breite (Doppelstellplatz)", value: "6.500 mm" },
@@ -512,8 +726,8 @@ export const categories: Category[] = [
     label: "Terrassenüberdachungen",
     shortDesc: "Aluminium-Glas-Systeme für ganzjährigen Genuss.",
     longDesc:
-      "Wandbefestigt oder freistehend: Unsere Terrassenüberdachungen aus Aluminium und Glas vereinen Architektur, Wetterschutz und Wohnkomfort.",
-    image: productTerrasse,
+      "Drei Qualitätsstufen: Wandbefestigt und freistehend (PRO-LINE) oder das Premium-Lamellendach mit elektrisch verstellbaren Lamellen.",
+    image: proline1,
     products: terrassenueberdachungenProducts,
   },
   {
@@ -529,10 +743,10 @@ export const categories: Category[] = [
   {
     slug: "q-bus",
     label: "Q-Bus",
-    shortDesc: "Modulare Outdoor-Architektur in Würfelform.",
+    shortDesc: "Kubische Premium-Überdachung mit Glasdach und LED.",
     longDesc:
-      "Der Q-Bus ist ein modulares Outdoor-System aus Aluminium – kombinierbar, smart, ganzjährig nutzbar.",
-    image: architectureDetail,
+      "Der Q-Bus ist unsere kubische Premium-Überdachung – vollverglastes Dach, integrierte LED, klare Architektur.",
+    image: cube1,
     products: [],
     singleProduct: qbusProduct,
   },
@@ -581,4 +795,5 @@ export const toProductPageData = (
   ctaTitle: product.cta.title,
   ctaText: product.cta.text,
   otherProducts,
+  showModules: product.showModules,
 });
