@@ -113,12 +113,22 @@ const Konfigurator = () => {
   const navigate = useNavigate();
   const [selectedModel, setSelectedModel] = useState(0);
   const [montage, setMontage] = useState(0);
-  const [selectedColor, setSelectedColor] = useState(2);
+  const [selectedColor, setSelectedColor] = useState(0);
   const [width, setWidth] = useState(6.0);
   const [depth, setDepth] = useState(4.0);
+  const [roofIdx, setRoofIdx] = useState(0);
   const [selectedExtras, setSelectedExtras] = useState<Set<string>>(new Set(["led"]));
   const [viewMode, setViewMode] = useState<"tag" | "nacht">("tag");
   const [showSummary, setShowSummary] = useState(false);
+
+  const currentModel = models[selectedModel];
+
+  // Maße & Dachdeckung beim Modellwechsel valide halten
+  useEffect(() => {
+    setWidth((w) => Math.min(currentModel.maxW, Math.max(currentModel.minW, w)));
+    setDepth((d) => Math.min(currentModel.maxD, Math.max(currentModel.minD, d)));
+    setRoofIdx(0);
+  }, [selectedModel, currentModel.maxW, currentModel.minW, currentModel.maxD, currentModel.minD]);
 
   const toggleExtra = (id: string) => {
     setSelectedExtras((prev) => {
@@ -130,12 +140,13 @@ const Konfigurator = () => {
   };
 
   const totalPrice = useMemo(() => {
-    const base = models[selectedModel].basePrice;
+    const base = currentModel.basePrice;
     const areaMult = (width * depth) / 24;
     const montageSurcharge = montage === 1 ? 1200 : 0;
-    const extrasTotal = extras.filter((e) => selectedExtras.has(e.id)).reduce((s, e) => s + e.price, 0);
-    return Math.round((base * areaMult + montageSurcharge + extrasTotal) * 100) / 100;
-  }, [selectedModel, width, depth, montage, selectedExtras]);
+    const roofSurcharge = currentModel.roofs[roofIdx]?.surcharge ?? 0;
+    const extrasTotal = allExtras.filter((e) => selectedExtras.has(e.id)).reduce((s, e) => s + e.price, 0);
+    return Math.round((base * areaMult + montageSurcharge + roofSurcharge + extrasTotal) * 100) / 100;
+  }, [currentModel, width, depth, montage, roofIdx, selectedExtras]);
 
   const formatPrice = (p: number) =>
     new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(p);
