@@ -119,7 +119,7 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
         <FadeIn delay={0.4}>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              to="/konfigurator"
+              to={`/konfigurator/${category.slug}`}
               className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
             >
               Jetzt Konfigurieren

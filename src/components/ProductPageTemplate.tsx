@@ -27,6 +27,8 @@ export interface ProductPageData {
   otherProducts: { title: string; image: string; link: string }[];
   /** Wenn true, wird die "Erweiterungen & Module"-Sektion eingeblendet (nur Terrassen). */
   showModules?: boolean;
+  /** Deeplink in den passenden Kategorie-Konfigurator (mit ?model=…). Default: /konfigurator */
+  configuratorLink?: string;
 }
 
 const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
@@ -180,7 +182,7 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
           </StaggerContainer>
           <FadeIn className="mt-8 md:mt-12 text-center">
             <Link
-              to="/konfigurator"
+              to={data.configuratorLink ?? "/konfigurator"}
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-widest text-xs hover:bg-primary-container transition-all"
             >
               <Plus className="w-4 h-4" /> Im Konfigurator zusammenstellen
@@ -221,7 +223,7 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
         </FadeIn>
         <FadeIn delay={0.4}>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link to="/konfigurator" className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all">
+            <Link to={data.configuratorLink ?? "/konfigurator"} className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all">
               Jetzt Konfigurieren
             </Link>
             <Link to="/kontakt" className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all">
