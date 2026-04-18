@@ -1,97 +1,52 @@
 
 
-## Aktualisierter Plan: Erweitertes Produktportfolio
+## Plan: Katalog-Integration (ohne SO Aluminium Branding)
 
-### Neue Produktstruktur (6 Kategorien)
-
-```text
-1. Markisen
-   ├─ Fallarmmarkisen
-   ├─ Gelenkarmmarkisen
-   ├─ Senkrechtmarkisen
-   └─ Aufglasmarkisen
-
-2. Terrassenüberdachungen
-   ├─ Wandbefestigt
-   └─ Freistehend
-
-3. Schirme
-   ├─ Schwenkbar (Ampelschirme)
-   └─ weitere Sonderformen
-
-4. Q-Bus (Kubus)
-   └─ Eigenständige Kategorie
-
-5. Eingangsüberdachungen
-   └─ Eigenständige Kategorie
-
-6. Carports
-   └─ Eigenständige Kategorie
-```
-
-(Wintergärten entfällt aus Navigation/Startseite, Datei bleibt technisch bestehen.)
-
-### Architektur
-
-**Zentrale Datenquelle** `src/data/products.ts`:
-Eine Quelle für alle Kategorien & Unterprodukte – Navbar, Startseite, Footer und Routen lesen daraus.
-
-**Routen-Struktur**:
-- Kategorien mit Unterprodukten: `/markisen`, `/terrassenueberdachungen`, `/schirme` → Übersichtsseiten + Detailseiten (z.B. `/markisen/fallarm`)
-- Einzel-Kategorien (kein Unterprodukt-Layer nötig): `/q-bus`, `/eingangsueberdachungen`, `/carports` → direkt Detailseite
-- Redirects: alte Pfade (`/wintergaerten`) bleiben erreichbar
-
-**Neue/angepasste Komponenten**:
-- `CategoryPageTemplate.tsx` – Übersichtsseite für Kategorien mit Unterprodukten (Markisen, Terrassenüberdachungen, Schirme)
-- Bestehendes `ProductPageTemplate.tsx` – wiederverwendet für alle Detailseiten
-
-### Navigation (Navbar)
-
-**Desktop Mega-Menu** – mehrspaltiges Layout:
-- Linke Spalte: 6 Kategorien (Hover/Klick aktiviert)
-- Rechte Spalte: Unterprodukte mit Bild + Beschreibung
-- Bei Q-Bus, Eingangsüberdachungen, Carports: rechte Spalte zeigt direkt das Produkt-Hero
-
-**Mobile**: Akkordeon mit allen 6 Kategorien; Kategorien ohne Unterprodukte sind direkte Links.
-
-### Startseite (`Index.tsx`)
-
-Produkt-Sektion zeigt jetzt **6 Kategorien** statt 3 Produkte:
-- Desktop: 3×2 Grid
-- Mobile: horizontaler Swipe (bestehendes Pattern)
-- Hero-Mobile-Menu wird ebenfalls auf 6 Kategorien aktualisiert
-
-### Bilder
-
-Bestehende Assets werden Platzhaltern zugewiesen, bis du eigene Fotos hochlädst:
-- Markisen → `hero-terrasse.jpg` / `detail-terrasse.jpg`
-- Terrassenüberdachungen → `product-terrassenueberdachung.jpg`
-- Schirme → Platzhalter aus Pool
-- Q-Bus → Platzhalter (modernes Design-Bild)
-- Eingangsüberdachungen → Platzhalter
-- Carports → `hero-carport.jpg` / `product-carport.jpg`
-
-### Texte
-
-Für jedes Unterprodukt/Kategorie generiere ich im Stil deiner bestehenden Seiten:
-- Hero-Titel + Subtitle
-- Intro-Block
-- 6 Features mit Beschreibung
-- 8 technische Specs
+### Entscheidungen
+- **Keine Zubehör-Kategorie** – Module nur im Konfigurator + als Sektion auf Terrassen-Detailseiten
+- **Lamellendach** als 3. Unterprodukt unter Terrassenüberdachungen (neben Wandbefestigt/Freistehend)
+- **Logo-Wasserzeichen** bleiben auf Bildern
+- **SO Aluminium nirgends erwähnen** – Brait tritt als Hersteller/Anbieter auf
+- **Qualitätsstufen** für Terrassendächer: PRO-LINE (Standard) / LUXALINE CUBE (Premium Glas) / LAMELDAK CABRIO (Premium Lamellen) – auch als Konfigurator-Auswahl
 
 ### Schritte
 
-1. `src/data/products.ts` mit 6-Kategorien-Struktur anlegen
-2. `CategoryPageTemplate.tsx` erstellen
-3. Detailseiten erstellen (4 Markisen, 2 Terrassen, 2 Schirme, Q-Bus, Eingang, Carports = 11 Seiten)
-4. Übersichtsseiten erstellen (Markisen, Terrassenüberdachungen, Schirme = 3 Seiten)
-5. `App.tsx` Routen + Redirects erweitern
-6. `Navbar.tsx` Mega-Menu auf 6 Kategorien umbauen (Desktop & Mobile)
-7. `Index.tsx` Produkt-Sektion auf 6 Kategorien umstellen
-8. `Footer.tsx` Links aktualisieren
-9. End-to-End testen: alle Routen, Mobile-Menu, Mega-Menu
+**1. Bilder extrahieren** (~60 aus PDF) → `src/assets/catalog/`, sinnvoll umbenennen, ohne SO-Aluminium-Texte in Dateinamen
 
-### Offene Frage
+**2. `src/data/products.ts` erweitern**
+- Wandbefestigt + Freistehend: echte PRO-LINE Specs (3-12×2-5m, Polycarbonat 16mm / VSG 44.2, Pfosten 14×14, 120 km/h, integrierte Dachrinne, RAL 7016/9005/9001/9010 + Maßanfertigung)
+- **Neu: Lamellendach** als drittes Unterprodukt unter `/terrassenueberdachungen/lamellendach` (Cabrio-Specs: elektrisch Somfy IO, Verkehrsweiß zusätzlich, Pfosten 15×15)
+- Q-Bus mit echten Cube-Specs füllen (3-7×3-4,5m, serienmäßige LED, Verkehrsweiß-Option)
+- Carports/Eingangsüberdachungen: Specs übernehmen wo passend
 
-Bei „Schirme" hast du nur „schwenkbar" genannt (Q-Bus ist jetzt eigene Kategorie). Soll die Schirme-Kategorie nur **schwenkbare Schirme** als einziges Unterprodukt enthalten – oder direkt als Einzel-Kategorie ohne Unterproduktebene umgesetzt werden (analog zu Q-Bus/Carports)?
+**3. Module-Sektion auf Terrassen-Detailseiten** (`ProductPageTemplate.tsx` erweitern)
+- Neue optionale Sektion „Erweiterungen & Module" für Terrassen-Produkte
+- 8 Module als Cards: Glasschiebewände, Schiebetür, Festrahmen, Keilblende, Seitenwand, Zipscreen, Plissee, Sonnenschutz Oberdach
+- Jeweils Bild + Kurzbeschreibung + Specs – kein eigener Routing-Layer
+- Daten in `products.ts` als `modules: []` pro Produkt
+
+**4. Konfigurator-Erweiterung (`/konfigurator`)**
+- **Modell-Stufe**: PRO-LINE / LUXALINE CUBE / LAMELDAK CABRIO mit korrekten Min/Max-Maßen pro Modell
+- **5 echte RAL-Farben** statt Platzhalter
+- **Dachdeckung**: Polycarbonat 16mm / VSG 44.2 (klar/opal/getönt) – abhängig vom Modell
+- **Module als Extras** (Checkboxen): Glasschiebewand, Schiebetür, Festrahmen, Screen, Plissee, Sonnenschutz, LED, Somfy IO Steuerung
+- **Pfostenstärke** automatisch je Modell (14×14 vs. 15×15)
+
+**5. Vertrauens-Sektion auf Startseite** (neu zwischen Produkten und Karte)
+- KPI-Bar (umformuliert für Brait): „15+ Jahre Erfahrung", „3000+ realisierte Projekte", „9.4 Kundenbewertung"
+- Qualitätshinweis: „Premium Pulverbeschichtung", „Aluminium 6063 T6", „CE-zertifiziert"
+- **Keine** Erwähnung von SO Aluminium oder Tiger Drylac (Markenname des Lieferanten)
+
+**6. Routing**
+- Neu: `/terrassenueberdachungen/lamellendach` (automatisch via dynamischem ProductRoute, sobald in `products.ts`)
+- Mega-Menu Navbar zeigt automatisch die 3 Terrassen-Unterprodukte
+
+### Was NICHT gebaut wird
+- Keine Top-Level „Zubehör"-Kategorie
+- Keine Modul-Detailseiten mit eigenem Routing
+- Keine B2B-Partner-Seite
+- Kein 4-Phasen-Lieferanten-Prozess
+
+### Offene Punkte (entscheide ich pragmatisch, falls nichts kommt)
+- KPIs (15+ Jahre, 3000+ Projekte) sind Lieferanten-Zahlen – ich formuliere sie generisch („Mit Aluminium-Systemen aus europäischer Premium-Fertigung") oder lasse sie weg, falls sie für Brait nicht stimmen. **Sag Bescheid, ob deine Brait-Werte anders sind.**
 
