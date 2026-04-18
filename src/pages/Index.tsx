@@ -6,9 +6,7 @@ import ref2 from "@/assets/ref-2.jpg";
 import ref3 from "@/assets/ref-3.jpg";
 import mapUlm from "@/assets/map-ulm.jpg";
 import logoLight from "@/assets/logo-brait-light.svg";
-import productTerrasse from "@/assets/product-terrassenueberdachung.jpg";
-import productCarport from "@/assets/product-carport.jpg";
-import productWintergarten from "@/assets/product-wintergarten.jpg";
+import { categories } from "@/data/products";
 import { useLocation } from "react-router-dom";
 import { MapPin, Clock, ArrowRight, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -16,26 +14,12 @@ import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxIma
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
-const products = [
-  {
-    label: "Terrassenüberdachungen",
-    path: "/terrassenueberdachungen",
-    image: productTerrasse,
-    desc: "Aluminium-Glas-Systeme für ganzjährigen Terrassengenuss.",
-  },
-  {
-    label: "Carports",
-    path: "/carports",
-    image: productCarport,
-    desc: "Stilvoller Schutz – freistehend oder als Anbau.",
-  },
-  {
-    label: "Wintergärten",
-    path: "/wintergaerten",
-    image: productWintergarten,
-    desc: "Lichtdurchfluteter Wohnraum mit höchster Wärmedämmung.",
-  },
-];
+const heroProducts = categories.map((c) => ({
+  label: c.label,
+  path: `/${c.slug}`,
+  image: c.image,
+  desc: c.shortDesc,
+}));
 
 const simpleLinks = [
   { label: "Konfigurator", path: "/konfigurator" },
@@ -101,7 +85,7 @@ const Index = () => {
           </span>
           <div className="-mx-6">
             <div className="flex gap-3 overflow-x-auto px-6 pb-3 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
-              {products.map((p) => (
+              {heroProducts.map((p) => (
                 <Link
                   key={p.label}
                   to={p.path}
@@ -218,26 +202,22 @@ const Index = () => {
         <div className="mb-10 md:mb-20">
           <FadeIn>
             <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 md:mb-4 block">Unsere Produkte</label>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter">Drei Systeme. Eine Philosophie.</h2>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter">Sechs Welten. Eine Philosophie.</h2>
           </FadeIn>
         </div>
 
         {/* Mobile: horizontal swipe */}
         <div className="md:hidden -mx-5">
           <div className="flex gap-4 overflow-x-auto px-3 pb-4 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
-            {[
-              { img: productTerrasse, title: "Terrassenüberdachungen", desc: "Ganzjährig geschützt genießen – mit Aluminium-Glas-Systemen, die architektonisch überzeugen.", link: "/terrassenueberdachungen" },
-              { img: productCarport, title: "Carports", desc: "Stilvoller Schutz für Ihr Fahrzeug – freistehend oder am Gebäude angebaut, individuell geplant.", link: "/carports" },
-              { img: productWintergarten, title: "Wintergärten", desc: "Wohnraum trifft Natur – lichtdurchflutete Konstruktionen mit höchster Wärmedämmung.", link: "/wintergaerten" },
-            ].map((item) => (
-              <Link key={item.title} to={item.link} className="snap-start shrink-0 w-[85vw] max-w-[340px] group block">
+            {categories.map((c) => (
+              <Link key={c.slug} to={`/${c.slug}`} className="snap-start shrink-0 w-[80vw] max-w-[320px] group block">
                 <div className="relative overflow-hidden aspect-[3/4] mb-4">
-                  <img src={item.img} alt={item.title} className="w-full h-full object-cover" loading="lazy" width={960} height={1280} />
+                  <img src={c.image} alt={c.label} className="w-full h-full object-cover" loading="lazy" width={960} height={1280} />
                   <div className="absolute inset-0 bg-foreground/10" />
                 </div>
                 <div className="px-2">
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
-                  <p className="text-secondary leading-relaxed text-sm mb-3">{item.desc}</p>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{c.label}</h3>
+                  <p className="text-secondary leading-relaxed text-sm mb-3">{c.shortDesc}</p>
                   <span className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs">
                     Mehr erfahren <ArrowRight className="w-4 h-4" />
                   </span>
@@ -247,21 +227,17 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Desktop: grid */}
-        <StaggerContainer className="hidden md:grid grid-cols-3 gap-4" staggerDelay={0.15}>
-          {[
-            { img: productTerrasse, title: "Terrassenüberdachungen", desc: "Ganzjährig geschützt genießen – mit Aluminium-Glas-Systemen, die architektonisch überzeugen.", link: "/terrassenueberdachungen" },
-            { img: productCarport, title: "Carports", desc: "Stilvoller Schutz für Ihr Fahrzeug – freistehend oder am Gebäude angebaut, individuell geplant.", link: "/carports" },
-            { img: productWintergarten, title: "Wintergärten", desc: "Wohnraum trifft Natur – lichtdurchflutete Konstruktionen mit höchster Wärmedämmung.", link: "/wintergaerten" },
-          ].map((item) => (
-            <StaggerItem key={item.title}>
-              <Link to={item.link} className="group block h-full">
-                <div className="relative overflow-hidden aspect-[3/4] mb-5 md:mb-6">
-                  <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width={960} height={1280} />
+        {/* Desktop: 3x2 grid */}
+        <StaggerContainer className="hidden md:grid grid-cols-3 gap-4" staggerDelay={0.12}>
+          {categories.map((c) => (
+            <StaggerItem key={c.slug}>
+              <Link to={`/${c.slug}`} className="group block h-full">
+                <div className="relative overflow-hidden aspect-[4/5] mb-5 md:mb-6">
+                  <img src={c.image} alt={c.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width={960} height={1200} />
                   <div className="absolute inset-0 bg-foreground/10 group-hover:bg-transparent transition-all duration-300" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{item.title}</h3>
-                <p className="text-secondary leading-relaxed text-base mb-4">{item.desc}</p>
+                <h3 className="text-xl lg:text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{c.label}</h3>
+                <p className="text-secondary leading-relaxed text-sm lg:text-base mb-4">{c.shortDesc}</p>
                 <span className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs group-hover:gap-3 transition-all">
                   Mehr erfahren <ArrowRight className="w-4 h-4" />
                 </span>
