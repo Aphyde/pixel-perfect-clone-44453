@@ -21,7 +21,7 @@ const CategoryRoute = () => {
         image: c.image,
         link: `/${c.slug}`,
       }));
-    return <ProductPageTemplate data={toProductPageData(category.singleProduct, others)} />;
+    return <ProductPageTemplate data={toProductPageData(category.singleProduct, others, category.slug)} />;
   }
 
   // Category with subproducts → render CategoryPageTemplate.

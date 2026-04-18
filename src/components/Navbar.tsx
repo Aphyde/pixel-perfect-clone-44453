@@ -427,10 +427,10 @@ const Navbar = () => {
                     inklusive.
                   </p>
                   <Link
-                    to="/konfigurator"
+                    to={`/konfigurator/${activeCat.slug}`}
                     className="flex items-center gap-2 text-primary font-headline uppercase tracking-widest text-xs font-bold hover:opacity-70 transition-opacity"
                   >
-                    Zum Konfigurator <ArrowRight className="w-4 h-4" />
+                    {activeCat.label}-Konfigurator <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>

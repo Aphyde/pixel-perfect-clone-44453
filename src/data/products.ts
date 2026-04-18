@@ -780,6 +780,7 @@ export const findProduct = (categorySlug: string, productSlug: string) =>
 export const toProductPageData = (
   product: ProductDetail,
   otherProducts: { title: string; image: string; link: string }[],
+  categorySlug?: string,
 ) => ({
   badge: product.hero.badge,
   title: product.hero.title,
@@ -796,4 +797,5 @@ export const toProductPageData = (
   ctaText: product.cta.text,
   otherProducts,
   showModules: product.showModules,
+  configuratorLink: categorySlug ? `/konfigurator/${categorySlug}?model=${product.slug}` : "/konfigurator",
 });
