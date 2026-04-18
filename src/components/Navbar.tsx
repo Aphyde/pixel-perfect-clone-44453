@@ -22,8 +22,10 @@ const Navbar = () => {
   const [activeCategory, setActiveCategory] = useState(categories[0].slug);
   const [mobileCategoryOpen, setMobileCategoryOpen] = useState<string | null>(null);
   const [visible, setVisible] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const lastScrollY = useRef(0);
   const isHome = location.pathname === "/";
+  const transparentMobile = isHome && !scrolled && !mobileOpen;
   const megaTimeout = useRef<ReturnType<typeof setTimeout>>();
 
   const openMega = useCallback(() => {
