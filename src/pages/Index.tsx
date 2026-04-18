@@ -6,9 +6,7 @@ import ref2 from "@/assets/ref-2.jpg";
 import ref3 from "@/assets/ref-3.jpg";
 import mapUlm from "@/assets/map-ulm.jpg";
 import logoLight from "@/assets/logo-brait-light.svg";
-import productTerrasse from "@/assets/product-terrassenueberdachung.jpg";
-import productCarport from "@/assets/product-carport.jpg";
-import productWintergarten from "@/assets/product-wintergarten.jpg";
+import { categories } from "@/data/products";
 import { useLocation } from "react-router-dom";
 import { MapPin, Clock, ArrowRight, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -16,26 +14,12 @@ import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxIma
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
-const products = [
-  {
-    label: "Terrassenüberdachungen",
-    path: "/terrassenueberdachungen",
-    image: productTerrasse,
-    desc: "Aluminium-Glas-Systeme für ganzjährigen Terrassengenuss.",
-  },
-  {
-    label: "Carports",
-    path: "/carports",
-    image: productCarport,
-    desc: "Stilvoller Schutz – freistehend oder als Anbau.",
-  },
-  {
-    label: "Wintergärten",
-    path: "/wintergaerten",
-    image: productWintergarten,
-    desc: "Lichtdurchfluteter Wohnraum mit höchster Wärmedämmung.",
-  },
-];
+const heroProducts = categories.map((c) => ({
+  label: c.label,
+  path: `/${c.slug}`,
+  image: c.image,
+  desc: c.shortDesc,
+}));
 
 const simpleLinks = [
   { label: "Konfigurator", path: "/konfigurator" },
