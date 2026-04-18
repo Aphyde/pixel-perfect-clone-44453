@@ -83,9 +83,9 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full flex justify-between items-center px-4 py-4 md:px-8 md:py-5 bg-foreground/95 md:bg-card/80 backdrop-blur-xl z-50 transition-transform duration-300 ${
-          visible ? "translate-y-0" : "-translate-y-full pointer-events-none"
-        }`}
+        className={`fixed top-0 w-full flex justify-between items-center px-4 py-4 md:px-8 md:py-5 md:bg-card/80 backdrop-blur-xl z-50 transition-all duration-300 ${
+          transparentMobile ? "bg-transparent backdrop-blur-0" : "bg-foreground/95"
+        } ${visible ? "translate-y-0" : "-translate-y-full pointer-events-none"}`}
       >
         <Link to="/" className="flex items-center">
           <img src={logoLight} alt="Brait Überdachungen" className="h-12 md:hidden" />
