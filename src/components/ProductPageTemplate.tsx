@@ -2,7 +2,8 @@ import Layout from "@/components/Layout";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, ParallaxImage } from "@/components/ScrollAnimations";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Plus } from "lucide-react";
+import { terraceModules } from "@/data/products";
 
 export interface ProductFeature {
   title: string;
@@ -24,6 +25,8 @@ export interface ProductPageData {
   ctaTitle: string;
   ctaText: string;
   otherProducts: { title: string; image: string; link: string }[];
+  /** Wenn true, wird die "Erweiterungen & Module"-Sektion eingeblendet (nur Terrassen). */
+  showModules?: boolean;
 }
 
 const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
@@ -123,6 +126,69 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
         </StaggerContainer>
       </div>
     </section>
+
+    {/* Erweiterungen & Module – nur für Terrassenüberdachungen */}
+    {data.showModules && (
+      <section className="py-16 md:py-32 bg-surface">
+        <div className="container mx-auto px-5 md:px-8">
+          <FadeIn className="mb-10 md:mb-16 max-w-3xl">
+            <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 block">
+              Erweiterungen &amp; Module
+            </label>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-4">
+              Bauen Sie Ihre Überdachung weiter aus.
+            </h2>
+            <p className="text-secondary leading-relaxed text-sm md:text-base">
+              Glasschiebewände, Screens, Plissees, LED &amp; mehr – alle Module lassen sich
+              jederzeit nachrüsten. Im Konfigurator direkt mit einplanen oder später ergänzen.
+            </p>
+          </FadeIn>
+          <StaggerContainer
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1"
+            staggerDelay={0.06}
+          >
+            {terraceModules.map((m) => (
+              <StaggerItem key={m.id}>
+                <article className="bg-card h-full flex flex-col group">
+                  <div className="aspect-[4/3] overflow-hidden bg-surface-container">
+                    <img
+                      src={m.image}
+                      alt={m.label}
+                      loading="lazy"
+                      width={640}
+                      height={480}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6 md:p-8 flex-1 flex flex-col">
+                    <h3 className="text-lg md:text-xl font-bold mb-2">{m.label}</h3>
+                    <p className="text-secondary text-sm leading-relaxed mb-4 flex-1">
+                      {m.shortDesc}
+                    </p>
+                    <ul className="space-y-1.5 mb-5">
+                      {m.specs.slice(0, 3).map((s) => (
+                        <li key={s.label} className="flex justify-between text-xs gap-3">
+                          <span className="text-secondary">{s.label}</span>
+                          <span className="font-bold text-right">{s.value}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+          <FadeIn className="mt-8 md:mt-12 text-center">
+            <Link
+              to="/konfigurator"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-widest text-xs hover:bg-primary-container transition-all"
+            >
+              <Plus className="w-4 h-4" /> Im Konfigurator zusammenstellen
+            </Link>
+          </FadeIn>
+        </div>
+      </section>
+    )}
 
     {/* Specs */}
     <section className="py-16 md:py-32 bg-surface">
