@@ -248,7 +248,38 @@ const Index = () => {
       </div>
     </section>
 
-    {/* Local Partner */}
+    {/* Qualität & Vertrauen */}
+    <section className="py-16 md:py-24 bg-surface-container-low border-y border-outline-variant/20">
+      <div className="container mx-auto px-5 md:px-8">
+        <FadeIn className="mb-10 md:mb-14 max-w-3xl">
+          <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 block">Qualität &amp; Vertrauen</label>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter">Premium-Aluminium. Geprüfte Qualität.</h2>
+        </FadeIn>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-1" staggerDelay={0.1}>
+          <StaggerItem>
+            <div className="bg-card p-8 md:p-10 h-full">
+              <Sparkles className="w-6 h-6 text-primary mb-4" />
+              <h3 className="text-lg md:text-xl font-bold mb-2">Premium-Pulverbeschichtung</h3>
+              <p className="text-secondary text-sm leading-relaxed">Extrem widerstandsfähig gegen Kratzer, Witterung und UV – Farbe und Struktur bleiben über Jahrzehnte stabil.</p>
+            </div>
+          </StaggerItem>
+          <StaggerItem>
+            <div className="bg-card p-8 md:p-10 h-full">
+              <Award className="w-6 h-6 text-primary mb-4" />
+              <h3 className="text-lg md:text-xl font-bold mb-2">Aluminium 6063 T6</h3>
+              <p className="text-secondary text-sm leading-relaxed">Leicht, äußerst stabil, korrosionsbeständig. Das Material, auf dem unsere gesamte Konstruktion basiert.</p>
+            </div>
+          </StaggerItem>
+          <StaggerItem>
+            <div className="bg-card p-8 md:p-10 h-full">
+              <ShieldCheck className="w-6 h-6 text-primary mb-4" />
+              <h3 className="text-lg md:text-xl font-bold mb-2">CE-zertifiziert</h3>
+              <p className="text-secondary text-sm leading-relaxed">Alle Aluminium- und Glasprodukte sind CE-geprüft – europäische Standards für Sicherheit und Qualität.</p>
+            </div>
+          </StaggerItem>
+        </StaggerContainer>
+      </div>
+    </section>
     <section className="relative bg-surface-container-low overflow-hidden">
       <div className="container mx-auto px-0 md:px-8 py-16 md:py-32">
         <div className="flex flex-col md:flex-row gap-0">
