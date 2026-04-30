@@ -15,7 +15,16 @@ const simpleLinks = [
   { label: "Kontakt", path: "/kontakt" },
 ];
 
-const Navbar = () => {
+interface NavbarProps {
+  /**
+   * Mobile-only: Versteckt die volle Navbar und zeigt stattdessen nur
+   * Telefon- und Menü-Icon als schwebende Buttons (für Konfigurator etc.).
+   * Auf Desktop bleibt die Navbar unverändert.
+   */
+  iconsOnly?: boolean;
+}
+
+const Navbar = ({ iconsOnly = false }: NavbarProps) => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
@@ -83,11 +92,15 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full flex justify-between items-center px-4 py-4 md:px-8 md:py-5 md:bg-card/80 backdrop-blur-xl z-50 transition-all duration-300 ${
-          transparentMobile ? "bg-transparent backdrop-blur-0" : "bg-foreground/95"
-        } ${visible ? "translate-y-0" : "-translate-y-full pointer-events-none"}`}
+        className={`fixed top-0 w-full md:flex justify-between items-center px-4 py-4 md:px-8 md:py-5 md:bg-card/80 md:backdrop-blur-xl z-50 transition-all duration-300 ${
+          iconsOnly
+            ? "hidden md:flex md:bg-card/80 md:backdrop-blur-xl"
+            : transparentMobile
+              ? "flex bg-transparent backdrop-blur-0"
+              : "flex bg-foreground/95 backdrop-blur-xl"
+        } ${visible || iconsOnly ? "translate-y-0" : "-translate-y-full pointer-events-none"}`}
       >
-        <Link to="/" className="flex items-center">
+        <Link to="/" className={`flex items-center ${iconsOnly ? "hidden md:flex" : ""}`}>
           <img src={logoLight} alt="Brait Überdachungen" className="h-12 md:hidden" />
           <img src={logo} alt="Brait Überdachungen" className="hidden md:block h-14" />
         </Link>
@@ -129,7 +142,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-2 md:gap-3">
+        <div className={`flex items-center gap-2 md:gap-3 ${iconsOnly ? "hidden md:flex" : ""}`}>
           {/* Call button: full on desktop, icon-only on mobile */}
           <a
             href={PHONE_HREF}
@@ -160,6 +173,26 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
+
+      {/* iconsOnly: schwebende Icon-Buttons (Phone + Menu) – nur auf Mobile, immer sichtbar */}
+      {iconsOnly && !mobileOpen && (
+        <div className="md:hidden fixed top-4 right-4 z-[55] flex items-center gap-3">
+          <a
+            href={PHONE_HREF}
+            aria-label={`Anrufen: ${PHONE_DISPLAY}`}
+            className="inline-flex items-center justify-center w-10 h-10 text-white hover:text-primary transition-colors active:scale-95 drop-shadow-[0_2px_4px_rgba(0,0,0,0.55)]"
+          >
+            <Phone className="w-5 h-5" strokeWidth={2.25} />
+          </a>
+          <button
+            aria-label="Menü öffnen"
+            onClick={() => setMobileOpen(true)}
+            className="inline-flex items-center justify-center w-10 h-10 text-white hover:text-primary transition-colors active:scale-95 drop-shadow-[0_2px_4px_rgba(0,0,0,0.55)]"
+          >
+            <Menu size={24} strokeWidth={2.25} />
+          </button>
+        </div>
+      )}
 
       {/* Mobile menu */}
       <AnimatePresence>

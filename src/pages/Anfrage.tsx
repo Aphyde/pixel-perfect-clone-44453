@@ -2,7 +2,7 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { FadeIn } from "@/components/ScrollAnimations";
 import { motion } from "framer-motion";
-import { ArrowLeft, Check, Send, ShieldCheck, Heart } from "lucide-react";
+import { ArrowLeft, Check, Send, ShieldCheck, Heart, Truck } from "lucide-react";
 import { useState } from "react";
 
 interface ConfigOption {
@@ -18,6 +18,7 @@ interface ConfigData {
   depth?: number;
   extras?: string[];
   totalPrice?: number;
+  deliveryTime?: string;
   // Legacy support (alte Terrassen-Konfigurator-Felder)
   model?: string;
   color?: string;
@@ -198,7 +199,19 @@ const Anfrage = () => {
                     <span className="text-xs uppercase tracking-widest text-secondary font-bold">Geschätzter Preis</span>
                     <span className="text-2xl md:text-3xl font-headline font-bold text-primary">{formatPrice(config.totalPrice)}</span>
                   </div>
-                  <p className="text-[10px] text-secondary mt-2">* Unverbindlicher Richtpreis – endgültiges Angebot nach Beratung</p>
+                  <p className="text-[10px] text-secondary mt-2">inkl. MwSt. & Montage · Endgültiges Angebot nach Beratung</p>
+                </div>
+              )}
+
+              {config.deliveryTime && (
+                <div className="mt-4 pt-4 border-t border-outline-variant/20 flex items-center gap-3">
+                  <div className="w-9 h-9 bg-primary/10 flex items-center justify-center shrink-0">
+                    <Truck className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="leading-tight">
+                    <p className="text-[10px] uppercase tracking-widest text-outline font-bold">Voraussichtliche Lieferzeit</p>
+                    <p className="text-sm font-bold text-foreground">{config.deliveryTime} ab Auftragsbestätigung</p>
+                  </div>
                 </div>
               )}
             </div>
