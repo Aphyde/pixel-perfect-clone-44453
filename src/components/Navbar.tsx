@@ -101,8 +101,8 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
         } ${visible || iconsOnly ? "translate-y-0" : "-translate-y-full pointer-events-none"}`}
       >
         <Link to="/" className={`flex items-center ${iconsOnly ? "hidden md:flex" : ""}`}>
-          <img src={logoLight} alt="Brait Überdachungen" className="h-20 md:hidden" />
-          <img src={logo} alt="Brait Überdachungen" className="hidden md:block h-24" />
+          <img src={logoLight} alt="Brait Überdachungen" className="h-16 md:hidden" />
+          <img src={logo} alt="Brait Überdachungen" className="hidden md:block h-20" />
         </Link>
 
         {/* Desktop nav */}
