@@ -92,7 +92,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full md:flex justify-between items-center px-4 py-4 md:px-8 md:py-5 md:bg-card/80 md:backdrop-blur-xl z-50 transition-all duration-300 ${
+        className={`fixed top-0 w-full md:flex justify-between items-center px-4 py-1 md:px-8 md:py-2 md:bg-card/80 md:backdrop-blur-xl z-50 transition-all duration-300 ${
           iconsOnly
             ? "hidden md:flex md:bg-card/80 md:backdrop-blur-xl"
             : transparentMobile
@@ -101,8 +101,8 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
         } ${visible || iconsOnly ? "translate-y-0" : "-translate-y-full pointer-events-none"}`}
       >
         <Link to="/" className={`flex items-center ${iconsOnly ? "hidden md:flex" : ""}`}>
-          <img src={logoLight} alt="Brait Überdachungen" className="h-16 md:hidden" />
-          <img src={logo} alt="Brait Überdachungen" className="hidden md:block h-20" />
+          <img src={logoLight} alt="Brait Überdachungen" className="h-20 md:hidden" />
+          <img src={logo} alt="Brait Überdachungen" className="hidden md:block h-24" />
         </Link>
 
         {/* Desktop nav */}
