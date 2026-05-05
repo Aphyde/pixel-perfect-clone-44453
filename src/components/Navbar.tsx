@@ -101,8 +101,8 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
         } ${visible || iconsOnly ? "translate-y-0" : "-translate-y-full pointer-events-none"}`}
       >
         <Link to="/" className={`flex items-center ${iconsOnly ? "hidden md:flex" : ""}`}>
-          <img src={logoLight} alt="Brait Überdachungen" className="h-12 md:hidden" />
-          <img src={logo} alt="Brait Überdachungen" className="hidden md:block h-14" />
+          <img src={logoLight} alt="Brait Überdachungen" className="h-16 md:hidden" />
+          <img src={logo} alt="Brait Überdachungen" className="hidden md:block h-20" />
         </Link>
 
         {/* Desktop nav */}
@@ -213,7 +213,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
             {/* Header with logo + close */}
             <div className="flex items-center justify-between px-4 py-4">
               <Link to="/" onClick={() => setMobileOpen(false)}>
-                <img src={logoLight} alt="Brait Überdachungen" className="h-12" />
+                <img src={logoLight} alt="Brait Überdachungen" className="h-16" />
               </Link>
               <button
                 className="p-1 text-primary-foreground"
