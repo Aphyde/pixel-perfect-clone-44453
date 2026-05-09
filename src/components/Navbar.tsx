@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Menu, X, ArrowRight, ChevronDown, ChevronRight, Phone } from "lucide-react";
@@ -119,8 +120,22 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
         } ${visible || iconsOnly ? "translate-y-0" : "-translate-y-full pointer-events-none"}`}
       >
         <Link href="/" className={`flex items-center ${iconsOnly ? "hidden md:flex" : ""}`}>
-          <img src={logoLight} alt="Brait Überdachungen" className="h-20 md:hidden" />
-          <img src={logo} alt="Brait Überdachungen" className="hidden md:block h-24" />
+          <Image
+            src={logoLight}
+            alt="Brait Überdachungen"
+            width={200}
+            height={96}
+            priority
+            className="h-20 w-auto md:hidden"
+          />
+          <Image
+            src={logo}
+            alt="Brait Überdachungen"
+            width={240}
+            height={112}
+            priority
+            className="hidden md:block h-24 w-auto"
+          />
         </Link>
 
         {/* Desktop nav */}
@@ -204,6 +219,9 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
             Angebot Anfordern
           </Link>
           <button
+            type="button"
+            aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
+            aria-expanded={mobileOpen}
             className="md:hidden p-1 text-primary-foreground"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
@@ -260,9 +278,17 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
             {/* Header with logo + close */}
             <div className="flex items-center justify-between px-4 py-4">
               <Link href="/" onClick={() => setMobileOpen(false)}>
-                <img src={logoLight} alt="Brait Überdachungen" className="h-20" />
+                <Image
+                  src={logoLight}
+                  alt="Brait Überdachungen"
+                  width={200}
+                  height={96}
+                  className="h-20 w-auto"
+                />
               </Link>
               <button
+                type="button"
+                aria-label="Menü schließen"
                 className="p-1 text-primary-foreground"
                 onClick={() => setMobileOpen(false)}
               >
@@ -436,10 +462,12 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                           href={`/${activeCat.slug}`}
                           className="group relative overflow-hidden col-span-2 lg:col-span-1 row-span-1 lg:row-span-2 bg-foreground"
                         >
-                          <img
+                          <Image
                             src={activeCat.image}
                             alt={activeCat.label}
-                            className="absolute inset-0 w-full h-full object-cover opacity-60 transition-all duration-500 group-hover:opacity-80 group-hover:scale-105"
+                            fill
+                            sizes="(min-width: 1024px) 25vw, 50vw"
+                            className="object-cover opacity-60 transition-all duration-500 group-hover:opacity-80 group-hover:scale-105"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/50 to-transparent" />
                           <div className="relative z-10 p-5 h-full min-h-[180px] lg:min-h-[280px] flex flex-col justify-end">
@@ -463,10 +491,12 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                             className="group block"
                           >
                             <div className="relative aspect-[4/3] overflow-hidden mb-3">
-                              <img
+                              <Image
                                 src={p.image}
                                 alt={p.label}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                fill
+                                sizes="(min-width: 1024px) 25vw, 50vw"
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
                               />
                               <div className="absolute inset-0 bg-foreground/10 group-hover:bg-foreground/0 transition-all" />
                             </div>
@@ -485,10 +515,12 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                         href={`/${activeCat.slug}`}
                         className="group relative block overflow-hidden bg-foreground aspect-[16/9]"
                       >
-                        <img
+                        <Image
                           src={activeCat.image}
                           alt={activeCat.label}
-                          className="absolute inset-0 w-full h-full object-cover opacity-70 transition-all duration-500 group-hover:opacity-90 group-hover:scale-105"
+                          fill
+                          sizes="(min-width: 1024px) 75vw, 100vw"
+                          className="object-cover opacity-70 transition-all duration-500 group-hover:opacity-90 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/40 to-transparent" />
                         <div className="relative z-10 p-8 h-full flex flex-col justify-end">

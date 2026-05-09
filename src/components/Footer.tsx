@@ -46,11 +46,11 @@ const Footer = () => (
       </div>
     </div>
     <div className="max-w-7xl mx-auto mt-10 md:mt-16 pt-6 md:pt-8 border-t border-primary-foreground/10 flex flex-col items-center gap-2">
-      <p className="font-body text-[11px] md:text-sm text-primary-foreground/40 text-center">
-        © 2025 Brait Überdachungen – eine Marke von <a href="https://bau-braitinger.de/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-primary transition-colors underline underline-offset-2">SMT Konzepte GmbH</a>
+      <p className="font-body text-[11px] md:text-sm text-primary-foreground/60 text-center">
+        © 2025 Brait Überdachungen – eine Marke von <a href="https://bau-braitinger.de/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/80 hover:text-primary transition-colors underline underline-offset-2">SMT Konzepte GmbH</a>
       </p>
-      <p className="font-body text-[10px] md:text-xs text-primary-foreground/30 text-center">
-        Website & Marketing von <a href="https://rossigroup.de" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/40 hover:text-primary transition-colors underline underline-offset-2">rossigroup.de</a>
+      <p className="font-body text-[10px] md:text-xs text-primary-foreground/55 text-center">
+        Website & Marketing von <a href="https://rossigroup.de" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/70 hover:text-primary transition-colors underline underline-offset-2">rossigroup.de</a>
       </p>
     </div>
   </footer>

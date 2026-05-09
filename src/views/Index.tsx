@@ -2,6 +2,7 @@
 
 import Layout from "@/components/Layout";
 import Link from "next/link";
+import Image from "next/image";
 import { categories } from "@/data/products";
 import { ArrowRight, Menu, X, ShieldCheck, Sparkles, Award, Briefcase, PackageOpen, Phone } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
@@ -90,7 +91,7 @@ const Index = () => {
                   className="snap-start shrink-0 w-[72vw] max-w-[300px] group"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden mb-3">
-                    <img src={p.image} alt={p.label} className="w-full h-full object-cover" />
+                    <Image src={p.image} alt={p.label} fill sizes="72vw" className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-4">
                       <h3 className="font-headline uppercase tracking-widest text-xs font-bold text-white mb-1">
@@ -132,18 +133,22 @@ const Index = () => {
 
     {/* Hero */}
     <section className="relative h-[100svh] min-h-[520px] max-h-[780px] flex items-center pt-0 md:pt-20 overflow-hidden bg-foreground">
-      <div className="absolute inset-0 opacity-60">
-        <motion.img
+      <motion.div
+        className="absolute inset-0 opacity-60"
+        initial={{ scale: 1.15 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Image
           src={heroHome}
           alt="Luxury terrace roofing"
-          className="w-full h-full object-cover"
-          width={1920}
-          height={1080}
-          initial={{ scale: 1.15 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+          fill
+          priority
+          quality={85}
+          sizes="100vw"
+          className="object-cover"
         />
-      </div>
+      </motion.div>
       <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/50 to-transparent md:from-foreground/80 md:via-foreground/40" />
 
       <div className="container mx-auto px-5 md:px-8 relative z-10">
@@ -209,7 +214,13 @@ const Index = () => {
             {categories.map((c) => (
               <Link key={c.slug} href={`/${c.slug}`} className="snap-start shrink-0 w-[80vw] max-w-[320px] group block">
                 <div className="relative overflow-hidden aspect-[3/4] mb-4">
-                  <img src={c.image} alt={c.label} className="w-full h-full object-cover" loading="lazy" width={960} height={1280} />
+                  <Image
+                    src={c.image}
+                    alt={c.label}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 80vw"
+                    className="object-cover"
+                  />
                   <div className="absolute inset-0 bg-foreground/10" />
                 </div>
                 <div className="px-2">
@@ -230,7 +241,13 @@ const Index = () => {
             <StaggerItem key={c.slug}>
               <Link href={`/${c.slug}`} className="group block h-full">
                 <div className="relative overflow-hidden aspect-[4/5] mb-5 md:mb-6">
-                  <img src={c.image} alt={c.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width={960} height={1200} />
+                  <Image
+                    src={c.image}
+                    alt={c.label}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 33vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                   <div className="absolute inset-0 bg-foreground/10 group-hover:bg-transparent transition-all duration-300" />
                 </div>
                 <h3 className="text-xl lg:text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{c.label}</h3>
@@ -288,7 +305,14 @@ const Index = () => {
               <div className="absolute -top-3 -left-3 w-[2px] h-12 bg-primary z-10" />
               <div className="absolute -bottom-3 -right-3 w-12 h-[2px] bg-primary z-10" />
               <div className="absolute -bottom-3 -right-3 w-[2px] h-12 bg-primary z-10" />
-              <img src={demoKoffer} alt="Brait Demo-Koffer mit Aluminium-Profilen, Glas und RAL-Farbmustern" className="w-full h-auto object-cover" loading="lazy" width={1024} height={683} />
+              <Image
+                src={demoKoffer}
+                alt="Brait Demo-Koffer mit Aluminium-Profilen, Glas und RAL-Farbmustern"
+                width={1024}
+                height={683}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="w-full h-auto object-cover"
+              />
               <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1.5 font-headline uppercase tracking-widest text-[10px] md:text-xs font-bold flex items-center gap-1.5">
                 <Briefcase className="w-3.5 h-3.5" /> Brait Demo-Koffer
               </div>
@@ -369,21 +393,33 @@ const Index = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 md:h-[640px] mb-3 md:mb-4">
           <ScaleIn className="md:col-span-8 md:row-span-2 relative group overflow-hidden aspect-[4/3] md:aspect-auto">
             <Link href="/referenzprojekte" className="block w-full h-full">
-              <img src={ref1} alt="Terrassenüberdachung mit Glasanbau" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width={1920} height={1440} />
+              <Image
+                src={ref1}
+                alt="Terrassenüberdachung mit Glasanbau"
+                fill
+                sizes="(min-width: 768px) 66vw, 100vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
               <div className="absolute inset-0 bg-foreground/20 group-hover:bg-transparent transition-all duration-300" />
               <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 text-primary-foreground p-4 md:p-6 backdrop-blur-md bg-foreground/40 border-l-4 border-primary">
                 <span className="text-[10px] md:text-xs uppercase tracking-widest opacity-80">Privatkunde</span>
-                <h4 className="text-base md:text-xl font-bold">Terrassenüberdachung mit Anbau</h4>
+                <h3 className="text-base md:text-xl font-bold">Terrassenüberdachung mit Anbau</h3>
               </div>
             </Link>
           </ScaleIn>
           <ScaleIn delay={0.15} className="md:col-span-4 md:row-span-2 relative group overflow-hidden aspect-[3/4] md:aspect-auto">
             <Link href="/referenzprojekte" className="block w-full h-full">
-              <img src={ref5} alt="Glashaus mit Schiebetüren" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width={1536} height={2048} />
+              <Image
+                src={ref5}
+                alt="Glashaus mit Schiebetüren"
+                fill
+                sizes="(min-width: 768px) 33vw, 100vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
               <div className="absolute inset-0 bg-foreground/20 group-hover:bg-transparent transition-all duration-300" />
               <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 text-primary-foreground p-4 md:p-6 backdrop-blur-md bg-foreground/40 border-l-4 border-primary">
                 <span className="text-[10px] md:text-xs uppercase tracking-widest opacity-80">Privatkunde</span>
-                <h4 className="text-base md:text-xl font-bold">Glashaus mit Schiebetüren</h4>
+                <h3 className="text-base md:text-xl font-bold">Glashaus mit Schiebetüren</h3>
               </div>
             </Link>
           </ScaleIn>
@@ -397,18 +433,17 @@ const Index = () => {
           ].map((p, i) => (
             <ScaleIn key={p.title} delay={0.2 + i * 0.1} className="relative group overflow-hidden aspect-[16/10]">
               <Link href="/referenzprojekte" className="block w-full h-full">
-                <img
+                <Image
                   src={p.img}
                   alt={p.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                  width={1440}
-                  height={900}
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-foreground/20 group-hover:bg-transparent transition-all duration-300" />
                 <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 text-primary-foreground p-3 md:p-5 backdrop-blur-md bg-foreground/40 border-l-4 border-primary">
                   <span className="text-[10px] md:text-xs uppercase tracking-widest opacity-80">{p.label}</span>
-                  <h4 className="text-sm md:text-lg font-bold">{p.title}</h4>
+                  <h3 className="text-sm md:text-lg font-bold">{p.title}</h3>
                 </div>
               </Link>
             </ScaleIn>
@@ -430,7 +465,14 @@ const Index = () => {
     {/* CTA */}
     <section className="relative py-16 md:py-32 bg-foreground overflow-hidden">
       <div className="absolute inset-0 opacity-40">
-        <img src={ctaTraumplatz} alt="" aria-hidden className="w-full h-full object-cover" loading="lazy" width={1920} height={1080} />
+        <Image
+          src={ctaTraumplatz}
+          alt=""
+          aria-hidden
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/70 to-foreground/40" />
       <div className="container mx-auto px-5 md:px-8 relative z-10 text-center">
