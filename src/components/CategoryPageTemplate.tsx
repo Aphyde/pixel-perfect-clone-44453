@@ -71,7 +71,8 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
                     fill
                     sizes="(min-width: 768px) 50vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+          quality={65}
+        />
                   <div className="absolute inset-0 bg-foreground/20 group-hover:bg-foreground/5 transition-all duration-300" />
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
@@ -166,7 +167,8 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
                     fill
                     sizes="(min-width: 768px) 33vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+          quality={65}
+        />
                   <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/20 transition-all" />
                   <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 flex items-center gap-3">
                     <h3 className="text-lg md:text-xl font-bold text-primary-foreground">

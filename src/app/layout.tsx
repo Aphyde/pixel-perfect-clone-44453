@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Manrope } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "./providers";
 import ScrollToTop from "@/components/ScrollToTop";
+import Telemetry from "@/components/Telemetry";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -157,8 +156,7 @@ export default function RootLayout({
           <ScrollToTop />
           {children}
         </Providers>
-        <Analytics />
-        <SpeedInsights />
+        <Telemetry />
       </body>
     </html>
   );

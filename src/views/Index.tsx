@@ -91,7 +91,9 @@ const Index = () => {
                   className="snap-start shrink-0 w-[72vw] max-w-[300px] group"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden mb-3">
-                    <Image src={p.image} alt={p.label} fill sizes="72vw" className="object-cover" />
+                    <Image src={p.image} alt={p.label} fill sizes="72vw" className="object-cover"
+          quality={65}
+        />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-4">
                       <h3 className="font-headline uppercase tracking-widest text-xs font-bold text-white mb-1">
@@ -200,7 +202,8 @@ const Index = () => {
                     fill
                     sizes="(min-width: 768px) 33vw, 80vw"
                     className="object-cover"
-                  />
+          quality={65}
+        />
                   <div className="absolute inset-0 bg-foreground/10" />
                 </div>
                 <div className="px-2">
@@ -227,7 +230,8 @@ const Index = () => {
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 33vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+          quality={65}
+        />
                   <div className="absolute inset-0 bg-foreground/10 group-hover:bg-transparent transition-all duration-300" />
                 </div>
                 <h3 className="text-xl lg:text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{c.label}</h3>
@@ -292,7 +296,8 @@ const Index = () => {
                 height={683}
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="w-full h-auto object-cover"
-              />
+          quality={65}
+        />
               <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1.5 font-headline uppercase tracking-widest text-[10px] md:text-xs font-bold flex items-center gap-1.5">
                 <Briefcase className="w-3.5 h-3.5" /> Brait Demo-Koffer
               </div>
@@ -384,7 +389,8 @@ const Index = () => {
                 fill
                 sizes="(min-width: 768px) 66vw, 100vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+          quality={65}
+        />
               <div className="absolute inset-0 bg-foreground/20 group-hover:bg-transparent transition-all duration-300" />
               <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 text-primary-foreground p-4 md:p-6 backdrop-blur-md bg-foreground/40 border-l-4 border-primary">
                 <span className="text-[10px] md:text-xs uppercase tracking-widest opacity-80">Privatkunde</span>
@@ -400,7 +406,8 @@ const Index = () => {
                 fill
                 sizes="(min-width: 768px) 33vw, 100vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+          quality={65}
+        />
               <div className="absolute inset-0 bg-foreground/20 group-hover:bg-transparent transition-all duration-300" />
               <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 text-primary-foreground p-4 md:p-6 backdrop-blur-md bg-foreground/40 border-l-4 border-primary">
                 <span className="text-[10px] md:text-xs uppercase tracking-widest opacity-80">Privatkunde</span>
@@ -424,7 +431,8 @@ const Index = () => {
                   fill
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+          quality={65}
+        />
                 <div className="absolute inset-0 bg-foreground/20 group-hover:bg-transparent transition-all duration-300" />
                 <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 text-primary-foreground p-3 md:p-5 backdrop-blur-md bg-foreground/40 border-l-4 border-primary">
                   <span className="text-[10px] md:text-xs uppercase tracking-widest opacity-80">{p.label}</span>
@@ -457,6 +465,7 @@ const Index = () => {
           fill
           sizes="100vw"
           className="object-cover"
+          quality={65}
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/70 to-foreground/40" />

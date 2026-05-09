@@ -144,7 +144,8 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+          quality={65}
+        />
                   </div>
                   <div className="p-6 md:p-8 flex-1 flex flex-col">
                     <h3 className="text-lg md:text-xl font-bold mb-2">{m.label}</h3>
@@ -251,7 +252,8 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
                     fill
                     sizes="(min-width: 768px) 33vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+          quality={65}
+        />
                   <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/20 transition-all" />
                   <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 flex items-center gap-3">
                     <h3 className="text-lg md:text-2xl font-bold text-primary-foreground">{p.title}</h3>

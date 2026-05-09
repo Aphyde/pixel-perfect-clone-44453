@@ -109,7 +109,7 @@ export const ParallaxImage = ({
   alt,
   className,
   sizes = "(min-width: 768px) 50vw, 100vw",
-  quality = 75,
+  quality = 65,
 }: {
   src: string;
   alt: string;

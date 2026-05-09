@@ -14,13 +14,14 @@ const Footer = () => (
           width={200}
           height={96}
           className="h-20 md:h-24 w-auto mb-4 md:mb-6"
+          quality={65}
         />
         <p className="font-body text-xs md:text-sm leading-relaxed text-primary-foreground/60 mb-6 md:mb-8">
           Ihr Spezialist für Aluminium-Terrassendächer, Markisen und Carports in Ulm. Seit über 10 Jahren Qualität aus der Region.
         </p>
       </div>
       <div className="flex flex-col gap-3 md:gap-4">
-        <h4 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary">Produkte</h4>
+        <h3 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary-fixed-dim">Produkte</h3>
         {categories.map((c) => (
           <Link
             key={c.slug}
@@ -32,14 +33,14 @@ const Footer = () => (
         ))}
       </div>
       <div className="flex flex-col gap-3 md:gap-4">
-        <h4 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary">Services</h4>
+        <h3 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary-fixed-dim">Services</h3>
         <Link href="/service" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Montage-Service Ulm</Link>
         <Link href="/wartungspakete" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Wartungspakete</Link>
         <Link href="/service" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Maßanfertigung</Link>
         <Link href="/konfigurator" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Konfigurator</Link>
       </div>
       <div className="flex flex-col gap-3 md:gap-4">
-        <h4 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary">Rechtliches</h4>
+        <h3 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary-fixed-dim">Rechtliches</h3>
         <Link href="/impressum" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Impressum</Link>
         <Link href="/datenschutz" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Datenschutz</Link>
         <Link href="/kontakt" className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors">Kontakt</Link>

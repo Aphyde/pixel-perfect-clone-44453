@@ -284,7 +284,8 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                   width={200}
                   height={96}
                   className="h-20 w-auto"
-                />
+          quality={65}
+        />
               </Link>
               <button
                 type="button"
@@ -468,7 +469,8 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                             fill
                             sizes="(min-width: 1024px) 25vw, 50vw"
                             className="object-cover opacity-60 transition-all duration-500 group-hover:opacity-80 group-hover:scale-105"
-                          />
+          quality={65}
+        />
                           <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/50 to-transparent" />
                           <div className="relative z-10 p-5 h-full min-h-[180px] lg:min-h-[280px] flex flex-col justify-end">
                             <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2">
@@ -497,7 +499,8 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                                 fill
                                 sizes="(min-width: 1024px) 25vw, 50vw"
                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
-                              />
+          quality={65}
+        />
                               <div className="absolute inset-0 bg-foreground/10 group-hover:bg-foreground/0 transition-all" />
                             </div>
                             <h4 className="text-sm font-bold mb-1 group-hover:text-primary transition-colors">
@@ -521,7 +524,8 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                           fill
                           sizes="(min-width: 1024px) 75vw, 100vw"
                           className="object-cover opacity-70 transition-all duration-500 group-hover:opacity-90 group-hover:scale-105"
-                        />
+          quality={65}
+        />
                         <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/40 to-transparent" />
                         <div className="relative z-10 p-8 h-full flex flex-col justify-end">
                           <span className="text-[10px] font-bold uppercase tracking-widest text-primary mb-3">
