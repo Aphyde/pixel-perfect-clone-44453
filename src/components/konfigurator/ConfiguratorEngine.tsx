@@ -2,10 +2,9 @@
 
 import { useState, useMemo, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import { Check, Plus, Minus, ChevronDown, ShieldCheck, Sparkles, Truck, Info, Briefcase } from "lucide-react";
+import { Check, Plus, Minus, ChevronDown, ShieldCheck, Sparkles, Truck, Info } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -523,9 +522,6 @@ const ConfiguratorEngine = ({ config }: Props) => {
               {activeDeliveryTime && (
                 <span className="flex items-center gap-1"><Truck className="w-3 h-3 text-primary" /> Lieferzeit {activeDeliveryTime}</span>
               )}
-              <Link href="/kontakt#demo-koffer" className="flex items-center gap-1 text-primary font-bold hover:opacity-70 transition-opacity">
-                <Briefcase className="w-3 h-3" /> Materialien anfassen — Demo-Koffer kostenlos
-              </Link>
             </div>
 
             <div className="px-4 md:px-8 py-3 md:py-4 flex items-center gap-3">
