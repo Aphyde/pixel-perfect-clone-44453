@@ -1,16 +1,34 @@
-import { Link, useLocation } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Menu, X, ArrowRight, ChevronDown, ChevronRight, Phone } from "lucide-react";
 
-const PHONE_DISPLAY = "0173 530 358 1";
-const PHONE_HREF = "tel:+4917353035881";
+const PHONE_DISPLAY = "0173 530 3581";
+const PHONE_HREF = "tel:+491735303581";
+const WHATSAPP_HREF =
+  "https://wa.me/491735303581?text=" +
+  encodeURIComponent("Hallo Brait, ich interessiere mich für eine Überdachung.");
+
+const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+    fill="currentColor"
+    className={className}
+  >
+    <path d="M19.05 4.91A10 10 0 0 0 12 2C6.48 2 2 6.48 2 12c0 1.76.46 3.45 1.32 4.95L2 22l5.2-1.36A10 10 0 0 0 12 22c5.52 0 10-4.48 10-10 0-2.67-1.04-5.18-2.95-7.09ZM12 20.27a8.27 8.27 0 0 1-4.21-1.15l-.3-.18-3.09.81.83-3-.2-.31a8.27 8.27 0 1 1 6.97 3.83Zm4.55-6.18c-.25-.13-1.47-.73-1.7-.81-.23-.08-.39-.13-.55.13-.16.25-.63.81-.78.98-.14.16-.29.18-.54.06-.25-.13-1.04-.38-1.99-1.22-.74-.66-1.23-1.47-1.37-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.43.13-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.13-.55-1.34-.76-1.83-.2-.48-.4-.42-.55-.42l-.47-.01c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.04 0 1.2.87 2.36.99 2.52.13.16 1.72 2.62 4.16 3.67.58.25 1.04.4 1.39.51.59.19 1.12.16 1.54.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.07-.11-.23-.18-.48-.31Z" />
+  </svg>
+);
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/logo-brait.svg";
-import logoLight from "@/assets/logo-brait-light.svg";
-import { categories } from "@/data/products";
+const logo = "/logo-brait.svg";
+const logoLight = "/logo-brait-light.svg";
+import { categories, hasConfigurator } from "@/data/products";
 
 const simpleLinks = [
   { label: "Konfigurator", path: "/konfigurator" },
+  { label: "Referenzen", path: "/referenzprojekte" },
   { label: "Service", path: "/service" },
   { label: "Kontakt", path: "/kontakt" },
 ];
@@ -25,7 +43,7 @@ interface NavbarProps {
 }
 
 const Navbar = ({ iconsOnly = false }: NavbarProps) => {
-  const location = useLocation();
+  const pathname = usePathname() ?? "/";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(categories[0].slug);
@@ -33,7 +51,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
   const [visible, setVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const lastScrollY = useRef(0);
-  const isHome = location.pathname === "/";
+  const isHome = pathname === "/";
   const transparentMobile = isHome && !scrolled && !mobileOpen;
   const megaTimeout = useRef<ReturnType<typeof setTimeout>>();
 
@@ -51,7 +69,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
     setMegaOpen(false);
     setMobileOpen(false);
     setMobileCategoryOpen(null);
-  }, [location.pathname]);
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -83,8 +101,8 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
 
   const isProductPage = categories.some(
     (c) =>
-      location.pathname === `/${c.slug}` ||
-      location.pathname.startsWith(`/${c.slug}/`),
+      pathname === `/${c.slug}` ||
+      pathname.startsWith(`/${c.slug}/`),
   );
 
   const activeCat = categories.find((c) => c.slug === activeCategory) ?? categories[0];
@@ -100,9 +118,9 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
               : "flex bg-foreground/95 backdrop-blur-xl"
         } ${visible || iconsOnly ? "translate-y-0" : "-translate-y-full pointer-events-none"}`}
       >
-        <Link to="/" className={`flex items-center ${iconsOnly ? "hidden md:flex" : ""}`}>
-          <img src={logoLight} alt="Brait Überdachungen" className="h-16 md:hidden" />
-          <img src={logo} alt="Brait Überdachungen" className="hidden md:block h-20" />
+        <Link href="/" className={`flex items-center ${iconsOnly ? "hidden md:flex" : ""}`}>
+          <img src={logoLight} alt="Brait Überdachungen" className="h-20 md:hidden" />
+          <img src={logo} alt="Brait Überdachungen" className="hidden md:block h-24" />
         </Link>
 
         {/* Desktop nav */}
@@ -130,9 +148,9 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
           {simpleLinks.map((link) => (
             <Link
               key={link.label}
-              to={link.path}
+              href={link.path}
               className={`font-headline uppercase tracking-widest text-sm transition-colors ${
-                location.pathname === link.path
+                pathname === link.path
                   ? "text-primary font-bold border-b-2 border-primary pb-1"
                   : "text-foreground hover:text-primary"
               }`}
@@ -143,11 +161,31 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
         </div>
 
         <div className={`flex items-center gap-2 md:gap-3 ${iconsOnly ? "hidden md:flex" : ""}`}>
-          {/* Call button: full on desktop, icon-only on mobile */}
+          {/* WhatsApp button (Desktop: icon, Mobile: icon) — randlos */}
+          <a
+            href={WHATSAPP_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Per WhatsApp schreiben"
+            className="hidden md:inline-flex items-center justify-center w-10 h-10 text-foreground hover:text-[#25D366] transition-colors"
+          >
+            <WhatsAppIcon className="w-5 h-5" />
+          </a>
+          <a
+            href={WHATSAPP_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Per WhatsApp schreiben"
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 text-primary-foreground hover:text-[#25D366] transition-colors"
+          >
+            <WhatsAppIcon className="w-4 h-4" />
+          </a>
+
+          {/* Call button: full on desktop, icon-only on mobile — randlos */}
           <a
             href={PHONE_HREF}
             aria-label={`Anrufen: ${PHONE_DISPLAY}`}
-            className="hidden md:inline-flex items-center gap-2 border border-foreground/15 hover:border-primary text-foreground hover:text-primary px-4 py-3 font-headline uppercase tracking-widest text-xs font-bold transition-all"
+            className="hidden md:inline-flex items-center gap-2 text-foreground hover:text-primary px-2 py-3 font-headline uppercase tracking-widest text-xs font-bold transition-colors"
           >
             <Phone className="w-3.5 h-3.5" />
             {PHONE_DISPLAY}
@@ -155,12 +193,12 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
           <a
             href={PHONE_HREF}
             aria-label={`Anrufen: ${PHONE_DISPLAY}`}
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 border border-primary-foreground/20 text-primary-foreground hover:text-primary hover:border-primary transition-all"
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 text-primary-foreground hover:text-primary transition-colors"
           >
             <Phone className="w-4 h-4" />
           </a>
           <Link
-            to="/kontakt"
+            href="/kontakt"
             className="hidden sm:inline-block bg-primary text-primary-foreground px-5 py-3 md:px-8 md:py-4 font-headline uppercase tracking-widest text-[10px] md:text-xs font-bold hover:bg-primary-container transition-all active:scale-[0.99]"
           >
             Angebot Anfordern
@@ -174,9 +212,18 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
         </div>
       </nav>
 
-      {/* iconsOnly: schwebende Icon-Buttons (Phone + Menu) – nur auf Mobile, immer sichtbar */}
+      {/* iconsOnly: schwebende Icon-Buttons (WhatsApp + Phone + Menu) – nur auf Mobile, immer sichtbar */}
       {iconsOnly && !mobileOpen && (
         <div className="md:hidden fixed top-4 right-4 z-[55] flex items-center gap-3">
+          <a
+            href={WHATSAPP_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Per WhatsApp schreiben"
+            className="inline-flex items-center justify-center w-10 h-10 text-white hover:text-[#25D366] transition-colors active:scale-95 drop-shadow-[0_2px_4px_rgba(0,0,0,0.55)]"
+          >
+            <WhatsAppIcon className="w-5 h-5" />
+          </a>
           <a
             href={PHONE_HREF}
             aria-label={`Anrufen: ${PHONE_DISPLAY}`}
@@ -212,8 +259,8 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
           >
             {/* Header with logo + close */}
             <div className="flex items-center justify-between px-4 py-4">
-              <Link to="/" onClick={() => setMobileOpen(false)}>
-                <img src={logoLight} alt="Brait Überdachungen" className="h-16" />
+              <Link href="/" onClick={() => setMobileOpen(false)}>
+                <img src={logoLight} alt="Brait Überdachungen" className="h-20" />
               </Link>
               <button
                 className="p-1 text-primary-foreground"
@@ -234,14 +281,14 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                   const hasSubproducts = cat.products.length > 0;
                   const isOpen = mobileCategoryOpen === cat.slug;
                   const isActive =
-                    location.pathname === `/${cat.slug}` ||
-                    location.pathname.startsWith(`/${cat.slug}/`);
+                    pathname === `/${cat.slug}` ||
+                    pathname.startsWith(`/${cat.slug}/`);
 
                   if (!hasSubproducts) {
                     return (
                       <Link
                         key={cat.slug}
-                        to={`/${cat.slug}`}
+                        href={`/${cat.slug}`}
                         onClick={() => setMobileOpen(false)}
                         className={`flex items-center justify-between py-4 font-headline uppercase tracking-widest text-sm transition-colors ${
                           isActive
@@ -283,7 +330,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                           >
                             <div className="flex flex-col pl-4 pb-2 pt-1 gap-1">
                               <Link
-                                to={`/${cat.slug}`}
+                                href={`/${cat.slug}`}
                                 onClick={() => setMobileOpen(false)}
                                 className="py-2 text-xs font-headline uppercase tracking-widest text-primary"
                               >
@@ -292,7 +339,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                               {cat.products.map((p) => (
                                 <Link
                                   key={p.slug}
-                                  to={`/${cat.slug}/${p.slug}`}
+                                  href={`/${cat.slug}/${p.slug}`}
                                   onClick={() => setMobileOpen(false)}
                                   className="py-2 text-sm text-primary-foreground/80 hover:text-primary transition-colors"
                                 >
@@ -311,10 +358,10 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
               {simpleLinks.map((link) => (
                 <Link
                   key={link.label}
-                  to={link.path}
+                  href={link.path}
                   onClick={() => setMobileOpen(false)}
                   className={`font-headline uppercase tracking-widest text-sm transition-colors py-2 ${
-                    location.pathname === link.path
+                    pathname === link.path
                       ? "text-primary font-bold"
                       : "text-primary-foreground hover:text-primary"
                   }`}
@@ -323,7 +370,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                 </Link>
               ))}
               <Link
-                to="/kontakt"
+                href="/kontakt"
                 onClick={() => setMobileOpen(false)}
                 className="sm:hidden bg-primary text-primary-foreground px-6 py-3 font-headline uppercase tracking-widest text-xs font-bold text-center mt-4"
               >
@@ -386,7 +433,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                       <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
                         {/* Overview card */}
                         <Link
-                          to={`/${activeCat.slug}`}
+                          href={`/${activeCat.slug}`}
                           className="group relative overflow-hidden col-span-2 lg:col-span-1 row-span-1 lg:row-span-2 bg-foreground"
                         >
                           <img
@@ -412,7 +459,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                         {activeCat.products.map((p) => (
                           <Link
                             key={p.slug}
-                            to={`/${activeCat.slug}/${p.slug}`}
+                            href={`/${activeCat.slug}/${p.slug}`}
                             className="group block"
                           >
                             <div className="relative aspect-[4/3] overflow-hidden mb-3">
@@ -435,7 +482,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                     ) : (
                       // Single-product category: big hero card
                       <Link
-                        to={`/${activeCat.slug}`}
+                        href={`/${activeCat.slug}`}
                         className="group relative block overflow-hidden bg-foreground aspect-[16/9]"
                       >
                         <img
@@ -465,15 +512,25 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
 
                 <div className="mt-8 pt-6 border-t border-outline-variant/15 flex items-center justify-between">
                   <p className="text-xs text-secondary">
-                    Alle Systeme individuell konfigurierbar – kostenlose Beratung
-                    inklusive.
+                    {hasConfigurator(activeCat.slug)
+                      ? "Alle Systeme individuell konfigurierbar – kostenlose Beratung inklusive."
+                      : "Persönliche Beratung – wir kommen kostenlos zu Ihnen vor Ort."}
                   </p>
-                  <Link
-                    to={`/konfigurator/${activeCat.slug}`}
-                    className="flex items-center gap-2 text-primary font-headline uppercase tracking-widest text-xs font-bold hover:opacity-70 transition-opacity"
-                  >
-                    {activeCat.label}-Konfigurator <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  {hasConfigurator(activeCat.slug) ? (
+                    <Link
+                      href={`/konfigurator/${activeCat.slug}`}
+                      className="flex items-center gap-2 text-primary font-headline uppercase tracking-widest text-xs font-bold hover:opacity-70 transition-opacity"
+                    >
+                      {activeCat.label}-Konfigurator <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/kontakt"
+                      className="flex items-center gap-2 text-primary font-headline uppercase tracking-widest text-xs font-bold hover:opacity-70 transition-opacity"
+                    >
+                      Beratung anfragen <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

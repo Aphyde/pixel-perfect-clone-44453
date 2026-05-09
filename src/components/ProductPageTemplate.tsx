@@ -1,7 +1,9 @@
+"use client";
+
 import Layout from "@/components/Layout";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, ParallaxImage } from "@/components/ScrollAnimations";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight, Check, Plus } from "lucide-react";
 import { terraceModules } from "@/data/products";
 
@@ -86,7 +88,7 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
             <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-6">{data.introTitle}</h2>
             <p className="text-secondary leading-relaxed text-sm md:text-base mb-8">{data.introText}</p>
             <Link
-              to="/kontakt"
+              href="/kontakt"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-widest text-xs hover:bg-primary-container transition-all"
             >
               Angebot Anfordern <ArrowRight className="w-4 h-4" />
@@ -180,14 +182,16 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
               </StaggerItem>
             ))}
           </StaggerContainer>
-          <FadeIn className="mt-8 md:mt-12 text-center">
-            <Link
-              to={data.configuratorLink ?? "/konfigurator"}
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-widest text-xs hover:bg-primary-container transition-all"
-            >
-              <Plus className="w-4 h-4" /> Im Konfigurator zusammenstellen
-            </Link>
-          </FadeIn>
+          {data.configuratorLink && (
+            <FadeIn className="mt-8 md:mt-12 text-center">
+              <Link
+                href={data.configuratorLink}
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-widest text-xs hover:bg-primary-container transition-all"
+              >
+                <Plus className="w-4 h-4" /> Im Konfigurator zusammenstellen
+              </Link>
+            </FadeIn>
+          )}
         </div>
       </section>
     )}
@@ -223,12 +227,25 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
         </FadeIn>
         <FadeIn delay={0.4}>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link to={data.configuratorLink ?? "/konfigurator"} className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all">
-              Jetzt Konfigurieren
-            </Link>
-            <Link to="/kontakt" className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all">
-              Kontakt Aufnehmen
-            </Link>
+            {data.configuratorLink ? (
+              <>
+                <Link href={data.configuratorLink} className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all">
+                  Jetzt Konfigurieren
+                </Link>
+                <Link href="/kontakt" className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all">
+                  Kontakt Aufnehmen
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link href="/kontakt" className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all">
+                  Beratung Anfragen
+                </Link>
+                <a href="tel:+491735303581" className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all">
+                  0173 530 3581
+                </a>
+              </>
+            )}
           </div>
         </FadeIn>
       </div>
@@ -245,7 +262,7 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             {data.otherProducts.map((p) => (
               <ScaleIn key={p.title}>
-                <Link to={p.link} className="group block relative overflow-hidden aspect-[16/9]">
+                <Link href={p.link} className="group block relative overflow-hidden aspect-[16/9]">
                   <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width={960} height={540} />
                   <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/20 transition-all" />
                   <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 flex items-center gap-3">

@@ -1,10 +1,29 @@
 import { premiumColors, standardColors } from "./products";
-import konfBg from "@/assets/konfigurator-bg.jpg";
-import heroMarkise from "@/assets/hero-terrasse.jpg";
-import heroSchirm from "@/assets/architecture-detail.jpg";
-import heroQbus from "@/assets/catalog/cube-1.jpg";
-import heroEingang from "@/assets/detail-terrasse.jpg";
-import heroCarport from "@/assets/hero-carport.jpg";
+
+// Bilder werden statisch aus /public referenziert (Next.js).
+const konfBg = "/konfigurator-bg.jpg";
+const mAufglasAnt = "/markisen/variants/aufglas-anthracite.webp";
+const mAufglasBl = "/markisen/variants/aufglas-black.webp";
+const mAufglasCr = "/markisen/variants/aufglas-creme.webp";
+const mAufglasWh = "/markisen/variants/aufglas-white.webp";
+const mUnterglasAnt = "/markisen/variants/unterglas-anthracite.webp";
+const mUnterglasBl = "/markisen/variants/unterglas-black.webp";
+const mUnterglasCr = "/markisen/variants/unterglas-creme.webp";
+const mUnterglasWh = "/markisen/variants/unterglas-white.webp";
+const mPlisseeAnt = "/markisen/variants/plissee-anthracite.webp";
+const mPlisseeBl = "/markisen/variants/plissee-black.webp";
+const mPlisseeCr = "/markisen/variants/plissee-creme.webp";
+const mPlisseeWh = "/markisen/variants/plissee-white.webp";
+const heroSchirm = "/architecture-detail.jpg";
+const qbusAnt = "/qbus/hero/anthracite.webp";
+const qbusBl = "/qbus/hero/black.webp";
+const qbusCr = "/qbus/hero/creme.webp";
+const qbusWh = "/qbus/hero/white.webp";
+const heroEingang = "/detail-terrasse.jpg";
+const heroCarport = "/hero-carport.jpg";
+
+// Q-Bus & Veranda Lamellen-Bilder werden ueber relative public-Pfade referenziert.
+const qbusImg = (rel: string) => `/qbus/${rel}`;
 // ============================================================
 // TYPES
 // ============================================================
@@ -101,16 +120,25 @@ const ledExtra: ExtraOption = {
   defaultOn: true,
 };
 // Wartungspaket — wird im Konfigurator als zusammenhängender Block mit Tarif-Auswahl gerendert.
+// Tarife: Monatlich 14,90 € (Flexibilität), Jährlich 199 € (Festpreis), 3 Jahre 499 € (Bestpreis ≈ −16 % vs. 3× Jährlich).
 // Die `desc` der Tarife wird dort als kurzer Subtext unter der Periode angezeigt.
 const wartungExtras: ExtraOption[] = [
   { id: "wartung-monat", label: "Monatlich", desc: "14,90 € / Monat", price: 14.9 },
-  { id: "wartung-jahr", label: "Jährlich", desc: "179 € / Jahr", price: 179 },
+  { id: "wartung-jahr", label: "Jährlich", desc: "199 € / Jahr", price: 199 },
   { id: "wartung-3jahre", label: "3 Jahre", desc: "499 € einmalig", price: 499 },
 ];
 
+// Optionale Glas-Imprägnierung (Lotus-Effekt) — als Toggle im Service-Step
+const glasImpraegnierung: ExtraOption = {
+  id: "glas-impraegnierung",
+  label: "Glas-Imprägnierung (Lotus-Effekt)",
+  desc: "Schmutz- & wasserabweisende Beschichtung – Regen perlt ab, weniger Reinigungsaufwand",
+  price: 290,
+};
+
 const wartungExtrasMarkisen: ExtraOption[] = [
   { id: "wartung-monat", label: "Monatlich", desc: "14,90 € / Monat", price: 14.9 },
-  { id: "wartung-jahr", label: "Jährlich", desc: "179 € / Jahr", price: 179 },
+  { id: "wartung-jahr", label: "Jährlich", desc: "199 € / Jahr", price: 199 },
   { id: "wartung-3jahre", label: "3 Jahre", desc: "499 € einmalig", price: 499 },
 ];
 
@@ -120,26 +148,64 @@ const wartungExtrasMarkisen: ExtraOption[] = [
 const markisenConfig: CategoryConfigurator = {
   slug: "markisen",
   label: "Markisen",
-  hero: heroMarkise,
-  shortDesc: "Fallarm, Gelenkarm, Senkrecht oder Aufglas – Sonnenschutz nach Maß.",
+  hero: mAufglasAnt,
+  shortDesc: "Aufglas, Unterglas, Plissee oder klassisch – Sonnenschutz nach Maß für Terrasse & Veranda.",
   basePrice: 1900,
   deliveryTime: "2 Wochen",
+  // Hero reagiert live auf Gestellfarbe × Markisenart (12 Kombinationen)
+  heroVariantStepIds: ["frame", "type"],
+  heroVariants: {
+    "anthracite|aufglas": mAufglasAnt,
+    "black|aufglas": mAufglasBl,
+    "creme|aufglas": mAufglasCr,
+    "white|aufglas": mAufglasWh,
+    "anthracite|unterglas": mUnterglasAnt,
+    "black|unterglas": mUnterglasBl,
+    "creme|unterglas": mUnterglasCr,
+    "white|unterglas": mUnterglasWh,
+    "anthracite|plissee": mPlisseeAnt,
+    "black|plissee": mPlisseeBl,
+    "creme|plissee": mPlisseeCr,
+    "white|plissee": mPlisseeWh,
+    // Gelenkarm & Senkrecht haben kein Render → fallback auf Aufglas der jeweiligen Farbe
+    "anthracite|gelenkarm": mAufglasAnt,
+    "black|gelenkarm": mAufglasBl,
+    "creme|gelenkarm": mAufglasCr,
+    "white|gelenkarm": mAufglasWh,
+    "anthracite|senkrecht": mAufglasAnt,
+    "black|senkrecht": mAufglasBl,
+    "creme|senkrecht": mAufglasCr,
+    "white|senkrecht": mAufglasWh,
+  },
   steps: [
     {
-      id: "type",
+      id: "frame",
       num: "01",
+      title: "Gestellfarbe (Aluminium-Profil)",
+      type: "colors",
+      colors: [
+        { ral: "RAL 7016", hex: "#293133", label: "Anthrazit", code: "anthracite" },
+        { ral: "RAL 9005", hex: "#0a0a0a", label: "Schwarz", code: "black" },
+        { ral: "RAL 9001", hex: "#f1ecdb", label: "Crème", code: "creme" },
+        { ral: "RAL 9010", hex: "#ffffff", label: "Weiß", code: "white" },
+      ],
+    },
+    {
+      id: "type",
+      num: "02",
       title: "Markisenart",
       type: "select-cards",
       options: [
-        { id: "fallarm", label: "Fallarmmarkise", desc: "Vertikaler Schutz für Fenster & Loggien", basePrice: 1900, dimensions: { minW: 1, maxW: 4, minD: 0.5, maxD: 1.8 }, deliveryTime: "2 Wochen" },
-        { id: "gelenkarm", label: "Gelenkarmmarkise", desc: "Klassiker für Terrassen & Balkone", basePrice: 2400, dimensions: { minW: 2, maxW: 7, minD: 1.5, maxD: 4 }, deliveryTime: "2 Wochen" },
-        { id: "senkrecht", label: "Senkrechtmarkise", desc: "Vertikaler Sicht- und Sonnenschutz", basePrice: 1700, dimensions: { minW: 1, maxW: 5, minD: 1, maxD: 3 }, deliveryTime: "2 Wochen" },
-        { id: "aufglas", label: "Aufglasmarkise", desc: "Auf Wintergarten / Glasdach", basePrice: 2900, dimensions: { minW: 2, maxW: 6, minD: 1.5, maxD: 4 }, deliveryTime: "2 Wochen" },
+        { id: "aufglas", code: "aufglas", label: "Aufglasmarkise", desc: "Sonnenschutz über dem Glasdach – effektivster Hitzeschutz", basePrice: 2900, dimensions: { minW: 2, maxW: 6, minD: 1.5, maxD: 4 }, deliveryTime: "2 Wochen", image: mAufglasAnt },
+        { id: "unterglas", code: "unterglas", label: "Unterglasmarkise", desc: "Innenseitiger Sonnenschutz unter dem Glasdach", basePrice: 2600, dimensions: { minW: 2, maxW: 6, minD: 1.5, maxD: 4 }, deliveryTime: "2 Wochen", image: mUnterglasAnt },
+        { id: "plissee", code: "plissee", label: "Plissee-System", desc: "Faltbarer, innenliegender Lichtfilter zwischen Sparren", basePrice: 1860, dimensions: { minW: 1.5, maxW: 5, minD: 1, maxD: 3 }, deliveryTime: "2 Wochen", image: mPlisseeAnt },
+        { id: "gelenkarm", code: "gelenkarm", label: "Gelenkarmmarkise", desc: "Frei stehender Klassiker für Terrasse & Balkon", basePrice: 2400, dimensions: { minW: 2, maxW: 7, minD: 1.5, maxD: 4 }, deliveryTime: "2 Wochen" },
+        { id: "senkrecht", code: "senkrecht", label: "Senkrechtmarkise (Zipscreen)", desc: "Vertikaler Sicht- und Sonnenschutz", basePrice: 1700, dimensions: { minW: 1, maxW: 5, minD: 1, maxD: 3 }, deliveryTime: "2 Wochen" },
       ],
     },
     {
       id: "dimensions",
-      num: "02",
+      num: "03",
       title: "Maße (Breite × Ausfall)",
       type: "dimensions",
       dimensionsFromOption: "type",
@@ -150,7 +216,7 @@ const markisenConfig: CategoryConfigurator = {
     },
     {
       id: "fabric",
-      num: "03",
+      num: "04",
       title: "Tuchfarbe",
       type: "colors",
       colors: [
@@ -160,13 +226,6 @@ const markisenConfig: CategoryConfigurator = {
         { ral: "Streifen Grau", hex: "#bcbcbc", label: "Streifen Grau" },
         { ral: "Streifen Beige", hex: "#e2d4ad", label: "Streifen Beige" },
       ],
-    },
-    {
-      id: "frame",
-      num: "04",
-      title: "Gestellfarbe",
-      type: "colors",
-      colors: standardColors,
     },
     {
       id: "drive",
@@ -182,10 +241,10 @@ const markisenConfig: CategoryConfigurator = {
     {
       id: "extras",
       num: "06",
-      title: "Erweiterungen",
+      title: "Service & Optionen",
       type: "extras-toggle",
       extras: [
-        { id: "led-arm", label: "LED in Armen", desc: "Stimmungsvolle Abendnutzung", price: 590 },
+        { id: "led-arm", label: "LED in Profil/Armen", desc: "Stimmungsvolle Abendnutzung", price: 590 },
         { id: "volant", label: "Volant verstellbar", desc: "Zusätzlicher Blendschutz", price: 290 },
         { id: "heizstrahler", label: "Heizstrahler-Vorbereitung", desc: "Kabelweg vorinstalliert", price: 240 },
         ...wartungExtrasMarkisen,
@@ -263,64 +322,148 @@ const schirmeConfig: CategoryConfigurator = {
 };
 
 // ============================================================
-// Q-BUS (Kubus)
+// Q-BUS – LAMELLEN-PERGOLA
+// (Aluminium-Lamellen-Dach, verstellbar – Premium-Pergola)
 // ============================================================
 const qbusConfig: CategoryConfigurator = {
   slug: "q-bus",
-  label: "Q-Bus (Kubus)",
-  hero: heroQbus,
-  shortDesc: "Kubische Premium-Überdachung mit serienmäßiger LED.",
-  basePrice: 11900,
+  label: "Q-Bus Lamellen-Pergola",
+  hero: qbusAnt,
+  shortDesc: "Premium-Lamellen-Pergola: verstellbare Aluminium-Lamellen, LED, Glaswände & Zipscreen frei kombinierbar.",
+  basePrice: 8990,
   deliveryTime: "2 Wochen",
+  heroVariantStepIds: ["color"],
+  heroVariants: {
+    anthracite: qbusAnt,
+    black: qbusBl,
+    creme: qbusCr,
+    white: qbusWh,
+  },
   steps: [
     {
-      id: "dimensions",
+      id: "color",
       num: "01",
-      title: "Maße",
-      type: "dimensions",
-      dimensions: {
-        width: { min: 3, max: 7, default: 5, label: "Breite" },
-        depth: { min: 3, max: 4.5, default: 4, label: "Tiefe" },
-      },
-    },
-    {
-      id: "glass",
-      num: "02",
-      title: "Glasart",
-      type: "select-cards",
-      options: [
-        { id: "vsg-clear", label: "VSG 44.2 klar", desc: "Maximaler Lichteinfall", price: 0 },
-        { id: "vsg-tint", label: "VSG 44.2 getönt", desc: "Reduzierter Lichteinfall", price: 600 },
-        { id: "isolier", label: "Isolierglas 24 mm", desc: "Wärmedämmung Premium", price: 1900 },
+      title: "Farbe (Aluminium-Profil)",
+      type: "colors",
+      colors: [
+        { ral: "RAL 7016", hex: "#293133", label: "Anthrazit", code: "anthracite" },
+        { ral: "RAL 9005", hex: "#0a0a0a", label: "Schwarz", code: "black" },
+        { ral: "RAL 9001", hex: "#f1ecdb", label: "Crème", code: "creme" },
+        { ral: "RAL 9010", hex: "#ffffff", label: "Weiß", code: "white" },
       ],
     },
     {
-      id: "color",
-      num: "03",
-      title: "Farbauswahl (RAL)",
-      type: "colors",
-      colors: premiumColors,
+      id: "dimensions",
+      num: "02",
+      title: "Maße (Breite × Tiefe)",
+      type: "dimensions",
+      dimensions: {
+        width: { min: 3, max: 7, default: 5, label: "Breite" },
+        depth: { min: 3, max: 4.5, default: 3, label: "Tiefe" },
+      },
     },
     {
-      id: "led",
+      id: "front",
+      num: "03",
+      title: "Vorderseite",
+      type: "select-cards",
+      options: [
+        { id: "front-open", label: "Offen", desc: "Klassisch, freier Durchgang", price: 0, image: qbusImg("front/none.webp") },
+        { id: "front-schiebepui", label: "Schiebetür-System", desc: "Eleganter Übergang in den Garten", price: 2700, image: qbusImg("front/SchuifPuiVoor.001.webp") },
+        { id: "front-schiebewand", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 2700, image: qbusImg("front/SchuifWandenVoor.001.webp") },
+        { id: "front-schiebewand-tint", label: "Glas-Schiebewände getönt", desc: "Vollverglasung, getönt", price: 2700, image: qbusImg("front/SchuifWandenTintVoor.001.webp") },
+        { id: "front-glas", label: "Festes Glaselement", desc: "Festrahmen mit VSG-Glas", price: 1290, image: qbusImg("front/ZijwandGlas.013.webp") },
+        { id: "front-poly", label: "Festes Polycarbonat", desc: "Festrahmen, leichter & günstiger", price: 990, image: qbusImg("front/ZijwandPoly.005.webp") },
+        { id: "front-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert (Alu-Schaum-Alu)", price: 1490, image: qbusImg("front/Sandwich.004.webp") },
+      ],
+    },
+    {
+      id: "back",
       num: "04",
+      title: "Rückseite",
+      type: "select-cards",
+      options: [
+        { id: "back-open", label: "Offen", desc: "Wandanschluss ohne Abschluss", price: 0, image: qbusImg("back/none.webp") },
+        { id: "back-schiebepui", label: "Schiebetür-System", desc: "Eleganter Übergang", price: 2700, image: qbusImg("back/SchuifPuiVoor.002.webp") },
+        { id: "back-schiebewand", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 2700, image: qbusImg("back/SchuifWandenVoor.002.webp") },
+        { id: "back-schiebewand-tint", label: "Glas-Schiebewände getönt", desc: "Vollverglasung, getönt", price: 2700, image: qbusImg("back/SchuifWandenTintVoor.002.webp") },
+        { id: "back-glas", label: "Festes Glaselement", desc: "Festrahmen mit VSG-Glas", price: 1290, image: qbusImg("back/ZijwandGlas.014.webp") },
+        { id: "back-poly", label: "Festes Polycarbonat", desc: "Festrahmen, leichter & günstiger", price: 990, image: qbusImg("back/ZijwandPoly.006.webp") },
+        { id: "back-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert (Alu-Schaum-Alu)", price: 1490, image: qbusImg("back/Sandwich.005.webp") },
+      ],
+    },
+    {
+      id: "left",
+      num: "05",
+      title: "Linke Seitenwand",
+      type: "select-cards",
+      options: [
+        { id: "left-open", label: "Offen", desc: "Keine Seitenwand", price: 0, image: qbusImg("left/none.webp") },
+        { id: "left-schiebepui", label: "Schiebetür-System", desc: "Eleganter Übergang", price: 2700, image: qbusImg("left/GlazenSchuifpui.003.webp") },
+        { id: "left-schiebewand", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 2700, image: qbusImg("left/GlazenSchuifwand.003.webp") },
+        { id: "left-schiebewand-tint", label: "Glas-Schiebewände getönt", desc: "Vollverglasung, getönt", price: 2700, image: qbusImg("left/GlazenSchuifwandGetint.001.webp") },
+        { id: "left-glas", label: "Festes Glaselement", desc: "Festrahmen mit VSG-Glas", price: 1290, image: qbusImg("left/ZijwandGlas.007.webp") },
+        { id: "left-poly", label: "Festes Polycarbonat", desc: "Festrahmen, leichter & günstiger", price: 990, image: qbusImg("left/ZijwandPoly.003.webp") },
+        { id: "left-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert (Alu-Schaum-Alu)", price: 1490, image: qbusImg("left/Sandwich.002.webp") },
+      ],
+    },
+    {
+      id: "right",
+      num: "06",
+      title: "Rechte Seitenwand",
+      type: "select-cards",
+      options: [
+        { id: "right-open", label: "Offen", desc: "Keine Seitenwand", price: 0, image: qbusImg("right/none.webp") },
+        { id: "right-schiebepui", label: "Schiebetür-System", desc: "Eleganter Übergang", price: 2700, image: qbusImg("right/GlazenSchuifpui.001.webp") },
+        { id: "right-schiebewand", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 2700, image: qbusImg("right/GlazenSchuifwand.001.webp") },
+        { id: "right-schiebewand-tint", label: "Glas-Schiebewände getönt", desc: "Vollverglasung, getönt", price: 2700, image: qbusImg("right/GlazenSchuifwandGetint.002.webp") },
+        { id: "right-glas", label: "Festes Glaselement", desc: "Festrahmen mit VSG-Glas", price: 1290, image: qbusImg("right/ZijwandGlas.012.webp") },
+        { id: "right-poly", label: "Festes Polycarbonat", desc: "Festrahmen, leichter & günstiger", price: 990, image: qbusImg("right/ZijwandPoly.004.webp") },
+        { id: "right-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert (Alu-Schaum-Alu)", price: 1490, image: qbusImg("right/Sandwich.003.webp") },
+      ],
+    },
+    {
+      id: "lighting",
+      num: "07",
       title: "LED-Beleuchtung",
       type: "radio-icon",
       options: [
-        { id: "led-basic", label: "Basic (8 Spots)", price: 0 },
-        { id: "led-comfort", label: "Comfort (16 Spots, dimmbar)", price: 490 },
-        { id: "led-rgb", label: "Premium RGB (App-Steuerung)", price: 990 },
+        { id: "led-none", label: "Keine Beleuchtung", price: 0, image: qbusImg("lights/none.webp") },
+        { id: "led-cold", label: "LED Kaltweiß", price: 590, image: qbusImg("lights/LightsCold.webp") },
+        { id: "led-warm", label: "LED Warmweiß", price: 590, image: qbusImg("lights/LightsWarm.webp") },
+        { id: "led-dim", label: "LED Dimmbar (Funk)", price: 890, image: qbusImg("lights/LightsDim.webp") },
+      ],
+    },
+    {
+      id: "motor",
+      num: "08",
+      title: "Lamellen-Steuerung",
+      type: "radio-icon",
+      options: [
+        { id: "motor-manual", label: "Handkurbel", price: 0 },
+        { id: "motor-auto", label: "Funk-Motor (mit Fernbedienung)", price: 690 },
+      ],
+    },
+    {
+      id: "screen",
+      num: "09",
+      title: "Zipscreen-Position",
+      type: "radio-icon",
+      options: [
+        { id: "screen-none", label: "Kein Zipscreen", price: 0, image: qbusImg("screen/none.webp") },
+        { id: "screen-front", label: "Vorderseite", price: 2330, image: qbusImg("screen/front.webp") },
+        { id: "screen-back", label: "Rückseite", price: 2330, image: qbusImg("screen/back.webp") },
+        { id: "screen-left", label: "Linke Seite", price: 2330, image: qbusImg("screen/left.webp") },
+        { id: "screen-right", label: "Rechte Seite", price: 2330, image: qbusImg("screen/right.webp") },
       ],
     },
     {
       id: "extras",
-      num: "05",
-      title: "Erweiterungen",
+      num: "10",
+      title: "Service & Optionen",
       type: "extras-toggle",
       extras: [
-        { id: "glasschiebewand", label: "Glasschiebewände", desc: "Flexibler Windschutz", price: 2400 },
-        { id: "zipscreen", label: "Zipscreen", desc: "Senkrechter Sonnenschutz", price: 1290 },
-        { id: "schiebetuer", label: "Schiebetür", desc: "Eleganter Übergang", price: 1850 },
+        glasImpraegnierung,
         ...wartungExtras,
       ],
     },
@@ -387,6 +530,7 @@ const eingangConfig: CategoryConfigurator = {
         { id: "seitenteil", label: "Seitenteil (Glas)", desc: "Pro Seite", price: 490 },
         { id: "led-eingang", label: "LED-Spots im Profil", desc: "2 Spots integriert", price: 290 },
         { id: "regenrinne", label: "Verdeckte Regenrinne", desc: "Mit Fallrohr", price: 220 },
+        glasImpraegnierung,
       ],
     },
   ],
@@ -465,41 +609,41 @@ const carportConfig: CategoryConfigurator = {
 // Bilder & Optionen: Inspiration & Renderings nachgebildet aus
 // einem freigegebenen Konfigurator-Datensatz.
 // ============================================================
-import verandaHalfrondAnthracite from "@/assets/veranda/heros/halfrond-anthracite.webp";
+const verandaHalfrondAnthracite = "/veranda/heros/halfrond-anthracite.webp";
 
 // Hero-Varianten (4 Rinnen × 4 Farben)
-import vH_RechtAnt from "@/assets/veranda/heros/recht-anthracite.webp";
-import vH_RechtBl from "@/assets/veranda/heros/recht-black.webp";
-import vH_RechtCr from "@/assets/veranda/heros/recht-creme.webp";
-import vH_RechtWh from "@/assets/veranda/heros/recht-white.webp";
-import vH_HalfAnt from "@/assets/veranda/heros/halfrond-anthracite.webp";
-import vH_HalfBl from "@/assets/veranda/heros/halfrond-black.webp";
-import vH_HalfCr from "@/assets/veranda/heros/halfrond-creme.webp";
-import vH_HalfWh from "@/assets/veranda/heros/halfrond-white.webp";
-import vH_ModAnt from "@/assets/veranda/heros/modern-anthracite.webp";
-import vH_ModBl from "@/assets/veranda/heros/modern-black.webp";
-import vH_ModCr from "@/assets/veranda/heros/modern-creme.webp";
-import vH_ModWh from "@/assets/veranda/heros/modern-white.webp";
-import vH_SierAnt from "@/assets/veranda/heros/sier-anthracite.webp";
-import vH_SierBl from "@/assets/veranda/heros/sier-black.webp";
-import vH_SierCr from "@/assets/veranda/heros/sier-creme.webp";
-import vH_SierWh from "@/assets/veranda/heros/sier-white.webp";
+const vH_RechtAnt = "/veranda/heros/recht-anthracite.webp";
+const vH_RechtBl = "/veranda/heros/recht-black.webp";
+const vH_RechtCr = "/veranda/heros/recht-creme.webp";
+const vH_RechtWh = "/veranda/heros/recht-white.webp";
+const vH_HalfAnt = "/veranda/heros/halfrond-anthracite.webp";
+const vH_HalfBl = "/veranda/heros/halfrond-black.webp";
+const vH_HalfCr = "/veranda/heros/halfrond-creme.webp";
+const vH_HalfWh = "/veranda/heros/halfrond-white.webp";
+const vH_ModAnt = "/veranda/heros/modern-anthracite.webp";
+const vH_ModBl = "/veranda/heros/modern-black.webp";
+const vH_ModCr = "/veranda/heros/modern-creme.webp";
+const vH_ModWh = "/veranda/heros/modern-white.webp";
+const vH_SierAnt = "/veranda/heros/sier-anthracite.webp";
+const vH_SierBl = "/veranda/heros/sier-black.webp";
+const vH_SierCr = "/veranda/heros/sier-creme.webp";
+const vH_SierWh = "/veranda/heros/sier-white.webp";
 
 // Rinnen-Thumbnails
-import vGutterRecht from "@/assets/veranda/gutters/4507d804-8de1-44d0-b668-52e7cd529319.webp";
-import vGutterHalf from "@/assets/veranda/gutters/8b6ee5b4-4d2f-4f8c-aa18-04eb855f61cd.webp";
-import vGutterMod from "@/assets/veranda/gutters/1d604e3c-2580-49f2-9880-a932240ebf33.webp";
-import vGutterSier from "@/assets/veranda/gutters/2aa3e4bb-1de3-4a91-a953-64294dd61e58.webp";
+const vGutterRecht = "/veranda/gutters/4507d804-8de1-44d0-b668-52e7cd529319.webp";
+const vGutterHalf = "/veranda/gutters/8b6ee5b4-4d2f-4f8c-aa18-04eb855f61cd.webp";
+const vGutterMod = "/veranda/gutters/1d604e3c-2580-49f2-9880-a932240ebf33.webp";
+const vGutterSier = "/veranda/gutters/2aa3e4bb-1de3-4a91-a953-64294dd61e58.webp";
 
 // Dachmaterial-Thumbnails
-import vRoofPolyOpaal from "@/assets/veranda/roof/b94d478c-9820-40d1-b686-30a4f7d2421e.webp";
-import vRoofPolyHelder from "@/assets/veranda/roof/470e983c-7caa-4324-a58f-ae3459f1fb95.webp";
-import vRoofGlas from "@/assets/veranda/roof/8275b565-cbec-498b-98b9-19a2178290c1.webp";
-import vRoofOpaalGlas from "@/assets/veranda/roof/5219cdf2-3f66-4b02-92ec-e51f95889917.webp";
-import vRoofTinted from "@/assets/veranda/roof/cffeaca3-1a7b-4d44-b191-b7c6ef16f754.webp";
+const vRoofPolyOpaal = "/veranda/roof/b94d478c-9820-40d1-b686-30a4f7d2421e.webp";
+const vRoofPolyHelder = "/veranda/roof/470e983c-7caa-4324-a58f-ae3459f1fb95.webp";
+const vRoofGlas = "/veranda/roof/8275b565-cbec-498b-98b9-19a2178290c1.webp";
+const vRoofOpaalGlas = "/veranda/roof/5219cdf2-3f66-4b02-92ec-e51f95889917.webp";
+const vRoofTinted = "/veranda/roof/cffeaca3-1a7b-4d44-b191-b7c6ef16f754.webp";
 
 // Front-Thumbnails (4) – wir laden die nach Bedarf, hier per Glob (Vite)
-const verandaImg = (rel: string) => new URL(`../assets/veranda/${rel}`, import.meta.url).href;
+const verandaImg = (rel: string) => `/veranda/${rel}`;
 
 const verandaConfig: CategoryConfigurator = {
   slug: "terrassenueberdachungen",
@@ -673,6 +817,7 @@ const verandaConfig: CategoryConfigurator = {
       title: "Service & Optionen",
       type: "extras-toggle",
       extras: [
+        glasImpraegnierung,
         ...wartungExtras,
       ],
     },
@@ -682,13 +827,12 @@ const verandaConfig: CategoryConfigurator = {
 // ============================================================
 // EXPORT
 // ============================================================
+// Hinweis: Schirme, Eingangsüberdachungen und Carports haben aktuell KEINEN Konfigurator —
+// nur Produktinfo-Seiten. Daher hier bewusst nicht im Export-Mapping enthalten.
 export const configurators: Record<string, CategoryConfigurator> = {
   markisen: markisenConfig,
   terrassenueberdachungen: verandaConfig,
-  schirme: schirmeConfig,
   "q-bus": qbusConfig,
-  eingangsueberdachungen: eingangConfig,
-  carports: carportConfig,
 };
 
 export const configuratorList = Object.values(configurators);

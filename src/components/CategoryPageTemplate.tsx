@@ -1,9 +1,12 @@
+"use client";
+
 import Layout from "@/components/Layout";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ScrollAnimations";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Category } from "@/data/products";
+import { hasConfigurator } from "@/data/products";
 
 interface Props {
   category: Category;
@@ -73,7 +76,7 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
           {category.products.map((product) => (
             <StaggerItem key={product.slug}>
               <Link
-                to={`/${category.slug}/${product.slug}`}
+                href={`/${category.slug}/${product.slug}`}
                 className="group block h-full"
               >
                 <div className="relative overflow-hidden aspect-[16/10] mb-5">
@@ -118,18 +121,37 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
         </FadeIn>
         <FadeIn delay={0.4}>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              to={`/konfigurator/${category.slug}`}
-              className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
-            >
-              Jetzt Konfigurieren
-            </Link>
-            <Link
-              to="/kontakt"
-              className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all"
-            >
-              Kontakt Aufnehmen
-            </Link>
+            {hasConfigurator(category.slug) ? (
+              <>
+                <Link
+                  href={`/konfigurator/${category.slug}`}
+                  className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
+                >
+                  Jetzt Konfigurieren
+                </Link>
+                <Link
+                  href="/kontakt"
+                  className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all"
+                >
+                  Kontakt Aufnehmen
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/kontakt"
+                  className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
+                >
+                  Beratung Anfragen
+                </Link>
+                <a
+                  href="tel:+491735303581"
+                  className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all"
+                >
+                  0173 530 3581
+                </a>
+              </>
+            )}
           </div>
         </FadeIn>
       </div>
@@ -151,7 +173,7 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
             {otherCategories.map((c) => (
               <ScaleIn key={c.label}>
                 <Link
-                  to={c.link}
+                  href={c.link}
                   className="group block relative overflow-hidden aspect-[16/10]"
                 >
                   <img

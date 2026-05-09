@@ -1,8 +1,11 @@
+"use client";
+
 import { useState, useMemo, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import { Check, Plus, Minus, ChevronDown, ShieldCheck, Sparkles, Truck, Info } from "lucide-react";
+import { Check, Plus, Minus, ChevronDown, ShieldCheck, Sparkles, Truck, Info, Briefcase } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -21,9 +24,9 @@ const formatPrice = (p: number) =>
   new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(p);
 
 const ConfiguratorEngine = ({ config }: Props) => {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const preselectModel = searchParams.get("model");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const preselectModel = searchParams?.get("model") ?? null;
 
   // Per-step selected option index (für select-cards / radio-icon / colors)
   const [selections, setSelections] = useState<Record<string, number>>({});
@@ -323,18 +326,26 @@ const ConfiguratorEngine = ({ config }: Props) => {
       }
     });
 
-    navigate("/anfrage", {
-      state: {
-        category: config.label,
-        categorySlug: config.slug,
-        options,
-        width: activeDims ? width : undefined,
-        depth: activeDims ? depth : undefined,
-        extras: selectedExtras,
-        totalPrice,
-        deliveryTime: activeDeliveryTime,
-      },
-    });
+    // Konfiguration via sessionStorage an /anfrage übergeben (Next.js: kein
+    // location.state über Routenwechsel hinaus). Reload-tolerant, ohne URL-Verschmutzung.
+    const payload = {
+      category: config.label,
+      categorySlug: config.slug,
+      options,
+      width: activeDims ? width : undefined,
+      depth: activeDims ? depth : undefined,
+      extras: selectedExtras,
+      totalPrice,
+      deliveryTime: activeDeliveryTime,
+    };
+    if (typeof window !== "undefined") {
+      try {
+        sessionStorage.setItem("brait:lastConfig", JSON.stringify(payload));
+      } catch {
+        // sessionStorage kann in Privatmodus oder bei Quota-Fehlern fehlschlagen.
+      }
+    }
+    router.push("/anfrage");
   };
 
   return (
@@ -507,11 +518,14 @@ const ConfiguratorEngine = ({ config }: Props) => {
             )}
 
             {/* Trust microcopy */}
-            <div className="px-4 md:px-8 pt-3 pb-1 flex flex-wrap gap-x-3 gap-y-1 text-[10px] md:text-[11px] text-secondary">
+            <div className="px-4 md:px-8 pt-3 pb-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] md:text-[11px] text-secondary">
               <span className="flex items-center gap-1"><ShieldCheck className="w-3 h-3 text-primary" /> Persönliche Beratung</span>
               {activeDeliveryTime && (
                 <span className="flex items-center gap-1"><Truck className="w-3 h-3 text-primary" /> Lieferzeit {activeDeliveryTime}</span>
               )}
+              <Link href="/kontakt#demo-koffer" className="flex items-center gap-1 text-primary font-bold hover:opacity-70 transition-opacity">
+                <Briefcase className="w-3 h-3" /> Materialien anfassen — Demo-Koffer kostenlos
+              </Link>
             </div>
 
             <div className="px-4 md:px-8 py-3 md:py-4 flex items-center gap-3">
@@ -754,14 +768,14 @@ const StepRenderer = ({
                                   <p className="text-sm font-headline font-bold mt-1">14,90 €</p>
                                   <p className="text-[10px] text-secondary">/ Monat</p>
                                 </div>
-                                <div className="border border-outline-variant/30 p-2">
+                                <div className="border border-primary/40 bg-primary/[0.02] p-2">
                                   <p className="text-[9px] uppercase tracking-widest text-secondary font-bold">Jährlich</p>
-                                  <p className="text-sm font-headline font-bold mt-1">179 €</p>
+                                  <p className="text-sm font-headline font-bold mt-1">199 €</p>
                                   <p className="text-[10px] text-secondary">/ Jahr</p>
                                 </div>
-                                <div className="border-2 border-primary p-2 relative">
-                                  <span className="absolute -top-2 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-primary text-primary-foreground text-[8px] uppercase tracking-widest font-bold leading-none">
-                                    Bestpreis
+                                <div className="border-2 border-primary bg-primary/5 p-2 relative">
+                                  <span className="absolute -top-2 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-primary text-primary-foreground text-[8px] uppercase tracking-widest font-bold leading-none whitespace-nowrap">
+                                    Bestpreis · −16 %
                                   </span>
                                   <p className="text-[9px] uppercase tracking-widest text-primary font-bold">3 Jahre</p>
                                   <p className="text-sm font-headline font-bold mt-1">499 €</p>
@@ -776,38 +790,100 @@ const StepRenderer = ({
                     <p className="text-[11px] md:text-xs text-secondary mt-1 leading-snug">{wartungSubtitle}</p>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-3">
-                  {wartungItems.map((e) => {
-                    const active = extras.has(e.id);
-                    const isBest = e.id === "wartung-3jahre";
-                    return (
-                      <button
-                        key={e.id}
-                        onClick={() => selectWartungTariff(e.id)}
-                        className={`relative p-3 md:p-4 text-left transition-all duration-200 ${active ? "bg-primary text-primary-foreground shadow-md" : "bg-surface hover:bg-surface-container border border-outline-variant/40"}`}
-                      >
-                        {isBest && !active && (
-                          <span className="absolute -top-2 left-3 px-1.5 py-0.5 bg-primary text-primary-foreground text-[9px] uppercase tracking-widest font-bold leading-none">
-                            Bestpreis
-                          </span>
-                        )}
-                        <p className={`text-[10px] md:text-[11px] uppercase tracking-widest font-bold mb-1 ${active ? "text-primary-foreground/70" : "text-secondary"}`}>
-                          {e.label}
-                        </p>
-                        <p className={`text-base md:text-lg font-headline font-bold leading-none ${active ? "text-primary-foreground" : "text-foreground"}`}>
-                          {e.desc}
-                        </p>
-                        <div className="flex items-center justify-between mt-2 md:mt-3">
-                          <span className={`text-[10px] ${active ? "text-primary-foreground/70" : "text-secondary"}`}>
-                            {active ? "Ausgewählt" : "Auswählen"}
-                          </span>
-                          <div className={`w-4 h-4 md:w-5 md:h-5 flex items-center justify-center transition-all ${active ? "bg-primary-foreground text-primary" : "border border-outline-variant/50"}`}>
-                            {active ? <Check className="w-2.5 h-2.5 md:w-3 md:h-3" /> : <Plus className="w-2.5 h-2.5 md:w-3 md:h-3 text-secondary" />}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-3 sm:items-stretch">
+                  {(() => {
+                    // Tarif-Preise
+                    const yearly = wartungItems.find((x) => x.id === "wartung-jahr")?.price ?? 0;
+                    const threeY = wartungItems.find((x) => x.id === "wartung-3jahre")?.price ?? 0;
+                    // Bestpreis-Referenz: 3 Jahre vs. Jährlich × 3 (ehrliche Spar-Aussage).
+                    const threeYearBaseline = yearly * 3;
+                    const savingsThreeY = Math.max(0, Math.round(threeYearBaseline - threeY));
+                    const pctThreeY = threeYearBaseline > 0 ? Math.round((savingsThreeY / threeYearBaseline) * 100) : 0;
+
+                    return wartungItems.map((e) => {
+                      const active = extras.has(e.id);
+                      const isMonth = e.id === "wartung-monat";
+                      const isYear = e.id === "wartung-jahr";
+                      const isBest = e.id === "wartung-3jahre";
+
+                      // Visuelle Hierarchie (passive Karten)
+                      const passiveBorder = isBest
+                        ? "border-2 border-primary"
+                        : isYear
+                        ? "border border-primary/40"
+                        : "border border-outline-variant/40";
+                      const passiveBg = isBest
+                        ? "bg-primary/5"
+                        : isYear
+                        ? "bg-primary/[0.02]"
+                        : "bg-surface";
+
+                      // Kompaktes Badge oben mittig — nur „Bestpreis" auf 3 Jahre, Jährlich neutral lassen.
+                      const badgeLabel = isBest ? `Bestpreis · −${pctThreeY} %` : null;
+                      const badgeClasses = isBest ? "bg-primary text-primary-foreground" : "";
+
+                      // Subtext unter dem Preis (positionsspezifisch)
+                      const savingsLine = isBest
+                        ? `Spare ${savingsThreeY} € vs. Jährlich`
+                        : isYear
+                        ? "Festpreis · 1× im Jahr abgerechnet"
+                        : "Volle Flexibilität · monatlich kündbar";
+
+                      // Preis kompakt zerlegen (Hauptbetrag + Periode)
+                      // e.desc kommt z.B. als "14,90 € / Monat" / "199 € / Jahr" / "499 € einmalig"
+                      const descParts = e.desc.split(/\s+\/\s+|\s+(?=einmalig)/);
+                      const priceLabel = descParts[0] ?? e.desc;
+                      const periodLabel = descParts[1] ?? "";
+
+                      return (
+                        <button
+                          key={e.id}
+                          onClick={() => selectWartungTariff(e.id)}
+                          className={`relative p-3 md:p-4 pt-5 md:pt-6 text-left transition-all duration-200 flex flex-col ${
+                            active
+                              ? "bg-primary text-primary-foreground shadow-md border-2 border-primary"
+                              : `${passiveBg} ${passiveBorder} hover:border-primary/70 hover:shadow-sm`
+                          }`}
+                        >
+                          {badgeLabel && (
+                            <span className={`absolute -top-2 left-1/2 -translate-x-1/2 px-2 py-0.5 ${active ? "bg-primary-foreground text-primary" : badgeClasses} text-[9px] uppercase tracking-widest font-bold leading-none whitespace-nowrap shadow-sm`}>
+                              {badgeLabel}
+                            </span>
+                          )}
+                          <p className={`text-[10px] md:text-[11px] uppercase tracking-widest font-bold mb-1 ${active ? "text-primary-foreground/70" : "text-secondary"}`}>
+                            {e.label}
+                          </p>
+                          <div className="flex items-baseline gap-1 flex-wrap">
+                            <span className={`text-lg md:text-xl font-headline font-bold leading-none ${active ? "text-primary-foreground" : "text-foreground"}`}>
+                              {priceLabel}
+                            </span>
+                            {periodLabel && (
+                              <span className={`text-[10px] md:text-[11px] ${active ? "text-primary-foreground/70" : "text-secondary"}`}>
+                                {periodLabel === "einmalig" ? "einmalig" : `/ ${periodLabel}`}
+                              </span>
+                            )}
                           </div>
-                        </div>
-                      </button>
-                    );
-                  })}
+                          <p className={`text-[10px] md:text-[11px] mt-1.5 leading-snug ${
+                            active
+                              ? "text-primary-foreground/80"
+                              : isBest
+                              ? "text-primary font-bold"
+                              : "text-secondary"
+                          }`}>
+                            {savingsLine}
+                          </p>
+                          <div className="flex items-center justify-between mt-auto pt-2 md:pt-3">
+                            <span className={`text-[10px] ${active ? "text-primary-foreground/70" : "text-secondary"}`}>
+                              {active ? "Ausgewählt" : "Auswählen"}
+                            </span>
+                            <div className={`w-4 h-4 md:w-5 md:h-5 flex items-center justify-center transition-all ${active ? "bg-primary-foreground text-primary" : "border border-outline-variant/50"}`}>
+                              {active ? <Check className="w-2.5 h-2.5 md:w-3 md:h-3" /> : <Plus className="w-2.5 h-2.5 md:w-3 md:h-3 text-secondary" />}
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    });
+                  })()}
                 </div>
               </div>
             )}
