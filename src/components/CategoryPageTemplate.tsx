@@ -29,37 +29,22 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
           alt={category.label}
           fill
           priority
-          quality={85}
+          quality={70}
           sizes="100vw"
           className="object-cover"
         />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/40 to-transparent" />
       <div className="container mx-auto px-5 md:px-8 relative z-10">
-        <motion.span
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="inline-block bg-primary text-primary-foreground px-3 py-1 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase mb-4"
-        >
+        <span className="inline-block bg-primary text-primary-foreground px-3 py-1 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase mb-4">
           Kategorie
-        </motion.span>
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[2rem] sm:text-5xl md:text-7xl font-bold text-primary-foreground leading-[0.9] tracking-tighter break-words"
-        >
+        </span>
+        <h1 className="text-[2rem] sm:text-5xl md:text-7xl font-bold text-primary-foreground leading-[0.9] tracking-tighter break-words">
           {category.label}
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9 }}
-          className="text-sm md:text-lg text-primary-foreground/60 max-w-xl mt-4 md:mt-6"
-        >
+        </h1>
+        <p className="text-sm md:text-lg text-primary-foreground/60 max-w-xl mt-4 md:mt-6">
           {category.longDesc}
-        </motion.p>
+        </p>
       </div>
     </section>
 

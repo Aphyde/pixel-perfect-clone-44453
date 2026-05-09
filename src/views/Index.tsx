@@ -153,49 +153,24 @@ const Index = () => {
 
       <div className="container mx-auto px-5 md:px-8 relative z-10">
         <div className="max-w-4xl">
-          <motion.span
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="inline-block bg-primary text-primary-foreground px-3 py-1 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase mb-4 md:mb-6"
-          >
+          <span className="inline-block bg-primary text-primary-foreground px-3 py-1 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase mb-4 md:mb-6">
             Ulm &amp; Umgebung
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[2rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground leading-[0.9] tracking-tighter mb-5 md:mb-8 break-words"
-          >
+          </span>
+          <h1 className="text-[2rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground leading-[0.9] tracking-tighter mb-5 md:mb-8 break-words">
             Terrassendach &amp; <br />
             <span className="text-primary-fixed-dim">Carport vom Profi</span> <br />
             in Ulm.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.8 }}
-            className="text-sm md:text-lg lg:text-xl text-primary-foreground/70 max-w-xl mb-8 md:mb-12 font-light leading-relaxed"
-          >
+          </h1>
+          <p className="text-sm md:text-lg lg:text-xl text-primary-foreground/70 max-w-xl mb-8 md:mb-12 font-light leading-relaxed">
             Wir vereinen architektonische Präzision mit höchster Materialqualität für Ihren persönlichen Rückzugsort im Freien.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
-          >
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Link href="/konfigurator" className="bg-primary text-primary-foreground px-8 py-4 md:px-10 md:py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all text-center">Konfigurieren</Link>
             <Link href="/konfigurator" className="border border-primary-foreground/20 text-primary-foreground backdrop-blur-sm px-8 py-4 md:px-10 md:py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all text-center">Modelle Entdecken</Link>
-          </motion.div>
+          </div>
         </div>
       </div>
-      <motion.div
-        initial={{ height: 0 }}
-        animate={{ height: 120 }}
-        transition={{ duration: 1, delay: 1.4, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-0 right-6 md:right-12 w-0.5 bg-primary hidden sm:block"
-      />
+      <div className="absolute bottom-0 right-6 md:right-12 w-0.5 h-[120px] bg-primary hidden sm:block" />
     </section>
 
     {/* Products */}
