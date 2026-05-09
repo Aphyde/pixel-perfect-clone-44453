@@ -15,5 +15,17 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <Index />;
+  return (
+    <>
+      <link
+        rel="preload"
+        as="image"
+        type="image/avif"
+        imageSrcSet="/hero/hero-home-414.avif 414w, /hero/hero-home-640.avif 640w, /hero/hero-home-828.avif 828w, /hero/hero-home-1080.avif 1080w, /hero/hero-home-1280.avif 1280w"
+        imageSizes="100vw"
+        fetchPriority="high"
+      />
+      <Index />
+    </>
+  );
 }

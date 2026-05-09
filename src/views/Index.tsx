@@ -134,15 +134,25 @@ const Index = () => {
     {/* Hero */}
     <section className="relative h-[100svh] min-h-[520px] max-h-[780px] flex items-center pt-0 md:pt-20 overflow-hidden bg-foreground">
       <div className="absolute inset-0 opacity-60">
-        <Image
-          src={heroHome}
-          alt="Luxury terrace roofing"
-          fill
-          priority
-          quality={70}
-          sizes="100vw"
-          className="object-cover"
-        />
+        <picture>
+          <source
+            type="image/avif"
+            srcSet="/hero/hero-home-414.avif 414w, /hero/hero-home-640.avif 640w, /hero/hero-home-828.avif 828w, /hero/hero-home-1080.avif 1080w, /hero/hero-home-1280.avif 1280w"
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcSet="/hero/hero-home-414.webp 414w, /hero/hero-home-640.webp 640w, /hero/hero-home-828.webp 828w, /hero/hero-home-1080.webp 1080w, /hero/hero-home-1280.webp 1280w"
+            sizes="100vw"
+          />
+          <img
+            src="/hero/hero-home-1280.webp"
+            alt="Luxury terrace roofing"
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </picture>
       </div>
       <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/50 to-transparent md:from-foreground/80 md:via-foreground/40" />
 
