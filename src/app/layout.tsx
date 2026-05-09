@@ -1,0 +1,165 @@
+import type { Metadata, Viewport } from "next";
+import { Space_Grotesk, Manrope } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Providers } from "./providers";
+import ScrollToTop from "@/components/ScrollToTop";
+import "./globals.css";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-headline",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+});
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#1c1b1b",
+};
+
+const SITE_URL = "https://brait-ueberdachung.de";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Brait Überdachungen – Terrassendächer, Markisen & Lamellen-Pergolen in Ulm",
+    template: "%s · Brait Überdachungen",
+  },
+  description:
+    "Premium Aluminium-Terrassenüberdachungen, Markisen, Lamellen-Pergolen und Carports in Ulm und Umgebung. Maßgefertigt, montiert vom eigenen Team, mit kostenlosem Demo-Koffer-Termin vor Ort.",
+  applicationName: "Brait Überdachungen",
+  authors: [{ name: "Brait Überdachungen" }],
+  generator: "Next.js",
+  keywords: [
+    "Terrassenüberdachung Ulm",
+    "Aluminium Terrassendach",
+    "Lamellendach Pergola",
+    "Markisen Ulm",
+    "Carport Ulm",
+    "Glashaus",
+    "Brait Überdachungen",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: SITE_URL,
+    siteName: "Brait Überdachungen",
+    title: "Brait Überdachungen – Terrassendächer in Ulm",
+    description:
+      "Premium Aluminium-Terrassenüberdachungen, Markisen und Pergolen in Ulm. Maßgefertigt, vom eigenen Montageteam installiert.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Brait Überdachungen – Premium Terrassendächer aus Aluminium",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Brait Überdachungen – Terrassendächer in Ulm",
+    description: "Premium Aluminium-Terrassenüberdachungen in Ulm und Umgebung.",
+    images: ["/opengraph-image"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
+};
+
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Brait Überdachungen",
+  description:
+    "Premium Aluminium-Terrassenüberdachungen, Markisen und Pergolen aus Ulm.",
+  url: SITE_URL,
+  telephone: "+49 173 530 3581",
+  email: "info@brait-ueberdachung.de",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Ulm",
+    addressRegion: "Baden-Württemberg",
+    addressCountry: "DE",
+  },
+  areaServed: [
+    {
+      "@type": "City",
+      name: "Ulm",
+    },
+    {
+      "@type": "AdministrativeArea",
+      name: "Baden-Württemberg",
+    },
+  ],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "10:00",
+      closes: "14:00",
+    },
+  ],
+  priceRange: "€€€",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="de" className={`${spaceGrotesk.variable} ${manrope.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessJsonLd),
+          }}
+        />
+      </head>
+      <body className="font-body antialiased">
+        <Providers>
+          <ScrollToTop />
+          {children}
+        </Providers>
+        <Analytics />
+        <SpeedInsights />
+      </body>
+    </html>
+  );
+}

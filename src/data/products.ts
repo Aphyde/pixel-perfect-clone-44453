@@ -1,29 +1,55 @@
-import heroTerrasse from "@/assets/hero-terrasse.jpg";
-import detailTerrasse from "@/assets/detail-terrasse.jpg";
-import productTerrasse from "@/assets/product-terrassenueberdachung.jpg";
-import heroCarport from "@/assets/hero-carport.jpg";
-import detailCarport from "@/assets/detail-carport.jpg";
-import productCarport from "@/assets/product-carport.jpg";
-import architectureDetail from "@/assets/architecture-detail.jpg";
+// Bilder werden statisch aus /public referenziert (Next.js).
+const heroTerrasse = "/hero-terrasse.jpg";
+const detailTerrasse = "/detail-terrasse.jpg";
+const productTerrasse = "/product-terrassenueberdachung.jpg";
+const heroCarport = "/hero-carport.jpg";
+const detailCarport = "/detail-carport.jpg";
+const productCarport = "/product-carport.jpg";
+const architectureDetail = "/architecture-detail.jpg";
 
 // Catalog images (real product photography)
-import proline1 from "@/assets/catalog/proline-1.jpg";
-import proline2 from "@/assets/catalog/proline-2.jpg";
-import proline3 from "@/assets/catalog/proline-3.jpg";
-import cube1 from "@/assets/catalog/cube-1.jpg";
-import cube2 from "@/assets/catalog/cube-2.jpg";
-import cube3 from "@/assets/catalog/cube-3.jpg";
-import lamellen1 from "@/assets/catalog/lamellendach-1.jpg";
-import lamellen2 from "@/assets/catalog/lamellendach-2.jpg";
-import lamellen3 from "@/assets/catalog/lamellendach-3.jpg";
-import imgGlasschiebewand from "@/assets/catalog/glasschiebewand.jpg";
-import imgSchiebetuer from "@/assets/catalog/schiebetuer.jpg";
-import imgFestrahmen from "@/assets/catalog/festrahmen.jpg";
-import imgKeilblende from "@/assets/catalog/keilblende.jpg";
-import imgSeitenwand from "@/assets/catalog/seitenwand.jpg";
-import imgZipscreen from "@/assets/catalog/zipscreen.jpg";
-import imgSonnenOberdach from "@/assets/catalog/sonnenschutz-oberdach.jpg";
-import imgPlissee from "@/assets/catalog/plissee.jpg";
+const proline1 = "/catalog/proline-1.jpg";
+const proline2 = "/catalog/proline-2.jpg";
+const proline3 = "/catalog/proline-3.jpg";
+const cube1 = "/catalog/cube-1.jpg";
+const cube2 = "/catalog/cube-2.jpg";
+const cube3 = "/catalog/cube-3.jpg";
+const lamellen1 = "/catalog/lamellendach-1.jpg";
+const lamellen2 = "/catalog/lamellendach-2.jpg";
+const lamellen3 = "/catalog/lamellendach-3.jpg";
+const imgGlasschiebewand = "/catalog/glasschiebewand.jpg";
+const imgSchiebetuer = "/catalog/schiebetuer.jpg";
+const imgFestrahmen = "/catalog/festrahmen.jpg";
+const imgKeilblende = "/catalog/keilblende.jpg";
+const imgSeitenwand = "/catalog/seitenwand.jpg";
+const imgZipscreen = "/catalog/zipscreen.jpg";
+const imgSonnenOberdach = "/catalog/sonnenschutz-oberdach.jpg";
+const imgPlissee = "/catalog/plissee.jpg";
+const heroGlashaus = "/catalog/hero-glashaus.jpg";
+
+// Markisentyp-Stockfotos (Hauptbild + Detail je Bauart)
+const fallarmMain = "/markisen-types/fallarm-main.webp";
+const fallarmDetail = "/markisen-types/fallarm-detail.webp";
+const gelenkarmMain = "/markisen-types/gelenkarm-main.webp";
+const gelenkarmDetail = "/markisen-types/gelenkarm-detail.webp";
+const senkrechtMain = "/markisen-types/senkrecht-main.webp";
+const senkrechtDetail = "/markisen-types/senkrecht-detail.webp";
+const aufglasMain = "/markisen-types/aufglas-main.webp";
+const aufglasDetail = "/markisen-types/aufglas-detail.webp";
+
+// Schirm- und Q-Bus-Stockfotos
+const ampelMain = "/schirme/ampel-main.webp";
+const ampelDetail = "/schirme/ampel-detail.webp";
+const qbusProductMain = "/qbus/product/main.webp";
+const qbusProductDetail = "/qbus/product/detail.webp";
+
+// Eingangsüberdachung-Stockfotos
+const eingangMain = "/eingang/main.webp";
+const eingangDetail = "/eingang/detail.webp";
+
+// Carport-Stockfotos
+const carportMain = "/carport/main.webp";
+const carportDetail = "/carport/detail.webp";
 
 export interface ProductFeature {
   title: string;
@@ -232,14 +258,14 @@ const markisenProducts: ProductDetail[] = [
     slug: "fallarm",
     label: "Fallarmmarkisen",
     shortDesc: "Senkrechter Sonnenschutz für Fenster und Loggien.",
-    image: heroTerrasse,
+    image: fallarmMain,
     hero: {
       badge: "Markisen",
       title: "Fallarmmarkisen.",
       titleAccent: "Schutz mit System.",
       subtitle: "Vertikaler Sonnen- und Sichtschutz für Fenster, Loggien und Schaufenster – elegant und funktional.",
-      heroImage: heroTerrasse,
-      detailImage: detailTerrasse,
+      heroImage: fallarmMain,
+      detailImage: fallarmDetail,
     },
     intro: {
       label: "Das Konzept",
@@ -273,14 +299,14 @@ const markisenProducts: ProductDetail[] = [
     slug: "gelenkarm",
     label: "Gelenkarmmarkisen",
     shortDesc: "Klassischer Sonnenschutz für Terrassen und Balkone.",
-    image: productTerrasse,
+    image: gelenkarmMain,
     hero: {
       badge: "Markisen",
       title: "Gelenkarmmarkisen.",
       titleAccent: "Klassiker neu gedacht.",
       subtitle: "Bewährte Technik in zeitlosem Design – die ideale Beschattung für Terrassen und Balkone.",
-      heroImage: productTerrasse,
-      detailImage: detailTerrasse,
+      heroImage: gelenkarmMain,
+      detailImage: gelenkarmDetail,
     },
     intro: {
       label: "Das Konzept",
@@ -314,14 +340,14 @@ const markisenProducts: ProductDetail[] = [
     slug: "senkrecht",
     label: "Senkrechtmarkisen",
     shortDesc: "Vertikaler Sicht- und Sonnenschutz für offene Bereiche.",
-    image: detailTerrasse,
+    image: senkrechtMain,
     hero: {
       badge: "Markisen",
       title: "Senkrechtmarkisen.",
       titleAccent: "Privatsphäre nach Maß.",
       subtitle: "Vertikaler Schutz vor Blicken, Sonne und Wind – ideal für Terrassen, Pergolen und Balkone.",
-      heroImage: detailTerrasse,
-      detailImage: heroTerrasse,
+      heroImage: senkrechtMain,
+      detailImage: senkrechtDetail,
     },
     intro: {
       label: "Das Konzept",
@@ -355,14 +381,14 @@ const markisenProducts: ProductDetail[] = [
     slug: "aufglas",
     label: "Aufglasmarkisen",
     shortDesc: "Beschattung direkt auf der Terrassenüberdachung.",
-    image: heroTerrasse,
+    image: aufglasMain,
     hero: {
       badge: "Markisen",
       title: "Aufglasmarkisen.",
       titleAccent: "Schatten von oben.",
       subtitle: "Effiziente Beschattung direkt auf Glasdächern – verhindert Hitzestau und schützt das Material.",
-      heroImage: heroTerrasse,
-      detailImage: detailTerrasse,
+      heroImage: aufglasMain,
+      detailImage: aufglasDetail,
     },
     intro: {
       label: "Das Konzept",
@@ -404,14 +430,14 @@ const terrassenueberdachungenProducts: ProductDetail[] = [
     slug: "wandbefestigt",
     label: "Wandbefestigt",
     shortDesc: "Direkt am Haus angebaut – nahtlose Verbindung von Wohn- und Außenraum.",
-    image: proline1,
+    image: proline3,
     showModules: true,
     hero: {
       badge: "Terrassenüberdachung",
       title: "Wandbefestigt.",
       titleAccent: "Erweiterung Ihres Zuhauses.",
       subtitle: "Direkt an Ihr Gebäude angebaut – für eine fließende Verbindung zwischen Wohnraum und Terrasse.",
-      heroImage: proline1,
+      heroImage: proline3,
       detailImage: proline2,
     },
     intro: {
@@ -446,14 +472,14 @@ const terrassenueberdachungenProducts: ProductDetail[] = [
     slug: "freistehend",
     label: "Freistehend",
     shortDesc: "Überdachung als eigenständige Architektur im Garten.",
-    image: proline3,
+    image: proline1,
     showModules: true,
     hero: {
       badge: "Terrassenüberdachung",
       title: "Freistehend.",
       titleAccent: "Architektur im Garten.",
       subtitle: "Eigenständige Konstruktion – platziert dort, wo Sie sie haben möchten.",
-      heroImage: proline3,
+      heroImage: proline1,
       detailImage: proline2,
     },
     intro: {
@@ -535,14 +561,14 @@ const schirmeProduct: ProductDetail = {
   slug: "schirme",
   label: "Schirme",
   shortDesc: "Schwenkbare Ampelschirme für maximale Flexibilität.",
-  image: architectureDetail,
+  image: ampelMain,
   hero: {
     badge: "Schirme",
     title: "Schwenkbare Schirme.",
     titleAccent: "Schatten in jede Richtung.",
     subtitle: "Großflächige Ampelschirme, die sich frei drehen und neigen lassen – ideal für Terrassen und Gastronomie.",
-    heroImage: architectureDetail,
-    detailImage: heroTerrasse,
+    heroImage: ampelMain,
+    detailImage: ampelDetail,
   },
   intro: {
     label: "Das Konzept",
@@ -574,47 +600,47 @@ const schirmeProduct: ProductDetail = {
 };
 
 // ============================================================
-// Q-BUS  =  LUXALINE CUBE
+// Q-BUS  =  Lamellen-Pergola (Premium Bioklima)
 // ============================================================
 const qbusProduct: ProductDetail = {
   slug: "q-bus",
-  label: "Q-Bus",
-  shortDesc: "Kubische Premium-Überdachung mit Glasdach und serienmäßiger LED.",
-  image: cube1,
+  label: "Q-Bus Lamellen-Pergola",
+  shortDesc: "Lamellen-Pergola mit verstellbarem Aluminium-Lamellendach – Sonne, Schatten oder Regenschutz auf Knopfdruck.",
+  image: qbusProductMain,
   hero: {
-    badge: "Q-Bus",
+    badge: "Q-Bus Lamellen",
     title: "Q-Bus.",
-    titleAccent: "Kubische Architektur.",
-    subtitle: "Die kubische Premium-Überdachung – klare Linien, vollverglastes Dach, serienmäßige LED-Beleuchtung.",
-    heroImage: cube1,
-    detailImage: cube2,
+    titleAccent: "Lamellen-Pergola.",
+    subtitle: "Verstellbares Aluminium-Lamellendach – die wetterfeste Outdoor-Lounge mit voller Kontrolle über Licht, Schatten und Regenschutz.",
+    heroImage: qbusProductMain,
+    detailImage: qbusProductDetail,
   },
   intro: {
-    label: "Premium-Klasse",
-    title: "Ein Würfel, der Eindruck macht.",
-    text: "Der Q-Bus ist unsere kubische Premium-Überdachung. Die rein kubische Form mit vollverglastem Dach (VSG 44.2) erzeugt eine Architektursprache, die zu modernen wie klassischen Gebäuden passt. Serienmäßige integrierte LED-Beleuchtung verleiht dem Außenraum auch abends die richtige Atmosphäre. Verstärkte Pfosten 15 × 15 cm tragen das schwere Glasdach souverän.",
+    label: "Bioklima-Pergola",
+    title: "Eine Pergola, die mit dem Wetter geht.",
+    text: "Die Q-Bus Lamellen-Pergola kombiniert kubische Architektur mit modernster Bioklimatik: Verstellbare Aluminium-Lamellen öffnen sich für freie Himmelssicht, kippen für Schatten und schließen wasserdicht bei Regen. Integriertes Wasserablaufsystem in den Pfosten, optional LED-Streifen entlang der Lamellen, Glas-Schiebewände und Zipscreen-Verschattung – Ihre Outdoor-Lounge funktioniert das ganze Jahr.",
   },
   features: [
-    { title: "Vollverglastes Glasdach", desc: "VSG 44.2 Sicherheitsglas – maximale Transparenz, hagelsicher." },
-    { title: "Kubische Architektur", desc: "Reduziertes, klares Design – keine Dachneigung sichtbar, perfekte Geometrie." },
-    { title: "LED serienmäßig", desc: "Integrierte LED-Beleuchtung im Profil – stimmungsvoll und blendfrei." },
-    { title: "Premium-Aluminium", desc: "Profile aus 6063 T6 Aluminium mit professioneller Pulverbeschichtung." },
-    { title: "Verstärkte Pfosten", desc: "15 × 15 cm Pfostenquerschnitt – tragen auch große Glasflächen souverän." },
-    { title: "Erweiterbar", desc: "Glasschiebewände, Zipscreens, Plissees jederzeit nachrüstbar." },
+    { title: "Verstellbare Lamellen", desc: "Aluminium-Lamellen 0–135° drehbar – Sonne, Schatten oder Regenschutz auf Tastendruck." },
+    { title: "Wasserdicht geschlossen", desc: "Lamellen schließen dicht und leiten Regen über integrierte Rinne in die Pfosten ab." },
+    { title: "Funk-Motor inklusive", desc: "Steuerung per Fernbedienung oder Wetter-Sensor (optional) – komfortabler Komplett-Pakete." },
+    { title: "Premium-Aluminium", desc: "Profile aus 6063 T6 Aluminium mit hochwertiger Pulverbeschichtung – wartungsarm & langlebig." },
+    { title: "Frei kombinierbare Wände", desc: "Vorder-, Rück- und Seitenwände einzeln wählbar: Schiebewände, Festglas, Polycarbonat oder Sandwich." },
+    { title: "LED & Zipscreen optional", desc: "Indirekte LED entlang der Lamellen, Zipscreen-Verschattung an jeder Seite nachrüstbar." },
   ],
   specs: [
     { label: "Material", value: "Aluminium 6063 T6, pulverbeschichtet" },
-    { label: "Eindeckung", value: "VSG 44.2 Sicherheitsglas" },
+    { label: "Dach", value: "Verstellbare Lamellen, 0–135°, wasserdicht schließend" },
     { label: "Maße", value: "3 – 7 m × 3 – 4,5 m" },
-    { label: "Pfosten", value: "15 × 15 cm" },
-    { label: "Beleuchtung", value: "Integrierte LED serienmäßig" },
-    { label: "Wasserableitung", value: "Integriert in Profil & Pfosten" },
-    { label: "Farben", value: "RAL 7016, 9005, 9001, 9010, 9016 + Maßanfertigung" },
-    { label: "Garantie", value: "10 Jahre Struktur" },
+    { label: "Pfosten", value: "15 × 15 cm mit integriertem Wasserablauf" },
+    { label: "Steuerung", value: "Funk-Fernbedienung serienmäßig" },
+    { label: "Beleuchtung", value: "LED entlang Lamellen optional (warm-/kaltweiß/dimmbar)" },
+    { label: "Farben", value: "RAL 7016, 9005, 9001, 9010 + Maßanfertigung" },
+    { label: "Garantie", value: "10 Jahre Struktur, 5 Jahre Motorik" },
   ],
   cta: {
-    title: "Premium-Architektur für Ihren Garten.",
-    text: "Entdecken Sie den Q-Bus – wir konfigurieren Ihre individuelle Lösung.",
+    title: "Outdoor-Lounge bei jedem Wetter.",
+    text: "Konfigurieren Sie Ihre Q-Bus Lamellen-Pergola – Lamellen, Wände und Beleuchtung individuell zusammenstellen.",
   },
 };
 
@@ -625,14 +651,14 @@ const eingangProduct: ProductDetail = {
   slug: "eingangsueberdachungen",
   label: "Eingangsüberdachungen",
   shortDesc: "Eleganter Wetterschutz für Hauseingänge – schlanke Aluminium-Konstruktion.",
-  image: detailCarport,
+  image: eingangMain,
   hero: {
     badge: "Eingangsüberdachungen",
     title: "Eingangsüberdachung.",
     titleAccent: "Erster Eindruck.",
     subtitle: "Schlanke Aluminium-Vordächer mit Glas – Wetterschutz und Designstatement zugleich.",
-    heroImage: detailCarport,
-    detailImage: heroCarport,
+    heroImage: eingangMain,
+    detailImage: eingangDetail,
   },
   intro: {
     label: "Das Konzept",
@@ -670,14 +696,14 @@ const carportsProduct: ProductDetail = {
   slug: "carports",
   label: "Carports",
   shortDesc: "Stilvoller Schutz für Ihr Fahrzeug – freistehend oder als Anbau.",
-  image: productCarport,
+  image: carportMain,
   hero: {
     badge: "Carports",
     title: "Stilvoller Schutz.",
     titleAccent: "Für Ihr Fahrzeug.",
     subtitle: "Freistehend oder als Anbau – unsere Aluminium-Carports vereinen Design und Funktion auf höchstem Niveau.",
-    heroImage: heroCarport,
-    detailImage: detailCarport,
+    heroImage: carportMain,
+    detailImage: carportDetail,
   },
   intro: {
     label: "Das Konzept",
@@ -718,7 +744,7 @@ export const categories: Category[] = [
     shortDesc: "Sonnenschutz für jede Anforderung.",
     longDesc:
       "Vier Markisensysteme – ein Versprechen: Hochwertiger Sonnenschutz, der zur Architektur passt. Vom klassischen Gelenkarm bis zur modernen Aufglasmarkise.",
-    image: heroTerrasse,
+    image: gelenkarmMain,
     products: markisenProducts,
   },
   {
@@ -727,7 +753,7 @@ export const categories: Category[] = [
     shortDesc: "Aluminium-Glas-Systeme für ganzjährigen Genuss.",
     longDesc:
       "Drei Qualitätsstufen: Wandbefestigt und freistehend (PRO-LINE) oder das Premium-Lamellendach mit elektrisch verstellbaren Lamellen.",
-    image: proline1,
+    image: heroGlashaus,
     products: terrassenueberdachungenProducts,
   },
   {
@@ -736,17 +762,17 @@ export const categories: Category[] = [
     shortDesc: "Schwenkbare Ampelschirme für volle Flexibilität.",
     longDesc:
       "Großflächige Ampelschirme, die sich frei drehen und neigen lassen – ideal für Terrassen und Gastronomie.",
-    image: architectureDetail,
+    image: ampelMain,
     products: [],
     singleProduct: schirmeProduct,
   },
   {
     slug: "q-bus",
-    label: "Q-Bus",
-    shortDesc: "Kubische Premium-Überdachung mit Glasdach und LED.",
+    label: "Q-Bus Lamellen-Pergola",
+    shortDesc: "Lamellen-Pergola mit verstellbarem Aluminium-Dach, LED & Glaswänden.",
     longDesc:
-      "Der Q-Bus ist unsere kubische Premium-Überdachung – vollverglastes Dach, integrierte LED, klare Architektur.",
-    image: cube1,
+      "Die Q-Bus Lamellen-Pergola: verstellbares Aluminium-Lamellendach, frei kombinierbare Glas- und Sandwich-Wände, optional LED und Zipscreen.",
+    image: qbusProductMain,
     products: [],
     singleProduct: qbusProduct,
   },
@@ -756,7 +782,7 @@ export const categories: Category[] = [
     shortDesc: "Eleganter Wetterschutz für Hauseingänge.",
     longDesc:
       "Schlanke Aluminium-Vordächer mit VSG-Glas – Wetterschutz und Designstatement zugleich.",
-    image: detailCarport,
+    image: eingangMain,
     products: [],
     singleProduct: eingangProduct,
   },
@@ -766,7 +792,7 @@ export const categories: Category[] = [
     shortDesc: "Stilvoller Schutz für Ihr Fahrzeug.",
     longDesc:
       "Freistehend oder als Anbau – Aluminium-Carports mit Glas- oder HPL-Eindeckung, individuell geplant.",
-    image: productCarport,
+    image: carportMain,
     products: [],
     singleProduct: carportsProduct,
   },
@@ -775,6 +801,17 @@ export const categories: Category[] = [
 export const findCategory = (slug: string) => categories.find((c) => c.slug === slug);
 export const findProduct = (categorySlug: string, productSlug: string) =>
   findCategory(categorySlug)?.products.find((p) => p.slug === productSlug);
+
+/** Kategorien, die einen interaktiven Online-Konfigurator besitzen.
+ * Schirme, Eingangsüberdachungen und Carports haben aktuell nur Info-Seiten. */
+const CATEGORIES_WITH_CONFIGURATOR = new Set([
+  "markisen",
+  "terrassenueberdachungen",
+  "q-bus",
+]);
+
+export const hasConfigurator = (categorySlug?: string) =>
+  !!categorySlug && CATEGORIES_WITH_CONFIGURATOR.has(categorySlug);
 
 /** Convenience: turn a ProductDetail into the legacy ProductPageTemplate shape. */
 export const toProductPageData = (
@@ -797,5 +834,7 @@ export const toProductPageData = (
   ctaText: product.cta.text,
   otherProducts,
   showModules: product.showModules,
-  configuratorLink: categorySlug ? `/konfigurator/${categorySlug}?model=${product.slug}` : "/konfigurator",
+  configuratorLink: hasConfigurator(categorySlug)
+    ? `/konfigurator/${categorySlug}?model=${product.slug}`
+    : undefined,
 });

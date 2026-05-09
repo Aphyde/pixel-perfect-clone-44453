@@ -1,7 +1,10 @@
+"use client";
+
 import Layout from "@/components/Layout";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, ParallaxImage } from "@/components/ScrollAnimations";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Check, Plus } from "lucide-react";
 import { terraceModules } from "@/data/products";
 
@@ -35,18 +38,22 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
   <Layout>
     {/* Hero */}
     <section className="relative h-[70svh] min-h-[420px] max-h-[700px] flex items-end pb-12 md:pb-20 overflow-hidden bg-foreground">
-      <div className="absolute inset-0 opacity-50">
-        <motion.img
+      <motion.div
+        className="absolute inset-0 opacity-50"
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Image
           src={data.heroImage}
           alt={data.title}
-          className="w-full h-full object-cover"
-          width={1920}
-          height={1080}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+          fill
+          priority
+          quality={85}
+          sizes="100vw"
+          className="object-cover"
         />
-      </div>
+      </motion.div>
       <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/40 to-transparent" />
       <div className="container mx-auto px-5 md:px-8 relative z-10">
         <motion.span
@@ -86,7 +93,7 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
             <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-6">{data.introTitle}</h2>
             <p className="text-secondary leading-relaxed text-sm md:text-base mb-8">{data.introText}</p>
             <Link
-              to="/kontakt"
+              href="/kontakt"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-widest text-xs hover:bg-primary-container transition-all"
             >
               Angebot Anfordern <ArrowRight className="w-4 h-4" />
@@ -152,14 +159,13 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
             {terraceModules.map((m) => (
               <StaggerItem key={m.id}>
                 <article className="bg-card h-full flex flex-col group">
-                  <div className="aspect-[4/3] overflow-hidden bg-surface-container">
-                    <img
+                  <div className="relative aspect-[4/3] overflow-hidden bg-surface-container">
+                    <Image
                       src={m.image}
                       alt={m.label}
-                      loading="lazy"
-                      width={640}
-                      height={480}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
                   <div className="p-6 md:p-8 flex-1 flex flex-col">
@@ -180,14 +186,16 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
               </StaggerItem>
             ))}
           </StaggerContainer>
-          <FadeIn className="mt-8 md:mt-12 text-center">
-            <Link
-              to={data.configuratorLink ?? "/konfigurator"}
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-widest text-xs hover:bg-primary-container transition-all"
-            >
-              <Plus className="w-4 h-4" /> Im Konfigurator zusammenstellen
-            </Link>
-          </FadeIn>
+          {data.configuratorLink && (
+            <FadeIn className="mt-8 md:mt-12 text-center">
+              <Link
+                href={data.configuratorLink}
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-widest text-xs hover:bg-primary-container transition-all"
+              >
+                <Plus className="w-4 h-4" /> Im Konfigurator zusammenstellen
+              </Link>
+            </FadeIn>
+          )}
         </div>
       </section>
     )}
@@ -223,12 +231,25 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
         </FadeIn>
         <FadeIn delay={0.4}>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link to={data.configuratorLink ?? "/konfigurator"} className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all">
-              Jetzt Konfigurieren
-            </Link>
-            <Link to="/kontakt" className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all">
-              Kontakt Aufnehmen
-            </Link>
+            {data.configuratorLink ? (
+              <>
+                <Link href={data.configuratorLink} className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all">
+                  Jetzt Konfigurieren
+                </Link>
+                <Link href="/kontakt" className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all">
+                  Kontakt Aufnehmen
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link href="/kontakt" className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all">
+                  Beratung Anfragen
+                </Link>
+                <a href="tel:+491735303581" className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all">
+                  0173 530 3581
+                </a>
+              </>
+            )}
           </div>
         </FadeIn>
       </div>
@@ -245,8 +266,14 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             {data.otherProducts.map((p) => (
               <ScaleIn key={p.title}>
-                <Link to={p.link} className="group block relative overflow-hidden aspect-[16/9]">
-                  <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width={960} height={540} />
+                <Link href={p.link} className="group block relative overflow-hidden aspect-[16/9]">
+                  <Image
+                    src={p.image}
+                    alt={p.title}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                   <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/20 transition-all" />
                   <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 flex items-center gap-3">
                     <h3 className="text-lg md:text-2xl font-bold text-primary-foreground">{p.title}</h3>

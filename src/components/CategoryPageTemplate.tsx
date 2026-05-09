@@ -1,9 +1,13 @@
+"use client";
+
 import Layout from "@/components/Layout";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ScrollAnimations";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { Category } from "@/data/products";
+import { hasConfigurator } from "@/data/products";
 
 interface Props {
   category: Category;
@@ -14,18 +18,22 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
   <Layout>
     {/* Hero */}
     <section className="relative h-[70svh] min-h-[420px] max-h-[700px] flex items-end pb-12 md:pb-20 overflow-hidden bg-foreground">
-      <div className="absolute inset-0 opacity-50">
-        <motion.img
+      <motion.div
+        className="absolute inset-0 opacity-50"
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Image
           src={category.image}
           alt={category.label}
-          className="w-full h-full object-cover"
-          width={1920}
-          height={1080}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+          fill
+          priority
+          quality={85}
+          sizes="100vw"
+          className="object-cover"
         />
-      </div>
+      </motion.div>
       <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/40 to-transparent" />
       <div className="container mx-auto px-5 md:px-8 relative z-10">
         <motion.span
@@ -73,17 +81,16 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
           {category.products.map((product) => (
             <StaggerItem key={product.slug}>
               <Link
-                to={`/${category.slug}/${product.slug}`}
+                href={`/${category.slug}/${product.slug}`}
                 className="group block h-full"
               >
                 <div className="relative overflow-hidden aspect-[16/10] mb-5">
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.label}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                    width={1280}
-                    height={800}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-foreground/20 group-hover:bg-foreground/5 transition-all duration-300" />
                 </div>
@@ -118,18 +125,37 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
         </FadeIn>
         <FadeIn delay={0.4}>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              to={`/konfigurator/${category.slug}`}
-              className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
-            >
-              Jetzt Konfigurieren
-            </Link>
-            <Link
-              to="/kontakt"
-              className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all"
-            >
-              Kontakt Aufnehmen
-            </Link>
+            {hasConfigurator(category.slug) ? (
+              <>
+                <Link
+                  href={`/konfigurator/${category.slug}`}
+                  className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
+                >
+                  Jetzt Konfigurieren
+                </Link>
+                <Link
+                  href="/kontakt"
+                  className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all"
+                >
+                  Kontakt Aufnehmen
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/kontakt"
+                  className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
+                >
+                  Beratung Anfragen
+                </Link>
+                <a
+                  href="tel:+491735303581"
+                  className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all"
+                >
+                  0173 530 3581
+                </a>
+              </>
+            )}
           </div>
         </FadeIn>
       </div>
@@ -151,16 +177,15 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
             {otherCategories.map((c) => (
               <ScaleIn key={c.label}>
                 <Link
-                  to={c.link}
+                  href={c.link}
                   className="group block relative overflow-hidden aspect-[16/10]"
                 >
-                  <img
+                  <Image
                     src={c.image}
                     alt={c.label}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                    width={960}
-                    height={600}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/20 transition-all" />
                   <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 flex items-center gap-3">
