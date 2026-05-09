@@ -104,10 +104,8 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
               <ParallaxImage
                 src={data.detailImage}
                 alt="Detailansicht"
-                className="w-full h-full object-cover"
-                loading="lazy"
-                width={960}
-                height={960}
+                className="object-cover"
+                sizes="(min-width: 768px) 50vw, 100vw"
               />
             </div>
           </FadeIn>

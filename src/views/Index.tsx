@@ -144,7 +144,7 @@ const Index = () => {
           alt="Luxury terrace roofing"
           fill
           priority
-          quality={85}
+          quality={70}
           sizes="100vw"
           className="object-cover"
         />
@@ -351,7 +351,12 @@ const Index = () => {
       <div className="container mx-auto px-0 md:px-8 py-16 md:py-32">
         <div className="flex flex-col md:flex-row gap-0">
           <FadeIn direction="left" className="w-full md:w-1/2 bg-foreground aspect-[4/3] md:aspect-auto">
-            <ParallaxImage src={ulmMuenster} alt="Ulmer Münster – Wahrzeichen unserer Heimatstadt" className="w-full h-full object-cover" loading="lazy" width={1600} height={2400} />
+            <ParallaxImage
+              src={ulmMuenster}
+              alt="Ulmer Münster – Wahrzeichen unserer Heimatstadt"
+              className="object-cover"
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
           </FadeIn>
           <FadeIn direction="right" delay={0.2} className="w-full md:w-1/2 bg-card p-8 md:p-16 lg:p-24 flex flex-col justify-center">
             <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 md:mb-4 block">Lokale Präsenz</label>

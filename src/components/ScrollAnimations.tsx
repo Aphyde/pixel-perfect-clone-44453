@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, type Variant } from "framer-motion";
+import Image from "next/image";
 import { type ReactNode } from "react";
 
 type Direction = "up" | "down" | "left" | "right";
@@ -104,16 +105,32 @@ export const CountUp = ({ value, suffix = "", className }: { value: string; suff
 );
 
 export const ParallaxImage = ({
-  src, alt, className, speed = 0.15,
-  ...props
-}: { src: string; alt: string; className?: string; speed?: number } & React.ImgHTMLAttributes<HTMLImageElement>) => (
+  src,
+  alt,
+  className,
+  sizes = "(min-width: 768px) 50vw, 100vw",
+  quality = 75,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  sizes?: string;
+  quality?: number;
+}) => (
   <motion.div
-    className="overflow-hidden w-full h-full"
+    className="overflow-hidden w-full h-full relative"
     initial={{ scale: 1.1 }}
     whileInView={{ scale: 1 }}
     viewport={{ once: true }}
     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
   >
-    <img src={src} alt={alt} className={className} {...props} />
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      sizes={sizes}
+      quality={quality}
+      className={className}
+    />
   </motion.div>
 );
