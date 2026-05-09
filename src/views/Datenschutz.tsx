@@ -2,7 +2,7 @@
 
 import Layout from "@/components/Layout";
 import { FadeIn, StaggerContainer, StaggerItem, RevealLine } from "@/components/ScrollAnimations";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Shield } from "lucide-react";
 
 const sections = [
@@ -43,22 +43,22 @@ const Datenschutz = () => (
       <section className="px-5 md:px-8 max-w-7xl mx-auto mb-12 md:mb-24">
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
           <div className="md:w-1/2">
-            <motion.p
+            <m.p
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-primary mb-3 md:mb-4"
             >
               Datenschutz gemäß DSGVO
-            </motion.p>
-            <motion.h1
+            </m.p>
+            <m.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-[2rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none mb-6 md:mb-8 break-words"
             >
               Datenschutz.
-            </motion.h1>
+            </m.h1>
             <RevealLine className="w-16 h-[2px] bg-primary" delay={0.8} />
           </div>
           <FadeIn delay={0.3} direction="right" className="md:w-1/2 relative">

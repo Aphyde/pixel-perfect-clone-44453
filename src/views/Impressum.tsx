@@ -4,7 +4,7 @@ import Layout from "@/components/Layout";
 const impressumImg = "/impressum-img.jpg";
 import { Gavel } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem, RevealLine } from "@/components/ScrollAnimations";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const Impressum = () => (
   <Layout>
@@ -13,22 +13,22 @@ const Impressum = () => (
       <section className="px-5 md:px-8 max-w-7xl mx-auto mb-12 md:mb-24">
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
           <div className="md:w-1/2">
-            <motion.p
+            <m.p
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-primary mb-3 md:mb-4"
             >
               Rechtliche Informationen
-            </motion.p>
-            <motion.h1
+            </m.p>
+            <m.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-[2rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none mb-6 md:mb-8 break-words"
             >
               Impressum.
-            </motion.h1>
+            </m.h1>
             <RevealLine className="w-16 h-[2px] bg-primary" delay={0.8} />
           </div>
           <FadeIn delay={0.3} direction="right" className="md:w-1/2 relative">
@@ -75,7 +75,7 @@ const Impressum = () => (
                 <img src={impressumImg} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy" alt="Architecture" width={800} height={1000} />
                 <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
               </div>
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -83,7 +83,7 @@ const Impressum = () => (
                 className="absolute -top-4 -left-4 md:-top-8 md:-left-8 p-5 md:p-8 bg-surface border border-outline-variant/10 shadow-xl hidden md:block"
               >
                 <Gavel className="w-8 h-8 md:w-10 md:h-10 text-primary" />
-              </motion.div>
+              </m.div>
             </FadeIn>
           </div>
         </div>

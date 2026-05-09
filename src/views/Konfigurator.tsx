@@ -2,7 +2,7 @@
 
 import Layout from "@/components/Layout";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight, Check, ShieldCheck, Heart } from "lucide-react";
 import { configuratorList } from "@/data/configurators";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ScrollAnimations";
@@ -12,33 +12,33 @@ const Konfigurator = () => (
     {/* Hero */}
     <section className="relative pt-32 md:pt-40 pb-12 md:pb-20 bg-foreground overflow-hidden">
       <div className="container mx-auto px-5 md:px-8 relative z-10">
-        <motion.span
+        <m.span
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="inline-block bg-primary text-primary-foreground px-3 py-1 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase mb-4"
         >
           Konfigurator
-        </motion.span>
-        <motion.h1
+        </m.span>
+        <m.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
           className="text-[2rem] sm:text-5xl md:text-7xl font-bold text-primary-foreground leading-[0.9] tracking-tighter break-words max-w-4xl"
         >
           Wählen Sie Ihren <span className="text-primary-fixed-dim">Konfigurator.</span>
-        </motion.h1>
-        <motion.p
+        </m.h1>
+        <m.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
           className="text-sm md:text-lg text-primary-foreground/60 max-w-2xl mt-4 md:mt-6"
         >
           Stellen Sie Ihr Produkt online zusammen – Maße, Farben, Module. Sie erhalten am Ende einen unverbindlichen Richtpreis und können kostenlos eine Anfrage senden.
-        </motion.p>
+        </m.p>
 
         {/* Trust badges */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
@@ -47,7 +47,7 @@ const Konfigurator = () => (
           <span className="flex items-center gap-2"><Check className="w-4 h-4 text-primary" /> 100 % kostenlos</span>
           <span className="flex items-center gap-2"><Heart className="w-4 h-4 text-primary" /> Ohne Kaufverpflichtung</span>
           <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-primary" /> Persönliche Beratung</span>
-        </motion.div>
+        </m.div>
       </div>
     </section>
 

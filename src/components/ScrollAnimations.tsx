@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variant } from "framer-motion";
+import { m, type Variant } from "framer-motion";
 import Image from "next/image";
 import { type ReactNode } from "react";
 
@@ -28,7 +28,7 @@ interface FadeInProps {
 export const FadeIn = ({
   children, direction = "up", delay = 0, duration = 0.6, distance = 40, className, once = true,
 }: FadeInProps) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 0, ...directionOffset(direction, distance) }}
     whileInView={{ opacity: 1, x: 0, y: 0 }}
     viewport={{ once, margin: "-80px" }}
@@ -36,13 +36,13 @@ export const FadeIn = ({
     className={className}
   >
     {children}
-  </motion.div>
+  </m.div>
 );
 
 export const StaggerContainer = ({
   children, className, staggerDelay = 0.1, delay = 0,
 }: { children: ReactNode; className?: string; staggerDelay?: number; delay?: number }) => (
-  <motion.div
+  <m.div
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true, margin: "-80px" }}
@@ -50,13 +50,13 @@ export const StaggerContainer = ({
     className={className}
   >
     {children}
-  </motion.div>
+  </m.div>
 );
 
 export const StaggerItem = ({
   children, className, direction = "up", distance = 30,
 }: { children: ReactNode; className?: string; direction?: Direction; distance?: number }) => (
-  <motion.div
+  <m.div
     variants={{
       hidden: { opacity: 0, ...directionOffset(direction, distance) } as Variant,
       visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } as Variant,
@@ -64,13 +64,13 @@ export const StaggerItem = ({
     className={className}
   >
     {children}
-  </motion.div>
+  </m.div>
 );
 
 export const ScaleIn = ({
   children, delay = 0, className,
 }: { children: ReactNode; delay?: number; className?: string }) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 0, scale: 0.9 }}
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true, margin: "-80px" }}
@@ -78,11 +78,11 @@ export const ScaleIn = ({
     className={className}
   >
     {children}
-  </motion.div>
+  </m.div>
 );
 
 export const RevealLine = ({ className, delay = 0 }: { className?: string; delay?: number }) => (
-  <motion.div
+  <m.div
     initial={{ scaleX: 0 }}
     whileInView={{ scaleX: 1 }}
     viewport={{ once: true }}
@@ -93,7 +93,7 @@ export const RevealLine = ({ className, delay = 0 }: { className?: string; delay
 );
 
 export const CountUp = ({ value, suffix = "", className }: { value: string; suffix?: string; className?: string }) => (
-  <motion.span
+  <m.span
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -101,7 +101,7 @@ export const CountUp = ({ value, suffix = "", className }: { value: string; suff
     className={className}
   >
     {value}{suffix}
-  </motion.span>
+  </m.span>
 );
 
 export const ParallaxImage = ({
@@ -117,7 +117,7 @@ export const ParallaxImage = ({
   sizes?: string;
   quality?: number;
 }) => (
-  <motion.div
+  <m.div
     className="overflow-hidden w-full h-full relative"
     initial={{ scale: 1.1 }}
     whileInView={{ scale: 1 }}
@@ -132,5 +132,5 @@ export const ParallaxImage = ({
       quality={quality}
       className={className}
     />
-  </motion.div>
+  </m.div>
 );

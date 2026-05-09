@@ -5,7 +5,7 @@ import { Phone, Mail, Clock, ShieldCheck, MapPin, Upload, ArrowRight, ArrowLeft,
 const ulmLuftbild = "/region/ulm-luftbild.webp";
 const demoKoffer = "/demo/demo-koffer.webp";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ScrollAnimations";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
 import Link from "next/link";
 
@@ -96,35 +96,35 @@ const Kontakt = () => {
     return (
       <Layout>
         <div className="pt-32 pb-24 max-w-2xl mx-auto text-center px-5">
-          <motion.div
+          <m.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", duration: 0.6 }}
             className="w-20 h-20 bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-8"
           >
             <Check className="w-10 h-10" />
-          </motion.div>
-          <motion.h1
+          </m.div>
+          <m.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="text-3xl md:text-5xl font-bold tracking-tighter mb-4"
           >
             Anfrage gesendet!
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
             className="text-secondary text-base md:text-lg mb-8"
           >
             Vielen Dank für Ihre Anfrage. Wir melden uns innerhalb von 24 Stunden bei Ihnen.
-          </motion.p>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
+          </m.p>
+          <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
             <Link href="/" className="bg-primary text-primary-foreground px-8 py-4 font-headline uppercase tracking-widest text-xs font-bold hover:bg-primary-container transition-all">
               Zur Startseite
             </Link>
-          </motion.div>
+          </m.div>
         </div>
       </Layout>
     );
@@ -138,32 +138,32 @@ const Kontakt = () => {
         {/* Hero */}
         <section className="max-w-7xl mx-auto px-5 md:px-8 mb-12 md:mb-24 grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
           <div className="lg:col-span-7">
-            <motion.p
+            <m.p
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="font-headline uppercase tracking-[0.2em] md:tracking-[0.3em] text-primary text-xs md:text-sm mb-3 md:mb-4 font-bold"
             >
               Planung &amp; Realisierung
-            </motion.p>
-            <motion.h1
+            </m.p>
+            <m.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="text-[2rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] mb-5 md:mb-8 break-words"
             >
               Ihr Projekt in <br /><span className="text-primary">Meisterhand.</span>
-            </motion.h1>
-            <motion.p
+            </m.h1>
+            <m.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
               className="text-base md:text-lg text-secondary max-w-xl leading-relaxed"
             >
               Vom ersten Entwurf bis zur finalen Montage in Ulm und Umgebung. Wir verwandeln Ihre Terrasse in einen architektonischen Lebensraum.
-            </motion.p>
+            </m.p>
           </div>
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
@@ -179,7 +179,7 @@ const Kontakt = () => {
                 <a href="tel:+491735303581" className="text-primary font-bold mt-4 hover:opacity-70 transition-opacity inline-block">0173 530 3581</a>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </section>
 
         {/* Form & Info */}
@@ -212,7 +212,7 @@ const Kontakt = () => {
               </div>
 
               <AnimatePresence mode="wait">
-                <motion.div
+                <m.div
                   key={step}
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -349,7 +349,7 @@ const Kontakt = () => {
                       </div>
                     </div>
                   )}
-                </motion.div>
+                </m.div>
               </AnimatePresence>
 
               {/* Navigation buttons */}

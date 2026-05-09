@@ -5,7 +5,7 @@ const heroWartung = "/hero-wartung.jpg";
 import { Check, Send, ArrowRight, ArrowLeft, ShieldCheck, Sparkles, Wrench, Droplets, X, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import { FadeIn, StaggerContainer, StaggerItem, RevealLine } from "@/components/ScrollAnimations";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
 
 const packages = [
@@ -129,43 +129,43 @@ const Wartungspakete = () => {
     return (
       <Layout>
         <div className="pt-32 pb-24 max-w-2xl mx-auto text-center px-5">
-          <motion.div
+          <m.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", duration: 0.6 }}
             className="w-20 h-20 bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-8"
           >
             <Check className="w-10 h-10" />
-          </motion.div>
-          <motion.h1
+          </m.div>
+          <m.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="text-3xl md:text-5xl font-bold tracking-tighter mb-4"
           >
             Wartung beauftragt!
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
             className="text-secondary text-base md:text-lg mb-4"
           >
             Vielen Dank für Ihre Beauftragung des <strong>{selectedPackage?.name}</strong>-Pakets.
-          </motion.p>
-          <motion.p
+          </m.p>
+          <m.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
             className="text-secondary text-sm mb-8"
           >
             Wir melden uns innerhalb von 24 Stunden bei Ihnen, um einen Termin zu vereinbaren.
-          </motion.p>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
+          </m.p>
+          <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
             <Link href="/" className="bg-primary text-primary-foreground px-8 py-4 font-headline uppercase tracking-widest text-xs font-bold hover:bg-primary-container transition-all">
               Zur Startseite
             </Link>
-          </motion.div>
+          </m.div>
         </div>
       </Layout>
     );
@@ -176,7 +176,7 @@ const Wartungspakete = () => {
       {/* Hero */}
       <section className="relative h-[50svh] min-h-[350px] max-h-[600px] flex items-center overflow-hidden pt-16 md:pt-24">
         <div className="absolute inset-0 z-0">
-          <motion.img
+          <m.img
             src={heroWartung}
             className="w-full h-full object-cover"
             width={1920}
@@ -189,30 +189,30 @@ const Wartungspakete = () => {
           <div className="absolute inset-0 bg-foreground/50" />
         </div>
         <div className="container mx-auto px-5 md:px-8 relative z-10">
-          <motion.p
+          <m.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
             className="text-primary uppercase tracking-[0.2em] md:tracking-[0.3em] mb-3 text-xs md:text-sm font-bold"
           >
             Pflege & Instandhaltung
-          </motion.p>
-          <motion.h1
+          </m.p>
+          <m.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
             className="text-primary-foreground text-[2rem] sm:text-5xl md:text-7xl font-bold leading-none tracking-tighter mb-4 break-words"
           >
             Wartungs&shy;pakete.
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
             className="text-primary-foreground/80 text-sm md:text-lg max-w-xl"
           >
             Professionelle Pflege für Ihre Überdachung – wählen Sie Ihr Paket und beauftragen Sie direkt online.
-          </motion.p>
+          </m.p>
         </div>
       </section>
 
@@ -292,7 +292,7 @@ const Wartungspakete = () => {
                 </div>
 
                 <AnimatePresence mode="wait">
-                  <motion.div
+                  <m.div
                     key={step}
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -436,7 +436,7 @@ const Wartungspakete = () => {
                         </div>
                       </div>
                     )}
-                  </motion.div>
+                  </m.div>
                 </AnimatePresence>
 
                 {/* Nav buttons */}

@@ -11,7 +11,7 @@ import { MapPin, Briefcase, PackageOpen, Sparkles, Wrench, ArrowRight } from "lu
 const demoKoffer = "/demo/demo-koffer.webp";
 import Link from "next/link";
 import { FadeIn, StaggerContainer, StaggerItem, RevealLine } from "@/components/ScrollAnimations";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const steps = [
   { num: "01", phase: "Initialphase", title: "Persönliche Beratung", img: process1, desc: "Jedes Projekt beginnt mit einem Dialog. Wir besuchen Sie vor Ort in Ulm oder Umgebung, um die Gegebenheiten Ihrer Terrasse zu analysieren und Ihre Wünsche bezüglich Design und Funktionalität aufzunehmen.", bullets: ["Kostenlose Erstberatung", "Material- und Designauswahl"] },
@@ -25,7 +25,7 @@ const Service = () => (
     {/* Hero */}
     <section className="relative h-[70svh] min-h-[420px] max-h-[819px] flex items-center overflow-hidden pt-16 md:pt-24">
       <div className="absolute inset-0 z-0">
-        <motion.img
+        <m.img
           src={heroService}
           className="w-full h-full object-cover"
           width={1920}
@@ -38,37 +38,37 @@ const Service = () => (
         <div className="absolute inset-0 bg-foreground/40" />
       </div>
       <div className="container mx-auto px-5 md:px-8 relative z-10">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-4xl bg-primary-foreground/10 backdrop-blur-md p-6 md:p-12 border-l-4 border-primary"
         >
-          <motion.p
+          <m.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
             className="text-primary uppercase tracking-[0.2em] md:tracking-[0.3em] mb-3 md:mb-4 text-xs md:text-sm font-bold"
           >
             Handwerk &amp; Präzision
-          </motion.p>
-          <motion.h1
+          </m.p>
+          <m.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.7 }}
             className="text-primary-foreground text-[2rem] sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tighter mb-4 md:mb-8 break-words"
           >
             MONTAGE<br />EXZELLENZ.
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1 }}
             className="text-primary-foreground/90 text-base md:text-xl max-w-xl leading-relaxed font-body"
           >
             Ihr Partner für exklusive Terrassensysteme in Ulm und Umgebung.
-          </motion.p>
-        </motion.div>
+          </m.p>
+        </m.div>
       </div>
     </section>
 
@@ -120,7 +120,7 @@ const Service = () => (
           {steps.map((step, i) => (
             <div key={step.num} className={`flex flex-col ${i % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-8 md:gap-16`}>
               <FadeIn direction={i % 2 === 0 ? "left" : "right"} className="w-full md:w-1/2 relative">
-                <motion.img
+                <m.img
                   src={step.img}
                   className="w-full h-[280px] md:h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
                   loading="lazy"
@@ -130,7 +130,7 @@ const Service = () => (
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.4 }}
                 />
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -138,7 +138,7 @@ const Service = () => (
                   className={`absolute -bottom-4 md:-bottom-8 ${i % 2 === 1 ? "left-4 md:-left-8" : "right-4 md:-right-8"} ${i % 2 === 0 ? "bg-primary" : "bg-foreground"} text-primary-foreground p-4 md:p-8 w-16 h-16 md:w-24 md:h-24 flex items-center justify-center text-xl md:text-3xl font-bold`}
                 >
                   {step.num}
-                </motion.div>
+                </m.div>
               </FadeIn>
               <FadeIn direction={i % 2 === 0 ? "right" : "left"} delay={0.2} className="w-full md:w-1/2 mt-4 md:mt-0">
                 <span className="text-primary font-bold uppercase tracking-widest mb-2 md:mb-4 block text-xs md:text-sm">{step.phase}</span>
@@ -219,7 +219,7 @@ const Service = () => (
       </div>
       {/* Dunkler Verlauf für Lesbarkeit der Headline */}
       <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/80 to-foreground/40" />
-      <motion.div
+      <m.div
         initial={{ x: "100%" }}
         whileInView={{ x: 0 }}
         viewport={{ once: true }}

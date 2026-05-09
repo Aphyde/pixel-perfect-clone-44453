@@ -6,7 +6,7 @@ import Image from "next/image";
 import { categories } from "@/data/products";
 import { ArrowRight, Menu, X, ShieldCheck, Sparkles, Award, Briefcase, PackageOpen, Phone } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const heroHome = "/hero-home.jpg";
@@ -65,7 +65,7 @@ const Index = () => {
     {/* Mobile hero menu dropdown with product swipe cards */}
     <AnimatePresence>
     {heroMenuOpen && (
-      <motion.div
+      <m.div
         initial={{ scaleY: 0, opacity: 0.98 }}
         animate={{ scaleY: 1, opacity: 1 }}
         exit={{ scaleY: 0, opacity: 0.98 }}
@@ -127,18 +127,13 @@ const Index = () => {
             Angebot Anfordern
           </Link>
         </div>
-      </motion.div>
+      </m.div>
     )}
     </AnimatePresence>
 
     {/* Hero */}
     <section className="relative h-[100svh] min-h-[520px] max-h-[780px] flex items-center pt-0 md:pt-20 overflow-hidden bg-foreground">
-      <motion.div
-        className="absolute inset-0 opacity-60"
-        initial={{ scale: 1.15 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <div className="absolute inset-0 opacity-60">
         <Image
           src={heroHome}
           alt="Luxury terrace roofing"
@@ -148,7 +143,7 @@ const Index = () => {
           sizes="100vw"
           className="object-cover"
         />
-      </motion.div>
+      </div>
       <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/50 to-transparent md:from-foreground/80 md:via-foreground/40" />
 
       <div className="container mx-auto px-5 md:px-8 relative z-10">

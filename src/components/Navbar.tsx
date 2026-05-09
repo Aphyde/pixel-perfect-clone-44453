@@ -22,7 +22,7 @@ const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
     <path d="M19.05 4.91A10 10 0 0 0 12 2C6.48 2 2 6.48 2 12c0 1.76.46 3.45 1.32 4.95L2 22l5.2-1.36A10 10 0 0 0 12 22c5.52 0 10-4.48 10-10 0-2.67-1.04-5.18-2.95-7.09ZM12 20.27a8.27 8.27 0 0 1-4.21-1.15l-.3-.18-3.09.81.83-3-.2-.31a8.27 8.27 0 1 1 6.97 3.83Zm4.55-6.18c-.25-.13-1.47-.73-1.7-.81-.23-.08-.39-.13-.55.13-.16.25-.63.81-.78.98-.14.16-.29.18-.54.06-.25-.13-1.04-.38-1.99-1.22-.74-.66-1.23-1.47-1.37-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.43.13-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.13-.55-1.34-.76-1.83-.2-.48-.4-.42-.55-.42l-.47-.01c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.04 0 1.2.87 2.36.99 2.52.13.16 1.72 2.62 4.16 3.67.58.25 1.04.4 1.39.51.59.19 1.12.16 1.54.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.07-.11-.23-.18-.48-.31Z" />
   </svg>
 );
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 const logo = "/logo-brait.svg";
 const logoLight = "/logo-brait-light.svg";
 import { categories, hasConfigurator } from "@/data/products";
@@ -262,7 +262,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
       {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <m.div
             initial={{ scaleY: 0, opacity: 0.98 }}
             animate={{ scaleY: 1, opacity: 1 }}
             exit={{ scaleY: 0, opacity: 0.98 }}
@@ -347,7 +347,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                       </button>
                       <AnimatePresence>
                         {isOpen && (
-                          <motion.div
+                          <m.div
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
@@ -373,7 +373,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                                 </Link>
                               ))}
                             </div>
-                          </motion.div>
+                          </m.div>
                         )}
                       </AnimatePresence>
                     </div>
@@ -403,14 +403,14 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                 Angebot Anfordern
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* Desktop Mega Menu */}
       <AnimatePresence>
         {megaOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -566,7 +566,7 @@ const Navbar = ({ iconsOnly = false }: NavbarProps) => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

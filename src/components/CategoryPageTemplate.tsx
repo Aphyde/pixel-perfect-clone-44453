@@ -2,7 +2,7 @@
 
 import Layout from "@/components/Layout";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ScrollAnimations";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
@@ -18,12 +18,7 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
   <Layout>
     {/* Hero */}
     <section className="relative h-[70svh] min-h-[420px] max-h-[700px] flex items-end pb-12 md:pb-20 overflow-hidden bg-foreground">
-      <motion.div
-        className="absolute inset-0 opacity-50"
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <div className="absolute inset-0 opacity-50">
         <Image
           src={category.image}
           alt={category.label}
@@ -33,7 +28,7 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
           sizes="100vw"
           className="object-cover"
         />
-      </motion.div>
+      </div>
       <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/40 to-transparent" />
       <div className="container mx-auto px-5 md:px-8 relative z-10">
         <span className="inline-block bg-primary text-primary-foreground px-3 py-1 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase mb-4">

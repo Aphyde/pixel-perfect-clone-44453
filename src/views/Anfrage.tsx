@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Layout from "@/components/Layout";
 import { FadeIn, ScaleIn } from "@/components/ScrollAnimations";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, Send, ShieldCheck, Heart, Truck, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { categories } from "@/data/products";
@@ -130,22 +130,22 @@ const Anfrage = () => {
               <ArrowLeft className="w-4 h-4" />
               <span className="font-headline uppercase tracking-widest text-xs font-bold">Zurück</span>
             </button>
-            <motion.h1
+            <m.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
               className="text-[2rem] sm:text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-4 break-words"
             >
               Ihr <span className="text-primary">Angebot.</span>
-            </motion.h1>
-            <motion.p
+            </m.h1>
+            <m.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
               className="text-secondary text-base md:text-lg max-w-2xl"
             >
               Wählen Sie das Produkt, für das Sie ein kostenloses, unverbindliches Angebot wünschen — wir starten direkt mit dem passenden Konfigurator.
-            </motion.p>
+            </m.p>
           </section>
 
           {/* Produktauswahl */}
@@ -227,35 +227,35 @@ const Anfrage = () => {
     return (
       <Layout>
         <div className="pt-32 pb-24 max-w-2xl mx-auto text-center px-5">
-          <motion.div
+          <m.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", duration: 0.6 }}
             className="w-20 h-20 bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-8"
           >
             <Check className="w-10 h-10" />
-          </motion.div>
-          <motion.h1
+          </m.div>
+          <m.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="text-3xl md:text-5xl font-bold tracking-tighter mb-4"
           >
             Anfrage gesendet!
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
             className="text-secondary text-base md:text-lg mb-8"
           >
             Vielen Dank für Ihre unverbindliche Anfrage. Wir melden uns kostenlos innerhalb von 24 Stunden bei Ihnen.
-          </motion.p>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
+          </m.p>
+          <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }}>
             <Link href="/" className="bg-primary text-primary-foreground px-8 py-4 font-headline uppercase tracking-widest text-xs font-bold hover:bg-primary-container transition-all">
               Zur Startseite
             </Link>
-          </motion.div>
+          </m.div>
         </div>
       </Layout>
     );
@@ -301,22 +301,22 @@ const Anfrage = () => {
             <ArrowLeft className="w-4 h-4" />
             <span className="font-headline uppercase tracking-widest text-xs font-bold">Zurück zum Konfigurator</span>
           </button>
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             className="text-[2rem] sm:text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-4 break-words"
           >
             Ihre <span className="text-primary">Anfrage.</span>
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
             className="text-secondary text-base md:text-lg max-w-xl"
           >
             Prüfen Sie Ihre Konfiguration und senden Sie uns Ihre Kontaktdaten – kostenlos und unverbindlich.
-          </motion.p>
+          </m.p>
         </section>
 
         <section className="max-w-5xl mx-auto px-5 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
