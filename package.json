@@ -62,6 +62,12 @@
     "vaul": "^0.9.9",
     "zod": "^3.25.76"
   },
+  "browserslist": [
+    "Chrome >= 87",
+    "Edge >= 88",
+    "Firefox >= 78",
+    "Safari >= 14"
+  ],
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.16.5",
