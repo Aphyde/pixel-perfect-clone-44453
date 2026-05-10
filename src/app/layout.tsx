@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Manrope } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "./providers";
 import ScrollToTop from "@/components/ScrollToTop";
-import Telemetry from "@/components/Telemetry";
 import JsonLd from "@/components/seo/JsonLd";
 import {
   buildLocalBusinessSchema,
@@ -125,7 +126,8 @@ export default function RootLayout({
           <ScrollToTop />
           {children}
         </Providers>
-        <Telemetry />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
