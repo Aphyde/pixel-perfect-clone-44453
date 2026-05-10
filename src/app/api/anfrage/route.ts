@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import {
+  buildCustomerConfirmationHtml,
+  buildCustomerConfirmationSubject,
+} from "@/lib/email/customer-confirmation";
+import { BRAND } from "@/lib/seo/site";
 
-const FROM = process.env.RESEND_FROM ?? "anfrage@brait-ueberdachung.de";
+const FROM_ADDRESS = process.env.RESEND_FROM ?? "anfrage@brait-ueberdachung.de";
+const FROM = `${BRAND} <${FROM_ADDRESS}>`;
 const TO = process.env.RESEND_TO ?? "info@brait-ueberdachung.de";
 
 const ConfigOptionSchema = z.object({
@@ -125,36 +131,90 @@ export async function POST(req: Request) {
       ? `Anfrage – ${parsed.data.config.category} – ${parsed.data.name}`
       : `Anfrage – ${parsed.data.name}`;
 
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        from: FROM,
-        to: [TO],
-        reply_to: parsed.data.email,
-        subject,
-        html,
-      }),
-    });
+    const customerPayload = {
+      name: parsed.data.name,
+      email: parsed.data.email,
+      phone: parsed.data.phone || undefined,
+      ort: parsed.data.ort || undefined,
+      message: parsed.data.message || undefined,
+      config: parsed.data.config,
+    };
+    const customerHtml = buildCustomerConfirmationHtml(customerPayload);
+    const customerSubject = buildCustomerConfirmationSubject(customerPayload);
 
-    if (!res.ok) {
-      const text = await res.text();
-      console.error("[anfrage] resend error", res.status, text);
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    } as const;
+
+    // Beide Mails parallel verschicken: intern + Kunden-Bestätigung.
+    // Wenn eine fehlschlägt, blockiert das die andere nicht.
+    const [internalRes, customerRes] = await Promise.allSettled([
+      fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          from: FROM,
+          to: [TO],
+          reply_to: parsed.data.email,
+          subject,
+          html,
+        }),
+      }),
+      fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          from: FROM,
+          to: [parsed.data.email],
+          reply_to: TO,
+          subject: customerSubject,
+          html: customerHtml,
+        }),
+      }),
+    ]);
+
+    const internalOk =
+      internalRes.status === "fulfilled" && internalRes.value.ok;
+    const customerOk =
+      customerRes.status === "fulfilled" && customerRes.value.ok;
+
+    if (!internalOk) {
+      const status =
+        internalRes.status === "fulfilled" ? internalRes.value.status : 0;
+      const detail =
+        internalRes.status === "fulfilled"
+          ? await internalRes.value.text()
+          : String(internalRes.reason);
+      console.error("[anfrage] internal mail failed", status, detail);
       return NextResponse.json(
         {
           ok: false,
           error: "Mailversand fehlgeschlagen.",
-          status: res.status,
-          detail: text.slice(0, 500),
+          status,
+          detail: detail.slice(0, 500),
         },
         { status: 502 },
       );
     }
 
-    return NextResponse.json({ ok: true, mailed: true });
+    if (!customerOk) {
+      const status =
+        customerRes.status === "fulfilled" ? customerRes.value.status : 0;
+      const detail =
+        customerRes.status === "fulfilled"
+          ? await customerRes.value.text()
+          : String(customerRes.reason);
+      // Interne Mail ist raus → Anfrage gilt als erfolgreich.
+      // Bestätigungs-Mail an Kunden nur loggen, nicht hart fehlschlagen lassen.
+      console.warn("[anfrage] customer confirmation failed", status, detail);
+    }
+
+    return NextResponse.json({
+      ok: true,
+      mailed: true,
+      customerConfirmed: customerOk,
+    });
   } catch (err) {
     console.error("[anfrage] unexpected error", err);
     return NextResponse.json({ ok: false, error: "Serverfehler." }, { status: 500 });
