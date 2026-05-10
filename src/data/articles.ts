@@ -1,0 +1,669 @@
+/**
+ * Ratgeber-Artikel als TypeScript-Daten. Inhalt ist citability-optimiert:
+ * TL;DR oben, Faktenboxen, Zwischenüberschriften als Fragen, Vergleiche.
+ */
+
+export interface ArticleSection {
+  /** Heading level — h2 oder h3. */
+  heading?: { text: string; level?: 2 | 3 };
+  /** Paragraph als String oder Array von Strings (jeweils ein <p>). */
+  paragraphs?: string[];
+  /** Stichpunkt-Liste. */
+  bullets?: string[];
+  /** Faktenbox (TL;DR-ähnlich). */
+  factBox?: { title: string; items: string[] };
+  /** Vergleichs-Tabelle. */
+  table?: {
+    columns: string[];
+    rows: string[][];
+  };
+  /** Anchor-Slug für interne Links. */
+  anchor?: string;
+}
+
+export interface Article {
+  slug: string;
+  title: string;
+  description: string;
+  /** Long-Tail-SEO Title für meta. */
+  metaTitle?: string;
+  category:
+    | "Auswahl"
+    | "Preise"
+    | "Recht"
+    | "Material"
+    | "Pflege"
+    | "Energie"
+    | "Lokal";
+  /** ISO-Datum. */
+  publishedAt: string;
+  updatedAt?: string;
+  /** Geschätzte Lesezeit in Minuten. */
+  readingMinutes: number;
+  /** Hero-Bild (öffentlicher Pfad). */
+  image: string;
+  imageAlt: string;
+  /** TL;DR (1-2 Sätze, faktendicht). */
+  tldr: string;
+  /** Hauptinhalt als strukturierte Sections. */
+  sections: ArticleSection[];
+  /** Verwandte Artikel-Slugs. */
+  related?: string[];
+  /** Verwandte Produkt-/Kategorie-Slugs. */
+  relatedProducts?: { label: string; href: string }[];
+  /** Optionale Article-Keywords. */
+  keywords?: string[];
+}
+
+export const articles: Article[] = [
+  {
+    slug: "welche-terrassenueberdachung-passt-zu-ihrem-haus",
+    title: "Welche Terrassenüberdachung passt zu Ihrem Haus?",
+    metaTitle:
+      "Welche Terrassenüberdachung passt zu Ihrem Haus? Ratgeber 2026",
+    description:
+      "Pro-Line, Cube oder Lamellendach? Der ultimative Leitfaden zur Auswahl Ihrer Aluminium-Terrassenüberdachung — mit Entscheidungsmatrix, Preisranges und Praxis-Beispielen.",
+    category: "Auswahl",
+    publishedAt: "2026-04-01",
+    readingMinutes: 9,
+    image: "/catalog/hero-glashaus.jpg",
+    imageAlt: "Brait Pro-Line Terrassenüberdachung mit VSG-Glasdach in Ulm",
+    tldr: "Drei Systeme, drei Anwendungsfälle: Pro-Line (wandbefestigt, ab 7.900 €) für klassische Hausterrassen, Cube (freistehend, ab 9.500 €) für Gartenlounges ohne Wandanschluss, Lamellendach (verstellbar, ab 14.000 €) für Premium-Outdoor mit voller Klimakontrolle. Die Wahl hängt von Ausrichtung, Statik, Budget und gewünschter Nutzungsdauer pro Jahr ab.",
+    sections: [
+      {
+        factBox: {
+          title: "Schnell-Übersicht — die drei Systeme",
+          items: [
+            "Pro-Line: wandbefestigt, VSG-Glasdach, ab 7.900 €. Ideal bei Süd-/Westausrichtung mit Hauswand.",
+            "Cube: freistehend, kubisches Design, ab 9.500 €. Ideal als Garten-Lounge ohne Wandanschluss.",
+            "Lamellendach: verstellbare Aluminium-Lamellen, ab 14.000 €. Ideal für volle Klimakontrolle und ganzjährige Nutzung.",
+          ],
+        },
+      },
+      {
+        heading: { text: "Welche Faktoren entscheiden über das richtige System?" },
+        paragraphs: [
+          "Vor der Wahl der Bauart sollten Sie sich vier Fragen beantworten: Gibt es eine geeignete Hauswand für den Anschluss? In welche Himmelsrichtung zeigt die Terrasse? Wie oft wollen Sie die Überdachung pro Jahr nutzen — nur an Sommernachmittagen oder bei jedem Wetter? Und wie wichtig ist Ihnen volle Klimakontrolle gegenüber maximaler Lichtdurchlässigkeit?",
+          "Wenn Sie eine massive Hauswand haben und die Terrasse in 6 Monaten pro Jahr nutzen wollen, ist Pro-Line wirtschaftlich unschlagbar. Wenn Sie keine Hauswand haben oder die Überdachung als eigenständiges Architekturelement wollen, kommt Cube ins Spiel. Wenn Sie 365 Tage Outdoor-Wohnen möchten — Sommer-Sonne wie Winter-Regenschutz — führt am Lamellendach kein Weg vorbei.",
+        ],
+      },
+      {
+        heading: { text: "Pro-Line — die solide wandbefestigte Lösung" },
+        paragraphs: [
+          "Pro-Line ist ein klassisches Anbaudach: schmale Aluminium-Sparren (60 × 40 mm) tragen ein VSG-Glasdach, integrierte Regenrinne im Pfosten leitet Niederschlag unsichtbar ab. Bis 7 m Breite und 4 m Tiefe ohne Mittelstütze. Der Wandanschluss erfolgt mit thermisch entkoppelter EPDM-Dichtung, die Befestigung mit chemischen Verbundankern.",
+          "Vorteil: Pro-Line lässt sich später jederzeit zum Glashaus erweitern, indem rahmenlose Schiebewände, Festrahmen oder Zip-Screens nachgerüstet werden. Sie können also mit einer offenen Überdachung starten und Jahre später zum geschlossenen Übergangsraum erweitern.",
+        ],
+      },
+      {
+        heading: { text: "Cube — das freistehende Architektur-Statement" },
+        paragraphs: [
+          "Cube ist eine kubische, freistehende Aluminium-Konstruktion, die ohne Wandanschluss auskommt. Vier Pfosten 15 × 15 cm tragen ein VSG-Glasdach oder HPL-Platten. Die Cube wird gerne dort eingesetzt, wo eine Hauswand fehlt (Garten-Lounge in Reichweite zum Pool oder zum Grill) oder wo eine optisch losgelöste Konstruktion bewusst gewünscht ist.",
+          "Statisch ist Cube anspruchsvoller als Pro-Line, weil die Lasten allein über die vier Pfosten in den Boden geleitet werden. Wir berechnen jede Cube individuell für die Schneelastzone vor Ort — Ulm liegt in Zone 2a, höhere Lagen der Schwäbischen Alb in Zone 3.",
+        ],
+      },
+      {
+        heading: { text: "Lamellendach — Premium für volle Klimakontrolle" },
+        paragraphs: [
+          "Lamellendächer haben Aluminium-Lamellen, die motorisch von 0° (komplett offen, Himmelssicht) bis 135° (geschlossen, wasserdicht) drehbar sind. Per Funk-Fernbedienung oder App regulieren Sie Sonne, Schatten und Regenschutz auf Knopfdruck. Mit optionalem Wettersensor schließt das Dach automatisch bei beginnendem Regen.",
+          "Die Premium-Investition zahlt sich aus, wenn Sie die Überdachung 365 Tage im Jahr nutzen wollen. Mit Glasschiebewänden und Zip-Screens wird das Lamellendach zum vollwertigen Outdoor-Wohnzimmer — frostfrei (Aluminium ist korrosionsbeständig), trocken (geschlossen wasserdicht) und windstabil (Zip-Screens bis Windstärke 7).",
+        ],
+      },
+      {
+        heading: { text: "Wie hoch sind die laufenden Kosten?" },
+        paragraphs: [
+          "Aluminium-Konstruktionen mit Pulverbeschichtung sind nahezu wartungsfrei. Reinigung 1× pro Jahr mit Wasser und mildem Reiniger genügt. VSG-Glas: gleiche Reinigung wie Hausfenster. Dichtungen halten 15+ Jahre, Motoren 12–15 Jahre.",
+          "Realistische Wartungskosten: 0–50 € pro Jahr bei Eigenleistung, 200–400 € pro Jahr mit Brait-Wartungspaket (Inspektion, Reinigung, Tuchprüfung, Motorservice).",
+        ],
+      },
+      {
+        heading: { text: "Entscheidungsmatrix" },
+        table: {
+          columns: ["Ihr Szenario", "Empfehlung"],
+          rows: [
+            ["Hauswand vorhanden, Süd-/Westterrasse, Sommer-Nutzung", "Pro-Line"],
+            ["Keine Hauswand, freistehende Garten-Lounge", "Cube"],
+            ["365-Tage-Outdoor-Wohnen, volle Klimakontrolle", "Lamellendach"],
+            ["Vorhandenes Glasdach + Sommerhitze-Problem", "Pro-Line/Cube + Aufglasmarkise"],
+            ["Gastronomie / repräsentativer Außenbereich", "Cube oder Lamellendach + Glasschiebewände"],
+            ["Knappes Budget, später erweiterbar", "Pro-Line, später Glashaus"],
+          ],
+        },
+      },
+      {
+        heading: { text: "Was sollten Sie als Nächstes tun?" },
+        paragraphs: [
+          "Vereinbaren Sie einen kostenlosen Demo-Koffer-Termin: Wir kommen mit Mini-Modell, Materialmustern und 3D-Konfigurator zu Ihnen. Innerhalb von 60–120 Minuten klären wir Ausrichtung, Statik, Genehmigungspflicht und Optik — danach erhalten Sie innerhalb von 5 Werktagen ein verbindliches Festpreis-Angebot.",
+        ],
+      },
+    ],
+    related: [
+      "markise-vs-pergola-vs-lamellendach",
+      "was-kostet-eine-terrassenueberdachung-in-ulm",
+      "genehmigung-terrassendach-baden-wuerttemberg",
+    ],
+    relatedProducts: [
+      { label: "Terrassenüberdachungen", href: "/terrassenueberdachungen" },
+      { label: "Q-Bus Lamellen-Pergola", href: "/q-bus" },
+    ],
+    keywords: [
+      "Terrassenüberdachung Auswahl",
+      "Pro-Line vs Cube",
+      "Lamellendach Empfehlung",
+      "Terrassendach Ulm",
+    ],
+  },
+
+  {
+    slug: "markise-vs-pergola-vs-lamellendach",
+    title: "Markise vs. Pergola vs. Lamellendach — Vergleich 2026",
+    description:
+      "Markise, Pergola, Lamellendach im direkten Vergleich: Schattenverhalten, Wetterfestigkeit, Preis, Nutzungsdauer. Welche Lösung wirklich zu welcher Terrasse passt.",
+    category: "Auswahl",
+    publishedAt: "2026-04-05",
+    readingMinutes: 7,
+    image: "/catalog/lamellendach-1.jpg",
+    imageAlt: "Vergleich Markise Pergola Lamellendach",
+    tldr: "Markise = günstig + flexibel, schützt nur vor Sonne (1.200–4.500 €). Pergola = Statement-Konstruktion mit beweglichem Sonnenschutz (8.000–15.000 €). Lamellendach = Premium mit Sonnen- + Regenschutz auf Knopfdruck (14.000–28.000 €). Markise ist sinnvoll für reine Hitze-Reduktion im Sommer, Pergola für Garten-Lounges, Lamellendach für ganzjährige Outdoor-Nutzung.",
+    sections: [
+      {
+        heading: { text: "Wofür ist eine Markise gemacht?" },
+        paragraphs: [
+          "Markisen sind reine Sonnenschutz-Lösungen. Sie schützen Tuch + Mechanik vor UV und Hitze und reduzieren die Innenraum-Temperatur um 5–10 °C. Aber: Markisen sind nicht regenfest. Bei beginnendem Regen müssen sie eingefahren werden — Wassersäcke beschädigen Tuch und Mechanik.",
+          "Vorteil Markise: günstig (1.200–4.500 €), schnell montiert (1 Tag), vielseitig (Gelenkarm, Fallarm, Senkrecht, Aufglas). Nachteil: nur Sommer-Werkzeug, nicht wetterfest.",
+        ],
+      },
+      {
+        heading: { text: "Was unterscheidet eine Pergola?" },
+        paragraphs: [
+          "Pergola heißt im engeren Sinn: Aluminium-Konstruktion mit beweglichem Sonnenschutz, ohne festes Dach. Klassische Pergola: Aluminium-Rahmen mit Stoffsegel, das ein- und ausgefahren wird. Bioklimatische Pergola = Lamellendach (siehe nächster Abschnitt).",
+          "Pergolen mit Stoffsegel kosten 8.000–15.000 €, sind formal eine Konstruktion (kein Anbau wie Pro-Line) und brauchen daher in BW manchmal eine Bauanzeige bei größeren Anlagen. Vorteil: optisch leichter als Glasdach, große Schattenflächen.",
+        ],
+      },
+      {
+        heading: { text: "Was kann ein Lamellendach mehr als Pergola und Markise?" },
+        paragraphs: [
+          "Das Lamellendach kombiniert die Vorteile: Aluminium-Lamellen drehen sich von 0° (offen) bis 135° (geschlossen wasserdicht). Sommer-Sonne reinkommen lassen, dann Schatten regulieren, bei Regen geschlossen — alles auf Knopfdruck.",
+          "Lamellendächer kosten 14.000–28.000 €. Investitions-Argument: ganzjährige Nutzung. Während Markisen 4–5 Monate im Einsatz sind und Pergolen 5–6, läuft das Lamellendach 12 Monate. Pro Nutzungstag kann das günstiger sein als eine Markise.",
+        ],
+      },
+      {
+        heading: { text: "Direkter Vergleich" },
+        table: {
+          columns: ["Merkmal", "Markise", "Pergola (Stoff)", "Lamellendach"],
+          rows: [
+            ["Sonnenschutz", "Ja", "Ja", "Ja, regulierbar"],
+            ["Regenschutz", "Nein", "Nein (Stoff)", "Ja, wasserdicht"],
+            ["Maße", "bis 7 × 4 m", "bis 6 × 4 m", "bis 7 × 4,5 m"],
+            ["Windklasse", "5", "5", "5+ (geschlossen)"],
+            ["Preis", "1.200–4.500 €", "8.000–15.000 €", "14.000–28.000 €"],
+            ["Lebensdauer", "10–15 Jahre", "15–20 Jahre", "30+ Jahre"],
+            ["Genehmigung BW", "≤ 30 m² frei", "Bauanzeige möglich", "Bauanzeige möglich"],
+            ["Nutzungsmonate", "4–5 / Jahr", "5–6 / Jahr", "12 / Jahr"],
+          ],
+        },
+      },
+      {
+        heading: { text: "Welche Kombinationen sind sinnvoll?" },
+        paragraphs: [
+          "Pro-Line-Glasdach + Aufglasmarkise: günstige Variante mit Hitze-Schutz im Sommer. Investition ca. 10.000 €, Nutzung 7–8 Monate.",
+          "Lamellendach + Zip-Screen + Glasschiebewände: voll wettergeschützter Outdoor-Wohnraum. Investition 22.000–28.000 €, Nutzung 12 Monate.",
+          "Pergola mit Stoffsegel: rein optische / Sommer-Lounge-Lösung. Wenig Wetterfestigkeit, aber günstiger als Lamellendach.",
+        ],
+      },
+    ],
+    related: [
+      "welche-terrassenueberdachung-passt-zu-ihrem-haus",
+      "was-kostet-eine-terrassenueberdachung-in-ulm",
+    ],
+    relatedProducts: [
+      { label: "Markisen", href: "/markisen" },
+      { label: "Q-Bus Lamellen-Pergola", href: "/q-bus" },
+    ],
+    keywords: [
+      "Markise vs Pergola",
+      "Lamellendach Vergleich",
+      "Pergola Pro Contra",
+    ],
+  },
+
+  {
+    slug: "was-kostet-eine-terrassenueberdachung-in-ulm",
+    title: "Was kostet eine Terrassenüberdachung in Ulm? Preisleitfaden 2026",
+    description:
+      "Realistische Preise für Terrassenüberdachungen in Ulm und Umgebung — Pro-Line, Cube, Lamellendach inkl. Montage. Faktoren wie Größe, Glas, Optionen und versteckte Kosten transparent erklärt.",
+    category: "Preise",
+    publishedAt: "2026-04-08",
+    readingMinutes: 8,
+    image: "/catalog/cube-1.jpg",
+    imageAlt: "Brait Cube Terrassenüberdachung Preisbeispiel Ulm",
+    tldr: "Eine Aluminium-Terrassenüberdachung in Ulm kostet 7.900 € (Pro-Line wandbefestigt, 4 × 3 m, VSG-Glas) bis 28.000 € (Lamellendach 5 × 4 m mit LED, Zip-Screen und Glasschiebewänden). Die Hauptpreistreiber sind Größe, Konstruktionstyp, Glas, Statik (Schneelastzone) und Verschattung. Brait-Preise enthalten immer Montage durch eigenes Team.",
+    sections: [
+      {
+        factBox: {
+          title: "Preisspannen 2026 (inkl. Montage)",
+          items: [
+            "Pro-Line wandbefestigt 4 × 3 m: 7.900 – 9.500 €",
+            "Cube freistehend 4 × 3 m: 9.500 – 12.500 €",
+            "Lamellendach 4 × 3,5 m: 14.000 – 18.000 €",
+            "Lamellendach Vollausstattung 5 × 4 m: 22.000 – 28.000 €",
+            "Glashaus mit Schiebewänden: +2.500 – 5.000 € auf Pro-Line/Cube",
+          ],
+        },
+      },
+      {
+        heading: { text: "Welche Faktoren bestimmen den Preis?" },
+        bullets: [
+          "Größe: Verdoppelung der Fläche kostet etwa 60–70 % mehr (Skaleneffekt).",
+          "Konstruktionstyp: Cube ist 15–20 % teurer als Pro-Line bei gleicher Fläche.",
+          "Glas: VSG 2× 6 mm Standard, satiniertes oder Sonnenschutzglas +15–25 %.",
+          "Schneelastzone: Höhenlagen Schwäbische Alb (Zone 3) +8–12 %.",
+          "Sonderfarben: RAL-Maßanfertigung statt Standardfarbe +5 %.",
+          "Verschattung: Aufglasmarkise +1.500 €, Zip-Screens je Seite +800–1.400 €.",
+          "Beleuchtung: LED-Streifen entlang der Lamellen +1.200 €.",
+          "Glasschiebewände: rahmenlos +2.500–4.500 € (je nach Breite).",
+        ],
+      },
+      {
+        heading: { text: "Was ist im Brait-Preis enthalten?" },
+        paragraphs: [
+          "Bei Brait Überdachungen sind in jedem Festpreis-Angebot enthalten: digitales 3D-Aufmaß, statische Berechnung für Ihre Schneelastzone, Anlieferung, Montage durch eigenes Team (1–4 Tage), Endabnahme mit Funktionsprüfung. Es gibt keine Folgekosten für „Statiker\u201c oder „Spezialwerkzeug\u201c — alles ist im Festpreis abgedeckt.",
+          "Was nicht enthalten ist: bauliche Vorarbeiten am Untergrund (Pflastern, Fundament gießen), Stromanschluss zum Motor, Trockenlegung der Wand bei Wandanschluss in Bestandsgebäuden mit beschädigtem Putz. Diese Kosten klären wir beim Vor-Ort-Termin transparent.",
+        ],
+      },
+      {
+        heading: { text: "Beispiel-Kalkulationen" },
+        table: {
+          columns: ["Konfiguration", "Preis"],
+          rows: [
+            ["Pro-Line 4 × 3 m, VSG, Anthrazit (Standard)", "7.900 €"],
+            ["Pro-Line 5 × 3,5 m, satiniertes VSG, Sonderfarbe", "11.200 €"],
+            ["Cube 4 × 3,5 m, VSG, freistehend", "11.500 €"],
+            ["Cube 5 × 4 m, VSG, mit Aufglasmarkise", "16.800 €"],
+            ["Lamellendach 4 × 3,5 m, Standard", "15.500 €"],
+            ["Lamellendach 5 × 4 m, LED + Wettersensor + Glasschiebewand vorne", "23.500 €"],
+            ["Glashaus = Pro-Line + 3 Glasschiebewände", "13.800 €"],
+          ],
+        },
+      },
+      {
+        heading: { text: "Wie wird die Investition günstiger?" },
+        paragraphs: [
+          "Standardmaße bevorzugen: Sondergrößen kosten 5–8 % mehr als Standardraster.",
+          "Standardfarbe wählen: Anthrazit RAL 7016 ist die häufigste Wahl und kommt direkt aus der Standardproduktion.",
+          "Erweiterungen modular planen: Sie müssen Glasschiebewände, LED, Zip-Screens nicht sofort kaufen. Pro-Line-Profile sind so vorbereitet, dass alles später nachgerüstet werden kann.",
+          "Frühjahrsangebot nutzen: zwischen Februar und April liefern wir oft mit kürzeren Lieferzeiten und gelegentlich mit Sonderkonditionen.",
+        ],
+      },
+      {
+        heading: { text: "Was Sie beachten sollten" },
+        paragraphs: [
+          "Misstrauen Sie Anbieter-Preisen unter 5.000 € für eine 4 × 3 m Terrassenüberdachung. Das geht nur mit Stahl + Polycarbonat, ohne Statik-Nachweis und ohne richtige Wandanschluss-Konstruktion. Reparaturkosten in 5–10 Jahren übersteigen die Ersparnis.",
+          "Lassen Sie sich Festpreis-Angebote geben — keine „Schätzungen\u201c. Brait gibt jedes Angebot mit verbindlichem Endpreis ab, sobald das digitale 3D-Aufmaß gemacht ist.",
+        ],
+      },
+    ],
+    related: [
+      "welche-terrassenueberdachung-passt-zu-ihrem-haus",
+      "genehmigung-terrassendach-baden-wuerttemberg",
+    ],
+    relatedProducts: [
+      { label: "Terrassenüberdachungen", href: "/terrassenueberdachungen" },
+      { label: "Konfigurator", href: "/konfigurator" },
+    ],
+    keywords: [
+      "Terrassenüberdachung Preis Ulm",
+      "Was kostet Terrassendach",
+      "Lamellendach Kosten",
+      "Brait Preise",
+    ],
+  },
+
+  {
+    slug: "genehmigung-terrassendach-baden-wuerttemberg",
+    title: "Genehmigung Terrassendach in Baden-Württemberg — Schritt für Schritt",
+    description:
+      "Brauche ich eine Baugenehmigung für meine Terrassenüberdachung in BW? LBO-Regeln, verfahrensfreie Größen, Bauanzeige-Pflicht und die Sonderfälle Denkmalschutz, B-Plan und Mietobjekt klar erklärt.",
+    category: "Recht",
+    publishedAt: "2026-04-12",
+    readingMinutes: 6,
+    image: "/catalog/proline-2.jpg",
+    imageAlt: "Brait Pro-Line Terrassenüberdachung baden-württembergisch konform",
+    tldr: "In Baden-Württemberg sind Terrassenüberdachungen bis 30 m² Grundfläche und 3 m Tiefe ab Hauswand verfahrensfrei (LBO §50 Anlage 1). Größere Anlagen, B-Plan-Gebiete oder denkmalgeschützte Objekte brauchen eine Bauanzeige. Mietobjekte erfordern immer Vermieter-Zustimmung. Brait übernimmt bei Genehmigungspflicht die Behörden-Kommunikation.",
+    sections: [
+      {
+        heading: { text: "Welche Anlagen sind verfahrensfrei?" },
+        paragraphs: [
+          "§50 LBO Baden-Württemberg in Verbindung mit Anlage 1 listet die verfahrensfreien Bauvorhaben. Für Terrassenüberdachungen gelten:",
+        ],
+        bullets: [
+          "Grundfläche maximal 30 m²",
+          "Tiefe ab Außenwand maximal 3 m",
+          "Höhe maximal 3 m über Geländeoberkante",
+          "Keine Nutzungsänderung der Hauswand",
+          "Außerhalb von förmlich festgesetzten Sanierungsgebieten",
+          "Nicht an denkmalgeschützten Gebäuden",
+        ],
+        factBox: {
+          title: "Faustformel",
+          items: [
+            "Bis 5 × 6 m freistehend: ohne Antrag.",
+            "Bis 7,5 × 4 m wandbefestigt: ohne Antrag.",
+            "Größer oder höher: Bauanzeige.",
+          ],
+        },
+      },
+      {
+        heading: { text: "Wann ist eine Bauanzeige nötig?" },
+        paragraphs: [
+          "Wird eine der genannten Grenzen überschritten, ist eine Kenntnisgabe nach § 51 LBO oder eine Baugenehmigung nach § 49 LBO erforderlich. In der Praxis: Sie reichen einen vereinfachten Bauantrag mit Lageplan, Bauzeichnung, Statik und Beschreibung beim zuständigen Landratsamt oder Stadtbauamt ein.",
+          "Die Bearbeitungszeit liegt bei 4–8 Wochen. Wir empfehlen bei größeren Anlagen, den Antrag früh einzureichen, damit die Montage im Frühjahr/Sommer möglich ist.",
+        ],
+      },
+      {
+        heading: { text: "Sonderfall Denkmalschutz" },
+        paragraphs: [
+          "An denkmalgeschützten Häusern (z.B. Ulmer Altstadt, Söflingen, Wiblingen) ist jede Terrassenüberdachung genehmigungspflichtig — unabhängig von der Größe. Vor jedem Bau ist eine denkmalrechtliche Erlaubnis nötig (DSchG BW §8). Die untere Denkmalschutzbehörde prüft, ob die Konstruktion das Erscheinungsbild beeinträchtigt.",
+          "Praktisch heißt das: Pro-Line in Anthrazit RAL 7016 wird oft genehmigt, weil die schmalen Profile zurückhaltend wirken. Cube in glänzendem Schwarz oder mit hervortretender Optik wird häufiger abgelehnt.",
+        ],
+      },
+      {
+        heading: { text: "Sonderfall B-Plan-Gebiet" },
+        paragraphs: [
+          "In Bebauungsplangebieten (z.B. Neubaugebiete) gelten oft Festsetzungen, die die Verfahrensfreiheit nach LBO einschränken. Typisch: Vorgaben zu Material, Farbe, Dachneigung, Position auf dem Grundstück. Vor dem Auftrag prüfen wir den B-Plan im Bauamt — die Auskunft ist meist kostenlos.",
+        ],
+      },
+      {
+        heading: { text: "Sonderfall Mietobjekt" },
+        paragraphs: [
+          "In Mietwohnungen oder gemieteten Häusern ist immer die schriftliche Zustimmung des Vermieters Pflicht. Wir empfehlen, das im Vermieter-Schreiben mit folgenden Punkten zu argumentieren: vollständig rückbaubar, keine Eingriffe in tragende Bauteile, Wertaufbesserung des Objekts.",
+          "In Mehrfamilienhäusern muss zusätzlich die Eigentümergemeinschaft beschließen. Hier liefern wir auf Wunsch ein Datenblatt mit technischen Spezifikationen, das sich für die Eigentümerversammlung eignet.",
+        ],
+      },
+      {
+        heading: { text: "Was übernimmt Brait?" },
+        paragraphs: [
+          "Bei verfahrensfreien Anlagen (≤ 30 m²) keine Bauunterlagen nötig — Sie haben aber das Recht auf eine schriftliche Bestätigung der Verfahrensfreiheit, die wir Ihnen mitliefern.",
+          "Bei genehmigungspflichtigen Anlagen erstellen wir auf Wunsch alle Bauunterlagen (Lageplan, Bauzeichnung, Statik) und reichen sie in Ihrem Auftrag bei der Behörde ein. Aufwand pauschal 350–650 € abhängig von Behörde.",
+        ],
+      },
+    ],
+    related: [
+      "was-kostet-eine-terrassenueberdachung-in-ulm",
+      "schneelast-in-sueddeutschland",
+    ],
+    relatedProducts: [
+      { label: "Service & Montage", href: "/service" },
+      { label: "Kontakt", href: "/kontakt" },
+    ],
+    keywords: [
+      "Terrassendach Genehmigung BW",
+      "Bauanzeige Terrassenüberdachung",
+      "LBO Baden-Württemberg",
+    ],
+  },
+
+  {
+    slug: "schneelast-in-sueddeutschland",
+    title: "Schneelast in Süddeutschland — was Sie bei der Auswahl beachten müssen",
+    description:
+      "Schneelastzonen in Bayern und Baden-Württemberg, Bemessung nach DIN 1055-5, was 200 kg/m² bedeuten — und warum Höhenlagen der Schwäbischen Alb besondere Statik brauchen.",
+    category: "Material",
+    publishedAt: "2026-04-15",
+    readingMinutes: 6,
+    image: "/catalog/lamellendach-2.jpg",
+    imageAlt: "Schneelast auf Lamellendach Süddeutschland",
+    tldr: "Süddeutschland fällt überwiegend in Schneelastzone 2 (1,32 kN/m² am Boden), Höhenlagen der Schwäbischen Alb in Zone 3 (1,89 kN/m²). Brait-Standardstatik trägt 200 kg/m² Dachlast. Bei Lagen ab 600 m oder Sondergrößen rechnen wir individuell — Lamellen müssen bei Schneefall geschlossen werden, damit Schnee abrutscht.",
+    sections: [
+      {
+        heading: { text: "Was bedeutet eine Schneelastzone?" },
+        paragraphs: [
+          "DIN 1055-5 teilt Deutschland in 5 Schneelastzonen (1, 1a, 2, 2a, 3) ein. Die Zone gibt die charakteristische Bodenschneelast in kN/m² an. Über einen Höhenfaktor wird sie auf den konkreten Standort skaliert: höhere Lagen haben mehr Schnee.",
+          "Aus Bodenschneelast wird Dachschneelast über einen Form-Beiwert berechnet: Flachdächer (Brait-Pro-Line, Cube) haben Form-Beiwert µ = 0,8. Bei 1,32 kN/m² (Zone 2) ergibt das 1,06 kN/m² ≈ 108 kg/m² Dachlast. Brait dimensioniert immer mindestens auf 200 kg/m² — Sicherheitsreserve eingebaut.",
+        ],
+      },
+      {
+        heading: { text: "Wo liegt das Brait-Service-Gebiet?" },
+        bullets: [
+          "Ulm, Neu-Ulm, Memmingen, Augsburg: Zone 2a (1,32 kN/m²)",
+          "Heidenheim, Aalen, Göppingen: Zone 2a/3 (Höhe ausschlaggebend)",
+          "Reutlingen, Tübingen: Zone 2",
+          "Schwäbische Alb ab 600 m: Zone 3 (1,89 kN/m²)",
+          "Höchster Brait-Bauort bisher: 780 m (Heroldstatt) — Zone 3, individuelle Statik",
+        ],
+      },
+      {
+        heading: { text: "Was passiert bei Überlastung?" },
+        paragraphs: [
+          "Bei nicht statisch berechneten Konstruktionen (oft Importware aus dem Ausland mit Standard-200 kg/m²) kann es bei einem ungewöhnlich starken Schneefall (z.B. 1.500–2.000 kg/m² Pulverschnee von 1,5 m Tiefe) zum Versagen kommen — Pfosten knicken, Sparren brechen, Glas reißt.",
+          "Brait-Konstruktionen sind durch individuelle Statik abgesichert: Wir berechnen Ihre Anlage für die exakte Schneelast Ihres Standorts. Bei Bedarf verstärken wir Sparren, ergänzen Mittelstützen oder erhöhen die Pfosten-Dimension auf 18 × 18 cm.",
+        ],
+      },
+      {
+        heading: { text: "Lamellendach im Winter — was tun?" },
+        paragraphs: [
+          "Lamellendächer müssen bei beginnendem Schneefall geschlossen werden (135°-Position). In dieser Stellung rutscht Schnee von den glatten Aluminium-Oberflächen ab — wie bei einem Glasdach. Geöffnete oder halbgeöffnete Lamellen können Schnee in den Profilen sammeln, der dann die Lamellen-Mechanik überlastet.",
+          "Mit dem optionalen Wettersensor wird das automatisch geregelt: Sobald der Sensor Niederschlag erkennt, fahren die Lamellen in 135°. Bei Schneeflocken-Erkennung lässt sich auch eine Heizung-Funktion in den Lamellen-Profilen aktivieren — bisher nur in Premium-Modellen.",
+        ],
+      },
+      {
+        heading: { text: "Was ist mit Vereisung?" },
+        paragraphs: [
+          "Aluminium-Profile sind frostsicher. Lackschichten (Pulverbeschichtung) zeigen auch nach Hunderten von Frost-Tau-Wechseln keine Rissbildung. Dichtungen aus EPDM bleiben elastisch bis −40 °C.",
+          "Bei Glasdächern: VSG ist nicht frostempfindlich. Schmelzwasser läuft über die integrierte Regenrinne ab. Vereiste Rinnen sind in 30 Jahren Praxis bei Brait nie zum Schaden geführt — die Rinnen haben ausreichend Querschnitt und Heizband-Vorbereitung.",
+        ],
+      },
+    ],
+    related: [
+      "welche-terrassenueberdachung-passt-zu-ihrem-haus",
+      "genehmigung-terrassendach-baden-wuerttemberg",
+    ],
+    relatedProducts: [
+      { label: "Q-Bus Lamellen-Pergola", href: "/q-bus" },
+      { label: "Wartungspakete", href: "/wartungspakete" },
+    ],
+    keywords: [
+      "Schneelast Süddeutschland",
+      "Schneelastzone Ulm",
+      "Lamellendach Schnee",
+    ],
+  },
+
+  {
+    slug: "aluminium-vs-holz",
+    title: "Aluminium vs. Holz — welches Material hält länger?",
+    description:
+      "Direkter Material-Vergleich für Terrassenüberdachungen: Aluminium 6063 T6 vs. Lärche, Douglasie, BSH-Holz. Lebensdauer, Wartung, Optik und Gesamtkosten über 20 Jahre.",
+    category: "Material",
+    publishedAt: "2026-04-18",
+    readingMinutes: 7,
+    image: "/catalog/proline-3.jpg",
+    imageAlt: "Aluminium-Terrassenüberdachung wartungsfrei",
+    tldr: "Aluminium 6063 T6 mit Pulverbeschichtung hält 30+ Jahre nahezu wartungsfrei. Hochwertiges Holz (Lärche/Douglasie) hält 20–25 Jahre, braucht aber alle 2–3 Jahre Pflege (Lasur, Imprägnierung). Über 20 Jahre Gesamtkosten: Aluminium ca. 30 % günstiger trotz höherer Anfangsinvestition. Aluminium ist die rationale Wahl, Holz die ästhetisch warme Alternative.",
+    sections: [
+      {
+        heading: { text: "Aluminium 6063 T6 — die technische Lösung" },
+        paragraphs: [
+          "Aluminium 6063 T6 ist eine Strangpress-Legierung mit 0,5 % Magnesium und 0,5 % Silizium. Im Temperzustand T6 (warmausgehärtet) erreicht es eine Zugfestigkeit von 215 N/mm² bei 2,7 g/cm³ Dichte. Damit ist Aluminium zwar weicher als Stahl (St37: 235 N/mm²), aber 3× leichter — und absolut korrosionsbeständig durch die natürliche Oxidschicht.",
+          "Pulverbeschichtung nach DIN EN 12206-1 bringt eine UV-stabile Schutzschicht in beliebiger RAL-Farbe auf, die 30+ Jahre hält. Wartung: 1× pro Jahr Reinigung mit Wasser und mildem Reiniger. Keine Imprägnierung, keine Lasur, keine Streichaktion.",
+        ],
+      },
+      {
+        heading: { text: "Holz — die warme Alternative" },
+        paragraphs: [
+          "Hochwertige Hölzer für Außenbereich: Lärche (mitteleuropäisch, Härteklasse 3, robust), Douglasie (höhere Härte, breit gewachsene Stämme), BSH-Holz (Brettschichtholz aus Fichte, kostengünstig, größere Spannweiten möglich).",
+          "Lebensdauer: 20–25 Jahre bei guter Pflege. Pflege heißt: alle 2–3 Jahre Lasur oder Imprägnierung (Kosten 200–400 € pro Behandlung), bei beschädigten Stellen Holzschutz-Lasur, gegen Pilz- und Insektenbefall regelmäßig prüfen.",
+          "Optisch: warm, lebendig, alters- und witterungsabhängig veränderlich (Patina vom hellbraun zum silbergrau bei unbehandelter Lärche). Für Liebhaber dieser Optik unschlagbar.",
+        ],
+      },
+      {
+        heading: { text: "Direkter Kostenvergleich über 20 Jahre" },
+        table: {
+          columns: ["Position", "Aluminium 6063 T6", "Lärche / Douglasie"],
+          rows: [
+            ["Anfangsinvestition (4 × 3 m)", "8.500 €", "6.500 €"],
+            ["Pflege Jahr 1–20", "300 € (Reinigung)", "3.500 € (10× Lasur)"],
+            ["Reparaturen (Schimmel, Risse)", "0 €", "1.000 € (geschätzt)"],
+            ["Lebensdauer-Wertverlust", "0 % (ersetzt nach 30 J.)", "100 % (Ersatz nach 25 J.)"],
+            ["Gesamtkosten 20 Jahre", "~8.800 €", "~11.000 €"],
+          ],
+        },
+      },
+      {
+        heading: { text: "Welche Argumente sprechen für was?" },
+        bullets: [
+          "Aluminium: wartungsfrei, korrosionsbeständig, 30+ Jahre Lebensdauer, RAL-Vielfalt, kombiniert mit Glas/Lamellen.",
+          "Holz: warme Optik, natürliche Maserung, ökologische Nähe, niedrigere Anfangsinvestition.",
+          "Aluminium: ideal bei Lamellendächern (verstellbare Mechanik braucht maßhaltige Profile, die nur Aluminium liefert).",
+          "Holz: ideal bei Pergolen mit Stoffsegel oder klassischen Pavillons in mediterranen Architekturen.",
+        ],
+      },
+      {
+        heading: { text: "Was wir bei Brait machen" },
+        paragraphs: [
+          "Brait spezialisiert sich seit 2014 auf Aluminium-Konstruktionen — wir liefern keine Holzanlagen. Grund: Lamellendächer, Glas-Schiebewände und Aufglasmarkisen funktionieren nur mit maßhaltigen Aluminium-Profilen. Wenn Sie Holz wollen, empfehlen wir lokale Schreinerbetriebe in Ulm. Unsere Stärke ist die langlebige, wartungsarme, modular erweiterbare Aluminium-Lösung.",
+        ],
+      },
+    ],
+    related: [
+      "welche-terrassenueberdachung-passt-zu-ihrem-haus",
+      "pflege-und-wartung",
+    ],
+    relatedProducts: [{ label: "Terrassenüberdachungen", href: "/terrassenueberdachungen" }],
+    keywords: [
+      "Aluminium vs Holz",
+      "Terrassendach Material",
+      "Lärche Douglasie Pergola",
+    ],
+  },
+
+  {
+    slug: "pflege-und-wartung",
+    title: "Pflege & Wartung Ihrer Aluminium-Überdachung",
+    description:
+      "Wartungsleitfaden für Brait-Überdachungen: Reinigungs-Intervall, Tuchpflege, Motor-Service, Glas-Reinigung, Dichtung-Check. Für Eigenleistung und Wartungsvertrag.",
+    category: "Pflege",
+    publishedAt: "2026-04-20",
+    readingMinutes: 6,
+    image: "/catalog/cube-2.jpg",
+    imageAlt: "Wartung Brait Aluminium-Überdachung Ulm",
+    tldr: "Aluminium-Konstruktionen mit Pulverbeschichtung sind nahezu wartungsfrei. Reinigung 1× pro Jahr genügt. Bewegliche Teile (Motoren, Lamellen, Markisentücher) brauchen alle 2–3 Jahre eine Inspektion. Brait-Wartungspakete ab 14,90 € pro Monat decken das Komplettpaket ab — inklusive Tuch- und Motorprüfung.",
+    sections: [
+      {
+        heading: { text: "Was muss wirklich gewartet werden?" },
+        bullets: [
+          "Aluminium-Profile: 1× pro Jahr Reinigung mit Wasser + mildem Reiniger (z.B. Spülmittel). Kein Hochdruckreiniger direkt auf Pulverbeschichtung — kann mikroskopische Risse verursachen.",
+          "Glas: 1× pro Jahr Reinigung wie Hausfenster. Bei Vogelkot innerhalb von 2 Wochen entfernen — die Säuren können bei langem Kontakt die Glas-Beschichtung angreifen.",
+          "Markisentücher: 2× pro Jahr trockene Bürstenreinigung, bei Verschmutzung Klar-Wasser-Reinigung. Nicht in Waschmaschine — UV-Schutz wird zerstört.",
+          "Motoren: alle 3 Jahre Schmierung der Mechanik durch Fachmann. Brait-Wartung beinhaltet das.",
+          "Dichtungen: alle 5 Jahre Sichtprüfung. Bei sichtbarer Verhärtung Austausch (50–80 € pro Lippen-Dichtung).",
+          "Lamellen: alle 2 Jahre Funktionsprüfung (Drehung 0–135°, Endschalter, Wassersammlung).",
+        ],
+      },
+      {
+        heading: { text: "Eigenleistung — Schritt für Schritt" },
+        paragraphs: [
+          "1. Lose Verschmutzung mit weichem Besen abkehren. 2. Mit Gartenschlauch (max. 3 bar) abspülen. 3. Mit weichem Schwamm und Spülmittel-Wasser einseifen. 4. Mit klarem Wasser nachspülen. 5. Glas mit Mikrofasertuch streifenfrei abwischen.",
+          "Für die Markise: Tuch komplett ausgefahren reinigen. Bei feuchten Tagen einrollen vermeiden — bei eingerolltem feuchtem Tuch entwickelt sich Schimmel. Tuch in trockener Wäsche kurz auslüften, dann erst einrollen.",
+        ],
+      },
+      {
+        heading: { text: "Brait-Wartungspakete" },
+        paragraphs: [
+          "Brait bietet drei Wartungs-Stufen:",
+        ],
+        bullets: [
+          "Basic 14,90 €/Monat: 1× pro Jahr Inspektion + Reinigung Aluminium + Funktionsprüfung Motoren.",
+          "Premium 24,90 €/Monat: zusätzlich Glas-Reinigung, Tuchpflege, Dichtungs-Check, Hagelschaden-Sofortmeldung.",
+          "Komplett 39,90 €/Monat: zusätzlich Motor-Schmierung, Endschalter-Justage, kostenloser Tuch-Austausch im Schadensfall (Selbstbehalt 250 €).",
+        ],
+      },
+      {
+        heading: { text: "Schadenserkennung" },
+        paragraphs: [
+          "Anzeichen, die auf Wartungsbedarf hindeuten: Markise fährt nicht mehr ganz aus oder ein, Motor brummt länger als üblich, Glas-Dichtungen wirken brüchig, Lamellen-Bewegung ruckelt, Wasser sammelt sich in Profilen.",
+          "Bei diesen Symptomen früh handeln — Reparaturen kosten weniger als Komplett-Tausch. Brait reagiert auf gemeldete Defekte innerhalb von 5 Werktagen mit Inspektion vor Ort.",
+        ],
+      },
+    ],
+    related: ["aluminium-vs-holz"],
+    relatedProducts: [{ label: "Wartungspakete", href: "/wartungspakete" }],
+    keywords: [
+      "Aluminium Pflege",
+      "Markise Wartung",
+      "Lamellendach Pflege",
+    ],
+  },
+
+  {
+    slug: "energie-sparen-mit-markisen",
+    title: "Energie sparen mit Markisen — wie viel Kühlleistung Sie sparen",
+    description:
+      "Markisen reduzieren Hitze in Innenräumen um 5–10 °C und senken Klimaanlagen-Kosten um 30–50 %. Konkrete Berechnungen für Süd- und Westterrassen, Aufglasmarkisen und Zip-Screens.",
+    category: "Energie",
+    publishedAt: "2026-04-22",
+    readingMinutes: 5,
+    image: "/markisen-types/aufglas-main.webp",
+    imageAlt: "Aufglasmarkise reduziert Hitze im Wintergarten",
+    tldr: "Eine Markise vor einem 3 × 2 m Süd-Fenster reduziert die direkte Sonneneinstrahlung um bis zu 90 %, was im Innenraum 5–10 °C weniger ergibt. Eine Klimaanlage spart dadurch 30–50 % Strom. Über 10 Sommer amortisiert sich die Markisen-Investition allein durch Energieersparnis.",
+    sections: [
+      {
+        heading: { text: "Wie viel Hitze produziert ein Süd-Fenster?" },
+        paragraphs: [
+          "Ein durchschnittliches Süd-Fenster (3 × 2 m, 6 m²) lässt im Hochsommer (Mittagssonne) bis zu 4.500 Watt Sonnenenergie ins Zimmer. Das entspricht der Heizleistung von 4 mittleren Heizkörpern. Ohne Schutz heizt sich der Raum um 5–10 °C über die Außentemperatur auf.",
+          "Eine außenliegende Markise oder ein Zip-Screen blockt 70–90 % dieser Strahlung schon vor dem Glas — die Hitze entsteht gar nicht erst im Raum.",
+        ],
+      },
+      {
+        heading: { text: "Innenliegende vs. außenliegende Verschattung" },
+        paragraphs: [
+          "Innenliegende Verschattung (Plissees, Vorhänge) blockt zwar Licht, aber die Hitze entsteht trotzdem hinter dem Glas. Ergebnis: 30–50 % Hitzereduktion.",
+          "Außenliegende Verschattung (Markise, Zip-Screen, Aufglasmarkise) blockt die Strahlung bereits vor dem Glas. Ergebnis: 70–90 % Hitzereduktion. Bei Wintergärten und Glashäusern ist außenliegender Schutz konkurrenzlos.",
+        ],
+      },
+      {
+        heading: { text: "Konkrete Stromkosten-Ersparnis" },
+        paragraphs: [
+          "Eine Klimaanlage verbraucht pro Stunde ca. 1,2 kWh, um 4.500 Watt Hitze abzuführen. Bei einem Strompreis von 0,38 €/kWh kostet eine Stunde Klimatisierung 0,46 €.",
+          "An einem heißen Sommertag läuft die Klimaanlage 6 Stunden — das sind 2,76 € pro Tag. Mit Markise reduziert sich das auf 0,80 € pro Tag. Über 60 heiße Sommertage spart das 117 € pro Saison.",
+          "Über 10 Jahre = 1.170 € reine Stromersparnis. Eine 3 × 2 m Gelenkarmmarkise kostet 2.200 €. Verbleibender Mehrwert: Komfortgewinn (kühler Wohnraum, kein Klima-Geräusch), keine Trockenheit der Schleimhäute, weniger CO₂-Ausstoß.",
+        ],
+      },
+      {
+        heading: { text: "Welche Lösung für welches Fenster?" },
+        bullets: [
+          "Süd-Fenster im Erdgeschoss: Gelenkarm- oder Aufglasmarkise (horizontaler Schatten).",
+          "West-Fenster mit tiefstehender Abendsonne: Senkrechtmarkise oder Zip-Screen (senkrechter Schutz).",
+          "Wintergarten oder Pro-Line-Glasdach: Aufglasmarkise direkt aufs Glasdach.",
+          "Schlafzimmer-Dachfenster: Senkrecht-Rollo oder externe Verdunklung.",
+        ],
+      },
+      {
+        heading: { text: "Wirtschaftlichkeitsrechnung" },
+        table: {
+          columns: ["Position", "Wert"],
+          rows: [
+            ["Markise Anschaffung 3 × 2 m", "2.200 €"],
+            ["Energie-Ersparnis pro Jahr", "117 €"],
+            ["Komfortgewinn pro Jahr (geschätzt)", "150 €"],
+            ["Amortisation rein finanziell", "~19 Jahre"],
+            ["Amortisation inkl. Komfort", "~8 Jahre"],
+          ],
+        },
+      },
+    ],
+    related: [
+      "welche-terrassenueberdachung-passt-zu-ihrem-haus",
+      "markise-vs-pergola-vs-lamellendach",
+    ],
+    relatedProducts: [
+      { label: "Markisen", href: "/markisen" },
+    ],
+    keywords: [
+      "Markisen Energie sparen",
+      "Klimaanlage vs Markise",
+      "Hitzeschutz Fenster",
+    ],
+  },
+];
+
+export const findArticle = (slug: string) => articles.find((a) => a.slug === slug);

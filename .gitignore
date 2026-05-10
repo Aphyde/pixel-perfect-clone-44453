@@ -16,6 +16,7 @@ dist-ssr
 .next
 out
 .tsbuildinfo
+tsconfig.tsbuildinfo
 .swc/
 
 # Editor directories and files

@@ -3,6 +3,13 @@ import { Space_Grotesk, Manrope } from "next/font/google";
 import { Providers } from "./providers";
 import ScrollToTop from "@/components/ScrollToTop";
 import Telemetry from "@/components/Telemetry";
+import JsonLd from "@/components/seo/JsonLd";
+import {
+  buildLocalBusinessSchema,
+  buildOrganizationSchema,
+  buildWebSiteSchema,
+} from "@/lib/seo/schema";
+import { SITE_URL } from "@/lib/seo/site";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -24,8 +31,6 @@ export const viewport: Viewport = {
   initialScale: 1,
   themeColor: "#1c1b1b",
 };
-
-const SITE_URL = "https://brait-ueberdachung.de";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -49,6 +54,10 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "/",
+    languages: {
+      "de-DE": SITE_URL,
+      "x-default": SITE_URL,
+    },
   },
   openGraph: {
     type: "website",
@@ -94,47 +103,11 @@ export const metadata: Metadata = {
   },
 };
 
-const localBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Brait Überdachungen",
-  description:
-    "Premium Aluminium-Terrassenüberdachungen, Markisen und Pergolen aus Ulm.",
-  url: SITE_URL,
-  telephone: "+49 173 530 3581",
-  email: "info@brait-ueberdachung.de",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Ulm",
-    addressRegion: "Baden-Württemberg",
-    addressCountry: "DE",
-  },
-  areaServed: [
-    {
-      "@type": "City",
-      name: "Ulm",
-    },
-    {
-      "@type": "AdministrativeArea",
-      name: "Baden-Württemberg",
-    },
-  ],
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "18:00",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: "Saturday",
-      opens: "10:00",
-      closes: "14:00",
-    },
-  ],
-  priceRange: "€€€",
-};
+const globalSchemaGraph = [
+  buildOrganizationSchema(),
+  buildLocalBusinessSchema(),
+  buildWebSiteSchema(),
+];
 
 export default function RootLayout({
   children,
@@ -144,12 +117,7 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${spaceGrotesk.variable} ${manrope.variable}`}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessJsonLd),
-          }}
-        />
+        <JsonLd id="schema-global" data={globalSchemaGraph} />
       </head>
       <body className="font-body antialiased">
         <Providers>

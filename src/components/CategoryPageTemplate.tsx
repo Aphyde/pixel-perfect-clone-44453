@@ -2,20 +2,37 @@
 
 import Layout from "@/components/Layout";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn } from "@/components/ScrollAnimations";
-import { m } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { Category } from "@/data/products";
 import { hasConfigurator } from "@/data/products";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import FaqSection from "@/components/seo/FaqSection";
+import CategoryLongForm from "@/components/seo/CategoryLongForm";
+import type { BreadcrumbItem } from "@/lib/seo/schema";
+import type { FaqEntry } from "@/data/faq";
+import type { CategoryLongFormContent } from "@/data/category-content";
 
 interface Props {
   category: Category;
   otherCategories: { label: string; image: string; link: string }[];
+  breadcrumbs?: BreadcrumbItem[];
+  faqs?: FaqEntry[];
+  longForm?: CategoryLongFormContent;
 }
 
-const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
+const CategoryPageTemplate = ({
+  category,
+  otherCategories,
+  breadcrumbs,
+  faqs,
+  longForm,
+}: Props) => (
   <Layout>
+    {breadcrumbs && breadcrumbs.length > 0 && (
+      <Breadcrumbs items={breadcrumbs} withoutSchema />
+    )}
     {/* Hero */}
     <section className="relative h-[70svh] min-h-[420px] max-h-[700px] flex items-end pb-12 md:pb-20 overflow-hidden bg-foreground">
       <div className="absolute inset-0 opacity-50">
@@ -90,6 +107,10 @@ const CategoryPageTemplate = ({ category, otherCategories }: Props) => (
         </StaggerContainer>
       </div>
     </section>
+
+    {longForm && <CategoryLongForm content={longForm} categoryLabel={category.label} />}
+
+    {faqs && faqs.length > 0 && <FaqSection faqs={faqs} />}
 
     {/* CTA */}
     <section className="py-16 md:py-32 bg-foreground">

@@ -2,11 +2,16 @@
 
 import Layout from "@/components/Layout";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, ParallaxImage } from "@/components/ScrollAnimations";
-import { m } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Check, Plus } from "lucide-react";
 import { terraceModules } from "@/data/products";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import FaqSection from "@/components/seo/FaqSection";
+import CategoryLongForm from "@/components/seo/CategoryLongForm";
+import type { BreadcrumbItem } from "@/lib/seo/schema";
+import type { FaqEntry } from "@/data/faq";
+import type { CategoryLongFormContent } from "@/data/category-content";
 
 export interface ProductFeature {
   title: string;
@@ -34,8 +39,19 @@ export interface ProductPageData {
   configuratorLink?: string;
 }
 
-const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
+interface ProductPageProps {
+  data: ProductPageData;
+  breadcrumbs?: BreadcrumbItem[];
+  faqs?: FaqEntry[];
+  longForm?: CategoryLongFormContent;
+  longFormLabel?: string;
+}
+
+const ProductPageTemplate = ({ data, breadcrumbs, faqs, longForm, longFormLabel }: ProductPageProps) => (
   <Layout>
+    {breadcrumbs && breadcrumbs.length > 0 && (
+      <Breadcrumbs items={breadcrumbs} withoutSchema />
+    )}
     {/* Hero */}
     <section className="relative h-[70svh] min-h-[420px] max-h-[700px] flex items-end pb-12 md:pb-20 overflow-hidden bg-foreground">
       <div className="absolute inset-0 opacity-50">
@@ -198,6 +214,12 @@ const ProductPageTemplate = ({ data }: { data: ProductPageData }) => (
         </StaggerContainer>
       </div>
     </section>
+
+    {longForm && (
+      <CategoryLongForm content={longForm} categoryLabel={longFormLabel ?? data.title} />
+    )}
+
+    {faqs && faqs.length > 0 && <FaqSection faqs={faqs} />}
 
     {/* CTA */}
     <section className="py-16 md:py-32 bg-foreground">

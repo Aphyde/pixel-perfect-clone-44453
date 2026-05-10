@@ -130,7 +130,7 @@ const Impressum = () => (
           <StaggerItem direction="right">
             <div className="bg-surface-container-highest p-8 md:p-12 flex flex-col justify-center h-full">
               <p className="text-[10px] md:text-xs uppercase tracking-widest text-primary font-bold mb-2">Email</p>
-              <a href="mailto:info@brait-ueberdachung.de" className="text-lg md:text-2xl font-headline break-all hover:text-primary transition-colors">info@brait-ueberdachung.de</a>
+              <a href="mailto:info@brait-ueberdachung.de" className="text-sm sm:text-base md:text-2xl font-headline break-words hover:text-primary transition-colors">info@brait-ueberdachung.de</a>
             </div>
           </StaggerItem>
         </StaggerContainer>

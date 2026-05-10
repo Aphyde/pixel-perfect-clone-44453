@@ -7,6 +7,15 @@ import {
   findProduct,
   toProductPageData,
 } from "@/data/products";
+import JsonLd from "@/components/seo/JsonLd";
+import {
+  buildBreadcrumbSchema,
+  buildFaqSchema,
+  buildProductSchema,
+  buildWebPageSchema,
+} from "@/lib/seo/schema";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { getProductFaqs } from "@/data/faq";
 
 interface Params {
   categorySlug: string;
@@ -25,23 +34,21 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
     return { title: "Nicht gefunden" };
   }
   const url = `/${params.categorySlug}/${params.productSlug}`;
-  return {
-    title: product.label,
+  return buildMetadata({
+    title: `${product.label} Ulm`,
     description: product.shortDesc,
-    alternates: { canonical: url },
-    openGraph: {
-      url,
-      title: `${product.label} – Brait Überdachungen`,
-      description: product.shortDesc,
-      images: product.image ? [product.image] : undefined,
-    },
-  };
+    path: url,
+    image: product.image,
+    keywords: [product.label, `${product.label} Ulm`, "Brait Überdachungen"],
+  });
 }
 
 export default function ProductPage({ params }: { params: Params }) {
   const category = findCategory(params.categorySlug);
   const product = findProduct(params.categorySlug, params.productSlug);
   if (!category || !product) notFound();
+
+  const url = `/${category.slug}/${product.slug}`;
 
   const siblings = category.products
     .filter((p) => p.slug !== product.slug)
@@ -63,5 +70,39 @@ export default function ProductPage({ params }: { params: Params }) {
             .map((c) => ({ title: c.label, image: c.image, link: `/${c.slug}` })),
         ];
 
-  return <ProductPageTemplate data={toProductPageData(product, others, category.slug)} />;
+  const breadcrumbItems = [
+    { name: "Startseite", url: "/" },
+    { name: category.label, url: `/${category.slug}` },
+    { name: product.label, url },
+  ];
+  const breadcrumb = buildBreadcrumbSchema(breadcrumbItems);
+  const productSchema = buildProductSchema({
+    name: product.label,
+    description: product.shortDesc,
+    url,
+    image: [product.image, product.hero.heroImage, product.hero.detailImage].filter(Boolean),
+    category: category.label,
+  });
+  const webpage = buildWebPageSchema({
+    url,
+    name: `${product.label} — ${category.label}`,
+    description: product.shortDesc,
+    breadcrumbId: breadcrumb["@id"] as string,
+    primaryImage: product.hero.heroImage,
+    speakableSelectors: ["h1", ".hero-subtitle"],
+  });
+  const faqs = getProductFaqs(category.slug, product.slug);
+  const graph: object[] = [webpage, breadcrumb, productSchema];
+  if (faqs.length > 0) graph.push(buildFaqSchema(faqs, url));
+
+  return (
+    <>
+      <JsonLd data={graph} />
+      <ProductPageTemplate
+        data={toProductPageData(product, others, category.slug)}
+        breadcrumbs={breadcrumbItems}
+        faqs={faqs}
+      />
+    </>
+  );
 }
