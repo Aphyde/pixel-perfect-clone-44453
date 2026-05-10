@@ -109,8 +109,14 @@ export async function POST(req: Request) {
   if (!apiKey) {
     if (process.env.NODE_ENV !== "production") {
       console.info("[anfrage] no RESEND_API_KEY configured, skipping send", parsed.data);
+    } else {
+      console.warn("[anfrage] RESEND_API_KEY missing in production environment");
     }
-    return NextResponse.json({ ok: true, mailed: false });
+    return NextResponse.json({
+      ok: true,
+      mailed: false,
+      reason: "no_api_key",
+    });
   }
 
   try {
@@ -137,7 +143,15 @@ export async function POST(req: Request) {
     if (!res.ok) {
       const text = await res.text();
       console.error("[anfrage] resend error", res.status, text);
-      return NextResponse.json({ ok: false, error: "Mailversand fehlgeschlagen." }, { status: 502 });
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Mailversand fehlgeschlagen.",
+          status: res.status,
+          detail: text.slice(0, 500),
+        },
+        { status: 502 },
+      );
     }
 
     return NextResponse.json({ ok: true, mailed: true });
