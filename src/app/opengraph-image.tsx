@@ -67,7 +67,7 @@ export default async function OgImage() {
               maxWidth: "880px",
             }}
           >
-            Maßgefertigt in Ulm — montiert vom eigenen Team. Mit kostenlosem Demo-Koffer-Termin vor Ort.
+            Maßgefertigt in Ulm — montiert vom eigenen Team. Demo-Koffer kostenlos anfordern.
           </div>
         </div>
 

@@ -160,7 +160,7 @@ export default function LocationPage({ params }: { params: Params }) {
           <div className="container mx-auto px-5 md:px-8 max-w-3xl text-center">
             <MapPin className="w-8 h-8 text-primary mx-auto mb-5" aria-hidden />
             <h2 className="text-2xl md:text-4xl font-bold tracking-tighter text-primary-foreground mb-4">
-              Demo-Koffer-Termin in {loc.city}?
+              Demo-Koffer für {loc.city} anfordern
             </h2>
             <p className="text-base md:text-lg text-primary-foreground/70 mb-8">
               Wir kommen kostenlos mit Mini-Modell, Materialmustern und 3D-Konfigurator
@@ -168,9 +168,9 @@ export default function LocationPage({ params }: { params: Params }) {
             </p>
             <Link
               href="/kontakt"
-              className="inline-block bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
+              className="inline-block bg-primary text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
             >
-              Termin anfragen
+              Demo-Koffer anfordern
             </Link>
           </div>
         </section>

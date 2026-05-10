@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     template: "%s · Brait Überdachungen",
   },
   description:
-    "Premium Aluminium-Terrassenüberdachungen, Markisen, Lamellen-Pergolen und Carports in Ulm und Umgebung. Maßgefertigt, montiert vom eigenen Team, mit kostenlosem Demo-Koffer-Termin vor Ort.",
+    "Premium Aluminium-Terrassenüberdachungen, Markisen, Lamellen-Pergolen und Carports in Ulm und Umgebung. Maßgefertigt, montiert vom eigenen Team. Demo-Koffer kostenlos anfordern — Beratung vor Ort mit Mini-Modell, Materialmustern und 3D-Konfigurator.",
   applicationName: "Brait Überdachungen",
   authors: [{ name: "Brait Überdachungen" }],
   generator: "Next.js",

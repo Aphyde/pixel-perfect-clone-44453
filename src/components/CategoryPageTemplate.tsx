@@ -131,13 +131,13 @@ const CategoryPageTemplate = ({
               <>
                 <Link
                   href={`/konfigurator/${category.slug}`}
-                  className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
+                  className="bg-primary text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
                 >
                   Jetzt Konfigurieren
                 </Link>
                 <Link
                   href="/kontakt"
-                  className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all"
+                  className="border border-primary-foreground/20 text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all"
                 >
                   Kontakt Aufnehmen
                 </Link>
@@ -146,13 +146,13 @@ const CategoryPageTemplate = ({
               <>
                 <Link
                   href="/kontakt"
-                  className="bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
+                  className="bg-primary text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all"
                 >
                   Beratung Anfragen
                 </Link>
                 <a
                   href="tel:+491735303581"
-                  className="border border-primary-foreground/20 text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all"
+                  className="border border-primary-foreground/20 text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all"
                 >
                   0173 530 3581
                 </a>

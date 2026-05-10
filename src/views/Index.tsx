@@ -172,8 +172,8 @@ const Index = () => {
             Wir vereinen architektonische Präzision mit höchster Materialqualität für Ihren persönlichen Rückzugsort im Freien.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <Link href="/konfigurator" className="bg-primary text-primary-foreground px-8 py-4 md:px-10 md:py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all text-center">Konfigurieren</Link>
-            <Link href="/konfigurator" className="border border-primary-foreground/20 text-primary-foreground backdrop-blur-sm px-8 py-4 md:px-10 md:py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all text-center">Modelle Entdecken</Link>
+            <Link href="/konfigurator" className="bg-primary text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all text-center">Konfigurieren</Link>
+            <Link href="/konfigurator" className="border border-primary-foreground/20 text-primary-foreground backdrop-blur-sm px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground hover:text-foreground transition-all text-center">Modelle Entdecken</Link>
           </div>
         </div>
       </div>
@@ -311,8 +311,11 @@ const Index = () => {
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[0.95] mb-5 md:mb-7">
               Sehen, anfassen,<br /><span className="text-primary">selbst zusammenbauen.</span>
             </h2>
-            <p className="text-base md:text-lg text-primary-foreground/75 leading-relaxed mb-7 md:mb-9 max-w-xl">
-              Wir bringen unseren Demo-Koffer zu Ihnen — mit echten Aluminium-Profilen, Sicherheitsglas, RAL-Farbmustern und Beschlägen. Vor Ihren Augen bauen wir ein Mini-Modell zusammen. Kostenlos. Unverbindlich.
+            <p className="text-base md:text-lg text-primary-foreground/75 leading-relaxed mb-5 md:mb-6 max-w-xl speakable-answer">
+              Der Brait Demo-Koffer ist eine kostenlose Vor-Ort-Beratung mit echten Materialien. Wir kommen mit Aluminium-Profilen 6063 T6, VSG-Sicherheitsglas, RAL-Farbpalette und Beschlägen zu Ihnen. In 60–120 Minuten bauen wir vor Ihren Augen ein Mini-Modell zusammen, machen ein digitales 3D-Aufmaß und besprechen Ausrichtung, Statik und Genehmigungspflicht.
+            </p>
+            <p className="text-sm md:text-base text-primary-foreground/65 leading-relaxed mb-7 md:mb-9 max-w-xl">
+              Kostenlos im 100-km-Umkreis um Ulm. Unverbindlich. Innerhalb von 5 Werktagen erhalten Sie ein verbindliches Festpreis-Angebot inklusive 3D-Visualisierung Ihrer Überdachung am Haus.
             </p>
             <div className="flex flex-wrap gap-x-6 gap-y-3 mb-8 md:mb-10 text-sm md:text-base text-primary-foreground/80">
               <span className="flex items-center gap-2"><PackageOpen className="w-4 h-4 text-primary" /> Echte Materialien</span>
@@ -320,10 +323,10 @@ const Index = () => {
               <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-primary" /> 100 % unverbindlich</span>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-              <Link href="/kontakt#demo-koffer" className="bg-primary text-primary-foreground px-7 md:px-9 py-4 md:py-5 font-headline uppercase tracking-widest text-xs md:text-sm font-bold hover:bg-primary-container transition-all flex items-center justify-center gap-3">
-                Termin vereinbaren <ArrowRight className="w-4 h-4" />
+              <Link href="/kontakt#demo-koffer" className="bg-primary text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-headline uppercase tracking-widest text-xs md:text-sm font-bold hover:bg-primary-container transition-all flex items-center justify-center gap-2.5">
+                Demo-Koffer anfordern <ArrowRight className="w-4 h-4" />
               </Link>
-              <a href="tel:+491735303581" className="border border-primary-foreground/30 text-primary-foreground px-7 md:px-9 py-4 md:py-5 font-headline uppercase tracking-widest text-xs md:text-sm font-bold hover:bg-primary-foreground/10 transition-all flex items-center justify-center gap-3">
+              <a href="tel:+491735303581" className="border border-primary-foreground/30 text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-headline uppercase tracking-widest text-xs md:text-sm font-bold hover:bg-primary-foreground/10 transition-all flex items-center justify-center gap-2.5">
                 <Phone className="w-4 h-4" /> 0173 530 3581
               </a>
             </div>
@@ -346,8 +349,11 @@ const Index = () => {
           <FadeIn direction="right" delay={0.2} className="w-full md:w-1/2 bg-card p-8 md:p-16 lg:p-24 flex flex-col justify-center">
             <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 md:mb-4 block">Lokale Präsenz</label>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-6 md:mb-8">Ihr Partner in Ulm und der Region.</h2>
-            <p className="text-base md:text-lg text-secondary mb-8 md:mb-12 leading-relaxed">
-              Wir sind tief in Ulm verwurzelt. Unser Service-Radius von <strong>100km</strong> umfasst die gesamte Region von Augsburg über Memmingen bis an den Rand von Stuttgart.
+            <p className="text-base md:text-lg text-secondary mb-4 md:mb-6 leading-relaxed speakable-answer">
+              Brait Überdachungen ist seit 2014 in Ulm und Dornstadt ansässig und beliefert ein Service-Gebiet von <strong>100&nbsp;km Radius</strong> rund um Ulm. Das umfasst rund 1,2&nbsp;Millionen Einwohner zwischen Stuttgart-Süd, Memmingen, Augsburg-West und Heidenheim — in Zahlen: über 20 versorgte Städte, vom eigenen Montage-Team aus Dornstadt erreicht.
+            </p>
+            <p className="text-sm md:text-base text-secondary mb-8 md:mb-10 leading-relaxed">
+              Schwerpunkte sind Ulm, Neu-Ulm, Augsburg, Memmingen, Heidenheim, Göppingen, Aalen, Reutlingen und Tübingen. Schneelastzonen 2a (Ulm/Neu-Ulm: 1,32&nbsp;kN/m²), Zone 2 (Augsburg, Memmingen) und Zone 3 (Höhenlagen Schwäbische Alb ab 600&nbsp;m: bis 1,82&nbsp;kN/m²) werden bei jeder Konstruktion individuell berücksichtigt.
             </p>
             <StaggerContainer className="grid grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12" staggerDelay={0.2} delay={0.3}>
               <StaggerItem>
@@ -474,13 +480,13 @@ const Index = () => {
           <h2 className="text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground tracking-tighter mb-6 md:mb-8 break-words">Bereit für Ihren Traumplatz?</h2>
         </FadeIn>
         <FadeIn delay={0.2}>
-          <p className="text-base md:text-xl text-primary-foreground/60 max-w-2xl mx-auto mb-8 md:mb-12">Nutzen Sie unseren Online-Konfigurator für eine unverbindliche erste Preisschätzung in unter 3 Minuten — oder lassen Sie sich den Demo-Koffer kostenlos zeigen.</p>
+          <p className="text-base md:text-xl text-primary-foreground/60 max-w-2xl mx-auto mb-8 md:mb-12 speakable-answer">Eine Aluminium-Terrassenüberdachung von Brait verlängert Ihre Outdoor-Saison von 4 auf 9 Monate und ist in drei Linien verfügbar: Pro-Line wandbefestigt ab 7.900&nbsp;€, Cube freistehend ab 9.500&nbsp;€ und Lamellendach verstellbar ab 14.000&nbsp;€ inkl. Montage. Konfigurieren Sie online in unter 3 Minuten oder fordern Sie den Demo-Koffer kostenlos an.</p>
         </FadeIn>
         <FadeIn delay={0.4}>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-stretch sm:items-center">
-            <Link href="/konfigurator" className="inline-flex items-center justify-center bg-primary text-primary-foreground px-8 py-5 md:px-12 md:py-6 text-sm md:text-lg font-bold uppercase tracking-[0.15em] md:tracking-[0.2em] hover:bg-primary-container transition-all">Konfigurator Starten</Link>
-            <Link href="/kontakt#demo-koffer" className="inline-flex items-center justify-center gap-3 border border-primary-foreground/30 text-primary-foreground px-8 py-5 md:px-12 md:py-6 text-sm md:text-lg font-bold uppercase tracking-[0.15em] md:tracking-[0.2em] hover:bg-primary-foreground/10 transition-all">
-              <Briefcase className="w-4 h-4 md:w-5 md:h-5" /> Demo-Koffer Termin
+            <Link href="/konfigurator" className="inline-flex items-center justify-center bg-primary text-primary-foreground px-7 md:px-9 py-3.5 md:py-4 text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-primary-container transition-all">Konfigurator Starten</Link>
+            <Link href="/kontakt#demo-koffer" className="inline-flex items-center justify-center gap-2.5 border border-primary-foreground/30 text-primary-foreground px-7 md:px-9 py-3.5 md:py-4 text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-primary-foreground/10 transition-all">
+              <Briefcase className="w-4 h-4" /> Demo-Koffer anfordern
             </Link>
           </div>
         </FadeIn>

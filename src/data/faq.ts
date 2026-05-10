@@ -334,9 +334,9 @@ export const generalFaqs: FaqEntry[] = [
       "Wir beraten und montieren in Ulm und im 100-km-Umkreis: Ulm, Neu-Ulm, Memmingen, Augsburg, Heidenheim, Göppingen, Aalen, Günzburg, Reutlingen, Tübingen, Biberach, Laupheim und alle dazwischenliegenden Orte. Größere Projekte auf Anfrage auch deutschlandweit.",
   },
   {
-    question: "Was ist der Demo-Koffer-Termin?",
+    question: "Wie kann ich den Demo-Koffer anfordern?",
     answer:
-      "Bei Brait kommen wir kostenlos zu Ihnen vor Ort und bringen einen Koffer mit Mini-Modell, Materialmustern (Aluminium-Profile, Tücher, Glasarten, RAL-Farben) und einem Tablet mit dem Konfigurator mit. So sehen Sie Ihre Wunsch-Überdachung in Originalmaterial — zu Hause, auf Ihrer Terrasse, mit Blick auf Ihr Haus.",
+      "Sie fordern den Demo-Koffer kostenlos per Telefon (0173 530 3581), E-Mail (info@brait-ueberdachung.de) oder Kontaktformular an. Wir kommen zu Ihnen vor Ort und bringen Mini-Modell, Materialmuster (Aluminium-Profile in 6063 T6, Sunbrella-Tücher, VSG-Glas, vollständige RAL-Farbpalette) und ein Tablet mit dem Konfigurator mit. Der Termin dauert 60–120 Minuten, ist unverbindlich und im 100-km-Umkreis um Ulm gratis.",
   },
   {
     question: "Wer übernimmt die Montage?",

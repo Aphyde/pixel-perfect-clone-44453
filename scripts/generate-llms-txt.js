@@ -43,7 +43,7 @@ const sections = [
       ["Wartung", "/wartungspakete", "Wartungspakete für Terrassendächer, Markisen und Pergolen ab 14,90 €/Monat."],
       ["Konfigurator", "/konfigurator", "Online-Konfigurator für Markisen, Terrassenüberdachungen und Q-Bus."],
       ["Referenzen", "/referenzprojekte", "Realisierte Projekte aus Ulm und Umgebung."],
-      ["Kontakt", "/kontakt", "Telefon 0173 530 3581, info@brait-ueberdachung.de, Demo-Koffer-Termin vereinbaren."],
+      ["Kontakt", "/kontakt", "Telefon 0173 530 3581, info@brait-ueberdachung.de — Demo-Koffer kostenlos anfordern."],
     ],
   },
   {
@@ -209,9 +209,9 @@ function renderLlmsFullTxt() {
   out.push("Größere Anlagen oder solche in B-Plan-Gebieten / an denkmalgeschützten Objekten benötigen eine Bauanzeige oder Baugenehmigung. Für Mietobjekte ist die Zustimmung des Vermieters Pflicht. Wir prüfen die Lage im Vor-Ort-Termin und unterstützen bei den Unterlagen.");
   out.push("");
 
-  out.push("## Demo-Koffer-Termin (Beratungsablauf)");
+  out.push("## Demo-Koffer anfordern (Beratungsablauf)");
   out.push("");
-  out.push("Brait kommt kostenlos zu Ihnen vor Ort und bringt einen Koffer mit:");
+  out.push("Sie fordern den Demo-Koffer kostenlos per Telefon, E-Mail oder Kontaktformular an. Brait kommt zu Ihnen vor Ort und bringt einen Koffer mit:");
   out.push("");
   out.push("1. **Mini-Modell** der Lamellen-Pergola und Terrassendächer in Originalmaterial");
   out.push("2. **Materialmuster:** Aluminium-Profile, Tücher (Sunbrella, Stamoid), Glasarten (VSG, ESG, satiniert), RAL-Farbpalette");

@@ -1,6 +1,6 @@
 # Brait Überdachungen — Vollständige Wissensbasis
 
-Stand: 2026-05-09
+Stand: 2026-05-10
 Site: https://brait-ueberdachung.de
 
 ## Unternehmen
@@ -101,9 +101,9 @@ Nach LBO BW §50 sind verfahrensfrei:
 
 Größere Anlagen oder solche in B-Plan-Gebieten / an denkmalgeschützten Objekten benötigen eine Bauanzeige oder Baugenehmigung. Für Mietobjekte ist die Zustimmung des Vermieters Pflicht. Wir prüfen die Lage im Vor-Ort-Termin und unterstützen bei den Unterlagen.
 
-## Demo-Koffer-Termin (Beratungsablauf)
+## Demo-Koffer anfordern (Beratungsablauf)
 
-Brait kommt kostenlos zu Ihnen vor Ort und bringt einen Koffer mit:
+Sie fordern den Demo-Koffer kostenlos per Telefon, E-Mail oder Kontaktformular an. Brait kommt zu Ihnen vor Ort und bringt einen Koffer mit:
 
 1. **Mini-Modell** der Lamellen-Pergola und Terrassendächer in Originalmaterial
 2. **Materialmuster:** Aluminium-Profile, Tücher (Sunbrella, Stamoid), Glasarten (VSG, ESG, satiniert), RAL-Farbpalette
@@ -119,5 +119,5 @@ Ablauf: Anfrage → Vor-Ort-Termin (60–120 min) → digitales 3D-Aufmaß → F
 
 ---
 
-Generiert: 2026-05-09T22:06:33.790Z
+Generiert: 2026-05-10T10:08:25.925Z
 Quelle: https://brait-ueberdachung.de

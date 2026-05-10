@@ -57,13 +57,45 @@ export const OPENING_HOURS = [
   { days: ["Saturday"], opens: "10:00", closes: "14:00" },
 ];
 
+/**
+ * Externe Profile für Schema.sameAs.
+ *
+ * Brand-Mentions auf externen Plattformen korrelieren laut Ahrefs (Dez 2025)
+ * 3× stärker mit AI-Visibility als klassische Backlinks. Jede hier eingetragene
+ * URL landet automatisch im `Organization.sameAs`-Array und stärkt die Entity.
+ *
+ * REIHENFOLGE NACH GEO-IMPACT (laut Skill-Reference):
+ *   1. Wikipedia / Wikidata  →  höchste Autoritäts-Signale
+ *   2. Google Business Profile  →  Local-Search & Maps-Anbindung
+ *   3. LinkedIn  →  B2B & Person-Schema
+ *   4. YouTube  →  YouTube ist mit r=0.737 der stärkste einzelne Korrelator
+ *   5. Instagram / Facebook  →  Brand-Konsistenz
+ *   6. Bewertungsportale (ProvenExpert, KennstDuEinen, Trustpilot, Google Reviews)
+ *
+ * Leere Strings werden im Schema-Builder herausgefiltert (siehe sameAsList()).
+ */
 export const SOCIAL_PROFILES = {
-  // Hier können später real existierende Profile eingetragen werden.
-  // Leere Werte werden in Schema/sameAs gefiltert.
+  // Wissensgraph-Anker (höchste GEO-Priorität, sobald angelegt)
+  wikipedia: "",
+  wikidata: "",
+
+  // Local-Search & Bewertungen
+  googleBusiness: "",
+  provenExpert: "",
+  kennstDuEinen: "",
+  trustpilot: "",
+
+  // Soziale Plattformen
+  linkedin: "",
+  linkedinFounder: "",
+  youtube: "",
   instagram: "",
   facebook: "",
-  linkedin: "",
-  youtube: "",
+  pinterest: "",
+
+  // Branchenverzeichnisse
+  houzz: "",
+  myhammer: "",
 };
 
 export const ORG_LEGAL = {

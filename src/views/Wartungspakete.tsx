@@ -491,7 +491,7 @@ const Wartungspakete = () => {
             <FadeIn>
               <h2 className="text-2xl md:text-4xl font-bold mb-4 tracking-tight">Nicht sicher, welches Paket?</h2>
               <p className="text-primary-foreground/60 text-sm md:text-lg mb-8 max-w-xl mx-auto">Kontaktieren Sie uns – wir beraten Sie gerne und finden das passende Wartungspaket für Ihre Anlage.</p>
-              <Link href="/kontakt" className="inline-block bg-primary text-primary-foreground px-10 py-5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all">
+              <Link href="/kontakt" className="inline-block bg-primary text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all">
                 Beratung anfragen
               </Link>
             </FadeIn>

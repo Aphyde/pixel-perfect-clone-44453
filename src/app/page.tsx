@@ -13,7 +13,7 @@ export const metadata: Metadata = buildMetadata({
   title:
     "Brait Überdachungen Ulm — Terrassendächer, Markisen & Lamellen-Pergolen aus Aluminium",
   description:
-    "Premium Aluminium-Terrassenüberdachungen, Markisen, Lamellen-Pergolen, Schirme und Carports in Ulm. Maßgefertigt, montiert vom eigenen Team. Kostenloser Demo-Koffer-Termin.",
+    "Premium Aluminium-Terrassenüberdachungen, Markisen, Lamellen-Pergolen, Schirme und Carports in Ulm. Maßgefertigt, montiert vom eigenen Team. Demo-Koffer kostenlos anfordern — wir kommen mit Mini-Modell, Materialmustern und 3D-Konfigurator zu Ihnen.",
   path: "/",
   keywords: [
     "Terrassenüberdachung Ulm",
@@ -35,14 +35,14 @@ const homeWebPage = buildWebPageSchema({
 });
 
 const demoKofferHowTo = buildHowToSchema({
-  name: "Brait Demo-Koffer-Termin: So läuft Ihre kostenlose Beratung ab",
+  name: "Brait Demo-Koffer anfordern: So läuft Ihre kostenlose Beratung ab",
   description:
     "In vier klaren Schritten von der Anfrage bis zum verbindlichen Angebot — ohne Druck, ohne Verkaufsgespräch.",
   totalTime: "PT2H",
   image: "/hero/hero-home-1280.webp",
   steps: [
     {
-      name: "Termin vereinbaren",
+      name: "Demo-Koffer anfordern",
       text: "Anfrage per Telefon, Mail oder Kontaktformular. Wir melden uns innerhalb eines Werktages und stimmen einen Vor-Ort-Termin in Ulm und 100 km Umkreis ab.",
       url: "/kontakt",
     },

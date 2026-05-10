@@ -475,7 +475,7 @@ const Kontakt = () => {
                 <button
                   type="submit"
                   disabled={submitting || !privacy}
-                  className="bg-primary text-primary-foreground font-headline uppercase tracking-widest text-sm px-10 py-5 hover:bg-primary-container transition-all flex items-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="bg-primary text-primary-foreground font-headline uppercase tracking-widest text-xs md:text-sm px-6 md:px-7 py-3 md:py-3.5 font-bold hover:bg-primary-container transition-all flex items-center gap-2.5 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" /> {submitting ? "Wird gesendet …" : "Anfrage Absenden"}
                 </button>
@@ -590,13 +590,13 @@ const Kontakt = () => {
                 <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
                   <a
                     href="tel:+491735303581"
-                    className="bg-primary text-primary-foreground px-7 md:px-9 py-4 md:py-5 font-headline uppercase tracking-widest text-xs md:text-sm font-bold hover:bg-primary-container transition-all flex items-center justify-center gap-3"
+                    className="bg-primary text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-headline uppercase tracking-widest text-xs md:text-sm font-bold hover:bg-primary-container transition-all flex items-center justify-center gap-2.5"
                   >
-                    <Phone className="w-4 h-4" /> Termin vereinbaren
+                    <Phone className="w-4 h-4" /> Demo-Koffer anfordern
                   </a>
                   <a
-                    href="mailto:info@brait-ueberdachung.de?subject=Demo-Koffer%20Termin&body=Hallo%20Brait-Team%2C%0A%0Aich%20interessiere%20mich%20f%C3%BCr%20einen%20kostenlosen%20Demo-Koffer-Termin.%0A%0AAdresse%3A%20%0AWunschtermin%3A%20%0A%0AVielen%20Dank%21"
-                    className="border border-primary-foreground/30 text-primary-foreground px-7 md:px-9 py-4 md:py-5 font-headline uppercase tracking-widest text-xs md:text-sm font-bold hover:bg-primary-foreground/10 transition-all flex items-center justify-center gap-3"
+                    href="mailto:info@brait-ueberdachung.de?subject=Demo-Koffer%20anfordern&body=Hallo%20Brait-Team%2C%0A%0Aich%20m%C3%B6chte%20gerne%20kostenlos%20den%20Demo-Koffer%20anfordern.%0A%0AAdresse%3A%20%0AWunschtermin%3A%20%0A%0AVielen%20Dank%21"
+                    className="border border-primary-foreground/30 text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-headline uppercase tracking-widest text-xs md:text-sm font-bold hover:bg-primary-foreground/10 transition-all flex items-center justify-center gap-2.5"
                   >
                     <Mail className="w-4 h-4" /> Per E-Mail anfragen
                   </a>
