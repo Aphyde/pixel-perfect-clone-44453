@@ -35,11 +35,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Brait Überdachungen – Terrassendächer, Markisen & Lamellen-Pergolen in Ulm",
+    default: "Terrassendach Ulm — Brait Aluminium & Carport-Profi",
     template: "%s · Brait Überdachungen",
   },
   description:
-    "Premium Aluminium-Terrassenüberdachungen, Markisen, Lamellen-Pergolen und Carports in Ulm und Umgebung. Maßgefertigt, montiert vom eigenen Team. Demo-Koffer kostenlos anfordern — Beratung vor Ort mit Mini-Modell, Materialmustern und 3D-Konfigurator.",
+    "Terrassendach, Carport, Markisen & Lamellen-Pergolen in Ulm. Premium Aluminium, eigenes Montageteam, 10 Jahre Garantie. Demo-Koffer kostenlos anfordern.",
   applicationName: "Brait Überdachungen",
   authors: [{ name: "Brait Überdachungen" }],
   generator: "Next.js",
@@ -55,8 +55,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
     languages: {
-      "de-DE": SITE_URL,
-      "x-default": SITE_URL,
+      de: "/",
+      "de-DE": "/",
+      "x-default": "/",
     },
   },
   openGraph: {
@@ -64,9 +65,9 @@ export const metadata: Metadata = {
     locale: "de_DE",
     url: SITE_URL,
     siteName: "Brait Überdachungen",
-    title: "Brait Überdachungen – Terrassendächer in Ulm",
+    title: "Terrassendach Ulm — Brait Aluminium & Carport-Profi",
     description:
-      "Premium Aluminium-Terrassenüberdachungen, Markisen und Pergolen in Ulm. Maßgefertigt, vom eigenen Montageteam installiert.",
+      "Terrassendach, Carport, Markisen & Lamellen-Pergolen in Ulm. Premium Aluminium, eigenes Montageteam, 10 Jahre Garantie. Demo-Koffer kostenlos anfordern.",
     images: [
       {
         url: "/opengraph-image",

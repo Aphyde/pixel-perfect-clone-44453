@@ -48,6 +48,7 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
     alternates: {
       canonical,
       languages: {
+        de: `${SITE_URL}${canonical}`,
         "de-DE": `${SITE_URL}${canonical}`,
         "x-default": `${SITE_URL}${canonical}`,
       },

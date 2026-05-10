@@ -19,6 +19,12 @@ const nextConfig = {
         destination: "/terrassenueberdachungen",
         permanent: true,
       },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.brait-ueberdachung.de" }],
+        destination: "https://brait-ueberdachung.de/:path*",
+        permanent: true,
+      },
     ];
   },
   async headers() {

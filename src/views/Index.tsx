@@ -97,14 +97,14 @@ const Index = () => {
         />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <h3 className="font-headline uppercase tracking-widest text-xs font-bold text-white mb-1">
+                      <p className="font-headline uppercase tracking-widest text-xs font-bold text-white mb-1" aria-hidden>
                         {p.label}
-                      </h3>
+                      </p>
                       <p className="text-[10px] text-white/80 leading-tight">{p.desc}</p>
                     </div>
                   </div>
                   <div className="flex items-center justify-between px-1">
-                    <span className="text-[10px] font-headline uppercase tracking-widest text-primary font-bold">Mehr erfahren</span>
+                    <span className="text-[10px] font-headline uppercase tracking-widest text-primary font-bold">{p.label} ansehen</span>
                     <ArrowRight className="w-3.5 h-3.5 text-primary" />
                   </div>
                 </Link>
@@ -172,7 +172,7 @@ const Index = () => {
             in Ulm.
           </h1>
           <p className="text-sm md:text-lg lg:text-xl text-primary-foreground/70 max-w-xl mb-8 md:mb-12 font-light leading-relaxed">
-            Wir vereinen architektonische Präzision mit höchster Materialqualität für Ihren persönlichen Rückzugsort im Freien.
+            Ihr Profi für Terrassendach, Carport und Lamellen-Pergola in Ulm: maßgefertigt aus Aluminium 6063 T6, montiert vom eigenen Team — vom Demo-Koffer-Termin bis zur Endabnahme aus einer Hand.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Link href="/konfigurator" className="bg-primary text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-container transition-all text-center">Konfigurieren</Link>
@@ -181,6 +181,53 @@ const Index = () => {
         </div>
       </div>
       <div className="absolute bottom-0 right-6 md:right-12 w-0.5 h-[120px] bg-primary hidden sm:block" />
+    </section>
+
+    {/* Intro / Answer-First Block für H1-Wort-Verankerung und SEO-Substanz */}
+    <section className="py-12 md:py-20 bg-surface-container-low border-b border-outline-variant/20">
+      <div className="container mx-auto px-5 md:px-8 max-w-4xl">
+        <FadeIn>
+          <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 md:mb-4 block">Was wir machen</label>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-6 md:mb-8">Ihr Profi für Terrassendach &amp; Carport in Ulm seit 2014.</h2>
+          <div className="border-l-4 border-primary bg-card p-5 md:p-7 mb-8 speakable-tldr">
+            <p className="text-base md:text-lg leading-relaxed">
+              <strong>Brait Überdachungen</strong> ist Ihr inhabergeführter Spezialbetrieb für maßgefertigte Aluminium-Außenanlagen in Ulm und 100&nbsp;km Umkreis. Wir planen, fertigen und montieren <strong>Terrassendach, Carport, Markisen, Lamellen-Pergolen, Schirme und Eingangsüberdachungen</strong> komplett selbst — vom ersten Demo-Koffer-Termin bis zur Endabnahme, ohne Subunternehmer.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-secondary text-sm md:text-base leading-relaxed">
+            <div>
+              <h3 className="text-lg md:text-xl font-bold text-foreground mb-3">Was ist ein Brait-Terrassendach?</h3>
+              <p className="speakable-answer">
+                Ein <strong>Terrassendach</strong> von Brait ist eine maßgefertigte Aluminium-Konstruktion mit VSG-Glas oder verstellbaren Lamellen, die Ihre Terrasse vor Regen, Schnee und UV-Strahlung schützt und die Outdoor-Saison von 4 auf 9 Monate verlängert. Verfügbar in drei Linien: <strong>Pro-Line</strong> wandbefestigt ab 7.900&nbsp;€, <strong>Cube</strong> freistehend ab 9.500&nbsp;€ und <strong>Lamellendach Q-Bus</strong> mit motorischer Klimakontrolle ab 14.000&nbsp;€ — jeweils inklusive Montage durch unser eigenes Team aus Ulm.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg md:text-xl font-bold text-foreground mb-3">Warum Brait als Carport-Profi?</h3>
+              <p className="speakable-answer">
+                Unsere <strong>Carports</strong> aus Aluminium 6063 T6 sind wartungsfrei, schneelastgeprüft (Standard 200&nbsp;kg/m², in Schneelastzone 3 individuell verstärkt) und bereits ab 4.900&nbsp;€ verfügbar — Doppelcarport ab 7.900&nbsp;€. Mit VSG-Glas oder hagelschlagsicheren HPL-Platten, vorbereitet für E-Auto-Wallbox, in Baden-Württemberg bis 30&nbsp;m² verfahrensfrei. Über 200 realisierte Projekte zwischen Ulm, Augsburg, Reutlingen und Heidenheim sprechen für sich.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 md:mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
+            <div className="bg-card p-4 md:p-5 border-t-2 border-primary">
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-1">12+</div>
+              <div className="text-[10px] md:text-xs uppercase tracking-widest text-secondary">Jahre Erfahrung</div>
+            </div>
+            <div className="bg-card p-4 md:p-5 border-t-2 border-primary">
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-1">200+</div>
+              <div className="text-[10px] md:text-xs uppercase tracking-widest text-secondary">Projekte realisiert</div>
+            </div>
+            <div className="bg-card p-4 md:p-5 border-t-2 border-primary">
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-1">10&nbsp;J</div>
+              <div className="text-[10px] md:text-xs uppercase tracking-widest text-secondary">Strukturgarantie</div>
+            </div>
+            <div className="bg-card p-4 md:p-5 border-t-2 border-primary">
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-1">100&nbsp;km</div>
+              <div className="text-[10px] md:text-xs uppercase tracking-widest text-secondary">Service-Radius</div>
+            </div>
+          </div>
+        </FadeIn>
+      </div>
     </section>
 
     {/* Products */}
@@ -197,7 +244,7 @@ const Index = () => {
         <div className="md:hidden -mx-5">
           <div className="flex gap-4 overflow-x-auto px-3 pb-4 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
             {categories.map((c) => (
-              <Link key={c.slug} href={`/${c.slug}`} className="snap-start shrink-0 w-[80vw] max-w-[320px] group block">
+              <Link key={c.slug} href={`/${c.slug}`} aria-label={`${c.label} ansehen`} className="snap-start shrink-0 w-[80vw] max-w-[320px] group block">
                 <div className="relative overflow-hidden aspect-[3/4] mb-4">
                   <Image
                     src={c.image}
@@ -210,10 +257,10 @@ const Index = () => {
                   <div className="absolute inset-0 bg-foreground/10" />
                 </div>
                 <div className="px-2">
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{c.label}</h3>
+                  <p className="text-xl font-bold mb-2 group-hover:text-primary transition-colors" aria-hidden>{c.label}</p>
                   <p className="text-secondary leading-relaxed text-sm mb-3">{c.shortDesc}</p>
                   <span className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs">
-                    Mehr erfahren <ArrowRight className="w-4 h-4" />
+                    {c.label} entdecken <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
               </Link>
@@ -225,7 +272,7 @@ const Index = () => {
         <StaggerContainer className="hidden md:grid grid-cols-3 gap-4" staggerDelay={0.12}>
           {categories.map((c) => (
             <StaggerItem key={c.slug}>
-              <Link href={`/${c.slug}`} className="group block h-full">
+              <Link href={`/${c.slug}`} aria-label={`${c.label} ansehen`} className="group block h-full">
                 <div className="relative overflow-hidden aspect-[4/5] mb-5 md:mb-6">
                   <Image
                     src={c.image}
@@ -240,7 +287,7 @@ const Index = () => {
                 <h3 className="text-xl lg:text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{c.label}</h3>
                 <p className="text-secondary leading-relaxed text-sm lg:text-base mb-4">{c.shortDesc}</p>
                 <span className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs group-hover:gap-3 transition-all">
-                  Mehr erfahren <ArrowRight className="w-4 h-4" />
+                  {c.label} entdecken <ArrowRight className="w-4 h-4" />
                 </span>
               </Link>
             </StaggerItem>
@@ -464,13 +511,48 @@ const Index = () => {
       </div>
     </section>
 
+    {/* Häufige Fragen — kompakt für SEO-Substanz */}
+    <section className="py-14 md:py-24 bg-surface">
+      <div className="container mx-auto px-5 md:px-8 max-w-4xl">
+        <FadeIn>
+          <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 md:mb-4 block">Häufige Fragen</label>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-8 md:mb-10">Was Sie vor dem Kauf wissen sollten.</h2>
+        </FadeIn>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-7 md:gap-y-9" staggerDelay={0.08}>
+          <StaggerItem>
+            <h3 className="text-base md:text-lg font-bold mb-2">Was kostet ein Terrassendach in Ulm?</h3>
+            <p className="text-secondary text-sm md:text-base leading-relaxed speakable-answer">Ein wandbefestigtes <strong>Pro-Line-Terrassendach</strong> aus Aluminium mit VSG-Glas (4&nbsp;×&nbsp;3&nbsp;m) startet bei 7.900&nbsp;€ inklusive Montage. Freistehende Cube-Konstruktionen ab 9.500&nbsp;€, motorische Lamellendächer ab 14.000&nbsp;€.</p>
+          </StaggerItem>
+          <StaggerItem>
+            <h3 className="text-base md:text-lg font-bold mb-2">Brauche ich in BW eine Baugenehmigung?</h3>
+            <p className="text-secondary text-sm md:text-base leading-relaxed speakable-answer">Nein, in Baden-Württemberg sind <strong>Terrassendächer und Carports bis 30&nbsp;m² Grundfläche und 3&nbsp;m Höhe verfahrensfrei</strong> nach §50 LBO Anlage 1. Bei größeren Anlagen oder Denkmalschutz-Bereichen unterstützen wir bei Bauanzeige und Genehmigung.</p>
+          </StaggerItem>
+          <StaggerItem>
+            <h3 className="text-base md:text-lg font-bold mb-2">Wie lange hält ein Aluminium-Terrassendach?</h3>
+            <p className="text-secondary text-sm md:text-base leading-relaxed speakable-answer">Aluminium 6063 T6 mit Pulverbeschichtung nach DIN&nbsp;EN&nbsp;12206-1 hält <strong>30+ Jahre nahezu wartungsfrei</strong>. Eine Reinigung pro Jahr genügt. Brait gewährt 10 Jahre Strukturgarantie und 5 Jahre auf Motoren.</p>
+          </StaggerItem>
+          <StaggerItem>
+            <h3 className="text-base md:text-lg font-bold mb-2">Was ist der Demo-Koffer?</h3>
+            <p className="text-secondary text-sm md:text-base leading-relaxed speakable-answer">Eine <strong>kostenlose Vor-Ort-Beratung</strong> in Ulm und 100&nbsp;km Umkreis mit echten Aluminium-Profilen, Glasmustern und RAL-Farbpalette. Wir bauen ein Mini-Modell, machen 3D-Aufmaß und liefern innerhalb von 5 Werktagen ein verbindliches Festpreis-Angebot.</p>
+          </StaggerItem>
+          <StaggerItem>
+            <h3 className="text-base md:text-lg font-bold mb-2">Wo liefert und montiert Brait?</h3>
+            <p className="text-secondary text-sm md:text-base leading-relaxed speakable-answer">Service-Gebiet ist 100&nbsp;km um Ulm: <strong>Neu-Ulm, Memmingen, Augsburg, Heidenheim, Aalen, Göppingen, Reutlingen, Tübingen</strong> und die Schwäbische Alb. Schneelastzonen 2 bis 3 werden individuell statisch berechnet — Standardstatik trägt 200&nbsp;kg/m².</p>
+          </StaggerItem>
+          <StaggerItem>
+            <h3 className="text-base md:text-lg font-bold mb-2">Ist Brait Hersteller oder Händler?</h3>
+            <p className="text-secondary text-sm md:text-base leading-relaxed speakable-answer">Brait Überdachungen ist ein <strong>inhabergeführter Spezialbetrieb mit eigenem Montage-Team aus Dornstadt bei Ulm</strong>. Keine Subunternehmer, keine ausgelagerte Fertigung — eine Hand vom ersten Termin bis zur Endabnahme.</p>
+          </StaggerItem>
+        </StaggerContainer>
+      </div>
+    </section>
+
     {/* CTA */}
     <section className="relative py-16 md:py-32 bg-foreground overflow-hidden">
       <div className="absolute inset-0 opacity-40">
         <Image
           src={ctaTraumplatz}
-          alt=""
-          aria-hidden
+          alt="Brait Q-Bus Lamellen-Pergola in Anthrazit als Outdoor-Lounge mit Sitzbereich"
           fill
           sizes="100vw"
           className="object-cover"
@@ -487,9 +569,9 @@ const Index = () => {
         </FadeIn>
         <FadeIn delay={0.4}>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-stretch sm:items-center">
-            <Link href="/konfigurator" className="inline-flex items-center justify-center bg-primary text-primary-foreground px-7 md:px-9 py-3.5 md:py-4 text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-primary-container transition-all">Konfigurator Starten</Link>
+            <Link href="/konfigurator" className="inline-flex items-center justify-center bg-primary text-primary-foreground px-7 md:px-9 py-3.5 md:py-4 text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-primary-container transition-all">Jetzt Konfigurator starten</Link>
             <Link href="/kontakt#demo-koffer" className="inline-flex items-center justify-center gap-2.5 border border-primary-foreground/30 text-primary-foreground px-7 md:px-9 py-3.5 md:py-4 text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-primary-foreground/10 transition-all">
-              <Briefcase className="w-4 h-4" /> Demo-Koffer anfordern
+              <Briefcase className="w-4 h-4" /> Kostenlosen Beratungstermin sichern
             </Link>
           </div>
         </FadeIn>
