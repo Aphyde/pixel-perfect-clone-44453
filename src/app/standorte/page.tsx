@@ -67,6 +67,12 @@ export default function StandortePage() {
             Baden-Württemberg und Bayerisch Schwaben. Wählen Sie Ihre Stadt für
             spezifische Infos zu Schneelast, Bauvorschriften und Top-Produkten.
           </p>
+          <Link
+            href="/rechner"
+            className="inline-flex items-center gap-2 text-primary border-b-2 border-primary font-bold uppercase tracking-widest text-xs md:text-sm pb-1 hover:opacity-70 transition-opacity"
+          >
+            Schneelast für Ihre PLZ berechnen <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </section>
 
         <section className="container mx-auto px-5 md:px-8 pb-16 md:pb-24">

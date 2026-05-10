@@ -42,6 +42,7 @@ const sections = [
       ["Beratung & Montage", "/service", "Vor-Ort-Beratung mit Demo-Koffer, 3D-Aufmaß, Montage durch eigenes Team."],
       ["Wartung", "/wartungspakete", "Wartungspakete für Terrassendächer, Markisen und Pergolen ab 14,90 €/Monat."],
       ["Konfigurator", "/konfigurator", "Online-Konfigurator für Markisen, Terrassenüberdachungen und Q-Bus."],
+      ["Outdoor-Tage- & Schneelast-Rechner", "/rechner", "Berechnet auf Basis der DWD-Klimanormalen 1991–2020 wie viele Outdoor-Tage Sie mit einer Brait-Überdachung gewinnen. Plus: Schneelastzone und Dachschneelast nach DIN EN 1991-1-3 für jede PLZ in Süddeutschland."],
       ["Referenzen", "/referenzprojekte", "Realisierte Projekte aus Ulm und Umgebung."],
       ["Kontakt", "/kontakt", "Telefon 0173 530 3581, info@brait-ueberdachung.de — Demo-Koffer kostenlos anfordern."],
     ],

@@ -70,6 +70,12 @@ const Footer = () => (
         >
           Konfigurator
         </Link>
+        <Link
+          href="/rechner"
+          className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
+        >
+          Schneelast-Rechner
+        </Link>
       </div>
       <div className="flex flex-col gap-3 md:gap-4">
         <h3 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary-fixed-dim">

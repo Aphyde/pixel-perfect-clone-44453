@@ -553,6 +553,7 @@ export const articles: Article[] = [
       "pflege-und-wartung",
     ],
     relatedProducts: [
+      { label: "Schneelast-Rechner f\u00fcr Ihre PLZ", href: "/rechner" },
       { label: "Q-Bus Lamellen-Pergola", href: "/q-bus" },
       { label: "Wartungspakete", href: "/wartungspakete" },
     ],

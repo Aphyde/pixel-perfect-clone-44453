@@ -226,6 +226,27 @@ const Index = () => {
               <div className="text-[10px] md:text-xs uppercase tracking-widest text-secondary">Service-Radius</div>
             </div>
           </div>
+
+          {/* Rechner-Teaser */}
+          <Link
+            href="/rechner"
+            className="mt-8 md:mt-10 group flex flex-col md:flex-row md:items-center justify-between gap-4 bg-foreground text-primary-foreground p-5 md:p-7 hover:bg-primary transition-colors"
+          >
+            <div>
+              <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-primary group-hover:text-primary-foreground mb-2">
+                DWD-Klimadaten · DIN&nbsp;EN&nbsp;1991-1-3
+              </div>
+              <div className="text-lg md:text-2xl font-bold tracking-tight mb-1">
+                Wie viele Outdoor-Tage gewinnen Sie?
+              </div>
+              <p className="text-sm md:text-base text-primary-foreground/70">
+                Outdoor-Tage- und Schneelast-Rechner für Ihren Standort — Mittelwerte aus 30 Jahren DWD-Daten.
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground font-bold uppercase tracking-widest text-xs whitespace-nowrap">
+              Jetzt berechnen <ArrowRight className="w-4 h-4" />
+            </span>
+          </Link>
         </FadeIn>
       </div>
     </section>

@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/glossar`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${SITE_URL}/ratgeber`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${SITE_URL}/standorte`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/rechner`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${SITE_URL}/impressum`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/datenschutz`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
