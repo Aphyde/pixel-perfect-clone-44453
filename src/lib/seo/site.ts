@@ -89,8 +89,8 @@ export const SOCIAL_PROFILES = {
   linkedin: "",
   linkedinFounder: "",
   youtube: "",
-  instagram: "",
-  facebook: "",
+  instagram: "https://www.instagram.com/braitueberdachung/",
+  facebook: "https://www.facebook.com/profile.php?id=61589288460484",
   pinterest: "",
 
   // Branchenverzeichnisse

@@ -897,7 +897,7 @@ const SelectCardButton = ({ option, active, onClick }: { option: SelectCardOptio
   >
     {option.image && (
       <div className="shrink-0 w-16 h-16 md:w-20 md:h-20 bg-surface-container-low overflow-hidden">
-        <img src={option.image} alt={option.label} className="w-full h-full object-cover" loading="lazy" />
+        <img src={option.image} alt={option.label} width={80} height={80} className="w-full h-full object-cover" loading="lazy" />
       </div>
     )}
     <div className="min-w-0 flex-1">

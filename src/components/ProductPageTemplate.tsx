@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Check, Plus } from "lucide-react";
 import { terraceModules } from "@/data/products";
+import { localizedAlt, productAlt } from "@/lib/seo/alt";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import FaqSection from "@/components/seo/FaqSection";
 import CategoryLongForm from "@/components/seo/CategoryLongForm";
@@ -57,7 +58,7 @@ const ProductPageTemplate = ({ data, breadcrumbs, faqs, longForm, longFormLabel 
       <div className="absolute inset-0 opacity-50">
         <Image
           src={data.heroImage}
-          alt={data.title}
+          alt={localizedAlt(`${data.title} ${data.titleAccent}`.trim(), "Aluminium-Konstruktion")}
           fill
           priority
           quality={70}
@@ -99,7 +100,7 @@ const ProductPageTemplate = ({ data, breadcrumbs, faqs, longForm, longFormLabel 
             <div className="aspect-square overflow-hidden bg-foreground">
               <ParallaxImage
                 src={data.detailImage}
-                alt="Detailansicht"
+                alt={localizedAlt(`${data.title} ${data.titleAccent}`.trim(), "Detailansicht Profil und Verarbeitung")}
                 className="object-cover"
                 sizes="(min-width: 768px) 50vw, 100vw"
               />
@@ -156,7 +157,7 @@ const ProductPageTemplate = ({ data, breadcrumbs, faqs, longForm, longFormLabel 
                   <div className="relative aspect-[4/3] overflow-hidden bg-surface-container">
                     <Image
                       src={m.image}
-                      alt={m.label}
+                      alt={productAlt(m.label, "Terrassenüberdachungen")}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -270,7 +271,7 @@ const ProductPageTemplate = ({ data, breadcrumbs, faqs, longForm, longFormLabel 
                 <Link href={p.link} className="group block relative overflow-hidden aspect-[16/9]">
                   <Image
                     src={p.image}
-                    alt={p.title}
+                    alt={localizedAlt(p.title, "verwandtes Brait-System")}
                     fill
                     sizes="(min-width: 768px) 33vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

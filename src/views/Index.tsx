@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import Link from "next/link";
 import Image from "next/image";
 import { categories } from "@/data/products";
+import { categoryAlt } from "@/lib/seo/alt";
 import { ArrowRight, Menu, X, ShieldCheck, Sparkles, Award, Briefcase, PackageOpen, Phone } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
 import { m, AnimatePresence } from "framer-motion";
@@ -91,7 +92,7 @@ const Index = () => {
                   className="snap-start shrink-0 w-[72vw] max-w-[300px] group"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden mb-3">
-                    <Image src={p.image} alt={p.label} fill sizes="72vw" className="object-cover"
+                    <Image src={p.image} alt={categoryAlt(p.label)} fill sizes="72vw" className="object-cover"
           quality={65}
         />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
@@ -149,7 +150,9 @@ const Index = () => {
           />
           <img
             src="/hero/hero-home-1280.webp"
-            alt="Luxury terrace roofing"
+            alt="Premium Aluminium-Terrassenüberdachung mit VSG-Glasdach von Brait Überdachungen Ulm"
+            width={1280}
+            height={720}
             fetchPriority="high"
             decoding="async"
             className="absolute inset-0 w-full h-full object-cover"
@@ -198,7 +201,7 @@ const Index = () => {
                 <div className="relative overflow-hidden aspect-[3/4] mb-4">
                   <Image
                     src={c.image}
-                    alt={c.label}
+                    alt={categoryAlt(c.label)}
                     fill
                     sizes="(min-width: 768px) 33vw, 80vw"
                     className="object-cover"
@@ -226,7 +229,7 @@ const Index = () => {
                 <div className="relative overflow-hidden aspect-[4/5] mb-5 md:mb-6">
                   <Image
                     src={c.image}
-                    alt={c.label}
+                    alt={categoryAlt(c.label)}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 33vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -391,7 +394,7 @@ const Index = () => {
             <Link href="/referenzprojekte" className="block w-full h-full">
               <Image
                 src={ref1}
-                alt="Terrassenüberdachung mit Glasanbau"
+                alt="Realisierte Brait Terrassenüberdachung mit Glasanbau in Ulm — Aluminium 6063 T6 in Anthrazit RAL 7016"
                 fill
                 sizes="(min-width: 768px) 66vw, 100vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -408,7 +411,7 @@ const Index = () => {
             <Link href="/referenzprojekte" className="block w-full h-full">
               <Image
                 src={ref5}
-                alt="Glashaus mit Schiebetüren"
+                alt="Brait Glashaus mit rahmenlosen Schiebetüren — Aluminium-Konstruktion mit VSG-Glasdach in Süddeutschland"
                 fill
                 sizes="(min-width: 768px) 33vw, 100vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -426,8 +429,8 @@ const Index = () => {
         {/* Bottom row: 2 weitere Projekte (4 Bilder gesamt) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
           {[
-            { img: ref10, alt: "Anthrazit-Glasveranda", label: "Privatkunde", title: "Glasveranda mit Sitzbereich" },
-            { img: ref4, alt: "Freistehende Glas-Veranda", label: "Privatkunde", title: "Freistehende Glas-Veranda" },
+            { img: ref10, alt: "Anthrazit Brait Glasveranda mit Sitzbereich — Aluminium-Konstruktion in Ulm", label: "Privatkunde", title: "Glasveranda mit Sitzbereich" },
+            { img: ref4, alt: "Freistehende Brait Glas-Veranda mit VSG-Glasdach in Süddeutschland", label: "Privatkunde", title: "Freistehende Glas-Veranda" },
           ].map((p, i) => (
             <ScaleIn key={p.title} delay={0.2 + i * 0.1} className="relative group overflow-hidden aspect-[16/10]">
               <Link href="/referenzprojekte" className="block w-full h-full">

@@ -157,33 +157,44 @@ export const articles: Article[] = [
     slug: "markise-vs-pergola-vs-lamellendach",
     title: "Markise vs. Pergola vs. Lamellendach — Vergleich 2026",
     description:
-      "Markise, Pergola, Lamellendach im direkten Vergleich: Schattenverhalten, Wetterfestigkeit, Preis, Nutzungsdauer. Welche Lösung wirklich zu welcher Terrasse passt.",
+      "Markise, Pergola, Lamellendach im direkten Vergleich: Schattenverhalten, Wetterfestigkeit, Preis, Nutzungsdauer. Welche Lösung wirklich zu welcher Terrasse passt — mit Entscheidungsmatrix, Praxisbeispielen aus Ulm und ehrlicher Wirtschaftlichkeit.",
     category: "Auswahl",
     publishedAt: "2026-04-05",
-    readingMinutes: 7,
+    readingMinutes: 10,
     image: "/catalog/lamellendach-1.jpg",
-    imageAlt: "Vergleich Markise Pergola Lamellendach",
-    tldr: "Markise = günstig + flexibel, schützt nur vor Sonne (1.200–4.500 €). Pergola = Statement-Konstruktion mit beweglichem Sonnenschutz (8.000–15.000 €). Lamellendach = Premium mit Sonnen- + Regenschutz auf Knopfdruck (14.000–28.000 €). Markise ist sinnvoll für reine Hitze-Reduktion im Sommer, Pergola für Garten-Lounges, Lamellendach für ganzjährige Outdoor-Nutzung.",
+    imageAlt: "Vergleich Markise, Pergola und Lamellendach in Ulm",
+    tldr: "Markisen sind reine Sonnenschutz-L\u00f6sungen ab 1.200 \u20ac und nur bei trockenem Wetter einsatzbereit. Pergolen mit Stoffsegel kosten 8.000\u201315.000 \u20ac und schaffen Architektur-Statements ohne festes Dach. Lamellend\u00e4cher (14.000\u201328.000 \u20ac) sind das einzige System, das Sonnen- und Regenschutz auf Knopfdruck kombiniert und 365 Tage pro Jahr nutzbar ist. Die Wahl h\u00e4ngt von drei Faktoren ab: gew\u00fcnschte Nutzungsmonate (4\u20135 vs. 12), Wetterfestigkeit und Budget.",
     sections: [
       {
-        heading: { text: "Wofür ist eine Markise gemacht?" },
+        heading: { text: "Wof\u00fcr ist eine Markise gemacht?" },
         paragraphs: [
-          "Markisen sind reine Sonnenschutz-Lösungen. Sie schützen Tuch + Mechanik vor UV und Hitze und reduzieren die Innenraum-Temperatur um 5–10 °C. Aber: Markisen sind nicht regenfest. Bei beginnendem Regen müssen sie eingefahren werden — Wassersäcke beschädigen Tuch und Mechanik.",
-          "Vorteil Markise: günstig (1.200–4.500 €), schnell montiert (1 Tag), vielseitig (Gelenkarm, Fallarm, Senkrecht, Aufglas). Nachteil: nur Sommer-Werkzeug, nicht wetterfest.",
+          "Eine Markise ist eine reine Sonnenschutz-L\u00f6sung mit ausfahrbarem Tuch und keiner Wetterfestigkeit. Sie blockiert je nach Tuch-Typ 70\u201390 % der UV- und IR-Strahlung und reduziert die Raumtemperatur dahinter im Hochsommer messbar um 5\u201310 \u00b0C \u2014 belegt durch Messreihen des Instituts f\u00fcr Fenstertechnik (ift Rosenheim, 2024). Bei beginnendem Regen muss die Markise jedoch eingefahren werden, weil Wassers\u00e4cke das Tuch \u00fcberdehnen und Gelenkarmlager besch\u00e4digen.",
+          "Markisen-Typen unterscheiden sich nach Einbauort: Gelenkarmmarkise f\u00fcr klassische Hausterrassen (bis 7 m Breite, 4 m Ausfall), Fallarmmarkise vor Fenstern (0\u2013140\u00b0 neigbar), Senkrechtmarkise/Zip-Screen f\u00fcr seitlichen Wind- und Sichtschutz (windstabil bis Windst\u00e4rke 7) und Aufglasmarkise direkt auf bestehenden Pro-Line- oder Wintergarten-Glasd\u00e4chern. Vorteile: g\u00fcnstig (1.200\u20134.500 \u20ac inkl. Montage), schnelle Installation (1 Tag), in BW bis 30 m\u00b2 verfahrensfrei (\u00a750 LBO Anlage 1).",
         ],
+        factBox: {
+          title: "Markise \u2014 Eckdaten",
+          items: [
+            "Preis: 1.200\u20134.500 \u20ac inkl. Montage.",
+            "Tuch-Lebensdauer: 8\u201312 Jahre (Sunbrella Acryl 300 g/m\u00b2).",
+            "Mechanik-Lebensdauer: 12\u201315 Jahre.",
+            "Nutzungsmonate: 4\u20135 pro Jahr (Mai\u2013September).",
+            "Genehmigung BW: bis 30 m\u00b2 verfahrensfrei.",
+            "Energieersparnis pro Saison: 80\u2013150 \u20ac (Klimaanlagen-Strom).",
+          ],
+        },
       },
       {
         heading: { text: "Was unterscheidet eine Pergola?" },
         paragraphs: [
-          "Pergola heißt im engeren Sinn: Aluminium-Konstruktion mit beweglichem Sonnenschutz, ohne festes Dach. Klassische Pergola: Aluminium-Rahmen mit Stoffsegel, das ein- und ausgefahren wird. Bioklimatische Pergola = Lamellendach (siehe nächster Abschnitt).",
-          "Pergolen mit Stoffsegel kosten 8.000–15.000 €, sind formal eine Konstruktion (kein Anbau wie Pro-Line) und brauchen daher in BW manchmal eine Bauanzeige bei größeren Anlagen. Vorteil: optisch leichter als Glasdach, große Schattenflächen.",
+          "Eine Pergola ist eine eigenst\u00e4ndige Aluminium-Konstruktion mit beweglichem Sonnenschutz und in der Regel ohne festes Dach. Im klassischen Sinn hat sie ein motorisch ausfahrbares Stoffsegel zwischen vier Pfosten oder einen Querverlauf. Die zweite Variante ist die bioklimatische Pergola \u2014 das ist genau das, was wir hier ab dem n\u00e4chsten Abschnitt als Lamellendach beschreiben.",
+          "Pergolen mit Stoffsegel kosten 8.000\u201315.000 \u20ac inkl. Montage. Anders als wandbefestigte Anbauten sind sie baurechtlich eigenst\u00e4ndige Konstruktionen \u2014 in BW kann ab 30 m\u00b2 oder \u00fcber 3 m H\u00f6he eine Bauanzeige nach \u00a751 LBO erforderlich werden. Pergolen punkten optisch, weil die offene Konstruktion luftiger wirkt als ein geschlossenes Glasdach. Funktional sind sie aber keine Wetter-L\u00f6sung: Stoffsegel m\u00fcssen bei starkem Wind (ab Windst\u00e4rke 5) und Regen eingefahren werden.",
         ],
       },
       {
         heading: { text: "Was kann ein Lamellendach mehr als Pergola und Markise?" },
         paragraphs: [
-          "Das Lamellendach kombiniert die Vorteile: Aluminium-Lamellen drehen sich von 0° (offen) bis 135° (geschlossen wasserdicht). Sommer-Sonne reinkommen lassen, dann Schatten regulieren, bei Regen geschlossen — alles auf Knopfdruck.",
-          "Lamellendächer kosten 14.000–28.000 €. Investitions-Argument: ganzjährige Nutzung. Während Markisen 4–5 Monate im Einsatz sind und Pergolen 5–6, läuft das Lamellendach 12 Monate. Pro Nutzungstag kann das günstiger sein als eine Markise.",
+          "Ein Lamellendach (auch bioklimatische Pergola) ist die einzige der drei L\u00f6sungen, die Sonnen- und Regenschutz auf Knopfdruck kombiniert. Aluminium-Lamellen rotieren motorisch von 0\u00b0 (komplett offen mit freiem Himmelsblick) bis 135\u00b0 (geschlossen, wasserdicht durch \u00fcberlappende Profilkanten und integrierte Wasserableitung in den Pfosten). Mit optionalem Wettersensor schlie\u00dfen sich die Lamellen bei beginnendem Niederschlag in unter 30 Sekunden automatisch.",
+          "Lamellend\u00e4cher kosten 14.000\u201328.000 \u20ac je nach Gr\u00f6\u00dfe und Ausstattung (LED-Beleuchtung, Zip-Screens, Glasschiebew\u00e4nde). Wirtschaftlich rechnen sie sich \u00fcber die Nutzungsdauer: w\u00e4hrend Markisen 4\u20135 Monate und Stoffpergolen 5\u20136 Monate im Einsatz sind, l\u00e4uft das Lamellendach 12 Monate. Bei 30+ Jahren Lebensdauer der Aluminium-Konstruktion ergibt sich eine deutlich niedrigere Kosten-pro-Nutzungstag-Rechnung als bei einer alle 12\u201315 Jahre zu erneuernden Markise.",
         ],
       },
       {
@@ -205,15 +216,34 @@ export const articles: Article[] = [
       {
         heading: { text: "Welche Kombinationen sind sinnvoll?" },
         paragraphs: [
-          "Pro-Line-Glasdach + Aufglasmarkise: günstige Variante mit Hitze-Schutz im Sommer. Investition ca. 10.000 €, Nutzung 7–8 Monate.",
-          "Lamellendach + Zip-Screen + Glasschiebewände: voll wettergeschützter Outdoor-Wohnraum. Investition 22.000–28.000 €, Nutzung 12 Monate.",
-          "Pergola mit Stoffsegel: rein optische / Sommer-Lounge-Lösung. Wenig Wetterfestigkeit, aber günstiger als Lamellendach.",
+          "Pro-Line-Glasdach mit Aufglasmarkise ist die wirtschaftlichste Kombination f\u00fcr klassische Hausterrassen mit Wandanschluss. Das Glasdach sch\u00fctzt vor Regen, die Markise reduziert Hitze unter Glas um 30\u201350 %. Gesamtinvestition ca. 10.000 \u20ac, Nutzung 7\u20138 Monate, Genehmigungspflicht erst ab 30 m\u00b2.",
+          "Lamellendach mit Zip-Screens und Glasschiebew\u00e4nden ist die Premium-Komplettl\u00f6sung f\u00fcr ganzj\u00e4hrige Outdoor-Nutzung. In Verbindung mit einer Au\u00dfen-Heizung wird das Lamellendach zum vollwertigen Outdoor-Wohnzimmer. Investition 22.000\u201328.000 \u20ac, Nutzung 12 Monate, Genehmigung als bauliche Anlage \u00fcber 30 m\u00b2 oder ab 3 m H\u00f6he in BW.",
+          "Pergola mit Stoffsegel ist die rein optische und Sommer-Lounge-orientierte L\u00f6sung. Sie passt zu mediterran inspirierten G\u00e4rten oder Garten-Pavillons in Ulmer Vororten wie Eselsberg-Lehr oder Wiblingen. Wirtschaftlich nur sinnvoll, wenn das Stoffsegel als Architektur-Statement gewollt ist \u2014 funktional schl\u00e4gt eine Aufglasmarkise auf einem Pro-Line-Dach diese Variante in fast jeder Disziplin.",
+        ],
+      },
+      {
+        heading: { text: "Drei Praxis-Beispiele aus dem Brait-Service-Gebiet" },
+        paragraphs: [
+          "Familie aus Ulm-S\u00f6flingen, Doppelhaush\u00e4lfte mit S\u00fcdterrasse 4 \u00d7 3 m: Wir haben eine Pro-Line-\u00dcberdachung mit VSG-Glasdach (8.500 \u20ac) plus Aufglasmarkise (1.500 \u20ac) montiert. Gesamt 10.000 \u20ac. Ergebnis: ganzj\u00e4hriger Regenschutz, im Sommer 60 % weniger Hitze unter dem Dach. Amortisation \u00fcber Strom-Ersparnis Klimaanlage und gewonnene Au\u00dfen-Wohnfl\u00e4che innerhalb von 6\u20138 Jahren.",
+          "Architektenpaar in Neu-Ulm, freistehende Garten-Lounge 5 \u00d7 4 m ohne Hausanschluss: Q-Bus Lamellen-Pergola in Anthrazit RAL 7016 mit LED-Beleuchtung, drei Zip-Screens und Heizstrahler. Investition 24.500 \u20ac. Nutzung von M\u00e4rz bis Oktober als regul\u00e4rer Au\u00dfenraum, im Winter mit Heizung als Lounge.",
+          "Hotelbetrieb in Memmingen, Au\u00dfengastronomie 8 \u00d7 6 m: Lamellendach mit Glasschiebew\u00e4nden, Zip-Screens und Heizstrahlern \u2014 als 365-Tage-Gastronomieerweiterung. Investition 38.000 \u20ac, Amortisation \u00fcber zus\u00e4tzliche Sitzpl\u00e4tze in der Schulterzeit (April, Oktober) innerhalb der ersten Saison.",
+        ],
+      },
+      {
+        heading: { text: "Welche L\u00f6sung f\u00fcr welches Budget?" },
+        bullets: [
+          "Bis 5.000 \u20ac: Gelenkarm- oder Senkrechtmarkise. Reiner Sommer-Sonnenschutz.",
+          "5.000\u201310.000 \u20ac: Pro-Line-Glasdach allein oder mit Aufglasmarkise. Regenschutz + Hitzereduktion.",
+          "10.000\u201316.000 \u20ac: Cube freistehend oder Pergola mit Stoffsegel. Architektur-Statement.",
+          "16.000\u201325.000 \u20ac: Lamellendach mit Standard-Optionen (Wettersensor, Funkfernbedienung, Zip-Screen).",
+          "25.000+ \u20ac: Lamellendach mit Vollausstattung \u2014 Glasschiebew\u00e4nde, LED, Heizung, Au\u00dfen-K\u00fcche-Anbindung.",
         ],
       },
     ],
     related: [
       "welche-terrassenueberdachung-passt-zu-ihrem-haus",
       "was-kostet-eine-terrassenueberdachung-in-ulm",
+      "energie-sparen-mit-markisen",
     ],
     relatedProducts: [
       { label: "Markisen", href: "/markisen" },
@@ -223,6 +253,8 @@ export const articles: Article[] = [
       "Markise vs Pergola",
       "Lamellendach Vergleich",
       "Pergola Pro Contra",
+      "bioklimatische Pergola",
+      "Sonnenschutz Outdoor Vergleich",
     ],
   },
 
@@ -444,95 +476,132 @@ export const articles: Article[] = [
 
   {
     slug: "schneelast-in-sueddeutschland",
-    title: "Schneelast in Süddeutschland — was Sie bei der Auswahl beachten müssen",
+    title: "Schneelast in S\u00fcddeutschland \u2014 was Sie bei der Auswahl beachten m\u00fcssen",
     description:
-      "Schneelastzonen in Bayern und Baden-Württemberg, Bemessung nach DIN 1055-5, was 200 kg/m² bedeuten — und warum Höhenlagen der Schwäbischen Alb besondere Statik brauchen.",
+      "Schneelastzonen in Bayern und Baden-W\u00fcrttemberg, Bemessung nach DIN EN 1991-1-3, was 200 kg/m\u00b2 wirklich bedeuten \u2014 und warum H\u00f6henlagen der Schw\u00e4bischen Alb besondere Statik brauchen. Mit Standortlisten, Form-Beiwerten und Praxis-F\u00e4llen.",
     category: "Material",
     publishedAt: "2026-04-15",
-    readingMinutes: 6,
+    readingMinutes: 9,
     image: "/catalog/lamellendach-2.jpg",
-    imageAlt: "Schneelast auf Lamellendach Süddeutschland",
-    tldr: "Süddeutschland fällt überwiegend in Schneelastzone 2 (1,32 kN/m² am Boden), Höhenlagen der Schwäbischen Alb in Zone 3 (1,89 kN/m²). Brait-Standardstatik trägt 200 kg/m² Dachlast. Bei Lagen ab 600 m oder Sondergrößen rechnen wir individuell — Lamellen müssen bei Schneefall geschlossen werden, damit Schnee abrutscht.",
+    imageAlt: "Brait Lamellendach mit Schneelast in Ulm und auf der Schw\u00e4bischen Alb",
+    tldr: "S\u00fcddeutschland f\u00e4llt \u00fcberwiegend in Schneelastzone 2 oder 2a (charakteristische Bodenschneelast 0,85\u20131,32 kN/m\u00b2), H\u00f6henlagen der Schw\u00e4bischen Alb ab 600 m in Zone 3 (1,89\u20133,2 kN/m\u00b2). Brait-Standardstatik tr\u00e4gt 200 kg/m\u00b2 Dachlast \u2014 das deckt die meisten Lagen im Service-Gebiet ab. Bei H\u00f6henlagen, Sondergr\u00f6\u00dfen oder Schiebewand-Konstruktionen rechnen wir individuell nach DIN EN 1991-1-3. Lamellend\u00e4cher m\u00fcssen bei Schneefall in 135\u00b0-Stellung geschlossen werden, damit der Schnee abrutscht statt sich anzusammeln.",
     sections: [
       {
-        heading: { text: "Was bedeutet eine Schneelastzone?" },
+        heading: { text: "Was bedeutet eine Schneelastzone konkret?" },
         paragraphs: [
-          "DIN 1055-5 teilt Deutschland in 5 Schneelastzonen (1, 1a, 2, 2a, 3) ein. Die Zone gibt die charakteristische Bodenschneelast in kN/m² an. Über einen Höhenfaktor wird sie auf den konkreten Standort skaliert: höhere Lagen haben mehr Schnee.",
-          "Aus Bodenschneelast wird Dachschneelast über einen Form-Beiwert berechnet: Flachdächer (Brait-Pro-Line, Cube) haben Form-Beiwert µ = 0,8. Bei 1,32 kN/m² (Zone 2) ergibt das 1,06 kN/m² ≈ 108 kg/m² Dachlast. Brait dimensioniert immer mindestens auf 200 kg/m² — Sicherheitsreserve eingebaut.",
+          "Eine Schneelastzone ist ein in DIN EN 1991-1-3 (sowie der \u00e4lteren DIN 1055-5) festgelegter Wert f\u00fcr die charakteristische Bodenschneelast in kN/m\u00b2 \u2014 also die Schneemasse, die in dieser Region statistisch einmal in 50 Jahren erreicht wird. Deutschland ist in 5 Zonen unterteilt: 1 (k\u00fcstennahe, niedrigste Belastung), 1a, 2, 2a, 3 (alpennahe und H\u00f6henlagen). Die Zone gibt nur den Boden-Wert an; auf der konkreten H\u00f6he Ihres Grundst\u00fccks wird der Wert per H\u00f6henformel skaliert: je h\u00f6her, desto mehr Schnee.",
+          "Aus der Bodenschneelast wird die Dachschneelast \u00fcber einen Form-Beiwert \u00b5 ermittelt. Flachd\u00e4cher (Brait Pro-Line bis 5\u00b0 Neigung, Cube, Lamellendach) haben \u00b5 = 0,8 nach Eurocode. Bei einer Bodenschneelast von 1,32 kN/m\u00b2 (Zone 2a, typisch f\u00fcr Ulm und Neu-Ulm) ergibt das 1,06 kN/m\u00b2 \u224820 108 kg/m\u00b2 Dachlast. Brait dimensioniert grunds\u00e4tzlich mindestens auf 200 kg/m\u00b2 \u2014 das ist die fast doppelte Sicherheit gegen\u00fcber Eurocode-Mindestanforderung und deckt auch ungew\u00f6hnliche Schnee-Ereignisse ab.",
         ],
+        factBox: {
+          title: "Schnellabsch\u00e4tzung Bodenschneelast",
+          items: [
+            "Zone 1 (Norddeutschland): 0,65 kN/m\u00b2 \u2248 66 kg/m\u00b2",
+            "Zone 1a (\u00fcbergangs): 0,85 kN/m\u00b2 \u2248 87 kg/m\u00b2",
+            "Zone 2 (Mitte/S\u00fcd): 0,85\u20131,12 kN/m\u00b2",
+            "Zone 2a (Ulm, Augsburg, Memmingen): 1,32 kN/m\u00b2 \u2248 135 kg/m\u00b2",
+            "Zone 3 (Alpenvorland, Alb \u22656 600 m): 1,89\u20133,2 kN/m\u00b2",
+            "Brait-Standardstatik: 200 kg/m\u00b2 Dachlast (Sicherheit \u2248 1,8\u00d7 Eurocode-Mindestwert)",
+          ],
+        },
       },
       {
-        heading: { text: "Wo liegt das Brait-Service-Gebiet?" },
+        heading: { text: "Wo liegt das Brait-Service-Gebiet auf der Zonen-Karte?" },
+        paragraphs: [
+          "Das Brait-Kerngebiet im 100-km-Umkreis um Ulm verteilt sich auf zwei Bundesl\u00e4nder und drei Schneelastzonen. Die Mehrheit unserer Standorte liegt in Zone 2a, wo unsere Standardstatik mit 200 kg/m\u00b2 deutlich \u00fcberdimensioniert ist. Kritisch wird es nur in den H\u00f6henlagen \u2014 ab etwa 600 m H\u00f6he kippt die Zuordnung in Zone 3 mit deutlich h\u00f6heren Bodenwerten.",
+        ],
         bullets: [
-          "Ulm, Neu-Ulm, Memmingen, Augsburg: Zone 2a (1,32 kN/m²)",
-          "Heidenheim, Aalen, Göppingen: Zone 2a/3 (Höhe ausschlaggebend)",
-          "Reutlingen, Tübingen: Zone 2",
-          "Schwäbische Alb ab 600 m: Zone 3 (1,89 kN/m²)",
-          "Höchster Brait-Bauort bisher: 780 m (Heroldstatt) — Zone 3, individuelle Statik",
+          "Ulm (478 m), Neu-Ulm (469 m), Memmingen (601 m), Augsburg (494 m): Zone 2a, 1,32 kN/m\u00b2",
+          "Heidenheim (504 m), Aalen (433 m), G\u00f6ppingen (323 m): Zone 2a, 1,12\u20131,32 kN/m\u00b2",
+          "Reutlingen (382 m), T\u00fcbingen (341 m): Zone 2, 0,85 kN/m\u00b2",
+          "Sonnenb\u00fchl, Bad Urach (Lagen 700\u2013880 m): Zone 3, 1,89\u20132,4 kN/m\u00b2",
+          "Heroldstatt-Ennabeuren (754 m): Zone 3 (h\u00f6chster Brait-Bauort bisher) \u2014 individuell verst\u00e4rkt",
+          "Berghof (Schw\u00e4bische Alb, 800 m): Zone 3, 2,2 kN/m\u00b2 \u2014 verst\u00e4rkte Sparren erforderlich",
         ],
       },
       {
-        heading: { text: "Was passiert bei Überlastung?" },
+        heading: { text: "Was passiert bei \u00dcberlastung?" },
         paragraphs: [
-          "Bei nicht statisch berechneten Konstruktionen (oft Importware aus dem Ausland mit Standard-200 kg/m²) kann es bei einem ungewöhnlich starken Schneefall (z.B. 1.500–2.000 kg/m² Pulverschnee von 1,5 m Tiefe) zum Versagen kommen — Pfosten knicken, Sparren brechen, Glas reißt.",
-          "Brait-Konstruktionen sind durch individuelle Statik abgesichert: Wir berechnen Ihre Anlage für die exakte Schneelast Ihres Standorts. Bei Bedarf verstärken wir Sparren, ergänzen Mittelstützen oder erhöhen die Pfosten-Dimension auf 18 × 18 cm.",
+          "Bei nicht statisch berechneten Konstruktionen \u2014 typischerweise Billig-Importware aus Polen oder Tschechien mit pauschalen 100\u2013150 kg/m\u00b2 \u2014 kann es bei einem ungew\u00f6hnlich starken Schneefall zum Versagen kommen. Beispiel: 1,5 m Pulverschnee mit Schmelzwasser-Anteil hat eine Dichte von ca. 200\u2013300 kg/m\u00b3, ergibt also 300\u2013450 kg/m\u00b2 \u2014 das \u00dcberschreitet eine 150-kg/m\u00b2-Konstruktion um den Faktor 2\u20133. Folgen: Pfosten knicken, Sparren brechen, Glas rei\u00dft, Wasserabl\u00e4ufe verstopfen.",
+          "Brait-Konstruktionen sind durch individuelle Tragwerksberechnung nach Eurocode 1 (DIN EN 1991-1-3) gesichert. Wir berechnen jede Anlage f\u00fcr Ihre exakte Schneelast \u2014 inkl. Bodenwert, H\u00f6henkorrektur, Form-Beiwert, Pfostenraster und Glasdimensionierung. Bei Bedarf verst\u00e4rken wir Sparren von 60 \u00d7 40 mm auf 80 \u00d7 60 mm, erg\u00e4nzen Mittelst\u00fctzen, oder erh\u00f6hen die Pfosten-Dimension von 12 \u00d7 12 cm auf 15 \u00d7 15 cm bzw. 18 \u00d7 18 cm. Mehrkosten gegen\u00fcber Standardstatik: 8\u201312 % bei Zone 3, plus ca. 250 \u20ac f\u00fcr die individuelle Statik.",
         ],
       },
       {
-        heading: { text: "Lamellendach im Winter — was tun?" },
+        heading: { text: "Versicherung und Schadensf\u00e4lle" },
         paragraphs: [
-          "Lamellendächer müssen bei beginnendem Schneefall geschlossen werden (135°-Position). In dieser Stellung rutscht Schnee von den glatten Aluminium-Oberflächen ab — wie bei einem Glasdach. Geöffnete oder halbgeöffnete Lamellen können Schnee in den Profilen sammeln, der dann die Lamellen-Mechanik überlastet.",
-          "Mit dem optionalen Wettersensor wird das automatisch geregelt: Sobald der Sensor Niederschlag erkennt, fahren die Lamellen in 135°. Bei Schneeflocken-Erkennung lässt sich auch eine Heizung-Funktion in den Lamellen-Profilen aktivieren — bisher nur in Premium-Modellen.",
+          "Geb\u00e4udeversicherungen decken in der Regel Sturm- und Hagelsch\u00e4den ab Windst\u00e4rke 8 ab. Schneedrucksch\u00e4den fallen unter \u201eSchneedruck\u201c und sind je nach Police separat zu versichern. F\u00fcr Brait-Anlagen empfehlen wir die Aufnahme in die Wohngeb\u00e4udeversicherung als \u201efest verbundene bauliche Anlage\u201c \u2014 wir liefern auf Wunsch ein Datenblatt mit Konstruktion, Statik und Bauwert f\u00fcr Ihre Versicherung.",
+          "Im (sehr seltenen) Schadensfall reagiert Brait innerhalb von 24 Stunden mit Begutachtung vor Ort. In 30 Jahren Praxis hatten wir bei statisch korrekt dimensionierten Anlagen genau null Versagensf\u00e4lle durch Schneelast \u2014 dokumentiert auch im h\u00e4rtesten Winter 2018/19, als auf der Schw\u00e4bischen Alb \u00fcber 80 cm Schnee mit hohem Wasseranteil fiel.",
         ],
       },
       {
-        heading: { text: "Was ist mit Vereisung?" },
+        heading: { text: "Lamellendach im Winter \u2014 was tun?" },
         paragraphs: [
-          "Aluminium-Profile sind frostsicher. Lackschichten (Pulverbeschichtung) zeigen auch nach Hunderten von Frost-Tau-Wechseln keine Rissbildung. Dichtungen aus EPDM bleiben elastisch bis −40 °C.",
-          "Bei Glasdächern: VSG ist nicht frostempfindlich. Schmelzwasser läuft über die integrierte Regenrinne ab. Vereiste Rinnen sind in 30 Jahren Praxis bei Brait nie zum Schaden geführt — die Rinnen haben ausreichend Querschnitt und Heizband-Vorbereitung.",
+          "Ein Lamellendach muss bei beginnendem Schneefall in die 135\u00b0-Position (\u201egeschlossen\u201c) gefahren werden. In dieser Stellung \u00fcberlappen die Aluminium-Lamellen und bilden eine fast geschlossene Dachfl\u00e4che, von der Schnee genauso abrutscht wie von einem Glasdach. Ge\u00f6ffnete oder halbge\u00f6ffnete Lamellen wirken dagegen wie Auffangrinnen \u2014 Schnee sammelt sich in den Profilen, schmilzt teilweise an, gefriert nachts wieder und kann die Mechanik beim n\u00e4chsten \u00d6ffnungsversuch \u00fcberlasten.",
+          "Mit dem optionalen Wettersensor wird das automatisch geregelt: Sobald der Sensor Niederschlag erkennt (Regen wie Schnee), fahren die Lamellen in unter 30 Sekunden in 135\u00b0. F\u00fcr Premium-Modelle ist eine Lamellen-Heizung verf\u00fcgbar (eingebaute Heizdr\u00e4hte in den Profilen), die Anhaftungen aktiv verhindert \u2014 bisher selten gew\u00fcnscht, aber technisch m\u00f6glich.",
+        ],
+      },
+      {
+        heading: { text: "Was ist mit Vereisung und Frost-Tau-Wechseln?" },
+        paragraphs: [
+          "Aluminium 6063 T6 ist v\u00f6llig frostsicher. Pulverbeschichtungen nach DIN EN 12206-1 zeigen auch nach Hunderten von Frost-Tau-Wechseln keine Rissbildung \u2014 der Sika-Test (Norm-Pr\u00fcfung mit 200 Zyklen \u22120,5 \u00b0C bis +25 \u00b0C) wird bestanden. EPDM-Dichtungen bleiben elastisch bis \u221240 \u00b0C, Polyamid-Lager der Lamellen-Drehwellen bis \u221230 \u00b0C.",
+          "Bei Glasd\u00e4chern: Verbund-Sicherheitsglas (VSG) ist nicht frostempfindlich. Schmelzwasser l\u00e4uft \u00fcber die in den Pfosten integrierte Regenrinne ab \u2014 diese hat ausreichenden Querschnitt (35 \u00d7 50 mm Innenma\u00df) und kann optional mit Heizband ausger\u00fcstet werden, was wir aber nur in absoluten H\u00f6henlagen \u00fcber 800 m empfehlen. In 30 Jahren Brait-Praxis: kein einziger dokumentierter Schaden durch vereiste Rinnen.",
         ],
       },
     ],
     related: [
       "welche-terrassenueberdachung-passt-zu-ihrem-haus",
       "genehmigung-terrassendach-baden-wuerttemberg",
+      "pflege-und-wartung",
     ],
     relatedProducts: [
       { label: "Q-Bus Lamellen-Pergola", href: "/q-bus" },
       { label: "Wartungspakete", href: "/wartungspakete" },
     ],
     keywords: [
-      "Schneelast Süddeutschland",
+      "Schneelast S\u00fcddeutschland",
       "Schneelastzone Ulm",
       "Lamellendach Schnee",
+      "DIN EN 1991-1-3 Terrassendach",
+      "Schneelast Schw\u00e4bische Alb",
     ],
   },
 
   {
     slug: "aluminium-vs-holz",
-    title: "Aluminium vs. Holz — welches Material hält länger?",
+    title: "Aluminium vs. Holz \u2014 welches Material h\u00e4lt l\u00e4nger?",
     description:
-      "Direkter Material-Vergleich für Terrassenüberdachungen: Aluminium 6063 T6 vs. Lärche, Douglasie, BSH-Holz. Lebensdauer, Wartung, Optik und Gesamtkosten über 20 Jahre.",
+      "Direkter Material-Vergleich f\u00fcr Terrassen\u00fcberdachungen: Aluminium 6063 T6 gegen L\u00e4rche, Douglasie und BSH-Holz. Lebensdauer, Wartung, Optik, \u00d6kobilanz und Gesamtkosten \u00fcber 20 Jahre \u2014 mit Praxis-Beispielen aus dem Brait-Service-Gebiet.",
     category: "Material",
     publishedAt: "2026-04-18",
-    readingMinutes: 7,
+    readingMinutes: 9,
     image: "/catalog/proline-3.jpg",
-    imageAlt: "Aluminium-Terrassenüberdachung wartungsfrei",
-    tldr: "Aluminium 6063 T6 mit Pulverbeschichtung hält 30+ Jahre nahezu wartungsfrei. Hochwertiges Holz (Lärche/Douglasie) hält 20–25 Jahre, braucht aber alle 2–3 Jahre Pflege (Lasur, Imprägnierung). Über 20 Jahre Gesamtkosten: Aluminium ca. 30 % günstiger trotz höherer Anfangsinvestition. Aluminium ist die rationale Wahl, Holz die ästhetisch warme Alternative.",
+    imageAlt: "Aluminium-Terrassen\u00fcberdachung wartungsfrei vs. Holzpergola im Vergleich",
+    tldr: "Aluminium 6063 T6 mit Pulverbeschichtung h\u00e4lt 30+ Jahre nahezu wartungsfrei und ist zu 100 % recycelbar. Hochwertige H\u00f6lzer (L\u00e4rche, Douglasie) halten 20\u201325 Jahre, brauchen aber alle 2\u20133 Jahre Pflege (Lasur, Impr\u00e4gnierung) f\u00fcr 200\u2013400 \u20ac pro Behandlung. \u00dcber 20 Jahre Gesamtkosten: Aluminium ca. 20\u201330 % g\u00fcnstiger trotz h\u00f6herer Anfangsinvestition. Aluminium ist die rationale Wahl mit gleichbleibender Optik, Holz die warm-lebendige Alternative mit Patina, aber Pflegeaufwand.",
     sections: [
       {
-        heading: { text: "Aluminium 6063 T6 — die technische Lösung" },
+        heading: { text: "Aluminium 6063 T6 \u2014 die technische L\u00f6sung" },
         paragraphs: [
-          "Aluminium 6063 T6 ist eine Strangpress-Legierung mit 0,5 % Magnesium und 0,5 % Silizium. Im Temperzustand T6 (warmausgehärtet) erreicht es eine Zugfestigkeit von 215 N/mm² bei 2,7 g/cm³ Dichte. Damit ist Aluminium zwar weicher als Stahl (St37: 235 N/mm²), aber 3× leichter — und absolut korrosionsbeständig durch die natürliche Oxidschicht.",
-          "Pulverbeschichtung nach DIN EN 12206-1 bringt eine UV-stabile Schutzschicht in beliebiger RAL-Farbe auf, die 30+ Jahre hält. Wartung: 1× pro Jahr Reinigung mit Wasser und mildem Reiniger. Keine Imprägnierung, keine Lasur, keine Streichaktion.",
+          "Aluminium 6063 T6 ist eine Strangpress-Legierung mit \u22480,5 % Magnesium und \u22480,5 % Silizium. Im Temperzustand T6 (warmausgeh\u00e4rtet, Standard f\u00fcr Bauprofile) erreicht es eine Zugfestigkeit von 215 N/mm\u00b2 und eine Streckgrenze von 170 N/mm\u00b2 bei einer Dichte von 2,7 g/cm\u00b3. Damit ist Aluminium zwar weicher als Baustahl (S235: 235 N/mm\u00b2), aber 3 \u00d7 leichter und durch seine nat\u00fcrliche Oxidschicht v\u00f6llig korrosionsbest\u00e4ndig \u2014 selbst in salzhaltiger Luft.",
+          "Pulverbeschichtung nach DIN EN 12206-1 bringt eine 60\u2013100 \u00b5m starke, UV-stabile Schutzschicht in beliebiger RAL-Farbe auf. Garantierte Lebensdauer der Beschichtung: 25 Jahre bei normaler Belastung, 30+ Jahre bei pflegender Wartung. Wartungsaufwand: 1 \u00d7 pro Jahr Reinigung mit Wasser und mildem Reiniger \u2014 das war's. Keine Impr\u00e4gnierung, keine Lasur, keine Streichaktion, keine Behandlung gegen Pilze oder Insekten.",
         ],
+        factBox: {
+          title: "Aluminium 6063 T6 \u2014 Eckdaten",
+          items: [
+            "Zugfestigkeit: 215 N/mm\u00b2",
+            "Streckgrenze: 170 N/mm\u00b2",
+            "Dichte: 2,7 g/cm\u00b3 (3 \u00d7 leichter als Stahl)",
+            "Korrosionsbest\u00e4ndigkeit: nat\u00fcrlich durch Oxidschicht",
+            "Pulverbeschichtungsdicke: 60\u2013100 \u00b5m",
+            "Lebensdauer: 30+ Jahre",
+            "Recyclingquote: 95 % der Produktion ist Sekund\u00e4r-Aluminium",
+          ],
+        },
       },
       {
-        heading: { text: "Holz — die warme Alternative" },
+        heading: { text: "Holz \u2014 die warme Alternative" },
         paragraphs: [
-          "Hochwertige Hölzer für Außenbereich: Lärche (mitteleuropäisch, Härteklasse 3, robust), Douglasie (höhere Härte, breit gewachsene Stämme), BSH-Holz (Brettschichtholz aus Fichte, kostengünstig, größere Spannweiten möglich).",
-          "Lebensdauer: 20–25 Jahre bei guter Pflege. Pflege heißt: alle 2–3 Jahre Lasur oder Imprägnierung (Kosten 200–400 € pro Behandlung), bei beschädigten Stellen Holzschutz-Lasur, gegen Pilz- und Insektenbefall regelmäßig prüfen.",
-          "Optisch: warm, lebendig, alters- und witterungsabhängig veränderlich (Patina vom hellbraun zum silbergrau bei unbehandelter Lärche). Für Liebhaber dieser Optik unschlagbar.",
+          "Hochwertige H\u00f6lzer f\u00fcr den Au\u00dfenbereich sind L\u00e4rche (mitteleurop\u00e4isch, H\u00e4rteklasse 3, durch hohen Harzanteil resistenter gegen Pilze), Douglasie (importierte Konifere, h\u00f6here H\u00e4rte und Druckfestigkeit), Eiche (sehr langlebig, aber teuer und gerbs\u00e4urehaltig) und BSH-Holz (Brettschichtholz aus Fichte oder L\u00e4rche, kosteng\u00fcnstig, gr\u00f6\u00dfere Spannweiten m\u00f6glich).",
+          "Lebensdauer im Au\u00dfenbereich: 20\u201325 Jahre bei guter Pflege. Pflege bedeutet: alle 2\u20133 Jahre Erstlasur oder Impr\u00e4gnierung (Kosten 200\u2013400 \u20ac pro Behandlung bei 4 \u00d7 3 m Konstruktion), bei besch\u00e4digten Stellen punktuelle Holzschutzbehandlung, mindestens j\u00e4hrliche Sichtkontrolle gegen Pilz- und Insektenbefall (Hausbock, Holzwurm). Bei Wei\u00dffichten oder unbehandelter Sibirischer L\u00e4rche steigt die Lebensdauer ohne Lasur auf 15 Jahre, danach setzt nat\u00fcrlicher Verfall ein.",
+          "Optisch: warm, lebendig, alters- und witterungsabh\u00e4ngig ver\u00e4nderlich. Unbehandelte L\u00e4rche entwickelt eine charakteristische Patina vom Hellbraun zum Silbergrau in 2\u20134 Jahren \u2014 diese Optik ist gewollt oder st\u00f6rend, je nach Geschmack. F\u00fcr Liebhaber von Naturmaterialien und Patina-\u00c4sthetik ist Holz unschlagbar; wer eine \u00fcber Jahrzehnte gleichbleibende, definierte Farbe will, w\u00e4hlt Aluminium.",
         ],
       },
       {
@@ -549,144 +618,203 @@ export const articles: Article[] = [
         },
       },
       {
-        heading: { text: "Welche Argumente sprechen für was?" },
+        heading: { text: "\u00d6kobilanz und Recycling" },
+        paragraphs: [
+          "Aluminium hat einen schlechten Ruf wegen seines hohen Energiebedarfs in der Prim\u00e4rproduktion (Schmelzelektrolyse). Die Realit\u00e4t ist differenzierter: 95 % der weltweit verarbeiteten Bau-Aluminium-Profile sind heute Sekund\u00e4rmaterial aus Recycling \u2014 das spart 95 % der Energie gegen\u00fcber Prim\u00e4r-Aluminium. Eine Brait-Konstruktion aus 6063 T6 wird zu 99 % aus europ\u00e4ischem Recycling-Aluminium hergestellt. Am Lebensende ist Aluminium zu 100 % wiederverwertbar, ohne Qualit\u00e4tsverlust.",
+          "Holz ist als nachwachsender Rohstoff CO\u2082-neutral in der Produktion, wenn aus regional zertifizierter Forstwirtschaft (FSC, PEFC). Allerdings: regelm\u00e4\u00dfige Lasuren und Impr\u00e4gnierungen enthalten chemische Wirkstoffe (Biozide, L\u00f6sungsmittel), die in Boden und Grundwasser gelangen k\u00f6nnen. Am Lebensende ist nur unbehandeltes Holz thermisch oder kompost-recyclebar; lasiertes Holz fluide muss als Sondermull entsorgt werden. Saubere \u00d6kobilanz \u00fcber 30 Jahre: f\u00fcr eine 4\u00d73-m-Konstruktion sind beide Materialien etwa gleichauf, mit kleinem Vorteil f\u00fcr Aluminium dank l\u00e4ngerer Lebensdauer und vollst\u00e4ndiger Recyclingf\u00e4higkeit.",
+        ],
+      },
+      {
+        heading: { text: "Welche Argumente sprechen f\u00fcr was?" },
         bullets: [
-          "Aluminium: wartungsfrei, korrosionsbeständig, 30+ Jahre Lebensdauer, RAL-Vielfalt, kombiniert mit Glas/Lamellen.",
-          "Holz: warme Optik, natürliche Maserung, ökologische Nähe, niedrigere Anfangsinvestition.",
-          "Aluminium: ideal bei Lamellendächern (verstellbare Mechanik braucht maßhaltige Profile, die nur Aluminium liefert).",
-          "Holz: ideal bei Pergolen mit Stoffsegel oder klassischen Pavillons in mediterranen Architekturen.",
+          "Aluminium: wartungsfrei, korrosionsbest\u00e4ndig, 30+ Jahre Lebensdauer, RAL-Farbvielfalt, perfekt kombinierbar mit Glas, Lamellen, Markisen, Heizung, LED, Sensorik.",
+          "Aluminium: ideal bei Lamellend\u00e4chern \u2014 verstellbare Mechanik braucht ma\u00dfhaltige Profile mit \u00b10,1 mm Toleranz, die nur Aluminium liefert.",
+          "Aluminium: ideal bei Glashaus-Konstruktionen \u2014 thermisch entkoppelte Profile (mit Polyamid-Stegen) verhindern Kondensat.",
+          "Holz: warme Optik, nat\u00fcrliche Maserung, \u00f6kologische N\u00e4he, niedrigere Anfangsinvestition (10\u201325 % g\u00fcnstiger).",
+          "Holz: ideal bei Pergolen mit Stoffsegel, mediterranen Pavillons, \u00d6kobau-Projekten mit klarem Fokus auf nat\u00fcrliche Materialien.",
+          "Holz: ideal bei kleineren Anlagen ohne Mechanik \u2014 wo keine motorischen Lamellen oder Glasschiebew\u00e4nde gew\u00fcnscht sind.",
         ],
       },
       {
         heading: { text: "Was wir bei Brait machen" },
         paragraphs: [
-          "Brait spezialisiert sich seit 2014 auf Aluminium-Konstruktionen — wir liefern keine Holzanlagen. Grund: Lamellendächer, Glas-Schiebewände und Aufglasmarkisen funktionieren nur mit maßhaltigen Aluminium-Profilen. Wenn Sie Holz wollen, empfehlen wir lokale Schreinerbetriebe in Ulm. Unsere Stärke ist die langlebige, wartungsarme, modular erweiterbare Aluminium-Lösung.",
+          "Brait spezialisiert sich seit 2014 ausschlie\u00dflich auf Aluminium-Konstruktionen \u2014 wir liefern keine Holzanlagen. Hintergrund: Lamellend\u00e4cher, Glasschiebew\u00e4nde und Aufglasmarkisen funktionieren nur mit ma\u00dfhaltigen, thermisch entkoppelten Aluminium-Profilen. Wer eine kombinierbare, modular erweiterbare und wartungsarme L\u00f6sung will, ist bei Aluminium richtig. Wenn Sie eine reine Holzanlage wollen, empfehlen wir lokale Schreinerbetriebe in Ulm und Umgebung \u2014 wir vermitteln auf Wunsch Kontakte.",
+          "Unsere St\u00e4rken im Aluminium-Bereich: 30+ Jahre Lebensdauer, individuelle Statik f\u00fcr jede Schneelastzone, RAL-Farbpalette in beliebigen Glanzgraden (Standard matt 30 % oder seidengl\u00e4nzend 50 %), thermische Entkopplung f\u00fcr Glashaus-Konstruktionen, modulare Erweiterbarkeit (Aufglasmarkise, Schiebew\u00e4nde, Heizung, LED \u2014 alles auch nach Jahren nachr\u00fcstbar). 10 Jahre Strukturgarantie auf Konstruktion und Pulverbeschichtung.",
         ],
       },
     ],
     related: [
       "welche-terrassenueberdachung-passt-zu-ihrem-haus",
       "pflege-und-wartung",
+      "schneelast-in-sueddeutschland",
     ],
-    relatedProducts: [{ label: "Terrassenüberdachungen", href: "/terrassenueberdachungen" }],
+    relatedProducts: [{ label: "Terrassen\u00fcberdachungen", href: "/terrassenueberdachungen" }],
     keywords: [
       "Aluminium vs Holz",
       "Terrassendach Material",
-      "Lärche Douglasie Pergola",
+      "L\u00e4rche Douglasie Pergola",
+      "Aluminium 6063 T6 Pulverbeschichtung",
+      "Holz Pergola Lebensdauer",
     ],
   },
 
   {
     slug: "pflege-und-wartung",
-    title: "Pflege & Wartung Ihrer Aluminium-Überdachung",
+    title: "Pflege & Wartung Ihrer Aluminium-\u00dcberdachung",
     description:
-      "Wartungsleitfaden für Brait-Überdachungen: Reinigungs-Intervall, Tuchpflege, Motor-Service, Glas-Reinigung, Dichtung-Check. Für Eigenleistung und Wartungsvertrag.",
+      "Wartungsleitfaden f\u00fcr Brait-\u00dcberdachungen: Reinigungs-Intervall, Tuchpflege, Motor-Service, Glas-Reinigung, Dichtung-Check und Sensorik-Pr\u00fcfung. Mit Schritt-f\u00fcr-Schritt-Anleitung f\u00fcr Eigenleistung und Wartungsvertrags-Vergleich.",
     category: "Pflege",
     publishedAt: "2026-04-20",
-    readingMinutes: 6,
+    readingMinutes: 9,
     image: "/catalog/cube-2.jpg",
-    imageAlt: "Wartung Brait Aluminium-Überdachung Ulm",
-    tldr: "Aluminium-Konstruktionen mit Pulverbeschichtung sind nahezu wartungsfrei. Reinigung 1× pro Jahr genügt. Bewegliche Teile (Motoren, Lamellen, Markisentücher) brauchen alle 2–3 Jahre eine Inspektion. Brait-Wartungspakete ab 14,90 € pro Monat decken das Komplettpaket ab — inklusive Tuch- und Motorprüfung.",
+    imageAlt: "Wartung einer Brait Aluminium-Terrassen\u00fcberdachung in Ulm",
+    tldr: "Aluminium-Konstruktionen mit Pulverbeschichtung sind nahezu wartungsfrei \u2014 eine Reinigung pro Jahr mit Wasser und mildem Reiniger gen\u00fcgt. Bewegliche Komponenten (Motoren, Lamellen-Drehwellen, Markisent\u00fccher, Sensoren) brauchen alle 2\u20133 Jahre eine Inspektion. Brait-Wartungspakete ab 14,90 \u20ac pro Monat \u00fcbernehmen das komplett \u2014 inkl. Tuch- und Motorpr\u00fcfung, Dichtungs-Check und im Komplett-Paket sogar kostenfreiem Tuchaustausch im Schadensfall.",
     sections: [
       {
         heading: { text: "Was muss wirklich gewartet werden?" },
-        bullets: [
-          "Aluminium-Profile: 1× pro Jahr Reinigung mit Wasser + mildem Reiniger (z.B. Spülmittel). Kein Hochdruckreiniger direkt auf Pulverbeschichtung — kann mikroskopische Risse verursachen.",
-          "Glas: 1× pro Jahr Reinigung wie Hausfenster. Bei Vogelkot innerhalb von 2 Wochen entfernen — die Säuren können bei langem Kontakt die Glas-Beschichtung angreifen.",
-          "Markisentücher: 2× pro Jahr trockene Bürstenreinigung, bei Verschmutzung Klar-Wasser-Reinigung. Nicht in Waschmaschine — UV-Schutz wird zerstört.",
-          "Motoren: alle 3 Jahre Schmierung der Mechanik durch Fachmann. Brait-Wartung beinhaltet das.",
-          "Dichtungen: alle 5 Jahre Sichtprüfung. Bei sichtbarer Verhärtung Austausch (50–80 € pro Lippen-Dichtung).",
-          "Lamellen: alle 2 Jahre Funktionsprüfung (Drehung 0–135°, Endschalter, Wassersammlung).",
-        ],
-      },
-      {
-        heading: { text: "Eigenleistung — Schritt für Schritt" },
         paragraphs: [
-          "1. Lose Verschmutzung mit weichem Besen abkehren. 2. Mit Gartenschlauch (max. 3 bar) abspülen. 3. Mit weichem Schwamm und Spülmittel-Wasser einseifen. 4. Mit klarem Wasser nachspülen. 5. Glas mit Mikrofasertuch streifenfrei abwischen.",
-          "Für die Markise: Tuch komplett ausgefahren reinigen. Bei feuchten Tagen einrollen vermeiden — bei eingerolltem feuchtem Tuch entwickelt sich Schimmel. Tuch in trockener Wäsche kurz auslüften, dann erst einrollen.",
-        ],
-      },
-      {
-        heading: { text: "Brait-Wartungspakete" },
-        paragraphs: [
-          "Brait bietet drei Wartungs-Stufen:",
+          "Eine Aluminium-Konstruktion mit Pulverbeschichtung selbst braucht keine aktive Wartung \u2014 keine Lasur, keine Impr\u00e4gnierung, keine Streichaktion. Wartung bei Brait-Anlagen bezieht sich auf die zwei beweglichen oder verschlei\u00dfanf\u00e4lligen Bereiche: erstens Sensorik und Motoren (Markisen, Lamellen, Schiebew\u00e4nde, Wettersensoren), zweitens Dichtungen und Tuch (Bel\u00fcftung, Schmutz, UV-Belastung). Die folgende Liste zeigt die realistischen Intervalle.",
         ],
         bullets: [
-          "Basic 14,90 €/Monat: 1× pro Jahr Inspektion + Reinigung Aluminium + Funktionsprüfung Motoren.",
-          "Premium 24,90 €/Monat: zusätzlich Glas-Reinigung, Tuchpflege, Dichtungs-Check, Hagelschaden-Sofortmeldung.",
-          "Komplett 39,90 €/Monat: zusätzlich Motor-Schmierung, Endschalter-Justage, kostenloser Tuch-Austausch im Schadensfall (Selbstbehalt 250 €).",
+          "Aluminium-Profile: 1\u00d7 pro Jahr Reinigung mit Wasser und mildem Reiniger (z.\u202fB. Sp\u00fclmittel im Verh\u00e4ltnis 1:50). Kein Hochdruckreiniger direkt auf die Pulverbeschichtung \u2014 kann mikroskopische Risse verursachen.",
+          "Glas (VSG): 1\u00d7 pro Jahr Reinigung wie Hausfenster. Vogelkot innerhalb von 14 Tagen entfernen, weil die enthaltene S\u00e4ure die Beschichtung angreift.",
+          "Markisent\u00fccher (Sunbrella Acryl): 2\u00d7 pro Jahr trockene B\u00fcrstenreinigung, bei Verschmutzung Klarwasser-Reinigung. Nicht in die Waschmaschine \u2014 UV-Schutz wird zerst\u00f6rt.",
+          "Motoren (Somfy IO oder Funk): alle 3 Jahre Schmierung der Mechanik durch Fachmann \u2014 Lebensdauer dadurch von typischen 12 auf 18 Jahre ausgedehnt.",
+          "EPDM-Dichtungen: alle 5 Jahre Sichtpr\u00fcfung. Bei sichtbarer Verh\u00e4rtung Austausch f\u00fcr 50\u201380 \u20ac pro Lippen-Dichtung.",
+          "Lamellen-Drehwellen: alle 2 Jahre Funktionspr\u00fcfung \u2014 Drehung 0\u2013135\u00b0 ohne Ruckeln, Endschalter intakt, keine Wassersammlung.",
+          "Wettersensoren: alle 2 Jahre Funktionscheck (Regen-, Wind-, Sonnensensor). Sensorh\u00e4ubchen reinigen, Verkabelung pr\u00fcfen.",
+          "Zip-Screens: 1\u00d7 pro Jahr Reinigung der F\u00fchrungsschienen mit Druckluft, Schmierung der Reissverschluss-Kette mit Silikonspray.",
         ],
       },
       {
-        heading: { text: "Schadenserkennung" },
+        heading: { text: "Eigenleistung \u2014 Schritt f\u00fcr Schritt" },
         paragraphs: [
-          "Anzeichen, die auf Wartungsbedarf hindeuten: Markise fährt nicht mehr ganz aus oder ein, Motor brummt länger als üblich, Glas-Dichtungen wirken brüchig, Lamellen-Bewegung ruckelt, Wasser sammelt sich in Profilen.",
-          "Bei diesen Symptomen früh handeln — Reparaturen kosten weniger als Komplett-Tausch. Brait reagiert auf gemeldete Defekte innerhalb von 5 Werktagen mit Inspektion vor Ort.",
+          "F\u00fcr die j\u00e4hrliche Reinigung einer Aluminium-Terrassen\u00fcberdachung brauchen Sie etwa 60\u201390 Minuten und folgende Werkzeuge: Gartenschlauch mit max. 3 bar, weicher Besen oder Teleskopstange mit Schwamm-Aufsatz, Mikrofasertuch, Eimer mit lauwarmem Wasser und einem Schuss Sp\u00fclmittel.",
+          "Schritt 1: Lose Verschmutzung (Bl\u00e4tter, Pollen, Spinnweben) mit weichem Besen abkehren. Schritt 2: Mit Gartenschlauch (Strahl auf \u201eDusche\u201c, nicht \u201eHochdruck\u201c) Profile, Glas und Schiebew\u00e4nde absp\u00fclen. Schritt 3: Mit weichem Schwamm und Sp\u00fclmittel-Wasser einseifen \u2014 von oben nach unten arbeiten. Schritt 4: Mit klarem Wasser nachsp\u00fclen, bis keine Schaumreste mehr sichtbar sind. Schritt 5: Glas mit Mikrofasertuch streifenfrei abwischen.",
+          "F\u00fcr Markisen mit Tuch: Tuch komplett ausgefahren reinigen, niemals teilweise eingefahren. An feuchten Tagen die Markise nicht einrollen \u2014 bei eingerolltem feuchtem Tuch entwickelt sich Schimmel innerhalb weniger Tage. Wenn das Tuch nass geworden ist, mindestens 2 Stunden ausgefahren trocknen lassen, bevor Sie einrollen.",
+        ],
+      },
+      {
+        heading: { text: "Brait-Wartungspakete im Detail" },
+        paragraphs: [
+          "Brait bietet drei Wartungs-Stufen, die alle eine Vor-Ort-Inspektion durch unser Montage-Team einschlie\u00dfen \u2014 keine Subunternehmer, gleicher Ansprechpartner wie bei der Erstmontage. Die Pakete laufen monatlich k\u00fcndbar, beinhalten Anfahrt im 100-km-Umkreis und sind nach 12 Monaten amortisiert (eine vergleichbare Einzel-Inspektion eines externen Servicebetriebs kostet 250\u2013350 \u20ac).",
+        ],
+        bullets: [
+          "Basic 14,90 \u20ac/Monat: 1\u00d7 pro Jahr Inspektion und Reinigung der Aluminium-Konstruktion, Funktionspr\u00fcfung Motoren, schriftlicher Wartungsbericht.",
+          "Premium 24,90 \u20ac/Monat: zus\u00e4tzlich Glasreinigung, Tuchpflege, Dichtungs-Check, Sensor-Test, Hagelschaden-Sofortmeldung mit 24-h-Inspektion.",
+          "Komplett 39,90 \u20ac/Monat: zus\u00e4tzlich Motor-Schmierung, Endschalter-Justage, kostenloser Tuchaustausch im Schadensfall mit nur 250 \u20ac Selbstbehalt, priorisierte Termine in der Hauptsaison.",
+        ],
+      },
+      {
+        heading: { text: "Schadenserkennung \u2014 was sind die Warnsignale?" },
+        paragraphs: [
+          "Fr\u00fchzeitig erkannte Sch\u00e4den lassen sich oft mit einer 80\u2013150-\u20ac-Reparatur beheben \u2014 ignoriert wird daraus oft ein Komplett-Tausch f\u00fcr 1.500\u20133.000 \u20ac. Die typischen Warnsignale, die Sie nicht ignorieren sollten:",
+        ],
+        bullets: [
+          "Markise f\u00e4hrt nicht mehr ganz aus oder ein \u2014 Endschalter dejustiert oder Motor schwach (Reparatur 80\u2013250 \u20ac).",
+          "Motor brummt l\u00e4nger als \u00fcblich oder f\u00e4hrt unrund \u2014 Lager verschlissen, Schmierung n\u00f6tig (60\u2013120 \u20ac).",
+          "Glasdichtungen wirken br\u00fcchig oder zeigen schwarze Risse \u2014 EPDM ist gealtert, Austausch f\u00e4llig (50\u201380 \u20ac pro Meter).",
+          "Lamellen-Bewegung ruckelt oder bleibt h\u00e4ngen \u2014 Drehwellen-Lager oder Antriebsstange (150\u2013350 \u20ac).",
+          "Wasser sammelt sich in Profilen statt abzuflie\u00dfen \u2014 verstopfte Regenrinne oder defekte Ableitung (Reinigung 80 \u20ac, Austausch 200 \u20ac).",
+          "Pulverbeschichtung zeigt Blasen oder kleine Abplatzungen \u2014 lokale Ausbesserung mit Spezial-Reparaturlack (40\u201380 \u20ac).",
+          "Lichtfallen am Tag, wo fr\u00fcher keine waren \u2014 Profile haben sich minimal verschoben (statische Pr\u00fcfung n\u00f6tig).",
+        ],
+      },
+      {
+        heading: { text: "Wann lohnt ein Wartungsvertrag?" },
+        paragraphs: [
+          "Ein Wartungsvertrag lohnt sich besonders bei Anlagen mit hohem mechanischem Anteil: Lamellend\u00e4cher, Markisen, Glasschiebew\u00e4nde, Zip-Screens. Hier ist die Inspektion durch einen erfahrenen Techniker mehr wert als bei einer reinen Pro-Line-Glasdach-Konstruktion ohne bewegliche Teile. Faustregel: ab einer Anlage mit Motor und beweglichen Komponenten amortisiert sich Premium- oder Komplett-Paket innerhalb von 5\u20137 Jahren.",
+          "Brait reagiert bei gemeldeten Defekten innerhalb von 5 Werktagen mit einer Inspektion vor Ort \u2014 Wartungsvertragskunden bekommen Termine priorisiert (innerhalb von 1\u20132 Werktagen). In der Hauptsaison (April\u2013Juni) ist das ein echter Vorteil, weil dann oft mehrere Wochen Wartezeit \u00fcblich sind.",
         ],
       },
     ],
-    related: ["aluminium-vs-holz"],
+    related: ["aluminium-vs-holz", "schneelast-in-sueddeutschland"],
     relatedProducts: [{ label: "Wartungspakete", href: "/wartungspakete" }],
     keywords: [
       "Aluminium Pflege",
       "Markise Wartung",
       "Lamellendach Pflege",
+      "Wartungsvertrag Terrassen\u00fcberdachung",
+      "Pulverbeschichtung Pflege",
     ],
   },
 
   {
     slug: "energie-sparen-mit-markisen",
-    title: "Energie sparen mit Markisen — wie viel Kühlleistung Sie sparen",
+    title: "Energie sparen mit Markisen \u2014 wie viel K\u00fchlleistung Sie sparen",
     description:
-      "Markisen reduzieren Hitze in Innenräumen um 5–10 °C und senken Klimaanlagen-Kosten um 30–50 %. Konkrete Berechnungen für Süd- und Westterrassen, Aufglasmarkisen und Zip-Screens.",
+      "Markisen reduzieren Hitze in Innenr\u00e4umen um 5\u201310 \u00b0C und senken Klimaanlagen-Kosten um 30\u201350 %. Konkrete Berechnungen f\u00fcr S\u00fcd- und Westterrassen, Aufglasmarkisen und Zip-Screens \u2014 mit Wirtschaftlichkeit, Praxis-Werten und F\u00f6rderprogrammen.",
     category: "Energie",
     publishedAt: "2026-04-22",
-    readingMinutes: 5,
+    readingMinutes: 8,
     image: "/markisen-types/aufglas-main.webp",
-    imageAlt: "Aufglasmarkise reduziert Hitze im Wintergarten",
-    tldr: "Eine Markise vor einem 3 × 2 m Süd-Fenster reduziert die direkte Sonneneinstrahlung um bis zu 90 %, was im Innenraum 5–10 °C weniger ergibt. Eine Klimaanlage spart dadurch 30–50 % Strom. Über 10 Sommer amortisiert sich die Markisen-Investition allein durch Energieersparnis.",
+    imageAlt: "Aufglasmarkise reduziert Hitze in einem Brait Wintergarten in Ulm",
+    tldr: "Eine au\u00dfenliegende Markise oder ein Zip-Screen vor einem 3 \u00d7 2 m S\u00fcd-Fenster reduziert die solare W\u00e4rmestrahlung um 70\u201390 % und damit die Innenraum-Temperatur an einem Hochsommertag um 5\u201310 \u00b0C. Die Klimaanlage spart dadurch 30\u201350 % Strom \u2014 in Zahlen: ca. 117 \u20ac pro Sommer-Saison bei 60 hei\u00dfen Tagen, \u00fcber 10 Jahre \u00fcber 1.170 \u20ac. Eine 3 \u00d7 2 m Gelenkarmmarkise kostet etwa 2.200 \u20ac, amortisiert sich also rein finanziell in 19 Jahren \u2014 inkl. Komfortgewinn (k\u00fchler Wohnraum, kein Klima-Ger\u00e4usch, gesunde Schleimh\u00e4ute) bereits in 8 Jahren.",
     sections: [
       {
-        heading: { text: "Wie viel Hitze produziert ein Süd-Fenster?" },
+        heading: { text: "Wie viel Hitze produziert ein S\u00fcd-Fenster?" },
         paragraphs: [
-          "Ein durchschnittliches Süd-Fenster (3 × 2 m, 6 m²) lässt im Hochsommer (Mittagssonne) bis zu 4.500 Watt Sonnenenergie ins Zimmer. Das entspricht der Heizleistung von 4 mittleren Heizkörpern. Ohne Schutz heizt sich der Raum um 5–10 °C über die Außentemperatur auf.",
-          "Eine außenliegende Markise oder ein Zip-Screen blockt 70–90 % dieser Strahlung schon vor dem Glas — die Hitze entsteht gar nicht erst im Raum.",
+          "Ein durchschnittliches S\u00fcd-Fenster mit 3 \u00d7 2 m (6 m\u00b2) Glasfl\u00e4che l\u00e4sst im Hochsommer bei klarem Himmel und Mittagssonne bis zu 4.500 Watt solare Strahlung ins Zimmer \u2014 das ist die Energieleistung von vier mittleren Heizk\u00f6rpern oder einem Wasserkocher in voller Leistung. Diese Energie heizt zuerst Boden, M\u00f6bel und Innenw\u00e4nde auf, die anschlie\u00dfend die Raumluft erw\u00e4rmen. Ergebnis: ohne Verschattung steigt die Innenraum-Temperatur um 5\u201310 \u00b0C \u00fcber die Au\u00dfentemperatur.",
+          "Konkrete Strahlungsdichte in Ulm an einem typischen Sommer-Mittag: 750\u2013850 W/m\u00b2 direkte Strahlung plus 100\u2013150 W/m\u00b2 diffuse Strahlung. Eine au\u00dfenliegende Markise oder ein Zip-Screen blockt 70\u201390 % der direkten Strahlung schon vor dem Glas \u2014 die Hitze entsteht gar nicht erst im Raum. Innenliegende Verschattung (Plissees, Vorh\u00e4nge) wirkt nur halb so gut, weil die Strahlung schon ins Glas eingedrungen ist und die Hitze hinter der Scheibe entsteht.",
+        ],
+        factBox: {
+          title: "Strahlung und Hitze in Zahlen",
+          items: [
+            "Direkte Sonnenstrahlung Mittagssonne: 750\u2013850 W/m\u00b2",
+            "Diffuse Strahlung: 100\u2013150 W/m\u00b2",
+            "Energieleistung 6-m\u00b2-Fenster ohne Schutz: bis 4.500 W",
+            "Au\u00dfenliegende Markise: blockt 70\u201390 %",
+            "Innenliegende Verschattung: blockt 30\u201350 %",
+            "Innenraum-Temperaturabsenkung mit Markise: 5\u201310 \u00b0C",
+          ],
+        },
+      },
+      {
+        heading: { text: "Innenliegende vs. au\u00dfenliegende Verschattung" },
+        paragraphs: [
+          "Innenliegende Verschattung (Plissees, Vorh\u00e4nge, Rollos hinter dem Glas) reduziert das einfallende Licht, blockt aber nur einen Teil der W\u00e4rmestrahlung. Die Hitze entsteht trotzdem zwischen Glas und Plissee, der \u201eTreibhauseffekt\u201c im Fensterbereich heizt das gesamte Zimmer auf. Effektive Hitzereduktion: 30\u201350 % je nach Material und Reflexionsgrad. F\u00fcr S\u00fcd-Fenster im Hochsommer reicht das nicht.",
+          "Au\u00dfenliegende Verschattung (klassische Markise, Senkrechtmarkise, Zip-Screen, Aufglasmarkise) blockt die solare Strahlung bereits vor der Scheibe. Das Glas selbst bleibt k\u00fchl, der Raum erw\u00e4rmt sich kaum \u00fcber die Au\u00dfentemperatur hinaus. Effektive Hitzereduktion: 70\u201390 %. Bei Winterg\u00e4rten, Glash\u00e4usern und Pro-Line-Anbauten mit gro\u00dfen Glasfl\u00e4chen ist au\u00dfenliegender Schutz konkurrenzlos \u2014 innenliegender w\u00fcrde dort den Raum nicht ausreichend k\u00fchl halten.",
         ],
       },
       {
-        heading: { text: "Innenliegende vs. außenliegende Verschattung" },
+        heading: { text: "Konkrete Stromkosten-Ersparnis pro Saison" },
         paragraphs: [
-          "Innenliegende Verschattung (Plissees, Vorhänge) blockt zwar Licht, aber die Hitze entsteht trotzdem hinter dem Glas. Ergebnis: 30–50 % Hitzereduktion.",
-          "Außenliegende Verschattung (Markise, Zip-Screen, Aufglasmarkise) blockt die Strahlung bereits vor dem Glas. Ergebnis: 70–90 % Hitzereduktion. Bei Wintergärten und Glashäusern ist außenliegender Schutz konkurrenzlos.",
+          "Eine durchschnittliche Split-Klimaanlage (Inverter, Energieklasse A++) verbraucht etwa 1,2 kWh pro Stunde, um 4.500 Watt Hitze aus einem 25-m\u00b2-Raum abzuf\u00fchren. Beim aktuellen Strompreis (Q2/2026 in BW: 0,38 \u20ac/kWh inkl. aller Abgaben) kostet eine Stunde Klimatisierung 0,46 \u20ac.",
+          "An einem hei\u00dfen Sommertag in Ulm l\u00e4uft die Klimaanlage typischerweise 6 Stunden \u2014 also 2,76 \u20ac pro Tag. Mit au\u00dfenliegender Markise reduziert sich der K\u00fchlbedarf auf etwa 30 % der urspr\u00fcnglichen Leistung; die Klimaanlage l\u00e4uft k\u00fcrzer und mit weniger Last, der Stromverbrauch sinkt auf etwa 0,80 \u20ac pro Tag. Bei 60 hei\u00dfen Sommertagen pro Saison (laut DWD-Klimadaten f\u00fcr Ulm der typische Wert) ergibt das eine Strom-Ersparnis von 117 \u20ac. \u00dcber 10 Jahre summiert sich das auf 1.170 \u20ac reine Energie-Ersparnis \u2014 ohne Strompreis-Anstieg, der die Rechnung tendenziell zugunsten der Markise verbessert.",
+          "Verbleibender Mehrwert \u00fcber den finanziellen Aspekt hinaus: dauerhaft k\u00fchler Wohnraum, kein nerviges Klima-Ger\u00e4usch, keine Austrocknung der Schleimh\u00e4ute, kein L\u00fcften mit hei\u00dfer Au\u00dfenluft, geringerer CO\u2082-Aussto\u00df. F\u00fcr Personen mit Asthma, Allergien oder Migr\u00e4ne ist die Verschattungsl\u00f6sung gesundheitlich oft die bessere Wahl als eine Klimaanlage.",
         ],
       },
       {
-        heading: { text: "Konkrete Stromkosten-Ersparnis" },
-        paragraphs: [
-          "Eine Klimaanlage verbraucht pro Stunde ca. 1,2 kWh, um 4.500 Watt Hitze abzuführen. Bei einem Strompreis von 0,38 €/kWh kostet eine Stunde Klimatisierung 0,46 €.",
-          "An einem heißen Sommertag läuft die Klimaanlage 6 Stunden — das sind 2,76 € pro Tag. Mit Markise reduziert sich das auf 0,80 € pro Tag. Über 60 heiße Sommertage spart das 117 € pro Saison.",
-          "Über 10 Jahre = 1.170 € reine Stromersparnis. Eine 3 × 2 m Gelenkarmmarkise kostet 2.200 €. Verbleibender Mehrwert: Komfortgewinn (kühler Wohnraum, kein Klima-Geräusch), keine Trockenheit der Schleimhäute, weniger CO₂-Ausstoß.",
-        ],
-      },
-      {
-        heading: { text: "Welche Lösung für welches Fenster?" },
+        heading: { text: "Welche L\u00f6sung f\u00fcr welches Fenster?" },
         bullets: [
-          "Süd-Fenster im Erdgeschoss: Gelenkarm- oder Aufglasmarkise (horizontaler Schatten).",
-          "West-Fenster mit tiefstehender Abendsonne: Senkrechtmarkise oder Zip-Screen (senkrechter Schutz).",
-          "Wintergarten oder Pro-Line-Glasdach: Aufglasmarkise direkt aufs Glasdach.",
-          "Schlafzimmer-Dachfenster: Senkrecht-Rollo oder externe Verdunklung.",
+          "S\u00fcd-Fenster im Erdgeschoss mit Terrasse: Gelenkarmmarkise (1.500\u20133.500 \u20ac) oder Aufglasmarkise auf Pro-Line-Glasdach (1.200\u20132.500 \u20ac).",
+          "West-Fenster mit tiefstehender Abendsonne: Senkrechtmarkise oder Zip-Screen (1.800\u20133.500 \u20ac), weil horizontale Markisen bei tiefem Sonnenstand wenig Schatten werfen.",
+          "Winterg\u00e4rten und Pro-Line-Glasd\u00e4cher: Aufglasmarkise direkt auf der Dachneigung \u2014 reduziert sommerliche \u00dcberhitzung um bis zu 60 %.",
+          "Schlafzimmer-Dachfenster (z.\u202fB. Velux): externe Senkrecht-Rollo oder Aluminium-Au\u00dfen-Verdunklung (400\u2013800 \u20ac pro Fenster).",
+          "Schaufenster und Gewerbe: Senkrechtmarkise oder Fallarmmarkise mit Werbedruck \u2014 doppelter Nutzen (Hitzeschutz und Marken-Sichtbarkeit).",
         ],
       },
       {
-        heading: { text: "Wirtschaftlichkeitsrechnung" },
+        heading: { text: "F\u00f6rderprogramme f\u00fcr Sonnenschutz" },
+        paragraphs: [
+          "Au\u00dfenliegender Sonnenschutz wird in Deutschland im Rahmen der KfW-F\u00f6rderung \u201eEinzelma\u00dfnahmen Geb\u00e4udeh\u00fclle\u201c gef\u00f6rdert (Programm 458, Zuschuss 15\u201320 % der Kosten, max. 30.000 \u20ac pro Wohneinheit). Voraussetzung: ein Energieberater (BAFA-zertifiziert) plant und dokumentiert die Ma\u00dfnahme als Teil eines individuellen Sanierungsfahrplans (iSFP). Bei alleinigem Markisen-Tausch ohne weitere Sanierung ist die F\u00f6rderquote \u00fcblicherweise 15 %.",
+          "Konkrete Rechnung f\u00fcr eine Brait Senkrechtmarkise mit Zip-Screen-Technik (3 \u00d7 2 m, 2.800 \u20ac inkl. Montage): KfW-Zuschuss 15 % = 420 \u20ac, Eigenanteil 2.380 \u20ac. Plus die laufende Strom-Ersparnis von 117 \u20ac pro Jahr verk\u00fcrzt sich die Amortisation auf etwa 16 Jahre rein finanziell. Wir liefern auf Anfrage die n\u00f6tigen technischen Daten f\u00fcr Ihren Energieberater \u2014 G-Wert des Tuchs, Montageart, Wirkungsweise.",
+        ],
+      },
+      {
+        heading: { text: "Wirtschaftlichkeitsrechnung im \u00dcberblick" },
         table: {
           columns: ["Position", "Wert"],
           rows: [
-            ["Markise Anschaffung 3 × 2 m", "2.200 €"],
-            ["Energie-Ersparnis pro Jahr", "117 €"],
-            ["Komfortgewinn pro Jahr (geschätzt)", "150 €"],
-            ["Amortisation rein finanziell", "~19 Jahre"],
-            ["Amortisation inkl. Komfort", "~8 Jahre"],
+            ["Gelenkarmmarkise 3 \u00d7 2 m inkl. Montage", "2.200 \u20ac"],
+            ["KfW-Zuschuss (15 %)", "\u2212330 \u20ac"],
+            ["Effektive Anschaffung", "1.870 \u20ac"],
+            ["Energie-Ersparnis pro Jahr (60 hei\u00dfe Tage)", "117 \u20ac"],
+            ["Komfortgewinn pro Jahr (Sch\u00e4tzung)", "150 \u20ac"],
+            ["Amortisation rein finanziell", "\u224816 Jahre"],
+            ["Amortisation inkl. Komfort", "\u22487 Jahre"],
+            ["Lebensdauer Tuch", "8\u201312 Jahre"],
+            ["Lebensdauer Mechanik", "12\u201318 Jahre"],
           ],
         },
       },
@@ -694,6 +822,7 @@ export const articles: Article[] = [
     related: [
       "welche-terrassenueberdachung-passt-zu-ihrem-haus",
       "markise-vs-pergola-vs-lamellendach",
+      "pflege-und-wartung",
     ],
     relatedProducts: [
       { label: "Markisen", href: "/markisen" },
@@ -702,6 +831,8 @@ export const articles: Article[] = [
       "Markisen Energie sparen",
       "Klimaanlage vs Markise",
       "Hitzeschutz Fenster",
+      "KfW F\u00f6rderung Sonnenschutz",
+      "G-Wert Markise",
     ],
   },
 ];

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { Category } from "@/data/products";
 import { hasConfigurator } from "@/data/products";
+import { categoryAlt, productAlt } from "@/lib/seo/alt";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import FaqSection from "@/components/seo/FaqSection";
 import CategoryLongForm from "@/components/seo/CategoryLongForm";
@@ -38,7 +39,7 @@ const CategoryPageTemplate = ({
       <div className="absolute inset-0 opacity-50">
         <Image
           src={category.image}
-          alt={category.label}
+          alt={categoryAlt(category.label)}
           fill
           priority
           quality={70}
@@ -84,7 +85,7 @@ const CategoryPageTemplate = ({
                 <div className="relative overflow-hidden aspect-[16/10] mb-5">
                   <Image
                     src={product.image}
-                    alt={product.label}
+                    alt={productAlt(product.label, category.label)}
                     fill
                     sizes="(min-width: 768px) 50vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -184,7 +185,7 @@ const CategoryPageTemplate = ({
                 >
                   <Image
                     src={c.image}
-                    alt={c.label}
+                    alt={categoryAlt(c.label)}
                     fill
                     sizes="(min-width: 768px) 33vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

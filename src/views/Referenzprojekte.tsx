@@ -309,7 +309,7 @@ const Referenzprojekte = () => {
       {/* CTA */}
       <section className="relative py-16 md:py-24 bg-foreground text-primary-foreground overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img src={ref5} alt="" className="w-full h-full object-cover" loading="lazy" aria-hidden />
+          <img src={ref5} alt="" width={1600} height={900} className="w-full h-full object-cover" loading="lazy" aria-hidden />
         </div>
         <div className="absolute inset-0 bg-foreground/70" />
         <div className="container mx-auto px-5 md:px-8 relative z-10 text-center max-w-3xl">

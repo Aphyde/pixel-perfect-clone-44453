@@ -10,7 +10,7 @@ import {
   buildWebPageSchema,
 } from "@/lib/seo/schema";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { ADDRESS, BRAND, FOUNDED_YEAR, FOUNDER_NAME, ORG_LEGAL } from "@/lib/seo/site";
+import { ADDRESS, BRAND, FOUNDED_YEAR, FOUNDER_NAME, ORG_LEGAL, SOCIAL_PROFILES } from "@/lib/seo/site";
 import { ArrowRight, Award, Hammer, MapPin, Users } from "lucide-react";
 
 export const metadata: Metadata = buildMetadata({
@@ -87,11 +87,41 @@ export default function UeberUnsPage() {
     url,
     description: `Geschichte, Werte und Team von ${BRAND} — Aluminium-Spezialist aus Ulm.`,
   });
+  const founderSameAs = [
+    SOCIAL_PROFILES.linkedinFounder,
+    SOCIAL_PROFILES.instagram,
+    SOCIAL_PROFILES.facebook,
+  ].filter(Boolean);
   const founder = buildPersonSchema({
     name: FOUNDER_NAME,
-    jobTitle: "Geschäftsführer",
+    jobTitle: "Geschäftsführer & Gründer",
     url,
-    description: `Geschäftsführer und Gründer von ${BRAND}. Spezialist für Aluminium-Außenanlagen seit ${FOUNDED_YEAR}.`,
+    description: `${FOUNDER_NAME} ist Geschäftsführer und Gründer von ${BRAND}. Seit ${FOUNDED_YEAR} spezialisiert auf Premium-Aluminium-Außenanlagen mit eigener Montage in Ulm und 100 km Umkreis. Über 200 realisierte Projekte für Privatkunden, Architekten, Gastronomie und Hotellerie in Süddeutschland.`,
+    knowsAbout: [
+      "Aluminium-Terrassenüberdachungen",
+      "Bioklimatische Pergolen / Lamellendächer",
+      "Glashaus-Konstruktionen mit thermischer Entkopplung",
+      "VSG-Glasdächer nach DIN EN 14449",
+      "Schneelast-Statik nach Eurocode 1 (DIN EN 1991-1-3)",
+      "Pulverbeschichtung nach DIN EN 12206-1",
+      "LBO Baden-Württemberg Verfahrensrecht",
+      "Sunbrella-Tuchverarbeitung",
+      "Somfy Funkmotoren-Programmierung",
+    ],
+    knowsLanguage: ["de", "en"],
+    hasOccupation: {
+      name: "Geschäftsführer & Aluminium-Spezialist",
+      description: `Plant, kalkuliert und überwacht Aluminium-Außenanlagen für Privatkunden und Gewerbekunden im Service-Gebiet Ulm/Augsburg/Reutlingen. Eigenes Montage-Team seit ${FOUNDED_YEAR}, keine Subunternehmer.`,
+      skills: [
+        "Statikplanung",
+        "Aluminium-Konstruktion",
+        "Vertrieb & Beratung",
+        "Projektmanagement",
+        "Pulverbeschichtungs-Spezifikation",
+      ],
+    },
+    homeLocation: { name: "Ulm, Baden-Württemberg, Deutschland" },
+    sameAs: founderSameAs.length > 0 ? founderSameAs : undefined,
   });
   const webpage = buildWebPageSchema({
     url,

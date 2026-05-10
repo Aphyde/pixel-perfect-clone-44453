@@ -244,39 +244,88 @@ export const categoryLongForm: Record<string, CategoryLongFormContent> = {
 
   schirme: {
     tldr:
-      "Ampelschirme sind die flexibelste Sonnenschutz-Lösung, wenn keine Wandbefestigung möglich oder gewünscht ist. Bis 5 × 5 m Bespannung, 360°-drehbar und stufenlos neigbar, mit Sunbrella-Acryl UV 50+ — ab 1.800 € inkl. Granitsockel.",
+      "Ampelschirme sind die flexibelste Sonnenschutz-L\u00f6sung, wenn keine Wandbefestigung m\u00f6glich oder gew\u00fcnscht ist. Brait liefert Profi-Ampelschirme mit Bespannung bis 5 \u00d7 5 m, 360\u00b0-drehbar und stufenlos neigbar, mit Sunbrella Acryl 300 g/m\u00b2 (UPF 50+), Granit- oder Bodenh\u00fclsen-Sockel und Funkmotor-Option ab 1.800 \u20ac inkl. Granitsockel \u2014 ideal f\u00fcr Esstisch, Lounge, Pool und Gastronomie.",
     keyFacts: [
-      "Bespannung: bis 5 × 5 m, Sunbrella Acryl 300 g/m²",
-      "UV-Schutz: UPF 50+",
-      "Drehung: 360°, Neigung stufenlos in 4 Richtungen",
-      "Sockel: Granit 90–200 kg oder Bodenhülse",
-      "Windklasse: bis 5 (geschlossen winterfest)",
-      "Preis: 1.800 – 4.500 €",
+      "Bespannung: bis 5 \u00d7 5 m, Sunbrella Acryl 300 g/m\u00b2",
+      "UV-Schutz: UPF 50+ (blockt 98 % der UV-Strahlung)",
+      "Drehung: 360\u00b0, Neigung stufenlos in 4 Richtungen",
+      "Sockel: Granit 90\u2013200 kg oder einbetonierte Bodenh\u00fclse",
+      "Windklasse: bis 5 (\u224830 km/h Boe)",
+      "Lebensdauer Tuch: 8\u201312 Jahre",
+      "Lebensdauer Mast: 20+ Jahre (Aluminium pulverbeschichtet)",
+      "Preis: 1.800\u20134.500 \u20ac",
     ],
     useCases: [
       {
         title: "Esstisch auf der Terrasse",
         description:
-          "Mast steht seitlich, Tisch ist komplett frei. Schirm 3 × 3 m bis 4 × 4 m, dreht und neigt sich der Sonne nach.",
-        recommended: "Ampelschirm 3 × 3 m oder 4 × 4 m",
+          "Der Mast steht seitlich neben dem Tisch, der Tisch ist komplett frei \u2014 keine st\u00f6rende S\u00e4ule in der Mitte. Schirme 3 \u00d7 3 m bis 4 \u00d7 4 m drehen und neigen sich der Sonnenrichtung nach. Ideal f\u00fcr Familien mit 4\u20136 Personen, sch\u00fctzt zus\u00e4tzlich die Holzm\u00f6bel vor UV-Bleichung.",
+        recommended: "Ampelschirm 3 \u00d7 3 m oder 4 \u00d7 4 m mit 150-kg-Granitsockel",
       },
       {
-        title: "Lounge / Sitzgruppe",
+        title: "Lounge oder Sitzgruppe im Garten",
         description:
-          "Große Schattenfläche für mehrere Personen — empfehlen 4 × 4 m oder 5 × 5 m mit Granitsockel ab 150 kg.",
-        recommended: "Ampelschirm 5 × 5 m",
+          "Gro\u00dfe Schattenfl\u00e4che f\u00fcr 6\u201310 Personen \u2014 wir empfehlen 4 \u00d7 4 m oder 5 \u00d7 5 m mit Granitsockel ab 150 kg. Optional mit Funkmotor f\u00fcr Auf-/Zufahren auf Knopfdruck. Lampenoption mit indirekter LED am Mast f\u00fcr Abendstimmung.",
+        recommended: "Ampelschirm 5 \u00d7 5 m mit Funkmotor und LED",
       },
       {
-        title: "Gastronomie-Außenfläche",
+        title: "Pool-Bereich und Sonnenliegen",
         description:
-          "Mehrere Schirme auf einer Fläche: einfacher als feste Konstruktionen, schnell auf-/abgebaut, wettersicher überwinterbar.",
-        recommended: "Mehrere 4 × 4 m mit Bodenhülse",
+          "Direkt am Pool soll der Schirm bequem den Liegebereich abdecken \u2014 Ampelschirme drehen sich der Tagessonne nach, ohne dass die Liege bewegt werden muss. Wichtig: Bodenh\u00fclse einbetonieren, weil ein Granitsockel auf nasser Pool-Umrandung verrutscht.",
+        recommended: "Ampelschirm 4 \u00d7 4 m mit einbetonierter Bodenh\u00fclse",
+      },
+      {
+        title: "Gastronomie-Au\u00dfenfl\u00e4che oder Hotelterrasse",
+        description:
+          "Mehrere Schirme auf einer Fl\u00e4che sind einfacher zu betreiben als feste Konstruktionen: schnell auf- und abbaubar, wettersicher \u00fcberwinterbar im Lager. F\u00fcr Bewirtungsfl\u00e4chen \u00fcber 30 m\u00b2 in BW genehmigungsrechtlich unkritisch, weil mobile Bauten nicht der LBO unterliegen.",
+        recommended: "Mehrere 4 \u00d7 4 m Schirme mit Bodenh\u00fclsen \u2014 mit Werbedruck auf der Bespannung",
       },
     ],
+    comparison: {
+      title: "Ampelschirm vs. Mittelmast vs. Marktschirm",
+      columns: [
+        { key: "feature", label: "Merkmal" },
+        { key: "ampel", label: "Ampelschirm" },
+        { key: "mittelmast", label: "Mittelmast" },
+        { key: "markt", label: "Marktschirm" },
+      ],
+      rows: [
+        {
+          feature: "Mast-Position",
+          values: { ampel: "Seitlich (Hebelarm)", mittelmast: "Mittig", markt: "Mittig" },
+        },
+        {
+          feature: "Bespannungsgr\u00f6\u00dfe",
+          values: { ampel: "bis 5 \u00d7 5 m", mittelmast: "bis 4 \u00d7 4 m", markt: "\u00d8 2\u20133 m" },
+        },
+        {
+          feature: "Drehbarkeit",
+          values: { ampel: "360\u00b0 + Neigung", mittelmast: "Nein", markt: "Nein" },
+        },
+        {
+          feature: "Sockelgewicht",
+          values: { ampel: "90\u2013200 kg Granit", mittelmast: "60\u2013120 kg", markt: "30\u201360 kg" },
+        },
+        {
+          feature: "Windstabilit\u00e4t",
+          values: { ampel: "Bis Windst\u00e4rke 5", mittelmast: "Bis Windst\u00e4rke 5", markt: "Bis Windst\u00e4rke 4" },
+        },
+        {
+          feature: "Preis",
+          values: { ampel: "1.800\u20134.500 \u20ac", mittelmast: "800\u20132.000 \u20ac", markt: "150\u2013500 \u20ac" },
+        },
+        {
+          feature: "Idealer Einsatz",
+          values: { ampel: "Premium-Terrasse", mittelmast: "Garten Standard", markt: "Markt / Bistro" },
+        },
+      ],
+    },
     materials:
-      "Mast: Aluminium pulverbeschichtet, Stand-Mast und Quer-Arm. Bespannung: Sunbrella Acryl 300 g/m² (spinndüsengefärbt, schimmelresistent). Sockel: Granit 90–200 kg oder fest einbetonierte Bodenhülse aus verzinktem Stahl.",
+      "Mast: Aluminium pulverbeschichtet, Stand-Mast und Querarm aus 6063 T6, Lebensdauer 20+ Jahre. Bespannung: Sunbrella Acryl 300 g/m\u00b2 (spinnd\u00fcsengef\u00e4rbt im Garn, schimmelresistent, UV 50+, farbecht 10+ Jahre garantiert). Sockel: Granitw\u00fcrfel 90\u2013200 kg (poliert oder geflammt) oder fest einbetonierte Bodenh\u00fclse aus verzinktem Stahl mit Schraubsicherung.",
     localContext:
-      "Im Donautal mit häufigen Westwinden empfehlen wir Granitsockel ab 150 kg, in geschützten Innenhöfen reichen 90 kg. Schirme sollten bei Wind ab Windstärke 5 (~30 km/h) geschlossen werden — eine offene Bespannung wirkt wie ein Segel.",
+      "Im Donautal um Ulm mit h\u00e4ufigen Westwinden (Bemessungswindgeschwindigkeit 25,2 m/s in Windzone 2) empfehlen wir Granitsockel ab 150 kg. In gesch\u00fctzten Innenh\u00f6fen oder Hofterrassen reichen 90 kg. Schirme sollten bei Wind ab Windst\u00e4rke 5 (\u224830 km/h) geschlossen werden \u2014 eine offene Bespannung wirkt wie ein Segel und kann Schaden anrichten. F\u00fcr exponierte Lagen auf der Schw\u00e4bischen Alb oder Hangterrassen empfehlen wir die Bodenh\u00fclsen-Variante mit Beton-Fundament.",
+    serviceNote:
+      "Brait liefert die Schirme komplett montiert mit Sockel zu Ihnen \u2014 im 100-km-Umkreis um Ulm versandkostenfrei. \u00dcber Winter k\u00f6nnen Sie den Schirm mit der mitgelieferten H\u00fclle einlagern oder bei Brait einlagern lassen (50 \u20ac pro Saison). Tuch-Austausch nach 8\u201312 Jahren mit 30 % Treuerabatt.",
   },
 
   "q-bus": {
@@ -318,32 +367,80 @@ export const categoryLongForm: Record<string, CategoryLongFormContent> = {
 
   eingangsueberdachungen: {
     tldr:
-      "Eingangsüberdachungen schützen Sie und Ihre Gäste beim Auf- und Abschließen vor Regen und Schnee. Aluminium-Konstruktion mit VSG-Glas, verdeckte Edelstahl-Halterung — ab 1.490 € inkl. Montage.",
+      "Eine Eingangs\u00fcberdachung sch\u00fctzt Sie, Ihre G\u00e4ste und die Haust\u00fcr beim Auf- und Abschlie\u00dfen vor Regen, Schnee, Schlagregen und UV-Strahlung. Brait fertigt Aluminium-Konstruktionen 6063 T6 mit VSG-Glas 2 \u00d7 6 mm, verdeckter Edelstahl-Halterung und filigranen Profilen ab 1.490 \u20ac inkl. Montage \u2014 in BW bis 30 m\u00b2 verfahrensfrei nach \u00a7 50 LBO Anlage 1.",
     keyFacts: [
-      "Material: Aluminium 6063 T6 + VSG-Glas 2× 6 mm",
+      "Material: Aluminium 6063 T6 + VSG-Glas 2 \u00d7 6 mm",
       "Max. Breite: 3.000 mm, max. Ausladung: 1.500 mm",
-      "Halterung: Edelstahl V2A, verdeckt",
-      "Hagelklasse: HW3 (splitterfrei)",
+      "Halterung: Edelstahl V2A, verdeckt in der Wand verankert",
+      "Hagelklasse: HW3 (splitterfrei nach DIN EN 13049)",
       "Montage: 1 Tag, vormontiert geliefert",
+      "Preis: 1.490\u20133.500 \u20ac inkl. Montage",
+      "Garantie: 10 Jahre Struktur",
+      "Genehmigung BW: bis 30 m\u00b2 und 3 m H\u00f6he verfahrensfrei",
     ],
     useCases: [
       {
         title: "Klassischer Hauseingang",
         description:
-          "200 × 100 cm reichen für Standardtüren und schützen den Eingang vor Schlagregen. Edelstahl-Halterung verdeckt — keine sichtbaren Streben.",
-        recommended: "Eingangsüberdachung 200 × 100 cm",
+          "200 \u00d7 100 cm reichen f\u00fcr Standard-Haust\u00fcren und sch\u00fctzen den Eingang vor Schlagregen aus West/S\u00fcdwest \u2014 der Hauptregenrichtung in S\u00fcddeutschland. Edelstahl-Halterung verdeckt, keine sichtbaren Streben, klares VSG-Glas l\u00e4sst Tageslicht durch.",
+        recommended: "Eingangs\u00fcberdachung 200 \u00d7 100 cm in Anthrazit RAL 7016",
       },
       {
-        title: "Repräsentativer Eingang",
+        title: "Repr\u00e4sentativer Eingang Einfamilienhaus",
         description:
-          "Größere Anlage 300 × 150 cm mit indirekter LED-Beleuchtung. Stimmungsvolle Ausleuchtung des Eingangsbereichs am Abend.",
-        recommended: "Eingangsüberdachung 300 × 150 cm + LED",
+          "Gr\u00f6\u00dfere Anlage 300 \u00d7 150 cm mit indirekter LED-Beleuchtung in den Profilen. Stimmungsvolle Ausleuchtung des Eingangsbereichs am Abend, Bewegungsmelder-Option, Glas wahlweise klar oder satiniert.",
+        recommended: "Eingangs\u00fcberdachung 300 \u00d7 150 cm + LED + Bewegungsmelder",
+      },
+      {
+        title: "Mehrfamilienhaus / Hauseingang Wohnanlage",
+        description:
+          "Mehrere Briefkasten- und T\u00fcrenbereiche werden \u00fcberdacht (bis 5 \u00d7 1,5 m). Brait fertigt nach individueller Statik, weil Spannweiten \u00fcber 3 m verst\u00e4rkte Profile brauchen. WEG-Beschluss erforderlich.",
+        recommended: "Sonderanfertigung mit individueller Statik",
+      },
+      {
+        title: "Gastronomie- oder Praxiseingang",
+        description:
+          "F\u00fcr Patientenpraxen, Restaurants oder Hotelportale ist eine 250\u2013350 cm breite \u00dcberdachung mit klarem VSG sinnvoll \u2014 sch\u00fctzt G\u00e4ste vor Regen w\u00e4hrend des Wartens und unterstreicht die Eingangs-Architektur.",
+        recommended: "Eingangs\u00fcberdachung 350 \u00d7 150 cm mit Wandvorhang-Option",
       },
     ],
+    comparison: {
+      title: "Eingangs\u00fcberdachung Bauarten im Vergleich",
+      columns: [
+        { key: "feature", label: "Merkmal" },
+        { key: "klassisch", label: "Klassisch (Glas)" },
+        { key: "modern", label: "Bauhaus-Stil" },
+        { key: "sonder", label: "Sonderanfertigung" },
+      ],
+      rows: [
+        {
+          feature: "Maximale Breite",
+          values: { klassisch: "3 m", modern: "3 m", sonder: "5+ m" },
+        },
+        {
+          feature: "Glasdach",
+          values: { klassisch: "VSG 2 \u00d7 6 mm klar", modern: "VSG satiniert", sonder: "VSG nach Wunsch" },
+        },
+        {
+          feature: "Halterung",
+          values: { klassisch: "Edelstahl V2A verdeckt", modern: "Edelstahl V2A", sonder: "individuell" },
+        },
+        {
+          feature: "Preis",
+          values: { klassisch: "1.490\u20132.000 \u20ac", modern: "1.700\u20132.500 \u20ac", sonder: "ab 2.500 \u20ac" },
+        },
+        {
+          feature: "Montage",
+          values: { klassisch: "1 Tag", modern: "1 Tag", sonder: "1\u20132 Tage" },
+        },
+      ],
+    },
     materials:
-      "Profile aus Aluminium 6063 T6, pulverbeschichtet. Glas VSG 2× 6 mm (Verbund-Sicherheitsglas), klar oder satiniert (Sichtschutz von oben). Halter Edelstahl V2A (rostfrei, korrosionsbeständig), verdeckt in der Wand verankert.",
+      "Profile aus Aluminium 6063 T6 (Strangpressprofile, korrosionsbest\u00e4ndig durch nat\u00fcrliche Oxidschicht), pulverbeschichtet nach DIN EN 12206-1 in beliebiger RAL-Farbe. Glas VSG 2 \u00d7 6 mm (Verbund-Sicherheitsglas mit PVB-Folie, splittersicher, hagelschlagsicher Klasse HW3), wahlweise klar oder satiniert (Sichtschutz von oben, lichtdurchl\u00e4ssig). Halter aus Edelstahl V2A (rostfrei, salzwasserbest\u00e4ndig), verdeckt in der Wand verankert mit Verbundankern (chemische Befestigung in Beton oder Mauerwerk).",
     localContext:
-      "Eingangsüberdachungen sind in BW grundsätzlich genehmigungsfrei (LBO §50). In Mehrfamilienhäusern ist die Zustimmung der Eigentümergemeinschaft notwendig.",
+      "Eingangs\u00fcberdachungen sind in Baden-W\u00fcrttemberg nach \u00a7 50 LBO Anlage 1 grunds\u00e4tzlich verfahrensfrei, sofern unter 30 m\u00b2 Grundfl\u00e4che und 3 m H\u00f6he. In Denkmalschutz-Bereichen wie der Ulmer Altstadt oder dem Reutlinger Bismarckturm-Quartier kann die Untere Denkmalschutzbeh\u00f6rde eine Stellungnahme verlangen \u2014 Brait \u00fcbernimmt auf Wunsch das Voranfrage-Schreiben. In Mehrfamilienh\u00e4usern ist die Zustimmung der Eigent\u00fcmergemeinschaft (WEG-Beschluss \u00a7 21 WEG) notwendig.",
+    serviceNote:
+      "Wir vermessen Ihren Eingangsbereich kostenlos vor Ort, fertigen die \u00dcberdachung in unserer Werkstatt im 100-km-Umkreis um Ulm vor und montieren in 1 Tag. Auf Wunsch kombinieren wir die \u00dcberdachung mit Briefkasten-Anlage, Klingel-Display oder Bewegungsmelder.",
   },
 
   carports: {

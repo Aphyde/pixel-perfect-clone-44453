@@ -397,6 +397,22 @@ export interface PersonSchemaInput {
   description?: string;
   email?: string;
   telephone?: string;
+  /** Fachgebiete f\u00fcr E-E-A-T-Signal. */
+  knowsAbout?: string[];
+  /** Sprachen, die die Person spricht. */
+  knowsLanguage?: string[];
+  /** Erfahrungsbereich (z. B. "Aluminium-Au\u00dfenanlagen seit 2014"). */
+  hasOccupation?: {
+    name: string;
+    description?: string;
+    skills?: string[];
+  };
+  /** Soziale Profile / sameAs. */
+  sameAs?: string[];
+  /** Wohnort. */
+  homeLocation?: { name: string };
+  /** Geburtsjahr (optional, f\u00fcr E-E-A-T). */
+  birthDate?: string;
 }
 export const buildPersonSchema = (p: PersonSchemaInput) => ({
   "@type": "Person",
@@ -408,6 +424,25 @@ export const buildPersonSchema = (p: PersonSchemaInput) => ({
   ...(p.description ? { description: p.description } : {}),
   ...(p.email ? { email: p.email } : {}),
   ...(p.telephone ? { telephone: p.telephone } : {}),
+  ...(p.knowsAbout && p.knowsAbout.length > 0 ? { knowsAbout: p.knowsAbout } : {}),
+  ...(p.knowsLanguage && p.knowsLanguage.length > 0 ? { knowsLanguage: p.knowsLanguage } : {}),
+  ...(p.hasOccupation
+    ? {
+        hasOccupation: {
+          "@type": "Occupation",
+          name: p.hasOccupation.name,
+          ...(p.hasOccupation.description ? { description: p.hasOccupation.description } : {}),
+          ...(p.hasOccupation.skills && p.hasOccupation.skills.length > 0
+            ? { skills: p.hasOccupation.skills.join(", ") }
+            : {}),
+        },
+      }
+    : {}),
+  ...(p.sameAs && p.sameAs.length > 0 ? { sameAs: p.sameAs } : {}),
+  ...(p.homeLocation
+    ? { homeLocation: { "@type": "Place", name: p.homeLocation.name } }
+    : {}),
+  ...(p.birthDate ? { birthDate: p.birthDate } : {}),
   worksFor: { "@id": `${SITE_URL}/#organization` },
 });
 
