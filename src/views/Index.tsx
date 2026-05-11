@@ -191,7 +191,7 @@ const Index = () => {
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-6 md:mb-8">Ihr Profi für Terrassendach &amp; Carport in Ulm seit 2014.</h2>
           <div className="border-l-4 border-primary bg-card p-5 md:p-7 mb-8 speakable-tldr">
             <p className="text-base md:text-lg leading-relaxed">
-              <strong>Brait Überdachungen</strong> ist Ihr inhabergeführter Spezialbetrieb für maßgefertigte Aluminium-Außenanlagen in Ulm und 100&nbsp;km Umkreis. Wir planen, fertigen und montieren <strong>Terrassendach, Carport, Markisen, Lamellen-Pergolen, Schirme und Eingangsüberdachungen</strong> komplett selbst — vom ersten Demo-Koffer-Termin bis zur Endabnahme, ohne Subunternehmer.
+              <strong>Brait Überdachungen</strong> ist Ihr inhabergeführter Spezialbetrieb für maßgefertigte Aluminium-Außenanlagen in Ulm und 100&nbsp;km Umkreis. Wir planen, fertigen und montieren <strong>Terrassendach</strong>, <strong>Carport</strong>, <strong>Markisen</strong>, <strong>Lamellen-Pergolen</strong>, <strong>Schirme</strong> und <strong>Eingangsüberdachungen</strong> komplett selbst — vom ersten Demo-Koffer-Termin bis zur Endabnahme, ohne Subunternehmer.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-secondary text-sm md:text-base leading-relaxed">
