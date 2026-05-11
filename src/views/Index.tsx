@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { categories } from "@/data/products";
 import { categoryAlt } from "@/lib/seo/alt";
-import { ArrowRight, Menu, X, ShieldCheck, Sparkles, Award, Briefcase, PackageOpen, Phone } from "lucide-react";
+import { ArrowRight, Menu, X, ShieldCheck, Sparkles, Award, Briefcase, PackageOpen, Phone, Ruler, Factory, Wrench } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
 import { m, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -189,67 +189,113 @@ const Index = () => {
 
     {/* Intro / Answer-First Block für H1-Wort-Verankerung und SEO-Substanz */}
     <section className="py-12 md:py-20 bg-surface-container-low border-b border-outline-variant/20">
-      <div className="container mx-auto px-5 md:px-8 max-w-4xl">
+      <div className="container mx-auto px-5 md:px-8 max-w-6xl">
         <FadeIn>
-          <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 md:mb-4 block">Was wir machen</label>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-6 md:mb-8">Ihr Profi für Terrassendach &amp; Carport in Ulm seit 2014.</h2>
-          <div className="border-l-4 border-primary bg-card p-5 md:p-7 mb-8 speakable-tldr">
-            <p className="text-base md:text-lg leading-relaxed">
-              <strong>Brait Überdachungen</strong> ist Ihr inhabergeführter Spezialbetrieb für maßgefertigte Aluminium-Außenanlagen in Ulm und 100&nbsp;km Umkreis. Wir planen, fertigen und montieren <strong>Terrassendach</strong>, <strong>Carport</strong>, <strong>Markisen</strong>, <strong>Lamellen-Pergolen</strong>, <strong>Schirme</strong> und <strong>Eingangsüberdachungen</strong> komplett selbst — vom ersten Demo-Koffer-Termin bis zur Endabnahme, ohne Subunternehmer.
+          <div className="max-w-3xl mb-10 md:mb-14">
+            <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 md:mb-4 block">
+              Brait Überdachungen · seit 2014
+            </label>
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-5 md:mb-6">
+              Maßgefertigt. Selbst gefertigt. Selbst montiert.
+            </h2>
+            <p className="text-base md:text-lg leading-relaxed text-secondary speakable-tldr">
+              Inhabergeführter Spezialbetrieb für maßgefertigte Aluminium-Außenanlagen in Ulm und 100&nbsp;km Umkreis. Wir planen, fertigen und montieren <strong className="text-foreground">Terrassendach</strong>, <strong className="text-foreground">Carport</strong>, <strong className="text-foreground">Markisen</strong>, <strong className="text-foreground">Lamellen-Pergolen</strong>, <strong className="text-foreground">Schirme</strong> und <strong className="text-foreground">Eingangsüberdachungen</strong> komplett selbst — vom Demo-Koffer-Termin bis zur Endabnahme, ohne Subunternehmer.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-secondary text-sm md:text-base leading-relaxed">
-            <div>
-              <h3 className="text-lg md:text-xl font-bold text-foreground mb-3">Was ist ein Brait-Terrassendach?</h3>
-              <p className="speakable-answer">
-                Ein <strong>Terrassendach</strong> von Brait ist eine maßgefertigte Aluminium-Konstruktion mit VSG-Glas oder verstellbaren Lamellen, die Ihre Terrasse vor Regen, Schnee und UV-Strahlung schützt und die Outdoor-Saison von 4 auf 9 Monate verlängert. Verfügbar in drei Linien: <strong>Pro-Line</strong> wandbefestigt ab 7.900&nbsp;€, <strong>Cube</strong> freistehend ab 9.500&nbsp;€ und <strong>Lamellendach Q-Bus</strong> mit motorischer Klimakontrolle ab 14.000&nbsp;€ — jeweils inklusive Montage durch unser eigenes Team aus Ulm.
+
+          {/* 3 Beweis-Karten */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-14">
+            <article className="bg-card p-6 md:p-7 border-t-2 border-primary flex flex-col">
+              <Ruler className="w-6 h-6 text-primary mb-4" aria-hidden />
+              <div className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2">
+                01 — Planung
+              </div>
+              <h3 className="text-lg md:text-xl font-bold tracking-tight mb-3">
+                Demo-Koffer statt PDF
+              </h3>
+              <p className="text-sm md:text-base text-secondary leading-relaxed speakable-answer flex-1">
+                Wir kommen mit echtem Aluminium 6063&nbsp;T6, VSG-Glas-Muster und Farbproben zu Ihnen. Aufmaß, Statik-Check und Festpreis-Angebot binnen einer Woche — kostenlos, ohne Verpflichtung.
               </p>
-            </div>
-            <div>
-              <h3 className="text-lg md:text-xl font-bold text-foreground mb-3">Warum Brait als Carport-Profi?</h3>
-              <p className="speakable-answer">
-                Unsere <strong>Carports</strong> aus Aluminium 6063 T6 sind wartungsfrei, schneelastgeprüft (Standard 200&nbsp;kg/m², in Schneelastzone 3 individuell verstärkt) und bereits ab 4.900&nbsp;€ verfügbar — Doppelcarport ab 7.900&nbsp;€. Mit VSG-Glas oder hagelschlagsicheren HPL-Platten, vorbereitet für E-Auto-Wallbox, in Baden-Württemberg bis 30&nbsp;m² verfahrensfrei. Über 200 realisierte Projekte zwischen Ulm, Augsburg, Reutlingen und Heidenheim sprechen für sich.
+            </article>
+
+            <article className="bg-card p-6 md:p-7 border-t-2 border-primary flex flex-col">
+              <Factory className="w-6 h-6 text-primary mb-4" aria-hidden />
+              <div className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2">
+                02 — Fertigung
+              </div>
+              <h3 className="text-lg md:text-xl font-bold tracking-tight mb-3">
+                Drei Linien, ein Maßstab
+              </h3>
+              <p className="text-sm md:text-base text-secondary leading-relaxed speakable-answer flex-1">
+                <strong className="text-foreground">Pro-Line</strong> wandbefestigt ab 7.900&nbsp;€, <strong className="text-foreground">Cube</strong> freistehend ab 9.500&nbsp;€, <strong className="text-foreground">Lamellendach Q-Bus</strong> mit motorischer Klimakontrolle ab 14.000&nbsp;€. Carport ab 4.900&nbsp;€, Doppelcarport ab 7.900&nbsp;€ — alle wartungsfrei und schneelastgeprüft.
               </p>
-            </div>
-          </div>
-          <div className="mt-8 md:mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
-            <div className="bg-card p-4 md:p-5 border-t-2 border-primary">
-              <div className="text-2xl md:text-3xl font-bold text-primary mb-1">12+</div>
-              <div className="text-[10px] md:text-xs uppercase tracking-widest text-secondary">Jahre Erfahrung</div>
-            </div>
-            <div className="bg-card p-4 md:p-5 border-t-2 border-primary">
-              <div className="text-2xl md:text-3xl font-bold text-primary mb-1">200+</div>
-              <div className="text-[10px] md:text-xs uppercase tracking-widest text-secondary">Projekte realisiert</div>
-            </div>
-            <div className="bg-card p-4 md:p-5 border-t-2 border-primary">
-              <div className="text-2xl md:text-3xl font-bold text-primary mb-1">10&nbsp;J</div>
-              <div className="text-[10px] md:text-xs uppercase tracking-widest text-secondary">Strukturgarantie</div>
-            </div>
-            <div className="bg-card p-4 md:p-5 border-t-2 border-primary">
-              <div className="text-2xl md:text-3xl font-bold text-primary mb-1">100&nbsp;km</div>
-              <div className="text-[10px] md:text-xs uppercase tracking-widest text-secondary">Service-Radius</div>
-            </div>
+            </article>
+
+            <article className="bg-card p-6 md:p-7 border-t-2 border-primary flex flex-col">
+              <Wrench className="w-6 h-6 text-primary mb-4" aria-hidden />
+              <div className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2">
+                03 — Montage
+              </div>
+              <h3 className="text-lg md:text-xl font-bold tracking-tight mb-3">
+                Eigenes Team, 10&nbsp;Jahre Garantie
+              </h3>
+              <p className="text-sm md:text-base text-secondary leading-relaxed speakable-answer flex-1">
+                Standardstatik 200&nbsp;kg/m², in Schneelastzone 3 individuell verstärkt. Über 200 realisierte Projekte zwischen Ulm, Augsburg, Reutlingen und Heidenheim — alle abgenommen von eigenen Monteuren, kein Subunternehmer.
+              </p>
+            </article>
           </div>
 
-          {/* Rechner-Teaser */}
-          <div className="mt-8 md:mt-10 group relative flex flex-col md:flex-row md:items-center justify-between gap-4 bg-foreground text-primary-foreground p-5 md:p-7 hover:bg-primary transition-colors">
-            <div>
-              <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-primary group-hover:text-primary-foreground mb-2">
-                DWD-Klimadaten · DIN&nbsp;EN&nbsp;1991-1-3
+          {/* Trust-Leiste */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-0 mb-10 md:mb-14 border-y border-outline-variant/30 py-6 md:py-8">
+            {[
+              { value: "12+", label: "Jahre Erfahrung" },
+              { value: "200+", label: "Projekte realisiert" },
+              { value: "10\u00A0J", label: "Strukturgarantie" },
+              { value: "100\u00A0km", label: "Service-Radius" },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="text-center md:border-l md:first:border-l-0 border-outline-variant/30 px-2 md:px-4"
+              >
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-1 tracking-tighter">
+                  {stat.value}
+                </div>
+                <div className="text-[10px] md:text-xs uppercase tracking-widest text-secondary">
+                  {stat.label}
+                </div>
               </div>
-              <div className="text-lg md:text-2xl font-bold tracking-tight mb-1">
-                Wie viele Outdoor-Tage gewinnen Sie?
+            ))}
+          </div>
+
+          {/* Rechner-Teaser — aufgewertet mit Vorher/Nachher */}
+          <div className="group relative bg-foreground text-primary-foreground p-6 md:p-8 hover:bg-primary transition-colors">
+            <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-6 md:gap-10 items-center">
+              <div>
+                <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-primary group-hover:text-primary-foreground mb-3">
+                  Neu · Adressgenau
+                </div>
+                <h3 className="text-xl md:text-3xl font-bold tracking-tight mb-3 leading-snug">
+                  Wie viele Tage Terrasse verschenken Sie pro Jahr?
+                </h3>
+                <p className="text-sm md:text-base text-primary-foreground/75 leading-relaxed">
+                  Adresse eingeben, in 5 Sekunden sehen Sie Ihr Terrassenpotenzial: aktuelle Outdoor-Tage, mögliche Zusatz-Tage mit Brait-Dach und exakte Schneelast für Ihren Standort — auf Basis von 30 Jahren DWD-Klimadaten.
+                </p>
               </div>
-              <p className="text-sm md:text-base text-primary-foreground/70">
-                Outdoor-Tage- und Schneelast-Rechner für Ihren Standort — Mittelwerte aus 30 Jahren DWD-Daten.
-              </p>
+              <div className="flex flex-col items-start md:items-end gap-3">
+                <div className="text-[10px] uppercase tracking-widest text-primary-foreground/55">
+                  Typisches Ergebnis in Süddeutschland
+                </div>
+                <div className="text-3xl md:text-5xl font-bold text-primary tracking-tighter leading-none">
+                  +180 Tage
+                </div>
+                <Link
+                  href="/rechner"
+                  className="inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground font-bold uppercase tracking-widest text-xs whitespace-nowrap after:absolute after:inset-0 after:content-[''] after:z-10"
+                >
+                  Jetzt für Ihre Adresse <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             </div>
-            <Link
-              href="/rechner"
-              className="inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground font-bold uppercase tracking-widest text-xs whitespace-nowrap after:absolute after:inset-0 after:content-[''] after:z-10"
-            >
-              Outdoor-Tage berechnen <ArrowRight className="w-4 h-4" />
-            </Link>
           </div>
         </FadeIn>
       </div>
