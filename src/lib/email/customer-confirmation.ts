@@ -11,6 +11,15 @@
  */
 import { SITE_URL, BRAND, CONTACT, ADDRESS, SOCIAL_PROFILES } from "@/lib/seo/site";
 
+/**
+ * Bilder in der Mail MÜSSEN über die www-Subdomain geladen werden.
+ * Vercel redirected non-www → www mit 307, und viele Mail-Clients
+ * (Outlook Desktop, Gmail Image-Proxy, einige iOS-Versionen) folgen
+ * Image-Redirects nicht → das Bild bleibt leer.
+ */
+const MAIL_ASSET_BASE = SITE_URL.replace("https://", "https://www.")
+  .replace("www.www.", "www.");
+
 export interface CustomerEmailConfig {
   category?: string;
   categorySlug?: string;
@@ -66,7 +75,7 @@ function categoryImage(slug?: string): string {
     "qbus-pergola": "/detail-terrasse.jpg",
   };
   const path = (slug && map[slug]) || "/hero-home.jpg";
-  return `${SITE_URL}${path}`;
+  return `${MAIL_ASSET_BASE}${path}`;
 }
 
 /* ── Helpers ────────────────────────────────────────────────────────── */
@@ -85,25 +94,30 @@ const firstName = (full: string) => full.trim().split(/\s+/)[0] ?? full;
 
 /* ── Sektionen ──────────────────────────────────────────────────────── */
 function renderHeader(): string {
-  const heroUrl = `${SITE_URL}/hero-home.jpg`;
+  const heroUrl = `${MAIL_ASSET_BASE}/hero-home.jpg`;
+  // Bild oben als reguläres <img>, Brand-Block dunkel darunter.
+  // CSS-background funktioniert nicht in Gmail/Outlook, daher dieses Layout.
   return `
   <tr>
-    <td style="padding:0;background:${COLOR.ctaBg};">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-        <tr>
-          <td style="background-image:linear-gradient(135deg, rgba(28,27,27,0.55) 0%, rgba(28,27,27,0.85) 100%), url('${heroUrl}'); background-size:cover; background-position:center; background-color:${COLOR.ctaBg}; padding:56px 32px; text-align:center;">
-            <div style="font-family:${FONT_HEAD}; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:${COLOR.primarySoft}; margin-bottom:14px;">
-              Premium-Überdachungen seit 2014
-            </div>
-            <div style="font-family:${FONT_HEAD}; font-size:32px; font-weight:600; line-height:1.1; color:#ffffff; letter-spacing:-0.5px;">
-              ${BRAND}
-            </div>
-            <div style="margin-top:12px; font-family:${FONT_BODY}; font-size:15px; color:rgba(255,255,255,0.85); line-height:1.5;">
-              Aluminium · Glas · Markisen · Carports
-            </div>
-          </td>
-        </tr>
-      </table>
+    <td style="padding:0; background:${COLOR.ctaBg}; line-height:0; font-size:0;">
+      <img src="${heroUrl}"
+           alt="${escapeHtml(BRAND)} – Premium-Überdachungen"
+           width="600"
+           height="240"
+           style="display:block; width:100%; max-width:600px; height:auto; border:0; outline:none; text-decoration:none;">
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:32px 32px 28px 32px; background:${COLOR.ctaBg}; text-align:center;">
+      <div style="font-family:${FONT_HEAD}; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:${COLOR.primarySoft}; margin-bottom:12px;">
+        Premium-Überdachungen seit 2014
+      </div>
+      <div style="font-family:${FONT_HEAD}; font-size:28px; font-weight:600; line-height:1.15; color:#ffffff; letter-spacing:-0.5px;">
+        ${BRAND}
+      </div>
+      <div style="margin-top:10px; font-family:${FONT_BODY}; font-size:14px; color:rgba(255,255,255,0.78); line-height:1.5;">
+        Aluminium · Glas · Markisen · Carports
+      </div>
     </td>
   </tr>`;
 }
@@ -219,8 +233,11 @@ function renderConfiguration(p: CustomerEmailPayload): string {
           c.categorySlug
             ? `
         <tr>
-          <td style="padding:0; line-height:0;">
-            <img src="${imgUrl}" alt="${escapeHtml(c.category ?? "Konfiguration")}" width="600" style="display:block; width:100%; max-width:600px; height:auto; object-fit:cover;">
+          <td style="padding:0; line-height:0; font-size:0;">
+            <img src="${imgUrl}"
+                 alt="${escapeHtml(c.category ?? "Konfiguration")}"
+                 width="600"
+                 style="display:block; width:100%; max-width:600px; height:auto; border:0; outline:none; text-decoration:none;">
           </td>
         </tr>`
             : ""
@@ -330,29 +347,35 @@ function renderContact(p: CustomerEmailPayload): string {
 function renderInstagram(): string {
   const url = SOCIAL_PROFILES.instagram;
   if (!url) return "";
-  const referenceImg = `${SITE_URL}/architecture-detail.jpg`;
+  const referenceImg = `${MAIL_ASSET_BASE}/architecture-detail.jpg`;
+  // Kein opacity-Trick (funktioniert in Outlook nicht).
+  // Stattdessen: Bild oben in voller Stärke, dunkler CTA-Block darunter.
   return `
   <tr>
     <td style="padding:0 32px 32px 32px;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${COLOR.text}; border-collapse:collapse;">
         <tr>
-          <td style="padding:0; line-height:0;">
-            <img src="${referenceImg}" alt="Realisiertes Brait-Projekt" width="600" style="display:block; width:100%; max-width:600px; height:200px; object-fit:cover; opacity:0.55;">
+          <td style="padding:0; line-height:0; font-size:0;">
+            <img src="${referenceImg}"
+                 alt="Brait Überdachung – Referenzprojekt"
+                 width="600"
+                 height="180"
+                 style="display:block; width:100%; max-width:600px; height:auto; border:0; outline:none;">
           </td>
         </tr>
         <tr>
-          <td style="padding:32px 28px; text-align:center; background:${COLOR.text};">
-            <div style="font-family:${FONT_BODY}; font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:${COLOR.primarySoft}; margin-bottom:10px;">
+          <td style="padding:30px 28px 32px 28px; text-align:center; background:${COLOR.text};">
+            <div style="font-family:${FONT_BODY}; font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:${COLOR.primarySoft}; margin-bottom:8px;">
               Folgen Sie uns
             </div>
             <h2 style="margin:0 0 10px 0; font-family:${FONT_HEAD}; font-size:22px; font-weight:600; color:#ffffff; letter-spacing:-0.2px;">
               @braitueberdachung
             </h2>
-            <p style="margin:0 0 20px 0; font-family:${FONT_BODY}; font-size:14px; line-height:1.6; color:rgba(255,255,255,0.75); max-width:420px; margin-left:auto; margin-right:auto;">
+            <p style="margin:0 auto 22px auto; font-family:${FONT_BODY}; font-size:14px; line-height:1.6; color:rgba(255,255,255,0.78); max-width:420px;">
               Echte Projekte, Material-Insights und Vorher-Nachher-Bilder aus unserer Werkstatt
               und von Montagen in Ulm und Umgebung.
             </p>
-            <a href="${url}" style="display:inline-block; padding:12px 28px; background:${COLOR.primary}; color:#ffffff; font-family:${FONT_BODY}; font-size:14px; font-weight:600; letter-spacing:0.3px; text-decoration:none;">
+            <a href="${url}" style="display:inline-block; padding:13px 30px; background:${COLOR.primary}; color:#ffffff; font-family:${FONT_BODY}; font-size:14px; font-weight:600; letter-spacing:0.3px; text-decoration:none;">
               Auf Instagram folgen →
             </a>
           </td>
