@@ -52,7 +52,7 @@ const categoryFaqs: Record<string, FaqEntry[]> = {
     {
       question: "Was kostet eine Terrassenüberdachung in Ulm?",
       answer:
-        "Eine wandbefestigte Pro-Line-Terrassenüberdachung mit VSG-Glasdach (4 × 3 m) startet bei rund 7.900 € inklusive Montage. Die Cube-Variante (freistehend) liegt bei 9.500–12.500 €. Lamellendächer mit verstellbaren Aluminium-Lamellen kosten ab 14.000 €. Der finale Preis hängt von Größe, Wandanschluss, Glas (VSG/HPL), Statik (Schneelastzone) und Optionen wie Beleuchtung oder Verschattung ab.",
+        "Eine wandbefestigte Pro-Line-Terrassenüberdachung startet bei 4.490 € für 4 × 3 m mit Polycarbonat-Dach (inkl. Montage) bzw. 5.490 € für 5 × 3 m. Mit VSG-Glasdach kommen 2.400 € Aufpreis dazu. Die Cube-Variante (freistehend) liegt bei 5.890–9.500 €. Lamellendächer Q-Bus mit verstellbaren Aluminium-Lamellen starten bei 8.990 €. Der finale Preis hängt von Größe, Dachmaterial (Polycarbonat oder VSG-Glas), Statik (Schneelastzone) und Optionen wie Beleuchtung, Schiebewänden oder Verschattung ab.",
     },
     {
       question: "Wie lange hält eine Aluminium-Terrassenüberdachung?",
@@ -87,7 +87,7 @@ const categoryFaqs: Record<string, FaqEntry[]> = {
     {
       question: "Was kostet eine Terrassenüberdachung mit Lamellendach?",
       answer:
-        "Lamellendächer mit motorisch verstellbaren Aluminium-Lamellen starten bei 14.000 € für eine Anlage 3 × 4 m und liegen je nach Ausführung bei 18.000–28.000 € (z.B. mit LED, Wettersensor, Glasschiebewänden). Im Vergleich zum Glasdach: höhere Investition, dafür voll klimatisierbar und wasserdicht.",
+        "Lamellendächer Q-Bus mit motorisch verstellbaren Aluminium-Lamellen starten bei 8.990 € für eine Anlage 5 × 3 m. Mit Vollausstattung (LED dimmbar, Wettersensor, Glasschiebewänden auf 2 Seiten, Zipscreen) liegen sie bei 18.000–24.000 €. Im Vergleich zum Glasdach: höhere Investition, dafür voll klimatisierbar und wasserdicht — und ganzjährige Outdoor-Nutzung möglich.",
     },
   ],
 
@@ -302,7 +302,7 @@ const productFaqs: Record<string, FaqEntry[]> = {
     {
       question: "Was kostet ein Lamellendach mit Verschattung?",
       answer:
-        "Lamellendach 4 × 3,5 m: ab 14.000 €. Mit Zipscreen-Verschattung an drei Seiten: +3.200 €. Mit LED-Streifen entlang der Lamellen: +1.400 €. Mit Glasschiebewänden vorne: +2.800 €.",
+        "Lamellendach Q-Bus 5 × 3 m: ab 8.990 €. Mit Zipscreen-Verschattung an drei Seiten: +6.990 €. Mit LED dimmbar: +890 €. Mit Glasschiebewänden vorne: +2.700 €. Mit Glasschiebewänden auf 2 Seiten Vollausstattung: +5.400 €.",
     },
   ],
 

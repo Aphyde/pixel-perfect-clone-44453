@@ -133,7 +133,6 @@ const ConfiguratorEngine = ({ config }: Props) => {
     });
 
     const area = (width || 1) * (depth || 1);
-    const areaMult = activeDims ? area / 24 : 1;
 
     let extrasTotal = 0;
     config.steps.forEach((step) => {
@@ -144,7 +143,17 @@ const ConfiguratorEngine = ({ config }: Props) => {
       }
     });
 
-    return Math.round(base * Math.max(0.6, areaMult) + surcharges + extrasTotal);
+    // Wenn die aktive Dimensions-Konfig einen pricePerArea-Faktor definiert,
+    // wird linear pro Quadratmeter abgerechnet (saubere "ab X €/m²"-Logik).
+    // Sonst fällt der Konfigurator auf die historische Area-Multiplikator-Formel
+    // zurück (Vergleich zur Standardfläche 24 m², gedeckelt nach unten auf 60 %).
+    const pricePerArea = activeDims?.pricePerArea;
+    const baseTotal =
+      pricePerArea !== undefined && activeDims
+        ? area * pricePerArea
+        : base * Math.max(0.6, activeDims ? area / 24 : 1);
+
+    return Math.round(baseTotal + surcharges + extrasTotal);
   }, [config, selections, extras, width, depth, activeDims]);
 
   // Aktive Lieferzeit: erste select-cards-Option mit deliveryTime gewinnt, sonst Kategorie-Default

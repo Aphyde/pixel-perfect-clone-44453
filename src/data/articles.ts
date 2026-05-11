@@ -68,15 +68,15 @@ export const articles: Article[] = [
     readingMinutes: 9,
     image: "/catalog/hero-glashaus.jpg",
     imageAlt: "Brait Pro-Line Terrassenüberdachung mit VSG-Glasdach in Ulm",
-    tldr: "Drei Systeme, drei Anwendungsfälle: Pro-Line (wandbefestigt, ab 7.900 €) für klassische Hausterrassen, Cube (freistehend, ab 9.500 €) für Gartenlounges ohne Wandanschluss, Lamellendach (verstellbar, ab 14.000 €) für Premium-Outdoor mit voller Klimakontrolle. Die Wahl hängt von Ausrichtung, Statik, Budget und gewünschter Nutzungsdauer pro Jahr ab.",
+    tldr: "Drei Systeme, drei Anwendungsfälle: Pro-Line (wandbefestigt, ab 5.490 € inkl. Montage) für klassische Hausterrassen, Cube (freistehend, ab 6.990 €) für Gartenlounges ohne Wandanschluss, Lamellendach (verstellbar, ab 8.990 €) für Premium-Outdoor mit voller Klimakontrolle. Die Wahl hängt von Ausrichtung, Statik, Budget und gewünschter Nutzungsdauer pro Jahr ab.",
     sections: [
       {
         factBox: {
           title: "Schnell-Übersicht — die drei Systeme",
           items: [
-            "Pro-Line: wandbefestigt, VSG-Glasdach, ab 7.900 €. Ideal bei Süd-/Westausrichtung mit Hauswand.",
-            "Cube: freistehend, kubisches Design, ab 9.500 €. Ideal als Garten-Lounge ohne Wandanschluss.",
-            "Lamellendach: verstellbare Aluminium-Lamellen, ab 14.000 €. Ideal für volle Klimakontrolle und ganzjährige Nutzung.",
+            "Pro-Line: wandbefestigt, Polycarbonat-Dach, ab 5.490 € inkl. Montage (Aufpreis VSG-Glas +2.400 €). Ideal bei Süd-/Westausrichtung mit Hauswand.",
+            "Cube: freistehend, kubisches Design, ab 6.990 €. Ideal als Garten-Lounge ohne Wandanschluss.",
+            "Lamellendach: verstellbare Aluminium-Lamellen, ab 8.990 €. Ideal für volle Klimakontrolle und ganzjährige Nutzung.",
           ],
         },
       },
@@ -163,7 +163,7 @@ export const articles: Article[] = [
     readingMinutes: 10,
     image: "/catalog/lamellendach-1.jpg",
     imageAlt: "Vergleich Markise, Pergola und Lamellendach in Ulm",
-    tldr: "Markisen sind reine Sonnenschutz-L\u00f6sungen ab 1.200 \u20ac und nur bei trockenem Wetter einsatzbereit. Pergolen mit Stoffsegel kosten 8.000\u201315.000 \u20ac und schaffen Architektur-Statements ohne festes Dach. Lamellend\u00e4cher (14.000\u201328.000 \u20ac) sind das einzige System, das Sonnen- und Regenschutz auf Knopfdruck kombiniert und 365 Tage pro Jahr nutzbar ist. Die Wahl h\u00e4ngt von drei Faktoren ab: gew\u00fcnschte Nutzungsmonate (4\u20135 vs. 12), Wetterfestigkeit und Budget.",
+    tldr: "Markisen sind reine Sonnenschutz-L\u00f6sungen ab 1.200 \u20ac und nur bei trockenem Wetter einsatzbereit. Pergolen mit Stoffsegel kosten 8.000\u201315.000 \u20ac und schaffen Architektur-Statements ohne festes Dach. Lamellend\u00e4cher Q-Bus (ab 8.990 \u20ac, Vollausstattung bis 24.000 \u20ac) sind das einzige System, das Sonnen- und Regenschutz auf Knopfdruck kombiniert und 365 Tage pro Jahr nutzbar ist. Die Wahl h\u00e4ngt von drei Faktoren ab: gew\u00fcnschte Nutzungsmonate (4\u20135 vs. 12), Wetterfestigkeit und Budget.",
     sections: [
       {
         heading: { text: "Wof\u00fcr ist eine Markise gemacht?" },
@@ -194,7 +194,7 @@ export const articles: Article[] = [
         heading: { text: "Was kann ein Lamellendach mehr als Pergola und Markise?" },
         paragraphs: [
           "Ein Lamellendach (auch bioklimatische Pergola) ist die einzige der drei L\u00f6sungen, die Sonnen- und Regenschutz auf Knopfdruck kombiniert. Aluminium-Lamellen rotieren motorisch von 0\u00b0 (komplett offen mit freiem Himmelsblick) bis 135\u00b0 (geschlossen, wasserdicht durch \u00fcberlappende Profilkanten und integrierte Wasserableitung in den Pfosten). Mit optionalem Wettersensor schlie\u00dfen sich die Lamellen bei beginnendem Niederschlag in unter 30 Sekunden automatisch.",
-          "Lamellend\u00e4cher kosten 14.000\u201328.000 \u20ac je nach Gr\u00f6\u00dfe und Ausstattung (LED-Beleuchtung, Zip-Screens, Glasschiebew\u00e4nde). Wirtschaftlich rechnen sie sich \u00fcber die Nutzungsdauer: w\u00e4hrend Markisen 4\u20135 Monate und Stoffpergolen 5\u20136 Monate im Einsatz sind, l\u00e4uft das Lamellendach 12 Monate. Bei 30+ Jahren Lebensdauer der Aluminium-Konstruktion ergibt sich eine deutlich niedrigere Kosten-pro-Nutzungstag-Rechnung als bei einer alle 12\u201315 Jahre zu erneuernden Markise.",
+          "Lamellend\u00e4cher Q-Bus starten bei 8.990 \u20ac (5 \u00d7 3 m, basis) und reichen bei Vollausstattung mit LED dimmbar, Zip-Screens und Glasschiebew\u00e4nden bis 18.000\u201324.000 \u20ac. Wirtschaftlich rechnen sie sich \u00fcber die Nutzungsdauer: w\u00e4hrend Markisen 4\u20135 Monate und Stoffpergolen 5\u20136 Monate im Einsatz sind, l\u00e4uft das Lamellendach 12 Monate. Bei 30+ Jahren Lebensdauer der Aluminium-Konstruktion ergibt sich eine deutlich niedrigere Kosten-pro-Nutzungstag-Rechnung als bei einer alle 12\u201315 Jahre zu erneuernden Markise.",
         ],
       },
       {
@@ -206,7 +206,7 @@ export const articles: Article[] = [
             ["Regenschutz", "Nein", "Nein (Stoff)", "Ja, wasserdicht"],
             ["Maße", "bis 7 × 4 m", "bis 6 × 4 m", "bis 7 × 4,5 m"],
             ["Windklasse", "5", "5", "5+ (geschlossen)"],
-            ["Preis", "1.200–4.500 €", "8.000–15.000 €", "14.000–28.000 €"],
+            ["Preis", "1.200–4.500 €", "8.000–15.000 €", "8.990–24.000 €"],
             ["Lebensdauer", "10–15 Jahre", "15–20 Jahre", "30+ Jahre"],
             ["Genehmigung BW", "≤ 30 m² frei", "Bauanzeige möglich", "Bauanzeige möglich"],
             ["Nutzungsmonate", "4–5 / Jahr", "5–6 / Jahr", "12 / Jahr"],
@@ -268,17 +268,18 @@ export const articles: Article[] = [
     readingMinutes: 8,
     image: "/catalog/cube-1.jpg",
     imageAlt: "Brait Cube Terrassenüberdachung Preisbeispiel Ulm",
-    tldr: "Eine Aluminium-Terrassenüberdachung in Ulm kostet 7.900 € (Pro-Line wandbefestigt, 4 × 3 m, VSG-Glas) bis 28.000 € (Lamellendach 5 × 4 m mit LED, Zip-Screen und Glasschiebewänden). Die Hauptpreistreiber sind Größe, Konstruktionstyp, Glas, Statik (Schneelastzone) und Verschattung. Brait-Preise enthalten immer Montage durch eigenes Team.",
+    tldr: "Eine Aluminium-Terrassenüberdachung in Ulm startet bei 4.490 € (Pro-Line wandbefestigt, 4 × 3 m, Polycarbonat, inkl. Montage) und reicht bis 24.000 € (Lamellendach 5 × 4 m mit LED, Zip-Screen und Glasschiebewänden). Die Hauptpreistreiber sind Größe, Konstruktionstyp, Dachmaterial (Polycarbonat vs. VSG-Glas), Statik (Schneelastzone) und Verschattung. Brait-Preise enthalten immer Montage durch eigenes Team.",
     sections: [
       {
         factBox: {
           title: "Preisspannen 2026 (inkl. Montage)",
           items: [
-            "Pro-Line wandbefestigt 4 × 3 m: 7.900 – 9.500 €",
-            "Cube freistehend 4 × 3 m: 9.500 – 12.500 €",
-            "Lamellendach 4 × 3,5 m: 14.000 – 18.000 €",
-            "Lamellendach Vollausstattung 5 × 4 m: 22.000 – 28.000 €",
-            "Glashaus mit Schiebewänden: +2.500 – 5.000 € auf Pro-Line/Cube",
+            "Pro-Line wandbefestigt 4 × 3 m: 4.490 – 7.500 € (Polycarbonat bis VSG-Glas + Extras)",
+            "Pro-Line wandbefestigt 5 × 3 m: 5.490 – 9.000 €",
+            "Cube freistehend 4 × 3 m: 5.890 – 9.500 €",
+            "Lamellendach Q-Bus 4 × 3 m: 8.990 – 14.000 €",
+            "Lamellendach Vollausstattung 5 × 4 m: 18.000 – 24.000 €",
+            "Glashaus = Pro-Line/Cube + 3 Glasschiebewände: +6.000 – 9.000 €",
           ],
         },
       },
@@ -307,13 +308,15 @@ export const articles: Article[] = [
         table: {
           columns: ["Konfiguration", "Preis"],
           rows: [
-            ["Pro-Line 4 × 3 m, VSG, Anthrazit (Standard)", "7.900 €"],
-            ["Pro-Line 5 × 3,5 m, satiniertes VSG, Sonderfarbe", "11.200 €"],
-            ["Cube 4 × 3,5 m, VSG, freistehend", "11.500 €"],
-            ["Cube 5 × 4 m, VSG, mit Aufglasmarkise", "16.800 €"],
-            ["Lamellendach 4 × 3,5 m, Standard", "15.500 €"],
-            ["Lamellendach 5 × 4 m, LED + Wettersensor + Glasschiebewand vorne", "23.500 €"],
-            ["Glashaus = Pro-Line + 3 Glasschiebewände", "13.800 €"],
+            ["Pro-Line 4 × 3 m, Polycarbonat, Anthrazit (Einstieg)", "4.490 €"],
+            ["Pro-Line 5 × 3 m, Polycarbonat (Einstiegs-Bestseller)", "5.490 €"],
+            ["Pro-Line 5 × 3 m, VSG-Klarglas, Anthrazit", "7.890 €"],
+            ["Pro-Line 6 × 4 m, VSG-Klarglas", "11.290 €"],
+            ["Cube 4 × 3,5 m, VSG, freistehend", "9.300 €"],
+            ["Cube 5 × 4 m, VSG, mit Aufglasmarkise", "14.500 €"],
+            ["Lamellendach 4 × 3 m, Standard", "8.990 €"],
+            ["Lamellendach 5 × 4 m, LED + Wettersensor + Glasschiebewand vorne", "19.500 €"],
+            ["Glashaus = Pro-Line + 3 Glasschiebewände", "11.800 €"],
           ],
         },
       },

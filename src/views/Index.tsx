@@ -215,7 +215,7 @@ const Index = () => {
                 Drei Linien, ein Maßstab
               </h3>
               <p className="text-sm md:text-base text-secondary leading-relaxed speakable-answer flex-1">
-                <strong className="text-foreground">Pro-Line</strong> wandbefestigt ab 7.900&nbsp;€, <strong className="text-foreground">Cube</strong> freistehend ab 9.500&nbsp;€, <strong className="text-foreground">Lamellendach Q-Bus</strong> mit motorischer Klimakontrolle ab 14.000&nbsp;€. Carport ab 4.900&nbsp;€, Doppelcarport ab 7.900&nbsp;€ — alle aus Aluminium 6063&nbsp;T6, mit VSG-Glas oder verstellbaren Lamellen, wartungsfrei und schneelastgeprüft.
+                <strong className="text-foreground">Pro-Line</strong> wandbefestigt ab 5.490&nbsp;€ inkl. Montage, <strong className="text-foreground">Cube</strong> freistehend ab 6.990&nbsp;€, <strong className="text-foreground">Lamellendach Q-Bus</strong> mit motorischer Klimakontrolle ab 8.990&nbsp;€. Carport ab 4.900&nbsp;€, Doppelcarport ab 7.900&nbsp;€ — alle aus Aluminium 6063&nbsp;T6, mit Polycarbonat oder VSG-Glas, wartungsfrei und schneelastgeprüft.
               </p>
             </article>
 
@@ -598,7 +598,7 @@ const Index = () => {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-7 md:gap-y-9" staggerDelay={0.08}>
           <StaggerItem>
             <h3 className="text-base md:text-lg font-bold mb-2">Was kostet ein Terrassendach in Ulm?</h3>
-            <p className="text-secondary text-sm md:text-base leading-relaxed speakable-answer">Ein wandbefestigtes <strong>Pro-Line-Terrassendach</strong> aus Aluminium mit VSG-Glas (4&nbsp;×&nbsp;3&nbsp;m) startet bei 7.900&nbsp;€ inklusive Montage. Freistehende Cube-Konstruktionen ab 9.500&nbsp;€, motorische Lamellendächer ab 14.000&nbsp;€.</p>
+            <p className="text-secondary text-sm md:text-base leading-relaxed speakable-answer">Ein wandbefestigtes <strong>Pro-Line-Terrassendach</strong> aus Aluminium mit Polycarbonat-Dach (5&nbsp;×&nbsp;3&nbsp;m) startet bei 5.490&nbsp;€ inklusive Montage. Mit VSG-Glasdach +2.400&nbsp;€. Freistehende Cube-Konstruktionen ab 6.990&nbsp;€, motorische Lamellendächer Q-Bus ab 8.990&nbsp;€.</p>
           </StaggerItem>
           <StaggerItem>
             <h3 className="text-base md:text-lg font-bold mb-2">Brauche ich in BW eine Baugenehmigung?</h3>
@@ -642,7 +642,7 @@ const Index = () => {
           <h2 className="text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground tracking-tighter mb-6 md:mb-8 break-words">Bereit für Ihren Traumplatz?</h2>
         </FadeIn>
         <FadeIn delay={0.2}>
-          <p className="text-base md:text-xl text-primary-foreground/60 max-w-2xl mx-auto mb-8 md:mb-12 speakable-answer">Eine Aluminium-Terrassenüberdachung von Brait verlängert Ihre Outdoor-Saison von 4 auf 9 Monate und ist in drei Linien verfügbar: Pro-Line wandbefestigt ab 7.900&nbsp;€, Cube freistehend ab 9.500&nbsp;€ und Lamellendach verstellbar ab 14.000&nbsp;€ inkl. Montage. Konfigurieren Sie online in unter 3 Minuten oder fordern Sie den Demo-Koffer kostenlos an.</p>
+          <p className="text-base md:text-xl text-primary-foreground/60 max-w-2xl mx-auto mb-8 md:mb-12 speakable-answer">Eine Aluminium-Terrassenüberdachung von Brait macht bis zu +187 Tage Ihrer Terrasse pro Jahr nutzbar — und ist in drei Linien verfügbar: Pro-Line wandbefestigt ab 5.490&nbsp;€ inkl. Montage, Cube freistehend ab 6.990&nbsp;€ und Lamellendach Q-Bus verstellbar ab 8.990&nbsp;€. Konfigurieren Sie online in unter 3 Minuten oder fordern Sie den Demo-Koffer kostenlos an.</p>
         </FadeIn>
         <FadeIn delay={0.4}>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-stretch sm:items-center">

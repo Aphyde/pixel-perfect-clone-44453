@@ -650,7 +650,10 @@ const verandaConfig: CategoryConfigurator = {
   label: "Terrassenüberdachungen",
   hero: verandaHalfrondAnthracite,
   shortDesc: "Premium-Terrassenüberdachung – Rinne, Farbe, Dach, Wände, LED & Sonnenschutz live konfigurieren.",
-  basePrice: 10790,
+  // Einstiegspreis-Strategie (Mai 2026): aggressive 5.490 € für 5×3 m Alu/PC
+  // inkl. Montage. Marge kommt aus Cross-Selling (VSG-Upgrade, LED, Schiebewände,
+  // Sonnenschutz, Wartung). Lineare €/m²-Logik aktiviert via dimensions.pricePerArea.
+  basePrice: 5490,
   deliveryTime: "2 Wochen",
   heroVariantStepIds: ["gutter", "color"],
   heroVariants: {
@@ -702,8 +705,11 @@ const verandaConfig: CategoryConfigurator = {
       title: "Maße (Breite × Tiefe)",
       type: "dimensions",
       dimensions: {
-        width: { min: 3, max: 9, default: 5.5, label: "Breite" },
+        width: { min: 3, max: 9, default: 5, label: "Breite" },
         depth: { min: 2.5, max: 4.5, default: 3, label: "Tiefe" },
+        // 366 €/m² · 15 m² (5×3) = 5.490 € Einstieg inkl. Montage.
+        // Größenstaffel: 4×3 ≈ 4.392 €, 6×4 ≈ 8.784 €, 7×4 ≈ 10.248 €.
+        pricePerArea: 366,
       },
     },
     {
@@ -714,9 +720,10 @@ const verandaConfig: CategoryConfigurator = {
       options: [
         { id: "poly-opaal", label: "Polycarbonat Opal", desc: "Diffuses Licht, Hitzeschutz", price: 0, image: vRoofPolyOpaal },
         { id: "poly-helder", label: "Polycarbonat Klar", desc: "Maximaler Lichteinfall", price: 0, image: vRoofPolyHelder },
-        { id: "glas-helder", label: "Klarglas (VSG 44.2)", desc: "Premium, kristallklar", price: 1900, image: vRoofGlas },
-        { id: "glas-opaal", label: "Opalglas (VSG 44.2)", desc: "Sichtschutz & Streulicht", price: 2200, image: vRoofOpaalGlas },
-        { id: "glas-tint", label: "Getöntes Glas (VSG)", desc: "Sonnenschutz integriert", price: 2400, image: vRoofTinted },
+        // VSG-Aufpreise leicht angehoben — primärer Marge-Hebel (~45 % Marge laut Strategie)
+        { id: "glas-helder", label: "Klarglas (VSG 44.2)", desc: "Premium, kristallklar", price: 2400, image: vRoofGlas },
+        { id: "glas-opaal", label: "Opalglas (VSG 44.2)", desc: "Sichtschutz & Streulicht", price: 2700, image: vRoofOpaalGlas },
+        { id: "glas-tint", label: "Getöntes Glas (VSG)", desc: "Sonnenschutz integriert", price: 2900, image: vRoofTinted },
       ],
     },
     {

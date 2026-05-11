@@ -140,7 +140,7 @@ export const categoryLongForm: Record<string, CategoryLongFormContent> = {
 
   terrassenueberdachungen: {
     tldr:
-      "Eine Aluminium-Terrassenüberdachung verlängert Ihre Outdoor-Saison von 4 auf 9 Monate. Brait baut drei Linien — Pro-Line (wandbefestigt, ab 7.900 €), Cube (freistehend, ab 9.500 €) und Lamellendach (verstellbar, ab 14.000 €) — alles aus 6063 T6 Aluminium mit VSG-Glas oder Lamellen, 10 Jahren Strukturgarantie und Montage durch das eigene Team.",
+      "Eine Aluminium-Terrassenüberdachung verlängert Ihre Outdoor-Saison um bis zu +187 nutzbare Tage pro Jahr (DWD-Klimadaten Süddeutschland). Brait baut drei Linien — Pro-Line (wandbefestigt, ab 5.490 € inkl. Montage), Cube (freistehend, ab 6.990 €) und Lamellendach Q-Bus (verstellbar, ab 8.990 €) — alles aus 6063 T6 Aluminium mit Polycarbonat oder VSG-Glas, 10 Jahren Strukturgarantie und Montage durch das eigene Team.",
     keyFacts: [
       "Material: Aluminium 6063 T6, Pulverbeschichtung 30+ Jahre Lebensdauer",
       "Glas: VSG 2× 6 mm, hagelschlagsicher Klasse HW3",
@@ -217,11 +217,11 @@ export const categoryLongForm: Record<string, CategoryLongFormContent> = {
           },
         },
         {
-          feature: "Preis ab (3 × 4 m)",
+          feature: "Preis ab (Einstieg, inkl. Montage)",
           values: {
-            proline: "7.900 €",
-            cube: "9.500 €",
-            lamellen: "14.000 €",
+            proline: "5.490 € (5×3 m PC)",
+            cube: "6.990 € (5×3 m PC)",
+            lamellen: "8.990 € (5×3 m)",
           },
         },
         {
