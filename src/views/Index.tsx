@@ -30,9 +30,9 @@ const heroProducts = categories.map((c) => ({
 }));
 
 const simpleLinks = [
-  { label: "Konfigurator", path: "/konfigurator" },
-  { label: "Service", path: "/service" },
-  { label: "Kontakt", path: "/kontakt" },
+  { label: "Online-Konfigurator öffnen", path: "/konfigurator" },
+  { label: "Service & Montage", path: "/service" },
+  { label: "Beratung anfragen", path: "/kontakt" },
 ];
 
 const Index = () => {
@@ -85,11 +85,9 @@ const Index = () => {
           <div className="-mx-6">
             <div className="flex gap-3 overflow-x-auto px-6 pb-3 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
               {heroProducts.map((p) => (
-                <Link
+                <div
                   key={p.label}
-                  href={p.path}
-                  onClick={() => setHeroMenuOpen(false)}
-                  className="snap-start shrink-0 w-[72vw] max-w-[300px] group"
+                  className="snap-start shrink-0 w-[72vw] max-w-[300px] group relative"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden mb-3">
                     <Image src={p.image} alt={categoryAlt(p.label)} fill sizes="72vw" className="object-cover"
@@ -104,10 +102,16 @@ const Index = () => {
                     </div>
                   </div>
                   <div className="flex items-center justify-between px-1">
-                    <span className="text-[10px] font-headline uppercase tracking-widest text-primary font-bold">{p.label} ansehen</span>
+                    <Link
+                      href={p.path}
+                      onClick={() => setHeroMenuOpen(false)}
+                      className="text-[10px] font-headline uppercase tracking-widest text-primary font-bold after:absolute after:inset-0 after:content-[''] after:z-10"
+                    >
+                      {p.label} im Detail
+                    </Link>
                     <ArrowRight className="w-3.5 h-3.5 text-primary" />
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>
@@ -228,10 +232,7 @@ const Index = () => {
           </div>
 
           {/* Rechner-Teaser */}
-          <Link
-            href="/rechner"
-            className="mt-8 md:mt-10 group flex flex-col md:flex-row md:items-center justify-between gap-4 bg-foreground text-primary-foreground p-5 md:p-7 hover:bg-primary transition-colors"
-          >
+          <div className="mt-8 md:mt-10 group relative flex flex-col md:flex-row md:items-center justify-between gap-4 bg-foreground text-primary-foreground p-5 md:p-7 hover:bg-primary transition-colors">
             <div>
               <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-primary group-hover:text-primary-foreground mb-2">
                 DWD-Klimadaten · DIN&nbsp;EN&nbsp;1991-1-3
@@ -243,10 +244,13 @@ const Index = () => {
                 Outdoor-Tage- und Schneelast-Rechner für Ihren Standort — Mittelwerte aus 30 Jahren DWD-Daten.
               </p>
             </div>
-            <span className="inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground font-bold uppercase tracking-widest text-xs whitespace-nowrap">
-              Jetzt berechnen <ArrowRight className="w-4 h-4" />
-            </span>
-          </Link>
+            <Link
+              href="/rechner"
+              className="inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground font-bold uppercase tracking-widest text-xs whitespace-nowrap after:absolute after:inset-0 after:content-[''] after:z-10"
+            >
+              Outdoor-Tage berechnen <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </FadeIn>
       </div>
     </section>
@@ -265,7 +269,7 @@ const Index = () => {
         <div className="md:hidden -mx-5">
           <div className="flex gap-4 overflow-x-auto px-3 pb-4 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
             {categories.map((c) => (
-              <Link key={c.slug} href={`/${c.slug}`} aria-label={`${c.label} ansehen`} className="snap-start shrink-0 w-[80vw] max-w-[320px] group block">
+              <div key={c.slug} className="snap-start shrink-0 w-[80vw] max-w-[320px] group relative">
                 <div className="relative overflow-hidden aspect-[3/4] mb-4">
                   <Image
                     src={c.image}
@@ -280,11 +284,14 @@ const Index = () => {
                 <div className="px-2">
                   <p className="text-xl font-bold mb-2 group-hover:text-primary transition-colors" aria-hidden>{c.label}</p>
                   <p className="text-secondary leading-relaxed text-sm mb-3">{c.shortDesc}</p>
-                  <span className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs">
-                    {c.label} entdecken <ArrowRight className="w-4 h-4" />
-                  </span>
+                  <Link
+                    href={`/${c.slug}`}
+                    className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs after:absolute after:inset-0 after:content-[''] after:z-10"
+                  >
+                    Zu {c.label} <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -293,7 +300,7 @@ const Index = () => {
         <StaggerContainer className="hidden md:grid grid-cols-3 gap-4" staggerDelay={0.12}>
           {categories.map((c) => (
             <StaggerItem key={c.slug}>
-              <Link href={`/${c.slug}`} aria-label={`${c.label} ansehen`} className="group block h-full">
+              <div className="group relative h-full">
                 <div className="relative overflow-hidden aspect-[4/5] mb-5 md:mb-6">
                   <Image
                     src={c.image}
@@ -307,10 +314,13 @@ const Index = () => {
                 </div>
                 <h3 className="text-xl lg:text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{c.label}</h3>
                 <p className="text-secondary leading-relaxed text-sm lg:text-base mb-4">{c.shortDesc}</p>
-                <span className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs group-hover:gap-3 transition-all">
+                <Link
+                  href={`/${c.slug}`}
+                  className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs group-hover:gap-3 transition-all after:absolute after:inset-0 after:content-[''] after:z-10"
+                >
                   {c.label} entdecken <ArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
+                </Link>
+              </div>
             </StaggerItem>
           ))}
         </StaggerContainer>
