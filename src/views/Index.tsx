@@ -408,7 +408,7 @@ const Index = () => {
                 Demo-Koffer anfordern <ArrowRight className="w-4 h-4" />
               </Link>
               <a href="tel:+491735303581" className="border border-primary-foreground/30 text-primary-foreground px-6 md:px-7 py-3 md:py-3.5 font-headline uppercase tracking-widest text-xs md:text-sm font-bold hover:bg-primary-foreground/10 transition-all flex items-center justify-center gap-2.5">
-                <Phone className="w-4 h-4" /> 0173 530 3581
+                <Phone className="w-4 h-4" /> Anrufen: 0173 530 3581
               </a>
             </div>
           </FadeIn>

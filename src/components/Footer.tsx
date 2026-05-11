@@ -62,13 +62,13 @@ const Footer = () => (
           href="/referenzprojekte"
           className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
         >
-          Referenzen
+          Alle Referenzen
         </Link>
         <Link
           href="/konfigurator"
           className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
         >
-          Konfigurator
+          Online-Konfigurator
         </Link>
         <Link
           href="/rechner"
@@ -117,7 +117,7 @@ const Footer = () => (
           href="/kontakt"
           className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
         >
-          Kontakt
+          Direktkontakt
         </Link>
         <Link
           href="/impressum"
