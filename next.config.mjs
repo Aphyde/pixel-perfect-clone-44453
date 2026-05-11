@@ -28,7 +28,7 @@ const nextConfig = {
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https:",
       "font-src 'self' data:",
-      "connect-src 'self' https://va.vercel-scripts.com https://*.vercel-insights.com https://vitals.vercel-insights.com",
+      "connect-src 'self' https://va.vercel-scripts.com https://*.vercel-insights.com https://vitals.vercel-insights.com https://photon.komoot.io https://api.open-meteo.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",

@@ -1,480 +1,423 @@
 "use client";
 
+import { useMemo, useState } from "react";
+import Link from "next/link";
+import {
+  ArrowRight,
+  CheckCircle2,
+  ChevronDown,
+  Loader2,
+  MapPin,
+  Phone,
+  Snowflake,
+  Sparkles,
+} from "lucide-react";
 import Layout from "@/components/Layout";
 import { FadeIn } from "@/components/ScrollAnimations";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
-import { useMemo, useState } from "react";
-import { climateStations, findClimateStation } from "@/data/climate";
-import { calculateAllSystems, type OutdoorDaysResult } from "@/lib/calculator/outdoor-days";
-import { calculateSnowLoad, type SnowLoadResult } from "@/lib/calculator/snow-load";
-import { Calculator, MapPin, Sun, CloudRain, Snowflake, Thermometer, ArrowRight, Home, Briefcase } from "lucide-react";
-import Link from "next/link";
+import AddressAutocomplete from "@/components/calculator/AddressAutocomplete";
+import DayCategoryDonut from "@/components/calculator/DayCategoryDonut";
+import {
+  type AddressSuggestion,
+  fetchElevation,
+} from "@/lib/calculator/geocoding";
+import {
+  CATEGORY_META,
+  computePotentialAnalysis,
+} from "@/lib/calculator/day-categories";
+import { calculateSnowLoadByLocation } from "@/lib/calculator/snow-load";
+import {
+  findNearestStation,
+  isInServiceArea,
+} from "@/data/climate";
 
-type Tab = "outdoor" | "schneelast";
+interface SelectedLocation {
+  suggestion: AddressSuggestion;
+  elevation: number;
+  elevationSource: "open-meteo" | "station-fallback";
+}
 
 const Rechner = () => {
-  const [tab, setTab] = useState<Tab>("outdoor");
-  const [selectedCity, setSelectedCity] = useState<string>("ulm");
-  const [plz, setPlz] = useState<string>("89073");
-  const [elevation, setElevation] = useState<string>("478");
-  const [roofArea, setRoofArea] = useState<string>("12");
+  const [address, setAddress] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [location, setLocation] = useState<SelectedLocation | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
 
-  const station = useMemo(
-    () => findClimateStation(selectedCity) ?? climateStations[2],
-    [selectedCity],
-  );
+  const handleSelect = async (suggestion: AddressSuggestion) => {
+    setLoading(true);
+    const { station } = findNearestStation(suggestion.lat, suggestion.lon);
+    const elev = await fetchElevation(suggestion.lat, suggestion.lon);
+    setLocation({
+      suggestion,
+      elevation: elev ?? station.elevation,
+      elevationSource: elev != null ? "open-meteo" : "station-fallback",
+    });
+    setLoading(false);
+    setShowDetails(false);
 
-  const allSystems = useMemo(() => calculateAllSystems(station), [station]);
-  const outdoorBase = allSystems[0];
-  const outdoorPro = allSystems[2];
-  const outdoorLam = allSystems[4];
-  const outdoorMax = allSystems[5];
+    if (typeof window !== "undefined") {
+      requestAnimationFrame(() => {
+        document
+          .getElementById("rechner-ergebnis")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  };
 
-  const snowResult = useMemo<SnowLoadResult>(
-    () =>
-      calculateSnowLoad(plz, {
-        elevationMeters: Number(elevation) || undefined,
-        roofAreaSqm: Number(roofArea) || undefined,
-      }),
-    [plz, elevation, roofArea],
-  );
+  const analysis = useMemo(() => {
+    if (!location) return null;
+    const { station, distanceKm } = findNearestStation(
+      location.suggestion.lat,
+      location.suggestion.lon,
+    );
+    const potential = computePotentialAnalysis(station, location.elevation);
+    const snow = calculateSnowLoadByLocation({
+      station,
+      elevationMeters: location.elevation,
+      postcode: location.suggestion.postcode,
+    });
+    const inService = isInServiceArea(
+      location.suggestion.lat,
+      location.suggestion.lon,
+    );
+    return { station, distanceKm, potential, snow, inService };
+  }, [location]);
 
   return (
     <Layout>
       <Breadcrumbs
         items={[
           { name: "Startseite", url: "/" },
-          { name: "Rechner", url: "/rechner" },
+          { name: "Terrassenpotenzial-Rechner", url: "/rechner" },
         ]}
         withoutSchema
       />
 
-      <section className="container mx-auto px-5 md:px-8 pt-6 md:pt-8 pb-10 md:pb-14 max-w-5xl">
+      {/* HERO + INPUT */}
+      <section className="container mx-auto px-5 md:px-8 pt-6 md:pt-10 pb-10 md:pb-14 max-w-4xl">
         <span className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 block">
-          DWD-Klimadaten · DIN EN 1991-1-3
+          Adressgenau · DWD-Klimadaten · DIN EN 1991-1-3
         </span>
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-5 md:mb-7 break-words">
-          Outdoor-Tage- &amp; Schneelast-Rechner
+          Wie viele Tage Terrasse verschenken Sie pro Jahr?
         </h1>
-        <div className="border-l-4 border-primary bg-card p-5 md:p-6 mb-8 max-w-3xl speakable-tldr">
-          <p className="text-base md:text-lg leading-relaxed">
-            <strong>So viele zusätzliche Tage Terrasse pro Jahr</strong> mit einer Brait-Überdachung — auf Basis der offiziellen Klimanormalen 1991–2020 des Deutschen Wetterdienstes für Ihren Standort. Plus: Schneelastzone und Dachschneelast nach DIN EN 1991-1-3 für die Statik Ihrer Konstruktion.
+        <p className="text-base md:text-lg leading-relaxed text-secondary max-w-3xl mb-8 md:mb-10">
+          Geben Sie Ihre Adresse ein — wir zeigen Ihnen mit Klimadaten des
+          Deutschen Wetterdienstes, an wie vielen Tagen Sie Ihre Terrasse heute
+          komfortabel nutzen können und wie viele Tage zusätzlich nutzbar werden,
+          sobald eine Brait-Überdachung darüber steht. Inklusive Schneelast-
+          Analyse nach Eurocode.
+        </p>
+
+        <div className="bg-card border border-outline-variant/40 p-5 md:p-7 shadow-sm">
+          <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 block">
+            Adresse eingeben
+          </label>
+          <AddressAutocomplete
+            value={address}
+            onChange={setAddress}
+            onSelect={handleSelect}
+            placeholder="z. B. Öschweg 2, 89079 Ulm"
+          />
+          <p className="text-xs text-secondary mt-3 flex items-start gap-2">
+            <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0 text-primary" />
+            <span>
+              Wir nutzen die OpenStreetMap-Adresssuche (Photon) und die offene
+              Höhen-API von Open-Meteo. Keine Speicherung, kein Tracking.
+            </span>
           </p>
         </div>
 
-        {/* Tab Switcher */}
-        <div className="inline-flex border border-outline-variant/40 mb-8 md:mb-10">
-          <button
-            type="button"
-            onClick={() => setTab("outdoor")}
-            className={`px-4 md:px-6 py-3 text-xs md:text-sm font-bold uppercase tracking-widest transition-all ${
-              tab === "outdoor"
-                ? "bg-primary text-primary-foreground"
-                : "bg-card hover:bg-surface-container"
-            }`}
-          >
-            <Sun className="w-4 h-4 inline mr-2 -mt-0.5" />
-            Outdoor-Tage
-          </button>
-          <button
-            type="button"
-            onClick={() => setTab("schneelast")}
-            className={`px-4 md:px-6 py-3 text-xs md:text-sm font-bold uppercase tracking-widest transition-all border-l border-outline-variant/40 ${
-              tab === "schneelast"
-                ? "bg-primary text-primary-foreground"
-                : "bg-card hover:bg-surface-container"
-            }`}
-          >
-            <Snowflake className="w-4 h-4 inline mr-2 -mt-0.5" />
-            Schneelast
-          </button>
-        </div>
+        {loading && (
+          <div className="mt-6 flex items-center gap-3 text-secondary text-sm">
+            <Loader2 className="w-4 h-4 animate-spin text-primary" />
+            Klimadaten und Geländehöhe werden geladen …
+          </div>
+        )}
       </section>
 
-      {/* OUTDOOR TAGE */}
-      {tab === "outdoor" && (
-        <FadeIn>
-          <section className="container mx-auto px-5 md:px-8 max-w-5xl pb-16 md:pb-24">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-10 md:mb-14">
-              <div>
-                <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 block">
-                  1. Standort wählen
-                </label>
-                <select
-                  value={selectedCity}
-                  onChange={(e) => setSelectedCity(e.target.value)}
-                  className="w-full bg-card border border-outline-variant/40 px-4 py-3 text-base font-bold focus:border-primary focus:outline-none"
-                >
-                  {climateStations.map((s) => (
-                    <option key={`${s.citySlug}-${s.stationId}`} value={s.citySlug}>
-                      {s.cityLabel} ({s.elevation} m, Zone {s.snowLoadZone})
-                    </option>
-                  ))}
-                </select>
-                <p className="text-xs text-secondary mt-2">
-                  DWD-Wetterstation: {station.stationName}
-                </p>
-              </div>
-
-              <div className="bg-card border-l-4 border-primary p-5 md:p-6">
-                <div className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                  Klimanormale {station.cityLabel} (1991–2020)
-                </div>
-                <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                  <div className="flex items-center gap-2">
-                    <CloudRain className="w-4 h-4 text-primary" />
-                    <span>{station.rainDaysPerYear} Regentage</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Sun className="w-4 h-4 text-primary" />
-                    <span>{station.sunshineHoursPerYear} h Sonne</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Thermometer className="w-4 h-4 text-primary" />
-                    <span>Ø {station.meanTempCelsius} °C</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Snowflake className="w-4 h-4 text-primary" />
-                    <span>{station.snowCoverDaysPerYear} Schneetage</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Hero Result */}
-            <div className="bg-foreground text-primary-foreground p-6 md:p-10 mb-8 md:mb-10">
-              <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-primary mb-3">
-                Ihr Ergebnis für {station.cityLabel}
-              </div>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-5 md:mb-7 break-words">
-                Mit einem Lamellendach gewinnen Sie{" "}
-                <span className="text-primary">
-                  +{outdoorLam.gainedDays} Tage
-                </span>{" "}
-                Outdoor-Saison.
-              </h2>
-              <p className="text-base md:text-lg text-primary-foreground/75 max-w-2xl leading-relaxed mb-6 md:mb-8 speakable-answer">
-                In {station.cityLabel} sind nach DWD-Klimanormalen aktuell etwa{" "}
-                <strong className="text-primary-foreground">
-                  {outdoorBase.daysPerYear} Tage pro Jahr
-                </strong>{" "}
-                Outdoor-tauglich. Mit einem Brait-Lamellendach erhöht sich das auf{" "}
-                <strong className="text-primary-foreground">
-                  {outdoorLam.daysPerYear} Tage
-                </strong>{" "}
-                — das entspricht{" "}
-                <strong className="text-primary-foreground">
-                  +{outdoorLam.gainedWeeks} Wochen pro Jahr
-                </strong>{" "}
-                gewonnener Lebenszeit im Freien.
-              </p>
-              <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-2xl">
-                <div>
-                  <div className="text-2xl md:text-4xl font-bold text-primary mb-1">
-                    {outdoorBase.daysPerYear}
-                  </div>
-                  <div className="text-[10px] md:text-xs uppercase tracking-widest text-primary-foreground/60">
-                    Heute (kein Schutz)
-                  </div>
-                </div>
-                <div>
-                  <div className="text-2xl md:text-4xl font-bold text-primary mb-1">
-                    {outdoorPro.daysPerYear}
-                  </div>
-                  <div className="text-[10px] md:text-xs uppercase tracking-widest text-primary-foreground/60">
-                    Mit Pro-Line
-                  </div>
-                </div>
-                <div>
-                  <div className="text-2xl md:text-4xl font-bold text-primary mb-1">
-                    {outdoorMax.daysPerYear}
-                  </div>
-                  <div className="text-[10px] md:text-xs uppercase tracking-widest text-primary-foreground/60">
-                    Vollausstattung
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* System-Vergleich */}
-            <div className="mb-8 md:mb-10">
-              <h2 className="text-2xl md:text-4xl font-bold tracking-tighter mb-6 md:mb-8">
-                Vergleich aller Brait-Systeme
-              </h2>
-              <div className="space-y-3">
-                {allSystems.map((r) => (
-                  <SystemBar
-                    key={r.system}
-                    result={r}
-                    maxDays={365}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Methodik */}
-            <details className="bg-surface-container-low border border-outline-variant/30 p-5 md:p-7 mb-8 md:mb-10">
-              <summary className="font-bold text-base md:text-lg cursor-pointer">
-                Methodik &amp; Quellen
-              </summary>
-              <div className="text-secondary text-sm md:text-base leading-relaxed mt-4 space-y-3">
-                <p>
-                  <strong className="text-foreground">Datenbasis:</strong>{" "}
-                  Klimanormale 1991–2020 des Deutschen Wetterdienstes (DWD), Climate Data Center (CDC), abrufbar unter{" "}
-                  <a
-                    href="https://opendata.dwd.de/climate_environment/CDC/"
-                    target="_blank"
-                    rel="noopener"
-                    className="text-primary underline underline-offset-2"
-                  >
-                    opendata.dwd.de
-                  </a>
-                  . Das ist die offizielle WMO-Periode für Klima-Vergleiche, die nächste Aktualisierung erfolgt 2031 mit Periode 2001–2030.
-                </p>
-                <p>
-                  <strong className="text-foreground">Definition „Outdoor-tauglich":</strong>{" "}
-                  Tageshöchsttemperatur ≥ 12 °C, kein nennenswerter Niederschlag (≤ 1 mm), mindestens 4 Sonnenstunden im Tagesverlauf.
-                </p>
-                <p>
-                  <strong className="text-foreground">Outdoor-Saison:</strong>{" "}
-                  ≈ 230 Tage (April bis Oktober inkl. milder Schultertage).
-                </p>
-                <p>
-                  <strong className="text-foreground">Wirkung der Systeme:</strong>{" "}
-                  Markisen reduzieren Hitze, schützen aber nicht vor Regen. Glasdächer (Pro-Line, Cube) machen alle Regentage in der warmen Saison nutzbar. Lamellendächer addieren milde Wintertage. Vollausstattung mit Glasschiebewänden und Heizung erlaubt 365-Tage-Nutzung abzüglich extremer Wettertage.
-                </p>
-                <p>
-                  <strong className="text-foreground">Hinweis:</strong>{" "}
-                  Die Werte sind statistische Mittel aus 30 Jahren. Einzelne Jahre können stark abweichen — extrem nasse oder sehr trockene Sommer verschieben das Bild.
-                </p>
-              </div>
-            </details>
-
-            {/* CTA */}
-            <div className="bg-primary text-primary-foreground p-6 md:p-10 text-center">
-              <h2 className="text-xl md:text-3xl font-bold mb-3 md:mb-4">
-                Jetzt persönlich beraten lassen
-              </h2>
-              <p className="text-sm md:text-base text-primary-foreground/85 mb-5 md:mb-6 max-w-2xl mx-auto">
-                Im Demo-Koffer-Termin vor Ort prüfen wir Ihre Terrasse, Ausrichtung, Statik und finden das System mit der besten Wirtschaftlichkeit für Ihren Standort.
-              </p>
-              <Link
-                href="/kontakt#demo-koffer"
-                className="inline-flex items-center justify-center gap-2 bg-primary-foreground text-primary px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:opacity-90 transition-all"
+      {/* PLATZHALTER OHNE AUSWAHL */}
+      {!location && !loading && (
+        <section className="container mx-auto px-5 md:px-8 pb-16 md:pb-20 max-w-4xl">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+            {[
+              {
+                icon: MapPin,
+                title: "1. Adresse",
+                text: "Straße und Hausnummer reichen — wir ordnen die nächste DWD-Wetterstation zu.",
+              },
+              {
+                icon: Sparkles,
+                title: "2. Analyse",
+                text: "Sie sehen aktuelle und gewonnene Outdoor-Tage in einem Diagramm.",
+              },
+              {
+                icon: Snowflake,
+                title: "3. Statik",
+                text: "Plus exakte Schneelast und Empfehlung der Brait-Konstruktionsklasse.",
+              },
+            ].map((step) => (
+              <div
+                key={step.title}
+                className="bg-card border-l-4 border-primary/30 p-5"
               >
-                <Briefcase className="w-4 h-4" /> Demo-Koffer anfordern
-              </Link>
-            </div>
-          </section>
-        </FadeIn>
+                <step.icon className="w-5 h-5 text-primary mb-3" aria-hidden />
+                <div className="text-sm font-bold uppercase tracking-widest text-primary mb-1">
+                  {step.title}
+                </div>
+                <p className="text-sm text-secondary leading-relaxed">{step.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
 
-      {/* SCHNEELAST */}
-      {tab === "schneelast" && (
+      {/* ERGEBNIS */}
+      {location && analysis && (
         <FadeIn>
-          <section className="container mx-auto px-5 md:px-8 max-w-5xl pb-16 md:pb-24">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-7 mb-10 md:mb-14">
-              <div>
-                <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 block">
-                  Postleitzahl
-                </label>
-                <input
-                  type="text"
-                  value={plz}
-                  onChange={(e) => setPlz(e.target.value.replace(/\D/g, "").slice(0, 5))}
-                  placeholder="89073"
-                  className="w-full bg-card border border-outline-variant/40 px-4 py-3 text-base font-bold focus:border-primary focus:outline-none"
-                />
-              </div>
-              <div>
-                <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 block">
-                  Höhe (m über NN)
-                </label>
-                <input
-                  type="number"
-                  value={elevation}
-                  onChange={(e) => setElevation(e.target.value)}
-                  placeholder="478"
-                  className="w-full bg-card border border-outline-variant/40 px-4 py-3 text-base font-bold focus:border-primary focus:outline-none"
-                />
-              </div>
-              <div>
-                <label className="text-primary text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase mb-3 block">
-                  Dachfläche (m²)
-                </label>
-                <input
-                  type="number"
-                  value={roofArea}
-                  onChange={(e) => setRoofArea(e.target.value)}
-                  placeholder="12"
-                  className="w-full bg-card border border-outline-variant/40 px-4 py-3 text-base font-bold focus:border-primary focus:outline-none"
-                />
-              </div>
-            </div>
-
-            {/* Hero Result */}
+          <section
+            id="rechner-ergebnis"
+            className="container mx-auto px-5 md:px-8 pb-16 md:pb-20 max-w-5xl scroll-mt-24"
+          >
+            {/* Vorher / Nachher Hero */}
             <div className="bg-foreground text-primary-foreground p-6 md:p-10 mb-8 md:mb-10">
               <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-primary mb-3">
-                Schneelast PLZ {plz || "—"}
+                Analyse für {location.suggestion.label}
               </div>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-5 md:mb-7 break-words">
-                Schneelastzone{" "}
-                <span className="text-primary">{snowResult.zone.zone}</span> — Dachlast{" "}
-                <span className="text-primary">{snowResult.roofLoadKg} kg/m²</span>
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-6 md:mb-8 break-words">
+                Sie nutzen heute{" "}
+                <span className="text-primary">{analysis.potential.currentDays} Tage</span>.
+                Mit einer Brait-Überdachung werden es{" "}
+                <span className="text-primary">
+                  {analysis.potential.totalDaysWithDach} Tage
+                </span>{" "}
+                — ein Gewinn von{" "}
+                <span className="text-primary">
+                  +{analysis.potential.gainedDaysWithDach} Tagen
+                </span>{" "}
+                pro Jahr.
               </h2>
-              <p className="text-sm md:text-base text-primary-foreground/75 max-w-2xl leading-relaxed mb-6 md:mb-8 speakable-answer">
-                {snowResult.zone.description}. Die charakteristische Bodenschneelast beträgt{" "}
-                <strong className="text-primary-foreground">
-                  {snowResult.groundLoadCorrectedKn} kN/m² (≈ {snowResult.groundLoadCorrectedKg} kg/m²)
-                </strong>
-                {snowResult.elevationFactor > 1 ? (
-                  <>
-                    {" "}— mit Höhenkorrektur ×{snowResult.elevationFactor} für{" "}
-                    {elevation} m NN
-                  </>
-                ) : null}
-                . Auf einem Flachdach (Form-Beiwert µ = 0,8) ergibt das eine Bemessungslast von{" "}
-                <strong className="text-primary-foreground">
-                  {snowResult.roofLoadKn} kN/m² (≈ {snowResult.roofLoadKg} kg/m²)
-                </strong>
-                .
-              </p>
-              {snowResult.totalSnowMass && (
-                <div className="border-t border-primary-foreground/20 pt-5 md:pt-6">
-                  <div className="text-[10px] md:text-xs uppercase tracking-widest text-primary-foreground/60 mb-2">
-                    Gesamtlast auf {snowResult.totalSnowMass.area} m² Dachfläche
-                  </div>
-                  <div className="text-2xl md:text-4xl font-bold text-primary">
-                    {snowResult.totalSnowMass.mass.toLocaleString("de-DE")} kg
-                  </div>
-                  <div className="text-xs md:text-sm text-primary-foreground/60 mt-1">
-                    entspricht etwa{" "}
-                    {Math.round(snowResult.totalSnowMass.mass / 80).toLocaleString("de-DE")}{" "}
-                    Personen mit 80 kg auf dem Dach
-                  </div>
-                </div>
-              )}
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 max-w-3xl">
+                <BeforeAfterStat
+                  caption="Ihre aktuelle Situation"
+                  value={analysis.potential.currentDays}
+                  unit="Tage"
+                  note="komfortabel ohne Dach"
+                />
+                <BeforeAfterStat
+                  caption="Mit Terrassendach zusätzlich"
+                  value={analysis.potential.gainedDaysWithDach}
+                  prefix="+"
+                  unit="Tage"
+                  note="zusätzliche Outdoor-Saison"
+                  highlight
+                />
+                <BeforeAfterStat
+                  caption="Ihr Terrassenpotenzial gesamt"
+                  value={analysis.potential.potentialPercent}
+                  unit="%"
+                  note={`${analysis.potential.totalDaysWithDach} von ${analysis.potential.categories.total} Tagen`}
+                />
+              </div>
             </div>
 
-            {/* Brait Empfehlung */}
+            {/* Donut + Insights */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-8 md:gap-12 mb-8 md:mb-10 items-start">
+              <div className="bg-card p-5 md:p-7">
+                <DayCategoryDonut
+                  categories={analysis.potential.categories}
+                  centerValue={analysis.potential.totalDaysWithDach}
+                  centerLabel="Tage mit Dach nutzbar"
+                  centerSubLabel={`${analysis.potential.potentialPercent}% des Jahres`}
+                />
+              </div>
+
+              <div className="space-y-4 md:space-y-5">
+                <InsightRow
+                  color={CATEGORY_META.sommer.color}
+                  title={`${analysis.potential.currentDays} Sommertage komfortabel ohne Dach`}
+                  text="Mittagshitze ist erträglich, abends ist es perfekt — heute Ihr einziger sicherer Terrassengenuss."
+                />
+                <InsightRow
+                  color={CATEGORY_META.potenzial.color}
+                  title={`+${analysis.potential.gainedDaysWithDach} Potenzialtage werden mit Dach nutzbar`}
+                  text="Tage mit 10–25 °C: meist scheitern sie an Schauern, kühlem Wind oder Mittagsstau. Mit Lamellen- oder Glasdach werden sie nutzbar."
+                />
+                <InsightRow
+                  color={CATEGORY_META.kalt.color}
+                  title={`Nur ${analysis.potential.unusedCold} kalte Tage bleiben ungenutzt`}
+                  text="0–10 °C – mit Glasschiebewänden, Infrarotheizung und Lamellendach holen Sie sich auch diese zurück."
+                />
+                <InsightRow
+                  color={CATEGORY_META.eis.color}
+                  title={`${analysis.potential.unusedIce} Eistage <0 °C`}
+                  text="Frostperiode: nicht relevant für Terrassennutzung. Wichtig nur für die Schneelast-Statik."
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowDetails((s) => !s)}
+                  className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest hover:opacity-80 transition-opacity"
+                  aria-expanded={showDetails}
+                >
+                  Details anzeigen
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${showDetails ? "rotate-180" : ""}`}
+                    aria-hidden
+                  />
+                </button>
+
+                {showDetails && (
+                  <div className="bg-surface-container-low border-l-4 border-primary p-4 md:p-5 text-sm leading-relaxed space-y-2">
+                    {(["sommer", "heiss", "potenzial", "kalt", "eis"] as const).map(
+                      (key) => (
+                        <div
+                          key={key}
+                          className="flex items-baseline gap-3 border-b border-outline-variant/20 last:border-0 pb-2 last:pb-0"
+                        >
+                          <span
+                            aria-hidden
+                            className="w-2.5 h-2.5 rounded-full shrink-0 mt-1"
+                            style={{ backgroundColor: CATEGORY_META[key].color }}
+                          />
+                          <span className="flex-1">
+                            <span className="font-bold">{CATEGORY_META[key].label}</span>{" "}
+                            <span className="text-secondary">
+                              ({CATEGORY_META[key].range})
+                            </span>
+                            : {analysis.potential.categories[key]} Tage —{" "}
+                            <span className="text-secondary">
+                              {CATEGORY_META[key].benefit}
+                            </span>
+                          </span>
+                        </div>
+                      ),
+                    )}
+                    <p className="text-xs text-secondary pt-2">
+                      Basis: Klimanormale 1991–2020 der nächsten DWD-Station{" "}
+                      <strong className="text-foreground">
+                        {analysis.station.stationName}
+                      </strong>{" "}
+                      ({analysis.distanceKm} km Entfernung). Höhenkorrektur auf{" "}
+                      {location.elevation} m über NN.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Schneelast-Box */}
+            <div className="bg-card border border-outline-variant/40 p-6 md:p-8 mb-8 md:mb-10">
+              <div className="flex items-center gap-3 mb-5 md:mb-6">
+                <Snowflake className="w-5 h-5 text-primary" aria-hidden />
+                <h2 className="text-xl md:text-2xl font-bold tracking-tight">
+                  Schneelast für {location.suggestion.label}
+                </h2>
+              </div>
+
+              <dl className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6 mb-6">
+                <SnowStat
+                  label="Schneetage Ø"
+                  value={`${analysis.station.snowCoverDaysPerYear}`}
+                  unit="Tage/Jahr"
+                />
+                <SnowStat
+                  label="Schneelastzone"
+                  value={analysis.snow.zone.zone}
+                  unit="nach DIN EN 1991-1-3"
+                />
+                <SnowStat
+                  label="Standorthöhe"
+                  value={`${location.elevation}`}
+                  unit="m über NN"
+                />
+                <SnowStat
+                  label="Bodenschneelast"
+                  value={`${analysis.snow.groundLoadCorrectedKn.toLocaleString("de-DE")} kN/m²`}
+                  unit={`≈ ${analysis.snow.groundLoadCorrectedKg} kg/m²`}
+                />
+              </dl>
+
+              <div
+                className={`p-4 md:p-5 border-l-4 ${
+                  analysis.snow.braitRecommendation.level === "individuell"
+                    ? "bg-primary/5 border-primary"
+                    : analysis.snow.braitRecommendation.level === "verstaerkt"
+                      ? "bg-surface-container-low border-primary/70"
+                      : "bg-surface-container-low border-primary/40"
+                }`}
+              >
+                <div className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-primary mb-1">
+                  Brait-Empfehlung
+                </div>
+                <div className="font-bold mb-1.5">
+                  {analysis.snow.braitRecommendation.label}
+                </div>
+                <p className="text-sm text-secondary leading-relaxed">
+                  {analysis.snow.braitRecommendation.description}
+                </p>
+                <p className="text-xs text-secondary mt-2">
+                  {analysis.snow.braitRecommendation.costNote} ·{" "}
+                  Dachlast (µ=0,8): {analysis.snow.roofLoadKg} kg/m².
+                </p>
+              </div>
+            </div>
+
+            {/* Service-Gebiet */}
             <div
-              className={`p-5 md:p-7 mb-8 md:mb-10 border-l-4 ${
-                snowResult.braitRecommendation.level === "individuell"
-                  ? "bg-card border-primary"
-                  : snowResult.braitRecommendation.level === "verstaerkt"
-                    ? "bg-card border-primary/70"
-                    : "bg-card border-primary/40"
+              className={`flex items-start gap-3 p-5 md:p-6 mb-8 md:mb-10 ${
+                analysis.inService
+                  ? "bg-primary/10 border-l-4 border-primary"
+                  : "bg-surface-container-low border-l-4 border-secondary"
               }`}
             >
-              <div className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                Brait-Empfehlung
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-3">
-                {snowResult.braitRecommendation.label}
-              </h3>
-              <p className="text-secondary text-sm md:text-base leading-relaxed mb-4">
-                {snowResult.braitRecommendation.description}
-              </p>
-              <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm">
-                <span className="bg-primary/10 text-primary px-3 py-1 font-bold uppercase tracking-widest">
-                  {snowResult.braitRecommendation.costNote}
-                </span>
-                <span className="text-secondary">{snowResult.reference}</span>
-              </div>
-            </div>
-
-            {/* Zonen-Tabelle */}
-            <div className="mb-8 md:mb-10">
-              <h2 className="text-2xl md:text-4xl font-bold tracking-tighter mb-6 md:mb-8">
-                Schneelastzonen Süddeutschland
-              </h2>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm md:text-base">
-                  <thead className="border-b-2 border-foreground">
-                    <tr className="text-left">
-                      <th className="py-3 px-2 md:px-4 font-bold">Zone</th>
-                      <th className="py-3 px-2 md:px-4 font-bold">Bodenschneelast</th>
-                      <th className="py-3 px-2 md:px-4 font-bold">Dachschneelast</th>
-                      <th className="py-3 px-2 md:px-4 font-bold hidden md:table-cell">
-                        Region
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      { zone: "1", load: "0,65 kN/m²", roof: "53 kg/m²", region: "Norddeutsche Tiefebene" },
-                      { zone: "1a", load: "0,85 kN/m²", roof: "69 kg/m²", region: "Mitteldeutschland" },
-                      { zone: "2", load: "1,06 kN/m²", roof: "87 kg/m²", region: "Reutlingen, Tübingen, Göppingen" },
-                      { zone: "2a", load: "1,32 kN/m²", roof: "108 kg/m²", region: "Ulm, Augsburg, Heidenheim, Donautal" },
-                      { zone: "3", load: "1,89 kN/m²", roof: "154 kg/m²", region: "Memmingen, Schwäbische Alb ab 600 m, Allgäu" },
-                    ].map((r) => (
-                      <tr
-                        key={r.zone}
-                        className={`border-b border-outline-variant/30 ${
-                          r.zone === snowResult.zone.zone
-                            ? "bg-primary/10 font-bold"
-                            : ""
-                        }`}
-                      >
-                        <td className="py-3 px-2 md:px-4">{r.zone}</td>
-                        <td className="py-3 px-2 md:px-4">{r.load}</td>
-                        <td className="py-3 px-2 md:px-4">{r.roof}</td>
-                        <td className="py-3 px-2 md:px-4 hidden md:table-cell text-secondary">
-                          {r.region}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              <CheckCircle2
+                className={`w-5 h-5 mt-0.5 shrink-0 ${analysis.inService ? "text-primary" : "text-secondary"}`}
+                aria-hidden
+              />
+              <div className="text-sm leading-relaxed">
+                {analysis.inService ? (
+                  <>
+                    <strong>Sie liegen in unserem Liefer- und Montagegebiet.</strong>{" "}
+                    Brait-Standort: Ulm · Distanz zur nächsten Wetterstation
+                    ({analysis.station.cityLabel}): {analysis.distanceKm} km.
+                  </>
+                ) : (
+                  <>
+                    <strong>Außerhalb unseres regulären Service-Gebiets.</strong>{" "}
+                    Wir prüfen Anfragen über 100 km um Ulm individuell — sprechen
+                    Sie uns gerne an, in vielen Fällen ist Montage möglich.
+                  </>
+                )}
               </div>
             </div>
-
-            {/* Methodik */}
-            <details className="bg-surface-container-low border border-outline-variant/30 p-5 md:p-7 mb-8 md:mb-10">
-              <summary className="font-bold text-base md:text-lg cursor-pointer">
-                Berechnungsformel &amp; Norm-Verweise
-              </summary>
-              <div className="text-secondary text-sm md:text-base leading-relaxed mt-4 space-y-3">
-                <p>
-                  <strong className="text-foreground">Bemessung:</strong>{" "}
-                  s = µ · C<sub>e</sub> · C<sub>t</sub> · s<sub>k</sub>{" "}
-                  nach DIN EN 1991-1-3 (Eurocode 1) und Nationalem Anhang Deutschland.
-                </p>
-                <ul className="list-disc list-inside space-y-1">
-                  <li>µ = 0,8 (Form-Beiwert für Flachdach ≤ 30°)</li>
-                  <li>C<sub>e</sub> = 1,0 (Umgebungsbeiwert „normal")</li>
-                  <li>C<sub>t</sub> = 1,0 (Wärmebeiwert „isoliert")</li>
-                  <li>s<sub>k</sub> = charakteristische Bodenschneelast aus PLZ + Höhe</li>
-                </ul>
-                <p>
-                  <strong className="text-foreground">Höhenkorrektur:</strong>{" "}
-                  Über 400 m NN steigt die Bodenschneelast linear bis zu Faktor 1,4 bei 800 m NN.
-                </p>
-                <p>
-                  <strong className="text-foreground">Brait-Standardstatik:</strong>{" "}
-                  200 kg/m² Dachlast — das deckt mit Sicherheitsreserve fast alle Lagen außerhalb der Hochalb (über 800 m NN) ab. Bei Höhenlagen oder Sondergrößen rechnen wir individuell.
-                </p>
-                <p>
-                  <strong className="text-foreground">Hinweis:</strong>{" "}
-                  Diese Berechnung ersetzt keine prüffähige Tragwerksberechnung. Brait erstellt diese im Rahmen der Auftragsplanung kostenfrei.
-                </p>
-              </div>
-            </details>
 
             {/* CTA */}
             <div className="bg-primary text-primary-foreground p-6 md:p-10 text-center">
               <h2 className="text-xl md:text-3xl font-bold mb-3 md:mb-4">
-                Brauchen Sie eine prüffähige Statik?
+                Diese Analyse jetzt in einen Plan verwandeln
               </h2>
               <p className="text-sm md:text-base text-primary-foreground/85 mb-5 md:mb-6 max-w-2xl mx-auto">
-                Brait erstellt für jede Anlage eine individuelle Statik nach Eurocode 1 — kostenfrei im Rahmen der Auftragsplanung.
+                Wir kommen mit dem Demo-Koffer zu Ihnen, prüfen Statik,
+                Ausrichtung und Wunschmaße — und zeigen direkt vor Ort, wie viele
+                der +{analysis.potential.gainedDaysWithDach} Tage Sie konkret
+                gewinnen werden.
               </p>
-              <Link
-                href="/kontakt"
-                className="inline-flex items-center justify-center gap-2 bg-primary-foreground text-primary px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:opacity-90 transition-all"
-              >
-                <Home className="w-4 h-4" /> Statik anfragen
-              </Link>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <Link
+                  href="/kontakt#demo-koffer"
+                  className="inline-flex items-center justify-center gap-2 bg-primary-foreground text-primary px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:opacity-90 transition-all"
+                >
+                  Demo-Koffer anfordern <ArrowRight className="w-4 h-4" />
+                </Link>
+                <a
+                  href="tel:01735303581"
+                  className="inline-flex items-center justify-center gap-2 border border-primary-foreground/30 px-6 md:px-7 py-3 md:py-3.5 font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-primary-foreground/10 transition-all"
+                >
+                  <Phone className="w-4 h-4" /> 0173 530 3581
+                </a>
+              </div>
             </div>
           </section>
         </FadeIn>
@@ -484,7 +427,7 @@ const Rechner = () => {
       <section className="bg-surface py-12 md:py-16">
         <div className="container mx-auto px-5 md:px-8 max-w-5xl">
           <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-5 md:mb-6">
-            Verwandte Themen
+            Mehr Hintergrund
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
             <Link
@@ -494,11 +437,11 @@ const Rechner = () => {
               <div className="text-[10px] md:text-xs uppercase tracking-widest text-primary font-bold mb-2">
                 Ratgeber
               </div>
-              <h3 className="font-bold mb-2 group-hover:text-primary transition-colors">
+              <p className="font-bold mb-2 group-hover:text-primary transition-colors">
                 Schneelast in Süddeutschland
-              </h3>
+              </p>
               <p className="text-secondary text-sm leading-relaxed">
-                Detaillierter Hintergrund zu Zonen, Höhenlagen und Praxis.
+                Zonen, Höhenlagen, Brait-Standardstatik — Detail-Ratgeber.
               </p>
               <span className="inline-flex items-center gap-1 text-primary text-xs font-bold uppercase tracking-widest mt-3">
                 Lesen <ArrowRight className="w-3 h-3" />
@@ -511,9 +454,9 @@ const Rechner = () => {
               <div className="text-[10px] md:text-xs uppercase tracking-widest text-primary font-bold mb-2">
                 Ratgeber
               </div>
-              <h3 className="font-bold mb-2 group-hover:text-primary transition-colors">
+              <p className="font-bold mb-2 group-hover:text-primary transition-colors">
                 Welche Überdachung passt zu Ihrem Haus?
-              </h3>
+              </p>
               <p className="text-secondary text-sm leading-relaxed">
                 Pro-Line, Cube oder Lamellendach — Entscheidungshilfe.
               </p>
@@ -528,9 +471,9 @@ const Rechner = () => {
               <div className="text-[10px] md:text-xs uppercase tracking-widest text-primary font-bold mb-2">
                 Standorte
               </div>
-              <h3 className="font-bold mb-2 group-hover:text-primary transition-colors">
+              <p className="font-bold mb-2 group-hover:text-primary transition-colors">
                 Brait in Ihrer Stadt
-              </h3>
+              </p>
               <p className="text-secondary text-sm leading-relaxed">
                 Service-Gebiet, Anfahrt und lokale Besonderheiten.
               </p>
@@ -545,43 +488,80 @@ const Rechner = () => {
   );
 };
 
-const SystemBar = ({
-  result,
-  maxDays,
-}: {
-  result: OutdoorDaysResult;
-  maxDays: number;
-}) => {
-  const widthPct = Math.min(100, (result.daysPerYear / maxDays) * 100);
-  return (
-    <div className="bg-card p-4 md:p-5 border-l-4 border-primary/30 hover:border-primary transition-colors">
-      <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
-        <div>
-          <div className="font-bold text-base md:text-lg">{result.systemLabel}</div>
-          <div className="text-xs text-secondary">{result.description}</div>
-        </div>
-        <div className="text-right">
-          <div className="text-2xl md:text-3xl font-bold text-primary">
-            {result.daysPerYear}
-          </div>
-          <div className="text-[10px] md:text-xs uppercase tracking-widest text-secondary">
-            Tage/Jahr
-            {result.gainedDays > 0 && (
-              <span className="text-primary ml-2 font-bold">
-                +{result.gainedDays}
-              </span>
-            )}
-          </div>
-        </div>
-      </div>
-      <div className="h-2 bg-surface-container-low overflow-hidden">
-        <div
-          className="h-full bg-primary transition-all duration-700"
-          style={{ width: `${widthPct}%` }}
-        />
-      </div>
+interface BeforeAfterStatProps {
+  caption: string;
+  value: number;
+  unit: string;
+  note: string;
+  prefix?: string;
+  highlight?: boolean;
+}
+
+const BeforeAfterStat = ({
+  caption,
+  value,
+  unit,
+  note,
+  prefix,
+  highlight,
+}: BeforeAfterStatProps) => (
+  <div className={highlight ? "border-l-4 border-primary pl-4" : "pl-4 border-l-4 border-primary-foreground/15"}>
+    <div className="text-[10px] md:text-xs uppercase tracking-widest text-primary-foreground/65 mb-2">
+      {caption}
     </div>
-  );
-};
+    <div className="text-3xl md:text-5xl font-bold tracking-tighter text-primary mb-1">
+      {prefix}
+      {value}
+      <span className="text-base md:text-2xl text-primary-foreground/70 font-medium ml-1">
+        {unit}
+      </span>
+    </div>
+    <div className="text-xs text-primary-foreground/60">{note}</div>
+  </div>
+);
+
+const InsightRow = ({
+  color,
+  title,
+  text,
+}: {
+  color: string;
+  title: string;
+  text: string;
+}) => (
+  <div className="flex items-start gap-3 md:gap-4">
+    <span
+      aria-hidden
+      className="w-1.5 h-12 md:h-14 shrink-0 rounded-sm"
+      style={{ backgroundColor: color }}
+    />
+    <div>
+      <p className="font-bold text-base md:text-lg leading-snug mb-1">{title}</p>
+      <p className="text-sm text-secondary leading-relaxed">{text}</p>
+    </div>
+  </div>
+);
+
+const SnowStat = ({
+  label,
+  value,
+  unit,
+}: {
+  label: string;
+  value: string;
+  unit: string;
+}) => (
+  <div>
+    <dt className="text-[10px] md:text-xs uppercase tracking-widest text-secondary mb-1">
+      {label}
+    </dt>
+    <dd>
+      <span className="block text-2xl md:text-3xl font-bold tracking-tighter text-foreground">
+        {value}
+      </span>
+      <span className="block text-xs text-secondary mt-0.5">{unit}</span>
+    </dd>
+  </div>
+);
 
 export default Rechner;

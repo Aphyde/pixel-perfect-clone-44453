@@ -20,7 +20,9 @@
 import {
   type SnowLoadZone,
   lookupSnowLoadZoneByPlz,
+  snowLoadZonesData,
 } from "@/data/snow-load-zones";
+import type { ClimateStation } from "@/data/climate";
 
 export interface SnowLoadResult {
   zone: SnowLoadZone;
@@ -85,6 +87,69 @@ export function calculateSnowLoad(
     totalSnowMass = {
       area: options.roofAreaSqm,
       mass: Math.round(roofLoadKg * options.roofAreaSqm),
+    };
+  }
+
+  return {
+    zone,
+    elevationFactor: Math.round(elevationFactor * 100) / 100,
+    groundLoadCorrectedKn: Math.round(groundLoadCorrectedKn * 100) / 100,
+    groundLoadCorrectedKg,
+    roofLoadKn: Math.round(roofLoadKn * 100) / 100,
+    roofLoadKg,
+    braitRecommendation: recommendation,
+    totalSnowMass,
+    reference: "Bemessung nach DIN EN 1991-1-3 inkl. Nationalem Anhang DE",
+  };
+}
+
+/**
+ * Berechnet die Schneelast direkt aus einem geokodierten Standort.
+ *
+ * Im Brait-Service-Gebiet kennen wir die Zone der nächsten Wetterstation
+ * exakt — wir nutzen sie und addieren eine kontinuierliche Höhenkorrektur.
+ * Für die seltenen Fälle ohne PLZ-Match liefert das Mapping einen Fallback.
+ */
+export function calculateSnowLoadByLocation(input: {
+  station: ClimateStation;
+  elevationMeters: number;
+  postcode?: string;
+  roofAreaSqm?: number;
+}): SnowLoadResult {
+  const stationZone = snowLoadZonesData[input.station.snowLoadZone];
+  const plzZone = input.postcode
+    ? lookupSnowLoadZoneByPlz(input.postcode, input.elevationMeters)
+    : stationZone;
+
+  const zoneRank: Record<SnowLoadZone["zone"], number> = {
+    "1": 1,
+    "1a": 2,
+    "2": 3,
+    "2a": 4,
+    "3": 5,
+  };
+  const zone =
+    zoneRank[plzZone.zone] > zoneRank[stationZone.zone] ? plzZone : stationZone;
+
+  const elev = input.elevationMeters;
+  let elevationFactor = 1;
+  if (elev > 400) {
+    elevationFactor = 1 + Math.min(0.4, ((elev - 400) / 400) * 0.4);
+  }
+
+  const groundLoadCorrectedKn = zone.groundLoadKn * elevationFactor;
+  const groundLoadCorrectedKg = Math.round(groundLoadCorrectedKn * 102);
+
+  const roofLoadKn = groundLoadCorrectedKn * 0.8;
+  const roofLoadKg = Math.round(roofLoadKn * 102);
+
+  const recommendation = determineBraitRecommendation(roofLoadKg);
+
+  let totalSnowMass: { area: number; mass: number } | undefined;
+  if (input.roofAreaSqm) {
+    totalSnowMass = {
+      area: input.roofAreaSqm,
+      mass: Math.round(roofLoadKg * input.roofAreaSqm),
     };
   }
 

@@ -411,3 +411,55 @@ export const findClimateStation = (
 
 export const climateStationsByCitySlug: Record<string, ClimateStation> =
   Object.fromEntries(climateStations.map((s) => [s.citySlug, s]));
+
+/**
+ * Berechnet die Großkreis-Distanz in Kilometern zwischen zwei Geo-Punkten
+ * (Haversine-Formel).
+ */
+export function haversineKm(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number,
+): number {
+  const R = 6371;
+  const toRad = (deg: number) => (deg * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.min(1, Math.sqrt(a)));
+}
+
+/**
+ * Findet die nächstgelegene DWD-Wetterstation zu einem Koordinatenpaar.
+ * Liefert {station, distanceKm}.
+ */
+export function findNearestStation(
+  lat: number,
+  lon: number,
+): { station: ClimateStation; distanceKm: number } {
+  let best: ClimateStation = climateStations[0];
+  let bestDist = Number.POSITIVE_INFINITY;
+  for (const s of climateStations) {
+    const d = haversineKm(lat, lon, s.lat, s.lon);
+    if (d < bestDist) {
+      bestDist = d;
+      best = s;
+    }
+  }
+  return { station: best, distanceKm: Math.round(bestDist * 10) / 10 };
+}
+
+/** Grenze des Brait-Service-Gebiets in Kilometern um Ulm. */
+export const SERVICE_AREA_RADIUS_KM = 100;
+export const SERVICE_AREA_CENTER_LAT = 48.4011;
+export const SERVICE_AREA_CENTER_LON = 9.9876;
+
+export function isInServiceArea(lat: number, lon: number): boolean {
+  return (
+    haversineKm(lat, lon, SERVICE_AREA_CENTER_LAT, SERVICE_AREA_CENTER_LON) <=
+    SERVICE_AREA_RADIUS_KM
+  );
+}
