@@ -117,7 +117,7 @@ const Rechner = () => {
             value={address}
             onChange={setAddress}
             onSelect={handleSelect}
-            placeholder="z. B. Öschweg 2, 89079 Ulm"
+            placeholder="z. B. Musterstraße 1, 89073 Musterstadt"
           />
           <p className="text-xs text-secondary mt-3 flex items-start gap-2">
             <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0 text-primary" />
