@@ -1,6 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { CATEGORY_META, type DayCategories } from "@/lib/calculator/day-categories";
+
+type CategoryKey = keyof Omit<DayCategories, "total">;
 
 interface DayCategoryDonutProps {
   categories: DayCategories;
@@ -13,23 +16,23 @@ interface DayCategoryDonutProps {
 }
 
 interface SegmentPath {
-  key: keyof Omit<DayCategories, "total">;
+  key: CategoryKey;
   color: string;
   startAngle: number;
   endAngle: number;
   pathD: string;
-  midAngle: number;
   days: number;
   percent: number;
 }
 
 const SIZE = 320;
 const STROKE = 56;
-const RADIUS = SIZE / 2 - STROKE / 2 - 2;
+const HOVER_STROKE = 68;
+const RADIUS = SIZE / 2 - HOVER_STROKE / 2 - 2;
 const CX = SIZE / 2;
 const CY = SIZE / 2;
 
-const CATEGORY_ORDER: (keyof Omit<DayCategories, "total">)[] = [
+const CATEGORY_ORDER: CategoryKey[] = [
   "sommer",
   "potenzial",
   "kalt",
@@ -68,7 +71,6 @@ function buildSegments(categories: DayCategories): SegmentPath[] {
       percent: Math.round((days / total) * 100),
       startAngle,
       endAngle,
-      midAngle: startAngle + sweep / 2,
       pathD: describeArc(startAngle, endAngle),
     };
   }).filter((s) => s.days > 0);
@@ -81,6 +83,12 @@ const DayCategoryDonut = ({
   centerSubLabel,
 }: DayCategoryDonutProps) => {
   const segments = buildSegments(categories);
+  const [active, setActive] = useState<CategoryKey | null>(null);
+
+  const activeSegment = active
+    ? segments.find((s) => s.key === active)
+    : undefined;
+  const activeMeta = active ? CATEGORY_META[active] : null;
 
   return (
     <div className="flex flex-col items-center">
@@ -92,6 +100,7 @@ const DayCategoryDonut = ({
           role="img"
           aria-label={`Aufteilung der ${categories.total} Tage in 5 Kategorien`}
           className="block"
+          onMouseLeave={() => setActive(null)}
         >
           <circle
             cx={CX}
@@ -101,56 +110,111 @@ const DayCategoryDonut = ({
             stroke="#EBE6DD"
             strokeWidth={STROKE}
           />
-          {segments.map((seg) => (
-            <path
-              key={seg.key}
-              d={seg.pathD}
-              fill="none"
-              stroke={seg.color}
-              strokeWidth={STROKE}
-              strokeLinecap="butt"
-            >
-              <title>
-                {CATEGORY_META[seg.key].label}: {seg.days} Tage ({seg.percent}%)
-              </title>
-            </path>
-          ))}
+          {segments.map((seg) => {
+            const isActive = active === seg.key;
+            const isOther = active !== null && !isActive;
+            return (
+              <path
+                key={seg.key}
+                d={seg.pathD}
+                fill="none"
+                stroke={seg.color}
+                strokeWidth={isActive ? HOVER_STROKE : STROKE}
+                strokeLinecap="butt"
+                style={{
+                  opacity: isOther ? 0.35 : 1,
+                  cursor: "pointer",
+                  transition: "stroke-width 180ms ease, opacity 180ms ease",
+                }}
+                onMouseEnter={() => setActive(seg.key)}
+                onFocus={() => setActive(seg.key)}
+                onBlur={() => setActive(null)}
+                tabIndex={0}
+                role="button"
+                aria-label={`${CATEGORY_META[seg.key].label}: ${seg.days} Tage, ${seg.percent} Prozent`}
+              >
+                <title>
+                  {CATEGORY_META[seg.key].label}: {seg.days} Tage ({seg.percent}%)
+                </title>
+              </path>
+            );
+          })}
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none px-6">
-          <div className="text-5xl md:text-6xl font-bold tracking-tighter text-foreground leading-none">
-            {centerValue}
-          </div>
-          <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-primary mt-2">
-            {centerLabel}
-          </div>
-          {centerSubLabel ? (
-            <div className="text-xs text-secondary mt-1">{centerSubLabel}</div>
-          ) : null}
+          {activeSegment && activeMeta ? (
+            <>
+              <div
+                className="text-5xl md:text-6xl font-bold tracking-tighter leading-none transition-colors"
+                style={{ color: activeMeta.color }}
+              >
+                {activeSegment.days}
+              </div>
+              <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-foreground mt-2">
+                {activeMeta.label}
+              </div>
+              <div className="text-xs text-secondary mt-1">
+                {activeMeta.range} · {activeSegment.percent}%
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="text-5xl md:text-6xl font-bold tracking-tighter text-foreground leading-none">
+                {centerValue}
+              </div>
+              <div className="text-xs md:text-sm font-bold uppercase tracking-widest text-primary mt-2">
+                {centerLabel}
+              </div>
+              {centerSubLabel ? (
+                <div className="text-xs text-secondary mt-1">{centerSubLabel}</div>
+              ) : null}
+            </>
+          )}
         </div>
       </div>
 
-      <ul className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm w-full max-w-md">
+      <ul
+        className="mt-6 md:mt-8 w-full max-w-md space-y-1"
+        onMouseLeave={() => setActive(null)}
+      >
         {CATEGORY_ORDER.map((key) => {
           const meta = CATEGORY_META[key];
           const days = categories[key];
           if (days <= 0) return null;
+          const percent = Math.round((days / (categories.total || 365)) * 100);
+          const isActive = active === key;
+          const isOther = active !== null && !isActive;
           return (
-            <li
-              key={key}
-              className="flex items-center justify-between gap-3 border-b border-outline-variant/20 py-1.5"
-            >
-              <span className="flex items-center gap-2 min-w-0">
+            <li key={key}>
+              <button
+                type="button"
+                onMouseEnter={() => setActive(key)}
+                onFocus={() => setActive(key)}
+                onBlur={() => setActive(null)}
+                className={`group w-full flex items-center gap-3 py-2 px-1.5 -mx-1.5 text-left transition-all border-b border-outline-variant/20 ${
+                  isActive ? "bg-primary/5" : ""
+                } ${isOther ? "opacity-50" : "opacity-100"}`}
+                aria-label={`${meta.label} ${meta.range}: ${days} Tage`}
+              >
                 <span
                   aria-hidden
-                  className="w-3 h-3 shrink-0 rounded-full"
+                  className={`w-3.5 h-3.5 shrink-0 rounded-full transition-transform ${isActive ? "scale-125" : "scale-100"}`}
                   style={{ backgroundColor: meta.color }}
                 />
-                <span className="font-medium truncate">{meta.label}</span>
-                <span className="text-secondary text-xs whitespace-nowrap">
-                  {meta.range}
+                <span className="flex-1 min-w-0 flex items-baseline gap-2 flex-wrap">
+                  <span className="font-semibold text-foreground text-sm md:text-base">
+                    {meta.label}
+                  </span>
+                  <span className="text-secondary text-xs whitespace-nowrap">
+                    {meta.range}
+                  </span>
                 </span>
-              </span>
-              <span className="font-bold tabular-nums">{days} T.</span>
+                <span className="font-bold tabular-nums text-sm md:text-base whitespace-nowrap">
+                  {days}{" "}
+                  <span className="font-normal text-secondary text-xs">
+                    ({percent}%)
+                  </span>
+                </span>
+              </button>
             </li>
           );
         })}
