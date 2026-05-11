@@ -47,9 +47,13 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
     description,
     alternates: {
       canonical,
+      // Hreflang fuer Single-Language-Site (Deutsch):
+      // - "de" als Self-Reference (deckt alle deutschsprachigen Regionen ab)
+      // - "x-default" als Fallback fuer alle anderen Sprachen
+      // de-DE waere redundant zu de und wuerde Seobility-Warnungen
+      // "URL multiple times" provozieren.
       languages: {
         de: `${SITE_URL}${canonical}`,
-        "de-DE": `${SITE_URL}${canonical}`,
         "x-default": `${SITE_URL}${canonical}`,
       },
     },

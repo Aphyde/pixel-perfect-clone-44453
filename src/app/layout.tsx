@@ -55,9 +55,10 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "/",
+    // Single-Language-Site: "de" self-referential + "x-default" als Fallback.
+    // de-DE waere redundant und wuerde "URL multiple times"-Warnungen triggern.
     languages: {
       de: "/",
-      "de-DE": "/",
       "x-default": "/",
     },
   },

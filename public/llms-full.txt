@@ -119,5 +119,5 @@ Ablauf: Anfrage → Vor-Ort-Termin (60–120 min) → digitales 3D-Aufmaß → F
 
 ---
 
-Generiert: 2026-05-11T07:05:36.044Z
+Generiert: 2026-05-11T07:09:09.909Z
 Quelle: https://www.brait-ueberdachung.de
