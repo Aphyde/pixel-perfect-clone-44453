@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { categories } from "@/data/products";
 import { categoryAlt } from "@/lib/seo/alt";
-import { ArrowRight, Menu, X, ShieldCheck, Sparkles, Award, Briefcase, PackageOpen, Phone, Ruler, Factory, Wrench } from "lucide-react";
+import { ArrowRight, Menu, X, ShieldCheck, Sparkles, Award, Briefcase, PackageOpen, Phone, Layers, Wrench } from "lucide-react";
 import { FadeIn, StaggerContainer, StaggerItem, ScaleIn, RevealLine, ParallaxImage } from "@/components/ScrollAnimations";
 import { m, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -196,51 +196,38 @@ const Index = () => {
               Brait Überdachungen · seit 2014
             </label>
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-5 md:mb-6">
-              Maßgefertigt. Selbst gefertigt. Selbst montiert.
+              Maßgefertigt. Aus Ulm. Selbst montiert.
             </h2>
             <p className="text-base md:text-lg leading-relaxed text-secondary speakable-tldr">
-              Inhabergeführter Spezialbetrieb für maßgefertigte Aluminium-Außenanlagen in Ulm und 100&nbsp;km Umkreis. Wir planen, fertigen und montieren <strong className="text-foreground">Terrassendach</strong>, <strong className="text-foreground">Carport</strong>, <strong className="text-foreground">Markisen</strong>, <strong className="text-foreground">Lamellen-Pergolen</strong>, <strong className="text-foreground">Schirme</strong> und <strong className="text-foreground">Eingangsüberdachungen</strong> komplett selbst — vom Demo-Koffer-Termin bis zur Endabnahme, ohne Subunternehmer.
+              Inhabergeführter Spezialbetrieb für maßgefertigte Aluminium-Außenanlagen in Ulm und 100&nbsp;km Umkreis. <strong className="text-foreground">Terrassendach</strong>, <strong className="text-foreground">Carport</strong>, <strong className="text-foreground">Markisen</strong>, <strong className="text-foreground">Lamellen-Pergolen</strong>, <strong className="text-foreground">Schirme</strong> und <strong className="text-foreground">Eingangsüberdachungen</strong> — von der Planung bis zur Endabnahme aus einer Hand, ohne Subunternehmer.
             </p>
           </div>
 
-          {/* 3 Beweis-Karten */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-14">
+          {/* 2 Beweis-Karten */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-10 md:mb-14">
             <article className="bg-card p-6 md:p-7 border-t-2 border-primary flex flex-col">
-              <Ruler className="w-6 h-6 text-primary mb-4" aria-hidden />
+              <Layers className="w-6 h-6 text-primary mb-4" aria-hidden />
               <div className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2">
-                01 — Planung
-              </div>
-              <h3 className="text-lg md:text-xl font-bold tracking-tight mb-3">
-                Demo-Koffer statt PDF
-              </h3>
-              <p className="text-sm md:text-base text-secondary leading-relaxed speakable-answer flex-1">
-                Wir kommen mit echtem Aluminium 6063&nbsp;T6, VSG-Glas-Muster und Farbproben zu Ihnen. Aufmaß, Statik-Check und Festpreis-Angebot binnen einer Woche — kostenlos, ohne Verpflichtung.
-              </p>
-            </article>
-
-            <article className="bg-card p-6 md:p-7 border-t-2 border-primary flex flex-col">
-              <Factory className="w-6 h-6 text-primary mb-4" aria-hidden />
-              <div className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2">
-                02 — Fertigung
+                01 — System-Linien
               </div>
               <h3 className="text-lg md:text-xl font-bold tracking-tight mb-3">
                 Drei Linien, ein Maßstab
               </h3>
               <p className="text-sm md:text-base text-secondary leading-relaxed speakable-answer flex-1">
-                <strong className="text-foreground">Pro-Line</strong> wandbefestigt ab 7.900&nbsp;€, <strong className="text-foreground">Cube</strong> freistehend ab 9.500&nbsp;€, <strong className="text-foreground">Lamellendach Q-Bus</strong> mit motorischer Klimakontrolle ab 14.000&nbsp;€. Carport ab 4.900&nbsp;€, Doppelcarport ab 7.900&nbsp;€ — alle wartungsfrei und schneelastgeprüft.
+                <strong className="text-foreground">Pro-Line</strong> wandbefestigt ab 7.900&nbsp;€, <strong className="text-foreground">Cube</strong> freistehend ab 9.500&nbsp;€, <strong className="text-foreground">Lamellendach Q-Bus</strong> mit motorischer Klimakontrolle ab 14.000&nbsp;€. Carport ab 4.900&nbsp;€, Doppelcarport ab 7.900&nbsp;€ — alle aus Aluminium 6063&nbsp;T6, mit VSG-Glas oder verstellbaren Lamellen, wartungsfrei und schneelastgeprüft.
               </p>
             </article>
 
             <article className="bg-card p-6 md:p-7 border-t-2 border-primary flex flex-col">
               <Wrench className="w-6 h-6 text-primary mb-4" aria-hidden />
               <div className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2">
-                03 — Montage
+                02 — Montage
               </div>
               <h3 className="text-lg md:text-xl font-bold tracking-tight mb-3">
                 Eigenes Team, 10&nbsp;Jahre Garantie
               </h3>
               <p className="text-sm md:text-base text-secondary leading-relaxed speakable-answer flex-1">
-                Standardstatik 200&nbsp;kg/m², in Schneelastzone 3 individuell verstärkt. Über 200 realisierte Projekte zwischen Ulm, Augsburg, Reutlingen und Heidenheim — alle abgenommen von eigenen Monteuren, kein Subunternehmer.
+                Standardstatik 200&nbsp;kg/m², in Schneelastzone 3 individuell verstärkt. Über 200 realisierte Projekte zwischen Ulm, Augsburg, Reutlingen und Heidenheim — alle abgenommen von eigenen Brait-Monteuren, kein Subunternehmer.
               </p>
             </article>
           </div>
