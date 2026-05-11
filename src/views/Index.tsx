@@ -38,6 +38,7 @@ const simpleLinks = [
 const Index = () => {
   const [heroMenuOpen, setHeroMenuOpen] = useState(false);
   const [heroOverlayVisible, setHeroOverlayVisible] = useState(true);
+  const [rechnerHover, setRechnerHover] = useState(false);
 
   useEffect(() => {
     const getOverlayThreshold = () => (window.innerWidth < 768 ? window.innerHeight * 0.7 : 100);
@@ -255,29 +256,41 @@ const Index = () => {
           </div>
 
           {/* Rechner-Teaser — aufgewertet mit Vorher/Nachher */}
-          <div className="group relative bg-foreground text-primary-foreground p-6 md:p-8 hover:bg-primary transition-colors">
+          <div
+            className={`relative p-6 md:p-8 transition-colors ${rechnerHover ? "bg-primary" : "bg-foreground"} text-primary-foreground`}
+            onMouseEnter={() => setRechnerHover(true)}
+            onMouseLeave={() => setRechnerHover(false)}
+          >
             <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-6 md:gap-10 items-center">
               <div>
-                <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-primary group-hover:text-primary-foreground mb-3">
+                <div
+                  className={`text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] mb-3 transition-colors ${rechnerHover ? "text-primary-foreground" : "text-primary"}`}
+                >
                   Neu · Adressgenau
                 </div>
                 <h3 className="text-xl md:text-3xl font-bold tracking-tight mb-3 leading-snug">
                   Wie viele Tage Terrasse verschenken Sie pro Jahr?
                 </h3>
-                <p className="text-sm md:text-base text-primary-foreground/75 leading-relaxed">
+                <p
+                  className={`text-sm md:text-base leading-relaxed transition-colors ${rechnerHover ? "text-primary-foreground/85" : "text-primary-foreground/75"}`}
+                >
                   Adresse eingeben, in 5 Sekunden sehen Sie Ihr Terrassenpotenzial: aktuelle Outdoor-Tage, mögliche Zusatz-Tage mit Brait-Dach und exakte Schneelast für Ihren Standort — auf Basis von 30 Jahren DWD-Klimadaten.
                 </p>
               </div>
               <div className="flex flex-col items-start md:items-end gap-3">
-                <div className="text-[10px] uppercase tracking-widest text-primary-foreground/55">
+                <div
+                  className={`text-[10px] uppercase tracking-widest transition-colors ${rechnerHover ? "text-primary-foreground/70" : "text-primary-foreground/55"}`}
+                >
                   Typisches Ergebnis in Süddeutschland
                 </div>
-                <div className="text-3xl md:text-5xl font-bold text-primary tracking-tighter leading-none">
+                <div
+                  className={`text-3xl md:text-5xl font-bold tracking-tighter leading-none transition-colors ${rechnerHover ? "text-primary-foreground" : "text-primary"}`}
+                >
                   +180 Tage
                 </div>
                 <Link
                   href="/rechner"
-                  className="inline-flex items-center gap-2 text-primary group-hover:text-primary-foreground font-bold uppercase tracking-widest text-xs whitespace-nowrap after:absolute after:inset-0 after:content-[''] after:z-10"
+                  className={`inline-flex items-center gap-2 font-bold uppercase tracking-widest text-xs whitespace-nowrap transition-colors after:absolute after:inset-0 after:content-[''] after:z-10 ${rechnerHover ? "text-primary-foreground" : "text-primary"}`}
                 >
                   Jetzt für Ihre Adresse <ArrowRight className="w-4 h-4" />
                 </Link>
