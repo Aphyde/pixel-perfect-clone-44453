@@ -13,7 +13,7 @@ const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
 const PUBLIC_DIR = path.join(ROOT, "public");
-const SITE_URL = "https://brait-ueberdachung.de";
+const SITE_URL = "https://www.brait-ueberdachung.de";
 const BRAND = "Brait Überdachungen";
 
 const sections = [

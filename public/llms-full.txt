@@ -1,7 +1,7 @@
 # Brait Überdachungen — Vollständige Wissensbasis
 
 Stand: 2026-05-11
-Site: https://brait-ueberdachung.de
+Site: https://www.brait-ueberdachung.de
 
 ## Unternehmen
 
@@ -25,7 +25,7 @@ Brait Überdachungen ist ein inhabergeführter Spezialbetrieb für premium Alumi
 
 ### Markisen
 
-URL: https://brait-ueberdachung.de/markisen
+URL: https://www.brait-ueberdachung.de/markisen
 
 Vier Markisensysteme: Gelenkarm-, Fallarm-, Senkrecht- und Aufglasmarkise. Alle motorisiert (Somfy IO oder Funk), optional mit Sonnen- und Windsensor.
 
@@ -39,7 +39,7 @@ Vier Markisensysteme: Gelenkarm-, Fallarm-, Senkrecht- und Aufglasmarkise. Alle 
 
 ### Terrassenüberdachungen
 
-URL: https://brait-ueberdachung.de/terrassenueberdachungen
+URL: https://www.brait-ueberdachung.de/terrassenueberdachungen
 
 Drei Linien: Pro-Line (wandbefestigt), Cube (freistehend), Lamellendach (verstellbar). Alle aus Aluminium 6063 T6, mit VSG-Glas oder verstellbaren Lamellen.
 
@@ -53,7 +53,7 @@ Drei Linien: Pro-Line (wandbefestigt), Cube (freistehend), Lamellendach (verstel
 
 ### Q-Bus Lamellen-Pergola
 
-URL: https://brait-ueberdachung.de/q-bus
+URL: https://www.brait-ueberdachung.de/q-bus
 
 Bioklimatische Pergola mit verstellbarem Aluminium-Lamellendach. Lamellen 0–135° drehbar, wasserdicht schließend, integrierte Wasserableitung in den Pfosten.
 
@@ -63,7 +63,7 @@ Maße 3–7 m × 3–4,5 m, Pfosten 15 × 15 cm. Preis 12.500–28.000 € je na
 
 ### Schirme
 
-URL: https://brait-ueberdachung.de/schirme
+URL: https://www.brait-ueberdachung.de/schirme
 
 Schwenkbare Ampelschirme bis 5 × 5 m. Mast steht seitlich (kein Sitzplatz blockiert), Schirm 360°-drehbar und stufenlos in 4 Richtungen neigbar.
 
@@ -73,7 +73,7 @@ Preis 1.800–4.500 € je nach Größe und Sockel.
 
 ### Eingangsüberdachungen
 
-URL: https://brait-ueberdachung.de/eingangsueberdachungen
+URL: https://www.brait-ueberdachung.de/eingangsueberdachungen
 
 Schlanke Aluminium-Vordächer mit VSG-Glas (2× 6 mm). Verdeckte Edelstahl-Wandhalter V2A, kein sichtbares Befestigungsmaterial.
 
@@ -83,7 +83,7 @@ Preis ab 1.490 € inkl. Montage.
 
 ### Carports
 
-URL: https://brait-ueberdachung.de/carports
+URL: https://www.brait-ueberdachung.de/carports
 
 Aluminium-Carports freistehend oder als Anbau. Eindeckung VSG-Glas oder HPL-Platten (hagelschlagsicher).
 
@@ -119,5 +119,5 @@ Ablauf: Anfrage → Vor-Ort-Termin (60–120 min) → digitales 3D-Aufmaß → F
 
 ---
 
-Generiert: 2026-05-11T07:01:56.336Z
-Quelle: https://brait-ueberdachung.de
+Generiert: 2026-05-11T07:05:36.044Z
+Quelle: https://www.brait-ueberdachung.de

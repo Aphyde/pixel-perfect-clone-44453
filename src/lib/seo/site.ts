@@ -3,7 +3,17 @@
  * Kontakt, Service-Area, Sprache, Social-Profile.
  */
 
-export const SITE_URL = "https://brait-ueberdachung.de";
+/**
+ * Primaere Site-URL.
+ *
+ * WICHTIG: Muss exakt der Domain entsprechen, die Vercel als "Primary" fuehrt,
+ * sonst entsteht eine Canonical-Inconsistency (Crawler landet auf www-URL,
+ * Canonical zeigt aber auf non-www → Seobility/Google melden Fehler).
+ *
+ * Aktuell: Vercel primary = www.brait-ueberdachung.de.
+ * Vercel redirected non-www → www mit 307.
+ */
+export const SITE_URL = "https://www.brait-ueberdachung.de";
 export const BRAND = "Brait Überdachungen";
 export const PARENT_COMPANY = "SMT Konzepte GmbH";
 export const FOUNDER_NAME = "Nico Braitinger";

@@ -12,13 +12,12 @@
 import { SITE_URL, BRAND, CONTACT, ADDRESS, SOCIAL_PROFILES } from "@/lib/seo/site";
 
 /**
- * Bilder in der Mail MÜSSEN über die www-Subdomain geladen werden.
- * Vercel redirected non-www → www mit 307, und viele Mail-Clients
- * (Outlook Desktop, Gmail Image-Proxy, einige iOS-Versionen) folgen
- * Image-Redirects nicht → das Bild bleibt leer.
+ * Bilder in der Mail MÜSSEN über die primaere Domain geladen werden.
+ * Mail-Clients (Outlook Desktop, Gmail Image-Proxy, einige iOS-Versionen)
+ * folgen Image-Redirects nicht. SITE_URL ist bereits die primaere
+ * www-Variante, daher reicht ein direktes Alias.
  */
-const MAIL_ASSET_BASE = SITE_URL.replace("https://", "https://www.")
-  .replace("www.www.", "www.");
+const MAIL_ASSET_BASE = SITE_URL;
 
 export interface CustomerEmailConfig {
   category?: string;
