@@ -471,7 +471,7 @@ const Index = () => {
               <div className="absolute inset-0 bg-foreground/20 group-hover:bg-transparent transition-all duration-300" />
               <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 text-primary-foreground p-4 md:p-6 backdrop-blur-md bg-foreground/40 border-l-4 border-primary">
                 <span className="text-[10px] md:text-xs uppercase tracking-widest opacity-80">Privatkunde</span>
-                <h3 className="text-base md:text-xl font-bold">Terrassenüberdachung mit Anbau</h3>
+                <p className="text-base md:text-xl font-bold">Terrassenüberdachung mit Anbau</p>
               </div>
             </Link>
           </ScaleIn>
@@ -488,7 +488,7 @@ const Index = () => {
               <div className="absolute inset-0 bg-foreground/20 group-hover:bg-transparent transition-all duration-300" />
               <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 text-primary-foreground p-4 md:p-6 backdrop-blur-md bg-foreground/40 border-l-4 border-primary">
                 <span className="text-[10px] md:text-xs uppercase tracking-widest opacity-80">Privatkunde</span>
-                <h3 className="text-base md:text-xl font-bold">Glashaus mit Schiebetüren</h3>
+                <p className="text-base md:text-xl font-bold">Glashaus mit Schiebetüren</p>
               </div>
             </Link>
           </ScaleIn>
@@ -513,7 +513,7 @@ const Index = () => {
                 <div className="absolute inset-0 bg-foreground/20 group-hover:bg-transparent transition-all duration-300" />
                 <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 text-primary-foreground p-3 md:p-5 backdrop-blur-md bg-foreground/40 border-l-4 border-primary">
                   <span className="text-[10px] md:text-xs uppercase tracking-widest opacity-80">{p.label}</span>
-                  <h3 className="text-sm md:text-lg font-bold">{p.title}</h3>
+                  <p className="text-sm md:text-lg font-bold">{p.title}</p>
                 </div>
               </Link>
             </ScaleIn>

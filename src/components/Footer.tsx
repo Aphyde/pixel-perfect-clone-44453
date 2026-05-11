@@ -23,9 +23,9 @@ const Footer = () => (
         </p>
       </div>
       <div className="flex flex-col gap-3 md:gap-4">
-        <h3 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary-fixed-dim">
+        <p className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary-fixed-dim">
           Produkte
-        </h3>
+        </p>
         {categories.map((c) => (
           <Link
             key={c.slug}
@@ -37,9 +37,9 @@ const Footer = () => (
         ))}
       </div>
       <div className="flex flex-col gap-3 md:gap-4">
-        <h3 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary-fixed-dim">
+        <p className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary-fixed-dim">
           Wissen
-        </h3>
+        </p>
         <Link
           href="/ratgeber"
           className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
@@ -78,9 +78,9 @@ const Footer = () => (
         </Link>
       </div>
       <div className="flex flex-col gap-3 md:gap-4">
-        <h3 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary-fixed-dim">
+        <p className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary-fixed-dim">
           Standorte
-        </h3>
+        </p>
         {locations.slice(0, 4).map((l) => (
           <Link
             key={l.slug}
@@ -98,9 +98,9 @@ const Footer = () => (
         </Link>
       </div>
       <div className="flex flex-col gap-3 md:gap-4">
-        <h3 className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary-fixed-dim">
+        <p className="font-headline text-xs md:text-sm font-bold uppercase tracking-widest text-primary-fixed-dim">
           Service &amp; Recht
-        </h3>
+        </p>
         <Link
           href="/service"
           className="font-body text-xs md:text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
