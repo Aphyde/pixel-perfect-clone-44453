@@ -112,7 +112,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     slug: "pro-line",
     name: "Pro-Line",
     description:
-      "Brait-Modellname für die wandbefestigte Aluminium-Glas-Terrassenüberdachung mit schmalen Sparren (60 × 40 mm) und integrierter Regenrinne im Pfosten.",
+      "Brait-Modellname für die wandbefestigte Aluminium-Glas-Terrassenüberdachung mit schmalen Aluminium-Sparren und integrierter Regenrinne im Pfosten (15 × 15 cm Standard, optional schlank 11 × 11 cm).",
     category: "Terrassendach",
     related: ["cube", "glashaus"],
   },

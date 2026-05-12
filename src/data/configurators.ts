@@ -186,8 +186,8 @@ const markisenConfig: CategoryConfigurator = {
       colors: [
         { ral: "RAL 7016", hex: "#293133", label: "Anthrazit", code: "anthracite" },
         { ral: "RAL 9005", hex: "#0a0a0a", label: "Schwarz", code: "black" },
-        { ral: "RAL 9001", hex: "#f1ecdb", label: "Crème", code: "creme" },
-        { ral: "RAL 9010", hex: "#ffffff", label: "Weiß", code: "white" },
+        { ral: "RAL 9001", hex: "#f1ecdb", label: "Cremeweiß", code: "creme" },
+        { ral: "RAL 9016", hex: "#F6F6F6", label: "Verkehrsweiß", code: "white" },
       ],
     },
     {
@@ -348,8 +348,8 @@ const qbusConfig: CategoryConfigurator = {
       colors: [
         { ral: "RAL 7016", hex: "#293133", label: "Anthrazit", code: "anthracite" },
         { ral: "RAL 9005", hex: "#0a0a0a", label: "Schwarz", code: "black" },
-        { ral: "RAL 9001", hex: "#f1ecdb", label: "Crème", code: "creme" },
-        { ral: "RAL 9010", hex: "#ffffff", label: "Weiß", code: "white" },
+        { ral: "RAL 9001", hex: "#f1ecdb", label: "Cremeweiß", code: "creme" },
+        { ral: "RAL 9016", hex: "#F6F6F6", label: "Verkehrsweiß", code: "white" },
       ],
     },
     {
@@ -509,7 +509,7 @@ const eingangConfig: CategoryConfigurator = {
       title: "Dachmaterial",
       type: "select-cards",
       options: [
-        { id: "polycarbonat", label: "Polycarbonat 16 mm", price: 0 },
+        { id: "polycarbonat", label: "Polycarbonat 8 mm", price: 0 },
         { id: "vsg-clear", label: "VSG 44.2 klar", price: 390 },
         { id: "vsg-tint", label: "VSG 44.2 getönt", price: 590 },
       ],
@@ -695,8 +695,8 @@ const verandaConfig: CategoryConfigurator = {
       colors: [
         { ral: "RAL 7016", hex: "#293133", label: "Anthrazit", code: "anthracite" },
         { ral: "RAL 9005", hex: "#0a0a0a", label: "Schwarz", code: "black" },
-        { ral: "RAL 9001", hex: "#f1ecdb", label: "Crème", code: "creme" },
-        { ral: "RAL 9010", hex: "#ffffff", label: "Weiß", code: "white" },
+        { ral: "RAL 9001", hex: "#f1ecdb", label: "Cremeweiß", code: "creme" },
+        { ral: "RAL 9016", hex: "#F6F6F6", label: "Verkehrsweiß", code: "white" },
       ],
     },
     {

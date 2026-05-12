@@ -90,7 +90,7 @@ export const articles: Article[] = [
       {
         heading: { text: "Pro-Line — die solide wandbefestigte Lösung" },
         paragraphs: [
-          "Pro-Line ist ein klassisches Anbaudach: schmale Aluminium-Sparren (60 × 40 mm) tragen ein VSG-Glasdach, integrierte Regenrinne im Pfosten leitet Niederschlag unsichtbar ab. Bis 7 m Breite und 4 m Tiefe ohne Mittelstütze. Der Wandanschluss erfolgt mit thermisch entkoppelter EPDM-Dichtung, die Befestigung mit chemischen Verbundankern.",
+          "Pro-Line ist ein klassisches Anbaudach: schlanke Aluminium-Sparren tragen ein VSG-Glasdach (8–10 mm) oder 8 mm Polycarbonat-Dach, integrierte Regenrinne im Pfosten (15 × 15 cm, optional 11 × 11 cm) leitet Niederschlag unsichtbar ab. Bis 7 m Breite und 4 m Tiefe ohne Mittelstütze, Dachneigung 5–15°. Der Wandanschluss erfolgt mit thermisch entkoppelter EPDM-Dichtung, die Befestigung mit chemischen Verbundankern.",
           "Vorteil: Pro-Line lässt sich später jederzeit zum Glashaus erweitern, indem rahmenlose Schiebewände, Festrahmen oder Zip-Screens nachgerüstet werden. Sie können also mit einer offenen Überdachung starten und Jahre später zum geschlossenen Übergangsraum erweitern.",
         ],
       },
@@ -288,7 +288,7 @@ export const articles: Article[] = [
         bullets: [
           "Größe: Verdoppelung der Fläche kostet etwa 60–70 % mehr (Skaleneffekt).",
           "Konstruktionstyp: Cube ist 15–20 % teurer als Pro-Line bei gleicher Fläche.",
-          "Glas: VSG 2× 6 mm Standard, satiniertes oder Sonnenschutzglas +15–25 %.",
+          "Glas: VSG 8–10 mm Standard, satiniertes oder Sonnenschutzglas +15–25 %.",
           "Schneelastzone: Höhenlagen Schwäbische Alb (Zone 3) +8–12 %.",
           "Sonderfarben: RAL-Maßanfertigung statt Standardfarbe +5 %.",
           "Verschattung: Aufglasmarkise +1.500 €, Zip-Screens je Seite +800–1.400 €.",

@@ -143,7 +143,7 @@ export const categoryLongForm: Record<string, CategoryLongFormContent> = {
       "Eine Aluminium-Terrassenüberdachung verlängert Ihre Outdoor-Saison um bis zu +187 nutzbare Tage pro Jahr (DWD-Klimadaten Süddeutschland). Brait baut drei Linien — Pro-Line (wandbefestigt, ab 5.490 € inkl. Montage), Cube (freistehend, ab 6.990 €) und Lamellendach Q-Bus (verstellbar, ab 8.990 €) — alles aus 6063 T6 Aluminium mit Polycarbonat oder VSG-Glas, 10 Jahren Strukturgarantie und Montage durch das eigene Team.",
     keyFacts: [
       "Material: Aluminium 6063 T6, Pulverbeschichtung 30+ Jahre Lebensdauer",
-      "Glas: VSG 2× 6 mm, hagelschlagsicher Klasse HW3",
+      "Glas: VSG 8–10 mm, hagelschlagsicher Klasse HW3",
       "Schneelast: 200 kg/m² Standard, individuell bis Zone 4 (320 kg/m²)",
       "Maße: bis 7 × 4 m wandbefestigt, 7 × 4,5 m freistehend",
       "Garantie: 10 Jahre Struktur, 5 Jahre Motorik",
@@ -235,7 +235,7 @@ export const categoryLongForm: Record<string, CategoryLongFormContent> = {
       ],
     },
     materials:
-      "Profile aus Aluminium 6063 T6 (Strangpresslegierung, hochfest), pulverbeschichtet nach DIN EN 12206-1. Glas VSG 2× 6 mm Standard nach EN 14179 (splitterfrei bei Bruch), optional satiniert oder als Sonnenschutzglas. Wandanschluss mit thermisch entkoppelter EPDM-Dichtung, chemische Verbundanker in Beton oder Mauerwerk.",
+      "Profile aus Aluminium 6063 T6 (Strangpresslegierung, hochfest), pulverbeschichtet nach DIN EN 12206-1. Glas VSG 8–10 mm Standard nach EN 14179 (splitterfrei bei Bruch), alternativ 8 mm Polycarbonat (opal oder klar) für Einstiegsbudget. Wandanschluss mit thermisch entkoppelter EPDM-Dichtung, chemische Verbundanker in Beton oder Mauerwerk. Pfosten 15 × 15 cm Standard, optional schlank 11 × 11 cm.",
     localContext:
       "Ulm und Schwäbische Alb fallen in Schneelastzone 2a (1,32 kN/m²) bis Zone 3 (Höhenlagen ab 600 m). Brait berechnet jede Anlage individuell. Bauordnung Baden-Württemberg (LBO §50 Anlage 1): Terrassenüberdachungen bis 30 m² Grundfläche und 3 m Tiefe sind genehmigungsfrei — größere Anlagen brauchen eine Bauanzeige beim Landratsamt Alb-Donau. Bei denkmalgeschützten Häusern (Ulmer Altstadt, Söflingen) ist immer eine Genehmigung Pflicht.",
     serviceNote:
@@ -510,7 +510,7 @@ export const categoryLongForm: Record<string, CategoryLongFormContent> = {
       ],
     },
     materials:
-      "Profile Aluminium 6063 T6, pulverbeschichtet nach DIN EN 12206-1. Eindeckung: VSG 2× 6 mm Glas oder HPL-Platten (Hochdruckschichtstoff, hagelschlagsicher). Pfosten 15 × 15 cm mit integrierten Kabelkanälen für Wallbox und Beleuchtung.",
+      "Profile Aluminium 6063 T6, pulverbeschichtet nach DIN EN 12206-1. Eindeckung: VSG-Sicherheitsglas 8–10 mm oder 8 mm Polycarbonat (HPL-Platten als Sondereindeckung auf Anfrage, für maximalen Hagelschutz). Pfosten 15 × 15 cm mit integrierten Kabelkanälen für Wallbox und Beleuchtung.",
     localContext:
       "Baden-Württemberg LBO §50: Carports bis 30 m² Grundfläche und 3 m Höhe sind verfahrensfrei. Abstandsflächen zu Nachbargrundstücken (3 m) und zur Straße (Sichtdreieck) müssen eingehalten werden — wir prüfen das im Vor-Ort-Termin. In Hochrisiko-Gebieten für Hagel (Bayerisch Schwaben) empfehlen wir HPL-Platten statt Glas.",
   },

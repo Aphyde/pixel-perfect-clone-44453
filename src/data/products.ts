@@ -119,15 +119,16 @@ export const terraceModules: TerraceModule[] = [
   {
     id: "glasschiebewand",
     label: "Glasschiebewände",
-    shortDesc: "Flexibler Windschutz aus 10 mm gehärtetem Glas – 2- bis 7-spurig.",
+    shortDesc: "Flexibler Windschutz aus 10 mm gehärtetem Glas – 2- bis 6-spurig.",
     longDesc:
       "Schließen Sie Ihre Überdachung an kühlen Tagen mit transparenten Schiebewänden aus 10 mm gehärtetem Sicherheitsglas. Die Elemente lassen sich vollständig zur Seite schieben – maximale Öffnung, minimaler Sichtbruch.",
     image: imgGlasschiebewand,
     price: 2400,
     specs: [
-      { label: "Glas", value: "10 mm gehärtet (ESG)" },
-      { label: "Spuren", value: "2- bis 7-spurig" },
-      { label: "Max. Höhe", value: "3.000 mm" },
+      { label: "Glas", value: "10 mm gehärtet (ESG), klar / opal / grau getönt" },
+      { label: "Spuren", value: "2- bis 6-spurig" },
+      { label: "Paneelbreiten", value: "83 / 90 / 98 / 103 cm" },
+      { label: "Max. Höhe", value: "2.600 mm" },
       { label: "Maßanfertigung", value: "ja" },
     ],
   },
@@ -238,16 +239,18 @@ export const terraceModules: TerraceModule[] = [
   },
 ];
 
-// Standard-Farbpalette aus Katalog (Aluminium-Pulverbeschichtung)
+// Standard-Farbpalette aus Lieferanten-Katalog (Aluminium-Pulverbeschichtung)
+// Quelle: SO Aluminium — Standardfarben für Overkappingen
 export const standardColors = [
   { ral: "RAL 7016", hex: "#293133", label: "Anthrazit" },
   { ral: "RAL 9005", hex: "#0A0A0A", label: "Schwarz" },
-  { ral: "RAL 9001", hex: "#FDF4E3", label: "Weiß" },
-  { ral: "RAL 9010", hex: "#F1ECDB", label: "Crème" },
+  { ral: "RAL 9016", hex: "#F6F6F6", label: "Verkehrsweiß" },
+  { ral: "RAL 9001", hex: "#FDF4E3", label: "Cremeweiß" },
 ];
+// Premium = Standard + Reinweiß auf Maßanfertigung (RAL 9010 nicht im Standard-Sortiment)
 export const premiumColors = [
   ...standardColors,
-  { ral: "RAL 9016", hex: "#F6F6F6", label: "Verkehrsweiß" },
+  { ral: "RAL 9010", hex: "#F1F0EA", label: "Reinweiß (Sonderbestellung)" },
 ];
 
 // ============================================================
@@ -356,19 +359,21 @@ const markisenProducts: ProductDetail[] = [
     },
     features: [
       { title: "Zip-Führung", desc: "Reißverschluss-Führung verhindert das Auswehen des Tuchs." },
+      { title: "Hält bis 85 % Sonnenwärme draußen", desc: "Effektive Verschattung gegen Hitze und Blendung – auch bei Süd-Ausrichtung." },
       { title: "Insektenschutz inklusive", desc: "Geschlossene Seiten halten Mücken und Insekten zuverlässig draußen." },
       { title: "Transparente Tücher", desc: "Soltis-Gewebe lassen Licht und Ausblick durch – und blockieren UV." },
-      { title: "Hohe Windstabilität", desc: "Bis Windklasse 3 nutzbar – auch in exponierten Lagen." },
+      { title: "Hohe Windstabilität", desc: "Bis Windklasse 3 (ca. 60 km/h) nutzbar – auch in exponierten Lagen." },
       { title: "Modulare Anbringung", desc: "Wand-, Decken- oder Pfostenmontage – passt überall." },
       { title: "Funkbedienung", desc: "Standardmäßig mit Funkmotor und Wandsender." },
     ],
     specs: [
       { label: "Max. Breite", value: "5.000 mm" },
       { label: "Max. Höhe", value: "4.000 mm" },
-      { label: "Tucharten", value: "Acryl, Soltis, PVC-Mesh" },
+      { label: "Tucharten", value: "Acryl, Soltis, PVC-Mesh – transparent, halbtransparent oder verdunkelnd" },
       { label: "Führung", value: "Zip, Seil oder offen" },
-      { label: "Antrieb", value: "Funkmotor" },
-      { label: "Windklasse", value: "bis Klasse 3" },
+      { label: "Antrieb", value: "Funkmotor (serienmäßig)" },
+      { label: "Windklasse", value: "bis Klasse 3 (ca. 60 km/h)" },
+      { label: "Sonnenwärme-Abweisung", value: "bis 85 %" },
       { label: "Lichtdurchlass", value: "3 % – 25 %" },
       { label: "Garantie", value: "5 Jahre" },
     ],
@@ -443,24 +448,24 @@ const terrassenueberdachungenProducts: ProductDetail[] = [
     intro: {
       label: "PRO-LINE",
       title: "Klares Design, hochwertige Materialien.",
-      text: "Unsere wandbefestigten Aluminium-Überdachungen verbinden klares Design mit hochwertigsten Materialien. Schlanke Profile aus 6063 T6 Aluminium mit Premium-Pulverbeschichtung, Eindeckung wahlweise aus 16 mm Polycarbonat oder VSG 44.2 Sicherheitsglas. Die Regenrinne ist vollständig in das Profil integriert – nichts stört die Linienführung.",
+      text: "Unsere wandbefestigten Aluminium-Überdachungen verbinden klares Design mit hochwertigsten Materialien. Schlanke Profile aus 6063 T6 Aluminium mit Premium-Pulverbeschichtung, Eindeckung wahlweise aus 8 mm Polycarbonat oder VSG-Sicherheitsglas (8–10 mm). Die Regenrinne ist vollständig in das Profil integriert – nichts stört die Linienführung.",
     },
     features: [
       { title: "Premium-Aluminium", desc: "Profile aus 6063 T6 Aluminium mit professioneller Pulverbeschichtung – jahrzehntelang farbstabil." },
-      { title: "Polycarbonat oder VSG-Glas", desc: "Wahlweise 16 mm Polycarbonat (leicht & bruchfest) oder VSG 44.2 Sicherheitsglas." },
+      { title: "Polycarbonat oder VSG-Glas", desc: "Wahlweise 8 mm Polycarbonat (leicht & bruchfest) oder VSG-Sicherheitsglas (8–10 mm)." },
       { title: "Integrierte Dachrinne", desc: "Regenwasserableitung verborgen in den Profilen – kein Sichtbruch." },
-      { title: "Stabile Pfosten 14×14", desc: "Pfostenquerschnitt 14 × 14 cm – schlank, dennoch hochbelastbar." },
+      { title: "Stabile Pfosten 15×15", desc: "Pfostenquerschnitt 15 × 15 cm – hochbelastbar (schlankere 11 × 11 cm auf Anfrage)." },
       { title: "Windlast bis 120 km/h", desc: "Statisch geprüft für anspruchsvolle Wetterlagen." },
       { title: "Erweiterbar mit Modulen", desc: "Glasschiebewände, Screens, Plissees, LED u.v.m. jederzeit nachrüstbar." },
     ],
     specs: [
       { label: "Material", value: "Aluminium 6063 T6, pulverbeschichtet" },
-      { label: "Eindeckung", value: "Polycarbonat 16 mm oder VSG 44.2" },
+      { label: "Eindeckung", value: "Polycarbonat 8 mm oder VSG-Glas 8–10 mm" },
       { label: "Maße", value: "3 – 12 m × 2 – 5 m" },
       { label: "Dachneigung", value: "5° – 15°" },
-      { label: "Pfosten", value: "14 × 14 cm" },
+      { label: "Pfosten", value: "15 × 15 cm (Standard) oder 11 × 11 cm" },
       { label: "Windlast", value: "bis 120 km/h" },
-      { label: "Standardfarben", value: "RAL 7016, 9005, 9001, 9010 + Maßanfertigung" },
+      { label: "Standardfarben", value: "RAL 7016, 9005, 9016, 9001 + Maßanfertigung" },
       { label: "Garantie", value: "10 Jahre Struktur" },
     ],
     cta: {
@@ -485,24 +490,24 @@ const terrassenueberdachungenProducts: ProductDetail[] = [
     intro: {
       label: "PRO-LINE",
       title: "Frei platziert, klar gestaltet.",
-      text: "Die freistehende PRO-LINE Variante ist unabhängig vom Gebäude – ideal für Poolbereiche, Outdoor-Küchen oder Gartensitzplätze. Vier oder mehr Pfosten (14 × 14 cm) tragen das Dach mit Polycarbonat- oder VSG-Eindeckung. Statisch ausgelegt für Windlasten bis 120 km/h.",
+      text: "Die freistehende PRO-LINE Variante ist unabhängig vom Gebäude – ideal für Poolbereiche, Outdoor-Küchen oder Gartensitzplätze. Vier oder mehr Pfosten (15 × 15 cm) tragen das Dach mit Polycarbonat- oder VSG-Eindeckung. Statisch ausgelegt für Windlasten bis 120 km/h.",
     },
     features: [
       { title: "Standortunabhängig", desc: "Platzieren Sie die Überdachung dort, wo der schönste Garten- oder Poolbereich ist." },
       { title: "Allseits offen", desc: "360°-Einsicht auf den Garten – oder mit Senkrechtmarkisen / Glasschiebewänden schließbar." },
-      { title: "Stabile Pfosten 14×14", desc: "Quadratische Aluminium-Pfosten – schlank und dennoch tragfähig." },
-      { title: "Polycarbonat oder VSG-Glas", desc: "Eindeckung nach Wahl – leicht & bruchfest oder maximal transparent." },
+      { title: "Stabile Pfosten 15×15", desc: "Quadratische Aluminium-Pfosten – tragfähig und schlank in der Linienführung." },
+      { title: "Polycarbonat oder VSG-Glas", desc: "Eindeckung nach Wahl – 8 mm Polycarbonat oder 8–10 mm VSG-Sicherheitsglas." },
       { title: "Integrierte Entwässerung", desc: "Regenrinne in Profil und Pfosten geführt – kein sichtbarer Wasserablauf." },
       { title: "Modular erweiterbar", desc: "Mit Screens, Plissees, Glasschiebewänden und LED jederzeit ausbaubar." },
     ],
     specs: [
       { label: "Material", value: "Aluminium 6063 T6, pulverbeschichtet" },
-      { label: "Eindeckung", value: "Polycarbonat 16 mm oder VSG 44.2" },
+      { label: "Eindeckung", value: "Polycarbonat 8 mm oder VSG-Glas 8–10 mm" },
       { label: "Maße", value: "3 – 12 m × 2 – 5 m" },
-      { label: "Pfosten", value: "14 × 14 cm" },
+      { label: "Pfosten", value: "15 × 15 cm (Standard) oder 11 × 11 cm" },
       { label: "Dachneigung", value: "5° – 15°" },
       { label: "Windlast", value: "bis 120 km/h" },
-      { label: "Standardfarben", value: "RAL 7016, 9005, 9001, 9010 + Maßanfertigung" },
+      { label: "Standardfarben", value: "RAL 7016, 9005, 9016, 9001 + Maßanfertigung" },
       { label: "Garantie", value: "10 Jahre Struktur" },
     ],
     cta: {
@@ -535,7 +540,7 @@ const terrassenueberdachungenProducts: ProductDetail[] = [
       { title: "Regenfest geschlossen", desc: "Bei vollständig geschlossenen Lamellen 100 % wasserdicht." },
       { title: "Integrierte Wasserableitung", desc: "Regenrinne in Profil und Pfosten – verdeckter Wasserablauf." },
       { title: "Stabile Pfosten 15×15", desc: "Verstärkter Pfostenquerschnitt für die Lamellenkonstruktion." },
-      { title: "Premium-Farbpalette", desc: "5 Standardfarben inkl. Verkehrsweiß RAL 9016 + Maßanfertigung." },
+      { title: "Standard-Farbpalette", desc: "4 RAL-Standardfarben (RAL 7016, 9005, 9016, 9001) – Maßanfertigung in anderen RAL-Tönen jederzeit möglich." },
     ],
     specs: [
       { label: "Material", value: "Aluminium 6063 T6, pulverbeschichtet" },
@@ -544,7 +549,8 @@ const terrassenueberdachungenProducts: ProductDetail[] = [
       { label: "Maße", value: "3 – 7 m × 3 – 4,5 m" },
       { label: "Pfosten", value: "15 × 15 cm" },
       { label: "Wasserableitung", value: "Integriert in Profil & Pfosten" },
-      { label: "Farben", value: "RAL 7016, 9005, 9001, 9010, 9016 + Maßanfertigung" },
+      { label: "Max. Modulgröße", value: "ca. 6 × 4 m (größere Flächen durch Modulkopplung)" },
+      { label: "Farben", value: "RAL 7016, 9005, 9016, 9001 + Maßanfertigung" },
       { label: "Garantie", value: "10 Jahre Struktur" },
     ],
     cta: {
@@ -635,7 +641,7 @@ const qbusProduct: ProductDetail = {
     { label: "Pfosten", value: "15 × 15 cm mit integriertem Wasserablauf" },
     { label: "Steuerung", value: "Funk-Fernbedienung serienmäßig" },
     { label: "Beleuchtung", value: "LED entlang Lamellen optional (warm-/kaltweiß/dimmbar)" },
-    { label: "Farben", value: "RAL 7016, 9005, 9001, 9010 + Maßanfertigung" },
+    { label: "Farben", value: "RAL 7016, 9005, 9016, 9001 + Maßanfertigung" },
     { label: "Garantie", value: "10 Jahre Struktur, 5 Jahre Motorik" },
   ],
   cta: {
@@ -675,12 +681,12 @@ const eingangProduct: ProductDetail = {
   ],
   specs: [
     { label: "Material", value: "Aluminium 6063 T6, pulverbeschichtet" },
-    { label: "Eindeckung", value: "VSG 2× 6 mm, klar oder satiniert" },
+    { label: "Eindeckung", value: "VSG-Sicherheitsglas 8–10 mm, klar oder satiniert" },
     { label: "Max. Breite", value: "3.000 mm" },
     { label: "Max. Ausladung", value: "1.500 mm" },
     { label: "Halterung", value: "Edelstahl V2A, verdeckt" },
     { label: "Schneelast", value: "bis 200 kg/m²" },
-    { label: "Standardfarben", value: "RAL 7016, 9005, 9001, 9010 + Maßanfertigung" },
+    { label: "Standardfarben", value: "RAL 7016, 9005, 9016, 9001 + Maßanfertigung" },
     { label: "Garantie", value: "10 Jahre Struktur" },
   ],
   cta: {
@@ -708,11 +714,11 @@ const carportsProduct: ProductDetail = {
   intro: {
     label: "Das Konzept",
     title: "Mehr als nur ein Unterstand.",
-    text: "Ein Brait-Carport ist ein architektonisches Statement. Schlanke Aluminium-Profile (6063 T6) tragen Dachflächen aus VSG-Glas oder HPL-Platten – und schützen Ihr Fahrzeug dabei zuverlässig vor Regen, Hagel und UV-Strahlung. Ob Einzel-, Doppel- oder Reihencarport: Wir planen nach Ihren Maßen und Wünschen.",
+    text: "Ein Brait-Carport ist ein architektonisches Statement. Schlanke Aluminium-Profile (6063 T6) tragen Dachflächen aus VSG-Sicherheitsglas (8–10 mm) oder 8 mm Polycarbonat – und schützen Ihr Fahrzeug dabei zuverlässig vor Regen, Hagel und UV-Strahlung. HPL-Platten sind auf Anfrage erhältlich. Ob Einzel-, Doppel- oder Reihencarport: Wir planen nach Ihren Maßen und Wünschen.",
   },
   features: [
     { title: "Freistehend oder Anbau", desc: "Flexible Konstruktion als freistehende Variante oder direkt an Ihr Gebäude angebaut." },
-    { title: "Hagelschutz", desc: "VSG-Glas oder HPL-Platten bieten zuverlässigen Schutz vor Hagelschäden." },
+    { title: "Hagelschutz", desc: "VSG-Glas oder HPL-Platten (auf Anfrage) bieten zuverlässigen Schutz vor Hagelschäden." },
     { title: "Integrierte Beleuchtung", desc: "LED-Spots und Bewegungsmelder für Sicherheit und Komfort bei Dunkelheit." },
     { title: "Ladestation-Ready", desc: "Vorbereitung für E-Auto-Wallbox – Kabelkanäle bereits in den Profilen integriert." },
     { title: "Wartungsfrei", desc: "Pulverbeschichtetes Aluminium benötigt keine Nachbehandlung – auch nach Jahren nicht." },
@@ -720,7 +726,7 @@ const carportsProduct: ProductDetail = {
   ],
   specs: [
     { label: "Material", value: "Aluminium 6063 T6, pulverbeschichtet" },
-    { label: "Eindeckung", value: "VSG-Glas oder HPL-Platten" },
+    { label: "Eindeckung", value: "VSG-Glas 8–10 mm oder Polycarbonat 8 mm (HPL-Platten auf Anfrage)" },
     { label: "Max. Breite (Einzelstellplatz)", value: "3.500 mm" },
     { label: "Max. Breite (Doppelstellplatz)", value: "6.500 mm" },
     { label: "Max. Tiefe", value: "7.000 mm" },

@@ -174,7 +174,7 @@ function determineBraitRecommendation(
       level: "standard",
       label: "Standard-Statik ausreichend",
       description:
-        "Brait-Standardprofile (Sparren 60 × 40 mm, Pfosten 12 × 12 cm) tragen 200 kg/m² Dachlast — bei dieser Lage haben Sie eine Sicherheitsreserve von > 50 %.",
+        "Brait-Standardprofile (Pfosten 15 × 15 cm, optional schlank 11 × 11 cm) tragen 200 kg/m² Dachlast — bei dieser Lage haben Sie eine Sicherheitsreserve von > 50 %.",
       costNote: "Keine Mehrkosten",
     };
   }
@@ -192,7 +192,7 @@ function determineBraitRecommendation(
       level: "verstaerkt",
       label: "Verstärkte Profile empfohlen",
       description:
-        "Über 165 kg/m² rechnen wir mit verstärkten Sparren (80 × 60 mm) oder zusätzlichem Mittel-Pfosten. Stabilität und Lebensdauer bleiben unverändert.",
+        "Über 165 kg/m² rechnen wir mit verstärkten Profilen oder zusätzlichem Mittel-Pfosten. Stabilität und Lebensdauer bleiben unverändert.",
       costNote: "Mehrkosten ca. 6–10 % gegenüber Standardprofilen",
     };
   }
@@ -200,7 +200,7 @@ function determineBraitRecommendation(
     level: "individuell",
     label: "Individuelle Statik erforderlich",
     description:
-      "Über 200 kg/m² Dachlast (typisch für Höhenlagen Schwäbische Alb / Allgäu) erfordern eine individuelle Tragwerksberechnung mit verstärkten Pfosten (15 × 15 cm oder 18 × 18 cm) und ggf. zusätzlicher Mittelstütze.",
+      "Über 200 kg/m² Dachlast (typisch für Höhenlagen Schwäbische Alb / Allgäu) erfordern eine individuelle Tragwerksberechnung mit verstärkten 15 × 15 cm Pfosten und ggf. zusätzlicher Mittelstütze.",
     costNote: "Mehrkosten 8–12 % plus ca. 250 € individuelle Statik",
   };
 }

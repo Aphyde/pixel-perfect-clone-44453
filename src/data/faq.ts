@@ -72,7 +72,7 @@ const categoryFaqs: Record<string, FaqEntry[]> = {
     {
       question: "Hält ein Glasdach Schneelast aus?",
       answer:
-        "Ja. Wir verbauen ausschließlich VSG-Glas (Verbund-Sicherheitsglas, 2× 6 mm oder stärker) auf statisch berechneten Aluminium-Profilen. Standardausführung ist auf 200 kg/m² ausgelegt — das entspricht Schneelastzone 2 (Ulm liegt in Zone 2a). Für Höhenlagen Schwäbische Alb berechnen wir die Statik individuell auf Zone 3 oder 4.",
+        "Ja. Wir verbauen ausschließlich VSG-Glas (Verbund-Sicherheitsglas, 8–10 mm) auf statisch berechneten Aluminium-Profilen. Standardausführung ist auf 200 kg/m² ausgelegt — das entspricht Schneelastzone 2 (Ulm liegt in Zone 2a). Für Höhenlagen Schwäbische Alb berechnen wir die Statik individuell auf Zone 3 oder 4.",
     },
     {
       question: "Kann ich eine Terrassenüberdachung nachträglich verglasen?",
@@ -161,7 +161,7 @@ const categoryFaqs: Record<string, FaqEntry[]> = {
     {
       question: "Hält das Glasdach Hagel aus?",
       answer:
-        "Ja. Wir verbauen VSG-Sicherheitsglas (2× 6 mm), das bei Hagel oder Astschlag bricht, aber zusammenhält — keine herabfallenden Splitter. Geprüft nach DIN EN 12150 und EN 14179.",
+        "Ja. Wir verbauen VSG-Sicherheitsglas (8–10 mm), das bei Hagel oder Astschlag bricht, aber zusammenhält — keine herabfallenden Splitter. Geprüft nach DIN EN 12150 und EN 14179.",
     },
     {
       question: "Kann ich eine LED-Beleuchtung nachrüsten?",
@@ -194,7 +194,7 @@ const categoryFaqs: Record<string, FaqEntry[]> = {
     {
       question: "Hält ein Glas-Carport Hagel aus?",
       answer:
-        "Ja. VSG-Glas (Verbund-Sicherheitsglas, 2× 6 mm) ist hagelschlagsicher nach Hagelklasse HW3. Bei Sondereindeckung mit HPL-Platten (Hochdruckschichtstoff) noch robuster — Standard für Hochrisiko-Regionen mit häufigem Hagel.",
+        "Ja. VSG-Glas (Verbund-Sicherheitsglas, 8–10 mm) ist hagelschlagsicher nach Hagelklasse HW3. Bei Sondereindeckung mit HPL-Platten (Hochdruckschichtstoff, auf Anfrage) noch robuster — Standard für Hochrisiko-Regionen mit häufigem Hagel.",
     },
   ],
 };
@@ -261,12 +261,12 @@ const productFaqs: Record<string, FaqEntry[]> = {
     {
       question: "Was unterscheidet die Pro-Line von anderen Glasdächern?",
       answer:
-        "Schmale Aluminium-Profile (60 × 40 mm Sparren), VSG-Sicherheitsglas, integrierte Regenrinne im Pfosten. Maßanfertigung bis 7 × 4 m wandbefestigt — größere Anlagen mit Mittelstütze möglich. 10 Jahre Strukturgarantie.",
+        "Schlanke Aluminium-Profile aus 6063 T6, VSG-Sicherheitsglas (8–10 mm) oder 8 mm Polycarbonat, integrierte Regenrinne im Pfosten (15 × 15 cm Standard, 11 × 11 cm schlankere Variante). Maßanfertigung 3–12 m Breite × 2–5 m Tiefe, bis 7 × 4 m wandbefestigt ohne Mittelstütze. Dachneigung 5–15°. 10 Jahre Strukturgarantie.",
     },
     {
       question: "Welche Glasarten sind möglich?",
       answer:
-        "Standard: VSG 2× 6 mm klar. Optional: VSG mit satinierter Folie (Sichtschutz von oben), Sonnenschutzglas (G-Wert 35–50 %, reduziert Aufheizung) oder Stegplatten (kostengünstigere Variante, weniger transparent).",
+        "Standard: VSG 8–10 mm klar. Optional: VSG mit satinierter Folie (Sichtschutz von oben), Sonnenschutzglas (G-Wert 35–50 %, reduziert Aufheizung) oder 8 mm Polycarbonat (kostengünstigere Variante, opal oder klar).",
     },
     {
       question: "Wie wird die Pro-Line an die Hauswand angeschlossen?",
@@ -315,7 +315,7 @@ const productFaqs: Record<string, FaqEntry[]> = {
     {
       question: "Welche Schiebewände sind möglich?",
       answer:
-        "Rahmenlose Glasschiebewände (4–8 mm ESG, transparent), Schiebetüren mit Aluminium-Rahmen, Festverglasung mit Klemmprofilen oder Zipscreens für Verschattung. Alle Systeme können kombiniert und auch nachträglich eingebaut werden.",
+        "Rahmenlose Glasschiebewände (10 mm ESG, transparent, opal oder grau getönt; 2- bis 6-spurig; max. 2,60 m Höhe), Schiebetüren mit Aluminium-Rahmen, Festverglasung mit Klemmprofilen oder Zipscreens für Verschattung. Alle Systeme können kombiniert und auch nachträglich eingebaut werden.",
     },
   ],
 };
