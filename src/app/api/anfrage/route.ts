@@ -18,7 +18,10 @@ const ConfigOptionSchema = z.object({
 const PayloadSchema = z.object({
   name: z.string().min(2).max(120),
   email: z.string().email().max(160),
-  phone: z.string().max(60).optional().or(z.literal("")),
+  phone: z
+    .string()
+    .min(5, "Telefonnummer ist erforderlich.")
+    .max(60),
   ort: z.string().max(120).optional().or(z.literal("")),
   message: z.string().max(4000).optional().or(z.literal("")),
   privacy: z.boolean(),

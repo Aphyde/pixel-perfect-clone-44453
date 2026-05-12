@@ -391,7 +391,7 @@ const Anfrage = () => {
                   <InputField label="E-Mail Adresse" placeholder="mail@beispiel.de" type="email" value={form.email} onChange={(v) => handleChange("email", v)} required />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
-                  <InputField label="Telefonnummer" placeholder="+49 --- -------" type="tel" value={form.phone} onChange={(v) => handleChange("phone", v)} />
+                  <InputField label="Telefonnummer" placeholder="+49 --- -------" type="tel" value={form.phone} onChange={(v) => handleChange("phone", v)} required />
                   <InputField label="Ort der Montage" placeholder="PLZ / Stadt" type="text" value={form.ort} onChange={(v) => handleChange("ort", v)} />
                 </div>
                 <div>

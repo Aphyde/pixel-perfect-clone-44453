@@ -119,7 +119,7 @@ const Wartungspakete = () => {
   const canNext = () => {
     if (step === 1) return !!selectedPkg;
     if (step === 2) return form.adresse && form.produktTyp;
-    if (step === 3) return form.name && form.email && privacy;
+    if (step === 3) return form.name && form.email && form.phone && privacy;
     return true;
   };
 
@@ -413,11 +413,12 @@ const Wartungspakete = () => {
                           />
                         </div>
                         <div>
-                          <label className="block text-[10px] uppercase tracking-widest text-outline font-bold mb-2">Telefonnummer (optional)</label>
+                          <label className="block text-[10px] uppercase tracking-widest text-outline font-bold mb-2">Telefonnummer *</label>
                           <input
                             className="w-full bg-transparent border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-colors py-2 px-0 text-foreground placeholder:text-outline-variant/50 outline-none text-sm"
                             placeholder="+49 --- -------"
                             type="tel"
+                            required
                             value={form.phone}
                             onChange={(e) => handleChange("phone", e.target.value)}
                           />
