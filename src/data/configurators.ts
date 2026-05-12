@@ -705,10 +705,15 @@ const verandaConfig: CategoryConfigurator = {
       title: "Maße (Breite × Tiefe)",
       type: "dimensions",
       dimensions: {
-        width: { min: 3, max: 9, default: 5, label: "Breite" },
-        depth: { min: 2.5, max: 4.5, default: 3, label: "Tiefe" },
+        // Mindestmaß bewusst klein gehalten, um auch kleine Terrassen,
+        // Sitznischen und Eingangsbereiche bedienen zu können. Unter 15 m²
+        // greift der basePrice-Floor (5.490 € Mindestpreis inkl. Montage).
+        width: { min: 2.5, max: 9, default: 5, label: "Breite" },
+        depth: { min: 2, max: 4.5, default: 3, label: "Tiefe" },
         // 366 €/m² · 15 m² (5×3) = 5.490 € Einstieg inkl. Montage.
-        // Größenstaffel: 4×3 ≈ 4.392 €, 6×4 ≈ 8.784 €, 7×4 ≈ 10.248 €.
+        // Floor: 5.490 € bei allen Maßen unter 15 m² (Montage-Pauschale,
+        // Statik & Wandanschluss machen die Fixkosten aus).
+        // Größenstaffel: 6×4 ≈ 8.784 €, 7×4 ≈ 10.248 €, 8×4,5 ≈ 13.176 €.
         pricePerArea: 366,
       },
     },
