@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brait — Preisgestaltung Konfigurator 2026</title>
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #1a1a2e;
+      --muted: #5c6370;
+      --accent: #c8a96e;
+      --accent-dark: #9a7b4f;
+      --border: #e2e6ea;
+      --green: #1a6b3c;
+      --red: #b91c1c;
+      --blue: #1e40af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+    .cover {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+      color: #fff;
+      padding: 64px 48px;
+      margin-bottom: 32px;
+    }
+    .cover h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+    .cover .subtitle { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 640px; }
+    .cover .meta { margin-top: 32px; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px 64px; }
+    .chapter {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 36px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .chapter-number {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    h2 { font-size: 1.45rem; margin-bottom: 16px; color: var(--text); }
+    h3 { font-size: 1.1rem; margin: 24px 0 12px; color: var(--text); }
+    p { margin-bottom: 12px; color: var(--muted); }
+    p.lead { font-size: 1.05rem; color: var(--text); }
+    ul, ol { margin: 0 0 16px 24px; color: var(--muted); }
+    li { margin-bottom: 6px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    th { background: #f1f3f5; font-weight: 600; color: var(--text); }
+    tr:nth-child(even) td { background: #fafbfc; }
+    .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .highlight-box {
+      background: #fef9f0;
+      border-left: 4px solid var(--accent);
+      padding: 16px 20px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .highlight-box h4 { color: var(--accent-dark); margin-bottom: 8px; font-size: 0.95rem; }
+    .highlight-box p { margin-bottom: 0; color: var(--text); }
+    .warn-box {
+      background: #fef2f2;
+      border-left: 4px solid var(--red);
+      padding: 16px 20px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .warn-box h4 { color: var(--red); margin-bottom: 8px; font-size: 0.95rem; }
+    .calc-box {
+      background: #f8f9fa;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 16px 0;
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: 0.88rem;
+      line-height: 1.8;
+    }
+    .calc-row { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--border); padding: 4px 0; }
+    .calc-row.total { border-bottom: none; border-top: 2px solid var(--text); font-weight: 700; margin-top: 8px; padding-top: 8px; }
+    .calc-row .wrong { color: var(--red); text-decoration: line-through; }
+    .calc-row .right { color: var(--green); font-weight: 600; }
+    .flow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0;
+      font-size: 0.85rem;
+    }
+    .flow-step {
+      background: #f1f3f5;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      text-align: center;
+      min-width: 120px;
+    }
+    .flow-arrow { color: var(--accent); font-weight: 700; font-size: 1.2rem; }
+    .source-tag { font-size: 0.78rem; color: #9ca3af; margin-top: 8px; display: block; }
+    .toc { list-style: none; margin: 0; padding: 0; }
+    .toc li { margin-bottom: 8px; }
+    .toc a { color: var(--blue); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    @media print {
+      .cover { break-after: page; }
+      .chapter { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Preisgestaltung Konfigurator — Netto-Preise</h1>
+  <p class="subtitle">Dokumentation der geplanten Preislogik: Produktpreise +40&nbsp;%, Montage aus der Mischkalkulation, Alle Preise netto zzgl. 19&nbsp;% MwSt. · Montage separat. Stand: 23.&nbsp;Mai 2026.</p>
+  <p class="meta">Brait Überdachungen · Intern · Basis: Marktanalyse Mai 2026 + aktuelle Konfigurator-Daten</p>
+</div>
+
+<div class="container">
+
+  <div class="chapter">
+    <div class="chapter-number">Übersicht</div>
+    <h2>Inhaltsverzeichnis</h2>
+    <ul class="toc">
+      <li><a href="#kapitel-01">01 — Ausgangslage &amp; Ziel</a></li>
+      <li><a href="#kapitel-02">02 — Die korrekte Mischkalkulation</a></li>
+      <li><a href="#kapitel-03">03 — Montage-Pauschalen pro Kategorie</a></li>
+      <li><a href="#kapitel-04">04 — Preisregeln nach Preistyp</a></li>
+      <li><a href="#kapitel-05">05 — Terrassenüberdachung im Detail</a></li>
+      <li><a href="#kapitel-06">06 — Alle Einstiegspreise (Alt → Neu)</a></li>
+      <li><a href="#kapitel-07">07 — Upsells &amp; Optionen</a></li>
+      <li><a href="#kapitel-08">08 — Konfigurations-Beispiele</a></li>
+      <li><a href="#kapitel-09">09 — Anzeige &amp; Kommunikation</a></li>
+      <li><a href="#kapitel-10">10 — Implementierungshinweise</a></li>
+      <li><a href="#kapitel-11">11 — SO Aluminium Hersteller-Validierung (Nico)</a></li>
+    </ul>
+  </div>
+
+  <div class="chapter" id="kapitel-01">
+    <div class="chapter-number">Kapitel 01</div>
+    <h2>Ausgangslage &amp; Ziel</h2>
+    <p class="lead">Bisher zeigt der Konfigurator Endpreise <strong>brutto inkl. MwSt. und Montage</strong> (Modell&nbsp;B: Einstieg 4.613&nbsp;€ netto für 5&nbsp;×&nbsp;3&nbsp;m Alu/PC inkl. Montage).</p>
+    <h3>Was sich ändert</h3>
+    <table>
+      <tr><th>Aspekt</th><th>Bisher</th><th>Neu</th></tr>
+      <tr><td>Produktpreis</td><td>Im Mischpreis enthalten (netto)</td><td><strong>+40&nbsp;% Aufschlag</strong> auf den bisherigen Produktanteil</td></tr>
+      <tr><td>Montage</td><td>In Mischpreis einkalkuliert, nicht ausgewiesen</td><td><strong>Raus aus Konfiguratorpreis</strong>, separat zzgl.</td></tr>
+      <tr><td>Anzeige Konfigurator</td><td>„netto zzgl. MwSt. · zzgl. Montage"</td><td><strong>„netto zzgl. MwSt. · zzgl. Montage"</strong></td></tr>
+      <tr><td>Website / FAQ / Artikel</td><td>„ab X € inkl. Montage"</td><td><strong>„ab X € netto zzgl. MwSt. · zzgl. Montage"</strong></td></tr>
+    </table>
+    <div class="highlight-box">
+      <h4>Strategischer Hintergrund (Nico, Mai 2026)</h4>
+      <p>Montage wird separat ausgewiesen (ab 2.000 € netto Terrasse). Lieferung pauschal 350 € netto. Produktpreis: <strong>Montage und Lieferung zuerst abziehen, dann × 1,40</strong> auf den Produktanteil. Ziel: <strong>30–40&nbsp;% Nettomarge</strong> auf den Gesamtauftrag — validiert gegen SO-Aluminium-Händlerpreise V.2026.05. Marge wird primär über Produkt &amp; Upsells verdient, nicht über Montage (Break-even bei ~1.100 €/Tag intern).</p>
+    </div>
+  </div>
+
+  <div class="chapter" id="kapitel-02">
+    <div class="chapter-number">Kapitel 02</div>
+    <h2>Die korrekte Mischkalkulation</h2>
+    <p class="lead">Entscheidend: Montage <em>zuerst</em> abziehen, <em>dann</em> +40&nbsp;% auf den Produktanteil — nicht umgekehrt.</p>
+    <div class="flow">
+      <div class="flow-step">Mischpreis<br><small>Netto zzgl. MwSt.<br>+ Montage</small></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">− Montage<br><small>Pauschale</small></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">− Lieferung<br><small>350 € netto</small></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">= Produkt<br><small>Netto (alt)</small></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step">× 1,40<br><small>Produkt +40&nbsp;%</small></div>
+      <span class="flow-arrow">→</span>
+      <div class="flow-step"><strong>Neuer Preis</strong><br><small>Netto zzgl. MwSt.<br>ohne Montage</small></div>
+    </div>
+    <h3>Formeln</h3>
+    <div class="calc-box">
+      <div class="calc-row"><span>Produkt-Netto (alt)</span><span>= Mischpreis − Montage-Pauschale</span></div>
+      <div class="calc-row total"><span>Neuer Konfiguratorpreis (netto)</span><span>= Produkt-Netto (alt) × 1,40 = (Mischpreis − Montage) × 1,40</span></div>
+    </div>
+    <h3>Falsch vs. Richtig — am Beispiel 5&nbsp;×&nbsp;3&nbsp;m (4.613&nbsp;€ netto Mischpreis)</h3>
+    <div class="calc-box">
+      <p style="margin-bottom:12px;font-family:inherit;color:var(--red)"><strong>FALSCH:</strong> Gesamtpreis × 1,40, dann Montage abziehen</p>
+      <div class="calc-row wrong"><span>4.613 × 1,40</span><span>6.459 € netto</span></div>
+      <div class="calc-row wrong"><span>− 2.000 Montage</span><span>4.537 € netto</span></div>
+      <br>
+      <p style="margin-bottom:12px;font-family:inherit;color:var(--green)"><strong>RICHTIG:</strong> Montage abziehen, dann Produkt × 1,40</p>
+      <div class="calc-row"><span>4.613 − 2.000 Montage − 350 Lieferung</span><span>2.263 € (Produkt netto alt)</span></div>
+      <div class="calc-row"><span>× 1,40</span><span>3.168 €</span></div>
+      <div class="calc-row right total"><span>Neuer Konfiguratorpreis (netto)</span><span>3.168 € zzgl. MwSt.</span></div>
+    </div>
+    <p>Formel: <code>Produkt netto = (Mischpreis netto − Montage netto − 350 € Lieferung) × 1,40</code></p>
+  </div>
+
+  <div class="chapter" id="kapitel-03">
+    <div class="chapter-number">Kapitel 03</div>
+    <h2>Montage, Lieferung &amp; Logistik (Netto)</h2>
+    <p>Vorgabe Mai 2026 — Montage, Lieferung und Produktpreise <strong>netto zzgl. 19&nbsp;% MwSt.</strong></p>
+    <table>
+      <tr><th>Kategorie</th><th>Montage netto</th><th>Regel</th></tr>
+      <tr><td>Terrassenüberdachung (Pro-Line)</td><td class="num"><strong>ab 2.000 €</strong></td><td>Staffelung nach Fläche: 2.000 € bis 15 m², danach +90 € netto je weiterem m²</td></tr>
+      <tr><td>Cube / Kubus (freistehend)</td><td class="num"><strong>ab 2.500 €</strong></td><td>Freistehend, höherer Aufwand</td></tr>
+      <tr><td>Q-Bus / Lamellendach</td><td class="num"><strong>ab 2.500 €</strong></td><td>Komplexe Montage (Motorik, Lamellen)</td></tr>
+      <tr><td>Carport</td><td class="num"><strong>ab 1.800 €</strong></td><td>Standard bis Doppelcarport</td></tr>
+      <tr><td>Markise</td><td class="num"><strong>ab 800 €</strong></td><td>~1 Tag</td></tr>
+      <tr><td>Eingangsüberdachung</td><td class="num"><strong>ab 1.000 €</strong></td><td>Kleine Konstruktion</td></tr>
+      <tr><td>Sonnenschirm</td><td class="num"><strong>0 €</strong></td><td>Kein Montage-Anteil (Aufstellung)</td></tr>
+    </table>
+    <h3>Lieferkosten — pauschal</h3>
+    <table>
+      <tr><th>Position</th><th>Betrag netto</th><th>Regel</th></tr>
+      <tr><td>Lieferung / Anlieferung</td><td class="num"><strong>350 €</strong></td><td>Pauschal pro Auftrag, alle Kategorien</td></tr>
+    </table>
+    <div class="calc-box">Gesamt netto = Produkt netto + Montage netto + 350 € Lieferung</div>
+    <h3>Terrassen-Montage — Staffelung nach Fläche</h3>
+    <div class="calc-box">montageNetto(Fläche) = max(2.000 €, 2.000 € + max(0, Fläche − 15 m²) × 90 €)</div>
+    <table>
+      <tr><th>Fläche</th><th>Montage netto</th></tr>
+      <tr><td>5 m² (2,5 × 2 m)</td><td class="num">2.000 €</td></tr>
+      <tr><td>15 m² (5 × 3 m)</td><td class="num">2.000 €</td></tr>
+      <tr><td>24 m² (6 × 4 m)</td><td class="num">2.810 €</td></tr>
+      <tr><td>28 m² (7 × 4 m)</td><td class="num">3.170 €</td></tr>
+      <tr><td>36 m² (8 × 4,5 m)</td><td class="num">3.890 €</td></tr>
+    </table>
+  </div>
+
+  <div class="chapter" id="kapitel-04">
+    <div class="chapter-number">Kapitel 04</div>
+    <h2>Preisregeln nach Preistyp</h2>
+    <h3>Typ A — Grundkonstruktion</h3>
+    <p>Gilt für: <code>basePrice</code>, <code>pricePerArea</code>, Modell-spezifische <code>basePrice</code> (Markisen, Carports, Eingang).</p>
+    <div class="calc-box">Produkt netto = round((Mischpreis netto − Montage netto − 350 € Lieferung) × 1,40)</div>
+    <h3>Typ B — Upsells / Optionen / Extras</h3>
+    <p>Laut Marktanalyse Modell&nbsp;B: Upsells mit 45–60&nbsp;% Marge, <strong>ohne separate Montage-Pauschale</strong> in der Mischkalkulation.</p>
+    <div class="calc-box">Upsell netto = round(preis × 1,40 ÷ 1,19)</div>
+    <table>
+      <tr><th>Preistyp</th><th>Montage abziehen?</th><th>+40&nbsp;%</th><th>Beispiel</th></tr>
+      <tr><td>basePrice Terrasse (5×3)</td><td>Ja (−2.000 € Montage −350 € Lieferung)</td><td>Ja</td><td>→ 3.168 €</td></tr>
+      <tr><td>pricePerArea (Produkt netto)</td><td>Ja + Montage staffeln + 350 € Lieferung</td><td>Ja</td><td>→ ab 246 €/m²</td></tr>
+      <tr><td>VSG-Aufpreis + 2.017 €</td><td>Nein</td><td>Ja</td><td>→ + 2.824 €</td></tr>
+      <tr><td>LED dimmbar + 748 €</td><td>Nein</td><td>Ja</td><td>→ + 1.047 €</td></tr>
+    </table>
+  </div>
+
+  <div class="chapter" id="kapitel-05">
+    <div class="chapter-number">Kapitel 05</div>
+    <h2>Terrassenüberdachung im Detail</h2>
+    <h3>Aktuelle Logik (vor Umstellung)</h3>
+    <div class="calc-box">
+      <div class="calc-row"><span>basePrice (Floor)</span><span>4.613 €</span></div>
+      <div class="calc-row"><span>pricePerArea</span><span>308 €/m²</span></div>
+      <div class="calc-row"><span>Formel</span><span>max(basePrice, Fläche × pricePerArea)</span></div>
+      <div class="calc-row"><span>Mindestmaße</span><span>Breite 2,5 m · Tiefe 2 m</span></div>
+    </div>
+    <h3>Neue Werte (Montage ab 2.000 € netto + 350 € Lieferung)</h3>
+    <div class="calc-box">
+      <div class="calc-row"><span>basePrice (Floor, Produkt netto)</span><span class="right">3.168 €</span></div>
+      <div class="calc-row"><span>pricePerArea (Produkt netto, Referenz 24 m²)</span><span class="right">246 €/m²</span></div>
+      <div class="calc-row"><span>Lieferung pauschal</span><span class="right">350 € netto</span></div>
+      <div class="calc-row"><span>Montage Terrasse</span><span class="right">ab 2.000 € netto, staffelnd</span></div>
+    </div>
+    <h3>Größenstaffel — Vergleich (alles netto)</h3>
+    <table>
+      <tr><th>Größe</th><th>Fläche</th><th>Alt netto (inkl. Montage)</th><th>Produkt netto</th><th>Montage</th><th>Lieferung</th><th>Gesamt netto</th></tr>
+      <tr><td>2,5 × 2 m</td><td class="num">5 m²</td><td class="num">4.613 €</td><td class="num"><strong>3.168 €</strong></td><td class="num">2.000 €</td><td class="num">350 €</td><td class="num">5.518 €</td></tr>
+      <tr><td>5 × 3 m</td><td class="num">15 m²</td><td class="num">4.613 €</td><td class="num"><strong>3.168 €</strong></td><td class="num">2.000 €</td><td class="num">350 €</td><td class="num">5.518 €</td></tr>
+      <tr><td>6 × 4 m</td><td class="num">24 m²</td><td class="num">7.382 €</td><td class="num"><strong>5.911 €</strong></td><td class="num">2.810 €</td><td class="num">350 €</td><td class="num">9.071 €</td></tr>
+      <tr><td>7 × 4 m</td><td class="num">28 m²</td><td class="num">8.612 €</td><td class="num"><strong>7.129 €</strong></td><td class="num">3.170 €</td><td class="num">350 €</td><td class="num">10.649 €</td></tr>
+      <tr><td>8 × 4,5 m</td><td class="num">36 m²</td><td class="num">11.072 €</td><td class="num"><strong>9.565 €</strong></td><td class="num">3.890 €</td><td class="num">350 €</td><td class="num">13.805 €</td></tr>
+    </table>
+    <h3>Herleitung pricePerArea 246 €/m² (Produkt netto)</h3>
+    <div class="calc-box">
+      <div class="calc-row"><span>Referenz: 24 m², Mischpreis netto alt</span><span>7.382 €</span></div>
+      <div class="calc-row"><span>− Montage netto (24 m²)</span><span>2.810 €</span></div>
+      <div class="calc-row"><span>− Lieferung pauschal</span><span>350 €</span></div>
+      <div class="calc-row"><span>× 1,40 → Produkt netto neu</span><span>5.911 €</span></div>
+      <div class="calc-row total"><span>Rate</span><span>5.911 ÷ 24 = <strong>246 €/m²</strong></span></div>
+    </div>
+  </div>
+
+  <div class="chapter" id="kapitel-06">
+    <div class="chapter-number">Kapitel 06</div>
+    <h2>Alle Einstiegspreise — Alt → Neu</h2>
+    <h3>Terrassenüberdachung &amp; Systeme</h3>
+    <table>
+      <tr><th>Produkt</th><th>Alt netto (inkl. Montage)</th><th>Produkt netto</th><th>+ Montage</th><th>+ Lieferung</th><th>Gesamt netto</th></tr>
+      <tr><td>Pro-Line 4 × 3 m</td><td class="num">3.773 €</td><td class="num"><strong>1.992 €</strong></td><td class="num">2.000 €</td><td class="num">350 €</td><td class="num">4.342 €</td></tr>
+      <tr><td>Pro-Line 5 × 3 m (Floor)</td><td class="num">4.613 €</td><td class="num"><strong>3.168 €</strong></td><td class="num">2.000 €</td><td class="num">350 €</td><td class="num">5.518 €</td></tr>
+      <tr><td>Cube / Kubus freistehend</td><td class="num">5.874 €</td><td class="num"><strong>4.234 €</strong></td><td class="num">2.500 €</td><td class="num">350 €</td><td class="num">7.084 €</td></tr>
+      <tr><td>Q-Bus Lamellendach</td><td class="num">7.555 €</td><td class="num"><strong>6.587 €</strong></td><td class="num">2.500 €</td><td class="num">350 €</td><td class="num">9.437 €</td></tr>
+    </table>
+    <h3>Carports</h3>
+    <table>
+      <tr><th>Modell</th><th>Alt netto</th><th>Produkt netto</th><th>+ Montage 1.800 €</th><th>+ Lieferung 350 €</th><th>Gesamt netto</th></tr>
+      <tr><td>Einzel-Carport</td><td class="num">5.798 €</td><td class="num"><strong>5.107 €</strong></td><td class="num">1.800 €</td><td class="num">350 €</td><td class="num">7.257 €</td></tr>
+      <tr><td>Doppel-Carport</td><td class="num">10.000 €</td><td class="num"><strong>10.570 €</strong></td><td class="num">1.800 €</td><td class="num">350 €</td><td class="num">12.720 €</td></tr>
+      <tr><td>Reihen-Carport</td><td class="num">15.042 €</td><td class="num"><strong>17.911 €</strong></td><td class="num">1.800 €</td><td class="num">350 €</td><td class="num">20.061 €</td></tr>
+    </table>
+    <h3>Markisen</h3>
+    <table>
+      <tr><th>Modell</th><th>Alt netto</th><th>Produkt netto</th><th>+ Montage 800 €</th><th>+ Lieferung 350 €</th><th>Gesamt netto</th></tr>
+      <tr><td>Einstieg (Kategorie)</td><td class="num">1.597 €</td><td class="num"><strong>626 €</strong></td><td class="num">800 €</td><td class="num">350 €</td><td class="num">1.776 €</td></tr>
+      <tr><td>Aufglasmarkise</td><td class="num">2.437 €</td><td class="num"><strong>1.802 €</strong></td><td class="num">800 €</td><td class="num">350 €</td><td class="num">2.952 €</td></tr>
+      <tr><td>Unterglasmarkise</td><td class="num">2.185 €</td><td class="num"><strong>1.449 €</strong></td><td class="num">800 €</td><td class="num">350 €</td><td class="num">2.599 €</td></tr>
+      <tr><td>Plissee-System</td><td class="num">1.563 €</td><td class="num"><strong>578 €</strong></td><td class="num">800 €</td><td class="num">350 €</td><td class="num">1.728 €</td></tr>
+      <tr><td>Gelenkarmmarkise</td><td class="num">2.017 €</td><td class="num"><strong>1.214 €</strong></td><td class="num">800 €</td><td class="num">350 €</td><td class="num">2.364 €</td></tr>
+      <tr><td>Senkrechtmarkise (Zipscreen)</td><td class="num">1.429 €</td><td class="num"><strong>391 €</strong></td><td class="num">800 €</td><td class="num">350 €</td><td class="num">1.541 €</td></tr>
+    </table>
+    <h3>Eingangsüberdachungen &amp; Schirme</h3>
+    <table>
+      <tr><th>Produkt</th><th>Alt netto</th><th>Produkt netto</th><th>+ Montage</th><th>+ Lieferung</th><th>Gesamt netto</th></tr>
+      <tr><td>Eingang gerade</td><td class="num">1.084 €</td><td class="num"><strong>0 €*</strong></td><td class="num">1.000 €</td><td class="num">350 €</td><td class="num">1.350 €</td></tr>
+      <tr><td>Eingang gebogen</td><td class="num">1.420 €</td><td class="num"><strong>98 €</strong></td><td class="num">1.000 €</td><td class="num">350 €</td><td class="num">1.448 €</td></tr>
+      <tr><td>Eingang Pultdach</td><td class="num">1.252 €</td><td class="num"><strong>0 €*</strong></td><td class="num">1.000 €</td><td class="num">350 €</td><td class="num">1.350 €</td></tr>
+      <tr><td>Ampelschirm</td><td class="num">1.252 €</td><td class="num"><strong>1.753 €</strong></td></tr>
+      <tr><td>Doppelschirm</td><td class="num">2.429 €</td><td class="num"><strong>3.400 €</strong></td></tr>
+      <tr><td>Mittelmast-Schirm</td><td class="num">1.000 €</td><td class="num"><strong>1.400 €</strong></td></tr>
+    </table>
+    <span class="source-tag">Schirme: Montage-Anteil =0 € → reine × 1,40 auf den bisherigen Preis.</span>
+  </div>
+
+  <div class="chapter" id="kapitel-07">
+    <div class="chapter-number">Kapitel 07</div>
+    <h2>Upsells &amp; Optionen — Alt → Neu (+40&nbsp;%)</h2>
+    <h3>Terrassenüberdachung — Dach &amp; Front</h3>
+    <table>
+      <tr><th>Option</th><th>Alt</th><th>Neu</th></tr>
+      <tr><td>Polycarbonat (Standard)</td><td class="num">0 €</td><td class="num">0 €</td></tr>
+      <tr><td>Klarglas VSG 44.2</td><td class="num">+ 2.017 €</td><td class="num"><strong>+ 2.824 €</strong></td></tr>
+      <tr><td>Opalglas VSG 44.2</td><td class="num">+ 2.269 €</td><td class="num"><strong>+ 3.176 €</strong></td></tr>
+      <tr><td>Getöntes Glas VSG</td><td class="num">+ 2.437 €</td><td class="num"><strong>+ 3.412 €</strong></td></tr>
+      <tr><td>Glas-Schiebewände klar (Front)</td><td class="num">+ 2.429 €</td><td class="num"><strong>+ 3.400 €</strong></td></tr>
+      <tr><td>Glas-Schiebewände getönt (Front)</td><td class="num">+ 2.765 €</td><td class="num"><strong>+ 3.871 €</strong></td></tr>
+      <tr><td>Schiebetür (Front)</td><td class="num">+ 1.588 €</td><td class="num"><strong>+ 2.224 €</strong></td></tr>
+      <tr><td>Gerade Rinne (Aufpreis)</td><td class="num">+ 185 €</td><td class="num"><strong>+ 259 €</strong></td></tr>
+    </table>
+    <h3>Beleuchtung, Sonnenschutz, Zipscreen</h3>
+    <table>
+      <tr><th>Option</th><th>Alt</th><th>Neu</th></tr>
+      <tr><td>LED Kalt-/Warmweiß</td><td class="num">+ 496 €</td><td class="num"><strong>+ 694 €</strong></td></tr>
+      <tr><td>LED dimmbar (Funk)</td><td class="num">+ 748 €</td><td class="num"><strong>+ 1.047 €</strong></td></tr>
+      <tr><td>Plissee (manuell)</td><td class="num">+ 832 €</td><td class="num"><strong>+ 1.165 €</strong></td></tr>
+      <tr><td>Unter-Dach Sonnenschutz</td><td class="num">+ 1.252 €</td><td class="num"><strong>+ 1.753 €</strong></td></tr>
+      <tr><td>Über-Dach Sonnenschutz</td><td class="num">+ 1.588 €</td><td class="num"><strong>+ 2.224 €</strong></td></tr>
+      <tr><td>Zipscreen links / rechts</td><td class="num">+ 1.000 €</td><td class="num"><strong>+ 1.400 €</strong></td></tr>
+      <tr><td>Zipscreen Vorderseite</td><td class="num">+ 1.084 €</td><td class="num"><strong>+ 1.518 €</strong></td></tr>
+    </table>
+    <h3>Seitenwände (Auswahl)</h3>
+    <table>
+      <tr><th>Option</th><th>Alt</th><th>Neu</th></tr>
+      <tr><td>Polycarbonat Seitenwand</td><td class="num">+ 580 €</td><td class="num"><strong>+ 812 €</strong></td></tr>
+      <tr><td>Glas-Seitenwand komplett</td><td class="num">+ 1.084 €</td><td class="num"><strong>+ 1.518 €</strong></td></tr>
+      <tr><td>Glas-Seitenwand mit Tür</td><td class="num">+ 1.420 €</td><td class="num"><strong>+ 1.988 €</strong></td></tr>
+      <tr><td>Sandwich-Paneel</td><td class="num">+ 748 €</td><td class="num"><strong>+ 1.047 €</strong></td></tr>
+      <tr><td>Schiebewände + Glas-Keil</td><td class="num">+ 2.176 €</td><td class="num"><strong>+ 3.047 €</strong></td></tr>
+    </table>
+    <h3>Q-Bus (Auswahl)</h3>
+    <table>
+      <tr><th>Option</th><th>Alt</th><th>Neu</th></tr>
+      <tr><td>Glas-Schiebewände (je Seite)</td><td class="num">+ 2.269 €</td><td class="num"><strong>+ 3.176 €</strong></td></tr>
+      <tr><td>Schiebetür-System</td><td class="num">+ 2.269 €</td><td class="num"><strong>+ 3.176 €</strong></td></tr>
+      <tr><td>Festes Glaselement</td><td class="num">+ 1.084 €</td><td class="num"><strong>+ 1.518 €</strong></td></tr>
+      <tr><td>LED Dimmbar</td><td class="num">+ 748 €</td><td class="num"><strong>+ 1.047 €</strong></td></tr>
+      <tr><td>Funk-Motor Lamellen</td><td class="num">+ 580 €</td><td class="num"><strong>+ 812 €</strong></td></tr>
+    </table>
+    <h3>Markisen — Antrieb &amp; Extras</h3>
+    <table>
+      <tr><th>Option</th><th>Alt</th><th>Neu</th></tr>
+      <tr><td>Funkmotor</td><td class="num">+ 403 €</td><td class="num"><strong>+ 565 €</strong></td></tr>
+      <tr><td>Motor mit Wind/Sonnensensor</td><td class="num">+ 748 €</td><td class="num"><strong>+ 1.047 €</strong></td></tr>
+      <tr><td>LED in Profil/Armen</td><td class="num">+ 496 €</td><td class="num"><strong>+ 694 €</strong></td></tr>
+      <tr><td>Volant verstellbar</td><td class="num">+ 244 €</td><td class="num"><strong>+ 341 €</strong></td></tr>
+    </table>
+  </div>
+
+  <div class="chapter" id="kapitel-08">
+    <div class="chapter-number">Kapitel 08</div>
+    <h2>Konfigurations-Beispiele (Neu)</h2>
+    <h3>Beispiel 1 — Pro-Line Standard (5 × 3 m, PC, offen)</h3>
+    <div class="calc-box">
+      <div class="calc-row"><span>Grundkonstruktion (netto)</span><span>3.168 €</span></div>
+      <div class="calc-row"><span>Optionen</span><span>0 €</span></div>
+      <div class="calc-row total"><span>Konfigurator zeigt</span><span>3.168 € netto zzgl. MwSt.</span></div>
+      <div class="calc-row"><span>Montage (separat)</span><span>+ 2.000 €</span></div>
+      <div class="calc-row"><span>Lieferung (pauschal)</span><span>+ 350 €</span></div>
+      <div class="calc-row total"><span>Gesamt netto</span><span>5.518 €</span></div>
+    </div>
+    <h3>Beispiel 2 — Pro-Line Premium (5 × 3 m, VSG + LED + Schiebewand)</h3>
+    <div class="calc-box">
+      <div class="calc-row"><span>Grundkonstruktion</span><span>3.168 €</span></div>
+      <div class="calc-row"><span>+ VSG Klarglas</span><span>+ 2.824 €</span></div>
+      <div class="calc-row"><span>+ LED dimmbar</span><span>+ 1.047 €</span></div>
+      <div class="calc-row"><span>+ Schiebewände klar (Front)</span><span>+ 3.400 €</span></div>
+      <div class="calc-row total"><span>Konfigurator zeigt</span><span>10.439 € netto zzgl. MwSt.</span></div>
+      <div class="calc-row"><span>Montage (separat)</span><span>+ 2.000 €</span></div>
+      <div class="calc-row"><span>Lieferung (pauschal)</span><span>+ 350 €</span></div>
+      <div class="calc-row total"><span>Gesamt netto</span><span>12.789 €</span></div>
+    </div>
+    <h3>Beispiel 3 — Q-Bus Basis (5 × 3 m, offen)</h3>
+    <div class="calc-box">
+      <div class="calc-row"><span>Grundkonstruktion (netto)</span><span>6.587 €</span></div>
+      <div class="calc-row total"><span>Konfigurator zeigt</span><span>6.587 € netto zzgl. MwSt.</span></div>
+      <div class="calc-row"><span>Montage (separat)</span><span>+ 2.500 €</span></div>
+      <div class="calc-row"><span>Lieferung (pauschal)</span><span>+ 350 €</span></div>
+      <div class="calc-row total"><span>Gesamt netto</span><span>9.437 €</span></div>
+    </div>
+    <h3>Beispiel 4 — Gelenkarmmarkise (4 × 3 m, Funkmotor)</h3>
+    <div class="calc-box">
+      <div class="calc-row"><span>Grundkonstruktion Gelenkarm</span><span>1.214 €</span></div>
+      <div class="calc-row"><span>+ Funkmotor</span><span>+ 564 €</span></div>
+      <div class="calc-row total"><span>Konfigurator zeigt</span><span>1.778 € netto zzgl. MwSt.</span></div>
+      <div class="calc-row"><span>Montage (separat)</span><span>+ 800 €</span></div>
+      <div class="calc-row"><span>Lieferung (pauschal)</span><span>+ 350 €</span></div>
+      <div class="calc-row total"><span>Gesamt netto</span><span>2.928 €</span></div>
+    </div>
+  </div>
+
+  <div class="chapter" id="kapitel-09">
+    <div class="chapter-number">Kapitel 09</div>
+    <h2>Anzeige &amp; Kommunikation</h2>
+    <h3>Konfigurator &amp; Anfrage</h3>
+    <table>
+      <tr><th>Ort</th><th>Bisher</th><th>Neu</th></tr>
+      <tr><td>ConfiguratorEngine Footer</td><td>„netto zzgl. MwSt. · zzgl. Montage"</td><td><strong>„netto zzgl. MwSt. · zzgl. Montage"</strong></td></tr>
+      <tr><td>Anfrage-Summary</td><td>„netto zzgl. MwSt. &amp; Montage · Endgültiges Angebot nach Beratung"</td><td><strong>„netto zzgl. MwSt. · zzgl. Montage · Endgültiges Angebot nach Beratung"</strong></td></tr>
+    </table>
+    <h3>Website — neue Formulierung</h3>
+    <div class="highlight-box">
+      <h4>Standard-Formulierung</h4>
+      <p><strong>„ab [Preis] € netto zzgl. MwSt. · zzgl. Montage"</strong></p>
+    </div>
+    <h3>Marketing-Referenzpreise (neu)</h3>
+    <table>
+      <tr><th>Produktlinie</th><th>Neuer Einstiegspreis</th></tr>
+      <tr><td>Pro-Line 5 × 3 m</td><td class="num"><strong>ab 3.168 € netto</strong></td></tr>
+      <tr><td>Pro-Line 4 × 3 m</td><td class="num"><strong>ab 1.992 € netto</strong></td></tr>
+      <tr><td>Cube / Kubus</td><td class="num"><strong>ab 4.234 € netto</strong></td></tr>
+      <tr><td>Q-Bus Lamellendach</td><td class="num"><strong>ab 6.587 € netto</strong></td></tr>
+      <tr><td>Carport Einzel</td><td class="num"><strong>ab 5.107 € netto</strong></td></tr>
+      <tr><td>Carport Doppel</td><td class="num"><strong>ab 10.570 € netto</strong></td></tr>
+      <tr><td>Markise</td><td class="num"><strong>ab 626 € netto</strong></td></tr>
+      <tr><td>Lieferung (pauschal)</td><td class="num"><strong>+ 350 € netto</strong></td></tr>
+      <tr><td>VSG-Aufpreis (Referenz)</td><td class="num"><strong>+ 2.824 €</strong></td></tr>
+    </table>
+  </div>
+
+  <div class="chapter" id="kapitel-10">
+    <div class="chapter-number">Kapitel 10</div>
+    <h2>Implementierungshinweise</h2>
+    <h3>Technische Umsetzung (geplant)</h3>
+    <ol>
+      <li>Zentrale Preislogik in <code>src/lib/pricing/mixed-to-product.ts</code> — <strong>implementiert</strong></li>
+      <li>SO-Validierung <code>scripts/validate-pricing-so-aluminium.ts</code> vor Go-Live ausführen</li>
+      <li>Repricing-Skript <code>scripts/reprice-configurators.ts</code> für ~100 Preispositionen in <code>configurators.ts</code></li>
+      <li>Statische Preise (keine Runtime-Umrechnung im Konfigurator)</li>
+      <li>UI-Labels + vollständige Marketing-Synchronisation</li>
+      <li>Regenerierung <code>public/llms-full.txt</code></li>
+    </ol>
+    <div class="warn-box">
+      <h4>Achtung: Floor vs. m²-Rate bei 15 m²</h4>
+      <p>Floor 3.168 € (Produkt netto) bei Terrasse. Rate 246 €/m² (Produkt netto). Montage staffelnd ab 2.000 € netto. Lieferung pauschal 350 € netto pro Auftrag. Floor-Priorität bis 15 m² sicherstellen.</p>
+    </div>
+    <h3>Was der Kunde insgesamt zahlt — Vergleich (netto)</h3>
+    <table>
+      <tr><th>Config</th><th>Alt netto (inkl. Montage)</th><th>Neu netto (Produkt + Montage + Lieferung)</th><th>Differenz</th></tr>
+      <tr><td>Pro-Line 5×3 PC</td><td class="num">4.613 €</td><td class="num">3.168 + 2.000 + 350 = 5.518 €</td><td class="num">+ 905 € (+20&nbsp;%)</td></tr>
+      <tr><td>Pro-Line 6×4 PC</td><td class="num">7.382 €</td><td class="num">5.911 + 2.810 + 350 = 9.071 €</td><td class="num">+ 1.689 € (+23&nbsp;%)</td></tr>
+      <tr><td>Q-Bus Basis</td><td class="num">7.555 €</td><td class="num">6.587 + 2.500 + 350 = 9.437 €</td><td class="num">+ 1.882 € (+25&nbsp;%)</td></tr>
+    </table>
+    <p>Pauschalen netto: Lieferung 350 € · Terrasse Montage ab 2.000 € · Kubus/Q-Bus ab 2.500 € · Carport ab 1.800 € · Markise ab 800 € · Eingang ab 1.000 €.</p>
+    <h3>Verifikations-Checkliste (vor Go-Live)</h3>
+    <ul>
+      <li>5 × 3 m Veranda PC: Floor ~3.168 € netto + 2.000 € Montage + 350 € Lieferung</li>
+      <li>6 × 4 m Veranda PC: ~5.911 € netto + 2.810 € Montage + 350 € Lieferung</li>
+      <li>5 × 3 + VSG: 3.168 + 2.824 = 5.992 € netto (Konfigurator)</li>
+      <li>Q-Bus Basis: ~6.587 € netto + 2.500 € Montage + 350 € Lieferung</li>
+      <li>Keine verbliebenen „inkl. Montage" bei Konfigurator-/Einstiegspreisen</li>
+      <li>Build + Lint ohne Fehler</li>
+    </ul>
+  </div>
+
+  <div class="chapter" id="kapitel-11">
+    <div class="chapter-number">Kapitel 11</div>
+    <h2>SO Aluminium Hersteller-Validierung (Nico)</h2>
+    <p class="lead">Abgleich der Kalkulation mit der Händlerpreisliste <strong>SO Aluminium V.2026.05</strong> (exkl. MwSt.) und den Vorgaben aus dem Gespräch Nico ↔ David, Mai 2026.</p>
+
+    <h3>Vorgaben aus dem Gespräch (verbindlich)</h3>
+    <table>
+      <tr><th>Regel</th><th>Wert</th></tr>
+      <tr><td>Kalkulationsbasis</td><td><strong>Netto</strong> (nicht Brutto zurückrechnen)</td></tr>
+      <tr><td>Produktformel</td><td><code>(Mischpreis netto − Montage − 350 € Lieferung) × 1,40</code></td></tr>
+      <tr><td>Montage Terrasse</td><td class="num"><strong>ab 2.000 €</strong> netto, staffelnd (+90 €/m² ab 16 m²)</td></tr>
+      <tr><td>Montage Kubus / Q-Bus</td><td class="num"><strong>ab 2.500 €</strong> netto</td></tr>
+      <tr><td>Montage Carport</td><td class="num"><strong>ab 1.800 €</strong> netto</td></tr>
+      <tr><td>Montage Markise</td><td class="num"><strong>ab 800 €</strong> netto</td></tr>
+      <tr><td>Montage Eingang</td><td class="num"><strong>ab 1.000 €</strong> netto</td></tr>
+      <tr><td>Lieferung</td><td class="num"><strong>350 €</strong> netto pauschal</td></tr>
+      <tr><td>Ziel-Nettomarge</td><td><strong>30–40&nbsp;%</strong> auf Gesamtauftrag (Produkt + Montage + Lieferung)</td></tr>
+      <tr><td>Verhandlung Fatih</td><td>Provisorisch −15&nbsp;% auf SO-Liste; Ziel <strong>−30&nbsp;%</strong></td></tr>
+    </table>
+
+    <h3>SO-Referenzpreise (Auszug Liste, netto)</h3>
+    <table>
+      <tr><th>Position</th><th>Maß</th><th>SO Händler netto</th><th>Quelle PDF</th></tr>
+      <tr><td>PRO-Line PC Klar/Opal</td><td>5.060 × 3.000 mm</td><td class="num"><strong>1.058 €</strong></td><td>Seite 3</td></tr>
+      <tr><td>PRO-Line PC</td><td>6.060 × 4.000 mm</td><td class="num"><strong>1.387 €</strong></td><td>Seite 3</td></tr>
+      <tr><td>PRO-Line Glasdach VSG Klar</td><td>5.060 × 3.000 mm</td><td class="num"><strong>1.841 €</strong></td><td>Seite 5</td></tr>
+      <tr><td>VSG-Aufpreis (Differenz)</td><td>5 × 3 m</td><td class="num"><strong>783 €</strong></td><td>Seite 5 − 3</td></tr>
+      <tr><td>LUXALINE CUBE Glas Klar</td><td>5.052 × 3.000 mm</td><td class="num"><strong>5.102 €</strong></td><td>Seite 8</td></tr>
+      <tr><td>LUXALINE LOUVRE (Q-Bus)</td><td>~5.000 × 3.000 mm</td><td class="num"><strong>9.791 €</strong></td><td>Seite 9</td></tr>
+      <tr><td>Glas-Schiebewand klar (3-Rail)</td><td>pro Bahn</td><td class="num"><strong>545 €</strong></td><td>Seite 10</td></tr>
+      <tr><td>LED dimmbar 10 Spots</td><td>Set</td><td class="num"><strong>182 €</strong></td><td>Seite 23</td></tr>
+    </table>
+
+    <h3>Margen-Check — Grundprodukte</h3>
+    <p>Berechnung: Gesamt netto = Produkt (Formel) + Montage + 350 €. Kosten = SO-Material + 350 € + Montage (Break-even). Marge = (Gesamt − Kosten) ÷ Gesamt.</p>
+    <table>
+      <tr><th>Produkt</th><th>SO Mat.</th><th>Produkt netto</th><th>Gesamt netto</th><th>Marge @ SO-Liste</th><th>Marge @ −15&nbsp;%</th><th>Marge @ −30&nbsp;%</th><th>Status</th></tr>
+      <tr><td>Pro-Line 5×3 PC</td><td class="num">1.058 €</td><td class="num">3.168 €</td><td class="num">5.518 €</td><td class="num"><strong>38,2&nbsp;%</strong></td><td class="num">41,1&nbsp;%</td><td class="num">44,0&nbsp;%</td><td style="color:var(--green)"><strong>✓ Ziel erreicht</strong></td></tr>
+      <tr><td>Pro-Line 6×4 PC</td><td class="num">1.387 €</td><td class="num">5.911 €</td><td class="num">9.071 €</td><td class="num"><strong>49,9&nbsp;%</strong></td><td class="num">52,2&nbsp;%</td><td class="num">54,5&nbsp;%</td><td style="color:var(--green)"><strong>✓ Ziel erreicht</strong></td></tr>
+      <tr><td>Cube 5×3 Glas</td><td class="num">5.102 €</td><td class="num">4.234 €</td><td class="num">7.084 €</td><td class="num" style="color:var(--red)">−12,3&nbsp;%</td><td class="num" style="color:var(--red)">−1,4&nbsp;%</td><td class="num">9,4&nbsp;%</td><td style="color:var(--red)"><strong>✗ Rabatt nötig</strong></td></tr>
+      <tr><td>Q-Bus 5×3</td><td class="num">9.791 €</td><td class="num">6.587 €</td><td class="num">9.437 €</td><td class="num" style="color:var(--red)">−34,0&nbsp;%</td><td class="num" style="color:var(--red)">−18,4&nbsp;%</td><td class="num" style="color:var(--red)">−2,8&nbsp;%</td><td style="color:var(--red)"><strong>✗ Rabatt nötig</strong></td></tr>
+    </table>
+
+    <div class="warn-box">
+      <h4>Cube &amp; Q-Bus: Marktformel allein reicht nicht</h4>
+      <p>Bei SO-Listenpreis übersteigt das Material den bisherigen Produktanteil in der Mischkalkulation. Selbst mit −30&nbsp;% Fatih-Rabatt bleibt Q-Bus knapp unter Wasser. <strong>Mindest-Produktpreis netto (35&nbsp;% Marge, −30&nbsp;% Einkauf):</strong> Cube ~7.029 € · Q-Bus ~12.079 € — deutlich über Marktformel (4.234 € / 6.587 €).</p>
+      <p><strong>Empfehlung:</strong> Verhandlungsziel Fatih −30 bis −40&nbsp;%. Bis dahin Konfiguratorpreise für Cube/Q-Bus nicht live schalten oder Hybrid-Preis (<code>max(Marktformel, Kosten-Mindestpreis)</code>) nutzen.</p>
+    </div>
+
+    <h3>Margen-Check — Upsells (5×3 Referenz)</h3>
+    <table>
+      <tr><th>Option</th><th>SO Liste</th><th>Neu netto (×1,40)</th><th>Optionsmarge</th><th>Status</th></tr>
+      <tr><td>VSG Klarglas Aufpreis</td><td class="num">783 €</td><td class="num"><strong>2.824 €</strong></td><td class="num">~72&nbsp;%</td><td style="color:var(--green)"><strong>✓</strong></td></tr>
+      <tr><td>Glas-Schiebewand klar (Front)</td><td class="num">545 €</td><td class="num"><strong>3.400 €</strong></td><td class="num">~84&nbsp;%</td><td style="color:var(--green)"><strong>✓</strong></td></tr>
+      <tr><td>LED dimmbar</td><td class="num">182 €</td><td class="num"><strong>1.047 €</strong></td><td class="num">~83&nbsp;%</td><td style="color:var(--green)"><strong>✓</strong></td></tr>
+    </table>
+    <p>Nico: „Geld verdienen über Produkt &amp; Zusatzoptionen" — Upsells sind der Haupt-Marge-Hebel und liegen weit über SO-Einkauf.</p>
+
+    <h3>Nico-Referenzrechnung (Basis-Produkt, intern bestätigt)</h3>
+    <div class="calc-box">
+      <div class="calc-row"><span>Interne Kosten (Material + Montage + Logistik)</span><span>~3.650 € netto</span></div>
+      <div class="calc-row"><span>Einnahmen netto (5×3 Glasdach Basis)</span><span>~6.460 € netto</span></div>
+      <div class="calc-row total"><span>Nettomarge</span><span><strong>~43&nbsp;%</strong> — akzeptabel</span></div>
+      <div class="calc-row"><span>SO Mat. 5×3 PC (Liste) + 350 € + ~2.000 € Montage</span><span>≈ 3.408 € — passt zu Nicos 3.650 €</span></div>
+    </div>
+
+    <h3>Premium-Konfiguration (~20.050 € brutto) — Warnung</h3>
+    <div class="calc-box">
+      <div class="calc-row"><span>Material netto (Fatih, telefonisch)</span><span>~9.150 €</span></div>
+      <div class="calc-row"><span>+ Lieferung</span><span>~650 €</span></div>
+      <div class="calc-row"><span>Nettomarge bei 20.050 € brutto</span><span>~4.000 € (~20&nbsp;%)</span></div>
+    </div>
+    <p>Bei Vollausstattung (Schiebewände, Markise, Glas) ist die Marge deutlich dünner als beim Basisprodukt — hier lohnt sich die ×1,40-Formel für Upsells besonders, aber Fatih-Einkauf muss runter.</p>
+
+    <h3>Implementierung im Code</h3>
+    <table>
+      <tr><th>Datei</th><th>Inhalt</th></tr>
+      <tr><td><code>src/lib/pricing/constants.ts</code></td><td>Montage-Pauschalen, Lieferung 350 €, ×1,40</td></tr>
+      <tr><td><code>src/lib/pricing/so-aluminium-2026-05.ts</code></td><td>SO-Preistabellen (Auszug PDF)</td></tr>
+      <tr><td><code>src/lib/pricing/mixed-to-product.ts</code></td><td><code>repriceBaseFromMixedNet()</code>, <code>repriceUpsellFromGross()</code>, <code>repriceBaseHybrid()</code></td></tr>
+      <tr><td><code>scripts/validate-pricing-so-aluminium.ts</code></td><td>Automatischer Margen-Check</td></tr>
+    </table>
+  </div>
+
+  <div class="chapter" style="text-align:center; color: var(--muted); font-size: 0.85rem;">
+    <p>Erstellt am 23. Mai 2026 · Brait Überdachungen · Preisgestaltung Konfigurator</p>
+    <p>Basis: Marktanalyse Mai 2026, Modell B, aktuelle <code>configurators.ts</code></p>
+  </div>
+
+</div>
+</body>
+</html>

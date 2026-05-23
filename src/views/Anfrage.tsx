@@ -360,7 +360,7 @@ const Anfrage = () => {
                     <span className="text-xs uppercase tracking-widest text-secondary font-bold">Geschätzter Preis</span>
                     <span className="text-2xl md:text-3xl font-headline font-bold text-primary">{formatPrice(config.totalPrice)}</span>
                   </div>
-                  <p className="text-[10px] text-secondary mt-2">inkl. MwSt. & Montage · Endgültiges Angebot nach Beratung</p>
+                  <p className="text-[10px] text-secondary mt-2">inkl. MwSt. · zzgl. Montage · Endgültiges Angebot nach Beratung</p>
                 </div>
               )}
 

@@ -143,18 +143,14 @@ const ConfiguratorEngine = ({ config }: Props) => {
       }
     });
 
-    // Wenn die aktive Dimensions-Konfig einen pricePerArea-Faktor definiert,
-    // wird linear pro Quadratmeter abgerechnet (saubere "ab X €/m²"-Logik).
-    // basePrice wirkt dabei als Floor — kleinere Größen werden nicht unter
-    // den Einstiegspreis gedrückt (z. B. 5.490 € Mindestpreis für Veranda
-    // inkl. Montage, Lieferung, Statik & Wandanschluss — fix unabhängig
-    // von der Quadratmeterzahl).
-    // Sonst fällt der Konfigurator auf die historische Area-Multiplikator-Formel
-    // zurück (Vergleich zur Standardfläche 24 m², gedeckelt nach unten auf 60 %).
+    // Produkt brutto inkl. MwSt., exkl. Montage — basePrice als Floor, optional pricePerArea ab floorAreaM2.
     const pricePerArea = activeDims?.pricePerArea;
+    const floorAreaM2 = activeDims?.floorAreaM2;
     const baseTotal =
       pricePerArea !== undefined && activeDims
-        ? Math.max(base, area * pricePerArea)
+        ? floorAreaM2 !== undefined && area <= floorAreaM2
+          ? base
+          : Math.max(base, area * pricePerArea)
         : base * Math.max(0.6, activeDims ? area / 24 : 1);
 
     return Math.round(baseTotal + surcharges + extrasTotal);
@@ -542,7 +538,7 @@ const ConfiguratorEngine = ({ config }: Props) => {
                 <ChevronDown className={`w-4 h-4 text-primary transition-transform ${showSummary ? "rotate-180" : ""}`} />
                 <div className="text-left">
                   <p className="text-xl md:text-2xl font-headline font-bold text-primary leading-tight">{formatPrice(totalPrice)}</p>
-                  <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-secondary font-bold leading-none mt-0.5">inkl. MwSt. & Montage</p>
+                  <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-secondary font-bold leading-none mt-0.5">inkl. MwSt. · zzgl. Montage</p>
                 </div>
               </button>
 
