@@ -13,7 +13,14 @@ import {
   DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import type { CategoryConfigurator, ConfiguratorStep, SelectCardOption, ColorOption, ExtraOption } from "@/data/configurators";
+import {
+  CONFIGURATOR_PLACEHOLDER,
+  type CategoryConfigurator,
+  type ConfiguratorStep,
+  type SelectCardOption,
+  type ColorOption,
+  type ExtraOption,
+} from "@/data/configurators";
 
 interface Props {
   config: CategoryConfigurator;
@@ -39,6 +46,11 @@ const ConfiguratorEngine = ({ config }: Props) => {
   const [visualizerHovered, setVisualizerHovered] = useState(false);
   /** ID des Steps, der gerade beim Scrollen sichtbar / aktiv ist – dessen Option-Bild wird im Visualizer groß angezeigt */
   const [previewStepId, setPreviewStepId] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Scroll-Spy: Refs auf jeden Step-Container in der Aside, IntersectionObserver wählt den jeweils oberen sichtbaren Step
   const stepRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -194,7 +206,7 @@ const ConfiguratorEngine = ({ config }: Props) => {
   }, [config, selections, previewStepId]);
 
   // Aktuell angezeigtes Hauptbild
-  const activeHero = previewImage ?? composedHero;
+  const activeHero = previewImage ?? composedHero ?? CONFIGURATOR_PLACEHOLDER;
 
   const setSelection = (stepId: string, idx: number) => {
     setSelections((p) => ({ ...p, [stepId]: idx }));
@@ -361,27 +373,18 @@ const ConfiguratorEngine = ({ config }: Props) => {
       <Navbar iconsOnly />
 
       {/* Mobile fixed hero – via Portal direkt in document.body, damit position:fixed garantiert funktioniert */}
-      {createPortal(
+      {mounted && createPortal(
         <div
           ref={mobileHeroRef}
           className="md:hidden fixed top-0 left-0 right-0 z-40 h-72 bg-surface-container-low overflow-hidden"
         >
           <img
-            src={composedHero}
+            src={activeHero}
             alt={config.label}
             className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
             width={1920}
             height={1080}
           />
-          {previewImage && (
-            <img
-              src={previewImage}
-              alt="Detail-Vorschau"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-              width={1920}
-              height={1080}
-            />
-          )}
           {previewStepId && (() => {
             const step = config.steps.find((s) => s.id === previewStepId);
             const opt = step?.options?.[selections[previewStepId] ?? 0];
@@ -406,22 +409,12 @@ const ConfiguratorEngine = ({ config }: Props) => {
         >
           {/* Basis-Komposition (Rinne + Farbe) – füllt den kompletten Container */}
           <img
-            src={composedHero}
+            src={activeHero}
             className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
             alt={config.label}
             width={1920}
             height={1080}
           />
-          {/* Detail-Vorschau (zuletzt gewählte Option) – fadet drüber, sobald aktiv */}
-          {previewImage && (
-            <img
-              src={previewImage}
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100"
-              alt="Detail-Vorschau"
-              width={1920}
-              height={1080}
-            />
-          )}
           <div className="absolute inset-0 bg-foreground/5 pointer-events-none" />
 
           <div
@@ -904,11 +897,16 @@ const SelectCardButton = ({ option, active, onClick }: { option: SelectCardOptio
     onClick={onClick}
     className={`flex items-center gap-3 md:gap-4 p-3 md:p-4 text-left transition-all duration-200 ${active ? "border-2 border-primary bg-primary/5 shadow-md" : "border border-outline-variant/30 hover:border-primary/50 hover:shadow-sm"}`}
   >
-    {option.image && (
-      <div className="shrink-0 w-16 h-16 md:w-20 md:h-20 bg-surface-container-low overflow-hidden">
-        <img src={option.image} alt={option.label} width={80} height={80} className="w-full h-full object-cover" loading="lazy" />
-      </div>
-    )}
+    <div className="shrink-0 w-16 h-16 md:w-20 md:h-20 bg-surface-container-low overflow-hidden">
+      <img
+        src={option.image ?? CONFIGURATOR_PLACEHOLDER}
+        alt={option.label}
+        width={80}
+        height={80}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
     <div className="min-w-0 flex-1">
       <p className="font-headline font-bold text-sm md:text-base">{option.label}</p>
       {option.desc && <p className="text-[11px] md:text-xs text-secondary mt-0.5 md:mt-1">{option.desc}</p>}
