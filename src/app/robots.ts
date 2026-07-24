@@ -2,10 +2,20 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo/site";
 
 /**
- * AI-Crawler werden explizit gelistet — die meisten Anbieter
- * (OpenAI, Anthropic, Perplexity, Google) bevorzugen Sites,
- * die ihre User-Agents ausdrücklich erlauben.
+ * Such- und Social-Crawler bleiben voll zugelassen (SEO/Link-Previews).
+ * KI-Crawler (Training/Answer-Engines) werden von den Konfigurator-Seiten
+ * und den Produkt-Render-Assets ausgesperrt.
  */
+const SEARCH_SOCIAL_CRAWLERS = [
+  "Googlebot",
+  "Bingbot",
+  "DuckDuckBot",
+  "Applebot",
+  "facebookexternalhit",
+  "Twitterbot",
+  "LinkedInBot",
+];
+
 const AI_CRAWLERS = [
   "GPTBot",
   "OAI-SearchBot",
@@ -16,28 +26,42 @@ const AI_CRAWLERS = [
   "PerplexityBot",
   "Perplexity-User",
   "Google-Extended",
-  "Googlebot",
-  "Bingbot",
-  "Applebot",
   "Applebot-Extended",
   "CCBot",
   "cohere-ai",
   "YouBot",
   "Bytespider",
-  "DuckDuckBot",
-  "facebookexternalhit",
-  "Twitterbot",
-  "LinkedInBot",
   "Mistral-Bot",
+  "Meta-ExternalAgent",
+  "Amazonbot",
 ];
 
 const COMMON_DISALLOW = ["/anfrage", "/api/"];
 
+/** Konfigurator-Seiten + zugehoerige Render-/Produktbilder */
+const AI_DISALLOW = [
+  ...COMMON_DISALLOW,
+  "/konfigurator",
+  "/markisen/",
+  "/qbus/",
+  "/veranda/",
+  "/konfigurator-bg.jpg",
+  "/architecture-detail.jpg",
+  "/detail-terrasse.jpg",
+  "/hero-carport.jpg",
+];
+
 export default function robots(): MetadataRoute.Robots {
-  const aiRules: MetadataRoute.Robots["rules"] = AI_CRAWLERS.map((ua) => ({
+  const searchRules: MetadataRoute.Robots["rules"] = SEARCH_SOCIAL_CRAWLERS.map((ua) => ({
     userAgent: ua,
     allow: "/",
     disallow: COMMON_DISALLOW,
+  }));
+
+  const aiRules: MetadataRoute.Robots["rules"] = AI_CRAWLERS.map((ua) => ({
+    userAgent: ua,
+    allow: "/",
+    disallow: AI_DISALLOW,
   }));
 
   return {
@@ -47,6 +71,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: COMMON_DISALLOW,
       },
+      ...searchRules,
       ...aiRules,
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,

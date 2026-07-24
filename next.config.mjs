@@ -56,6 +56,20 @@ const nextConfig = {
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
+      // KI-Crawler/Scraper-Sperre fuer Konfigurator + Render-Assets (ergaenzt robots.txt)
+      ...[
+        "/konfigurator/:path*",
+        "/markisen/:path*",
+        "/qbus/:path*",
+        "/veranda/:path*",
+        "/konfigurator-bg.jpg",
+        "/architecture-detail.jpg",
+        "/detail-terrasse.jpg",
+        "/hero-carport.jpg",
+      ].map((source) => ({
+        source,
+        headers: [{ key: "X-Robots-Tag", value: "noai, noimageai" }],
+      })),
     ];
   },
 };
