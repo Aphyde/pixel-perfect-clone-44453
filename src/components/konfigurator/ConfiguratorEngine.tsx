@@ -109,6 +109,10 @@ const ConfiguratorEngine = ({ config }: Props) => {
         return {
           width: { ...dimsStep.dimensions.width, min: opt.dimensions.minW, max: opt.dimensions.maxW },
           depth: { ...dimsStep.dimensions.depth, min: opt.dimensions.minD, max: opt.dimensions.maxD },
+          pricePerArea: opt.dimensions.pricePerArea ?? dimsStep.dimensions.pricePerArea,
+          floorAreaM2: opt.dimensions.floorAreaM2 ?? dimsStep.dimensions.floorAreaM2,
+          priceIntercept: opt.dimensions.priceIntercept ?? dimsStep.dimensions.priceIntercept,
+          pricePerWidthM: opt.dimensions.pricePerWidthM ?? dimsStep.dimensions.pricePerWidthM,
         };
       }
       return dimsStep.dimensions;
@@ -155,17 +159,23 @@ const ConfiguratorEngine = ({ config }: Props) => {
       }
     });
 
-    // Produkt brutto inkl. MwSt., exkl. Montage — basePrice als Floor, optional pricePerArea ab floorAreaM2.
+    // Produkt brutto inkl. MwSt., exkl. Montage — basePrice als Floor.
+    // Bevorzugt lineares Modell (Erhardt-Fit): max(Floor, Intercept + b·Breite + c·Fläche),
+    // sonst Flächenmodell (Floor + €/m²), sonst Legacy-Skalierung.
     const pricePerArea = activeDims?.pricePerArea;
     const floorAreaM2 = activeDims?.floorAreaM2;
+    const priceIntercept = activeDims?.priceIntercept;
     const baseTotal =
-      pricePerArea !== undefined && activeDims
-        ? floorAreaM2 !== undefined && area <= floorAreaM2
-          ? base
-          : Math.max(base, area * pricePerArea)
-        : base * Math.max(0.6, activeDims ? area / 24 : 1);
+      priceIntercept !== undefined && activeDims
+        ? Math.max(base, priceIntercept + (activeDims.pricePerWidthM ?? 0) * width + (pricePerArea ?? 0) * area)
+        : pricePerArea !== undefined && activeDims
+          ? floorAreaM2 !== undefined && area <= floorAreaM2
+            ? base
+            : Math.max(base, area * pricePerArea)
+          : base * Math.max(0.6, activeDims ? area / 24 : 1);
 
-    return Math.round(baseTotal + surcharges + extrasTotal);
+    // Fit-Kurve auf Marketing-Preise runden (10 €), Zuschläge/Extras sind bereits gerundete Beträge
+    return Math.round(baseTotal / 10) * 10 + surcharges + extrasTotal;
   }, [config, selections, extras, width, depth, activeDims]);
 
   // Aktive Lieferzeit: erste select-cards-Option mit deliveryTime gewinnt, sonst Kategorie-Default

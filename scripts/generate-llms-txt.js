@@ -133,7 +133,7 @@ function renderLlmsFullTxt() {
       url: "/markisen",
       body: [
         "Vier Markisensysteme: Gelenkarm-, Fallarm-, Senkrecht- und Aufglasmarkise. Alle motorisiert (Somfy IO oder Funk), optional mit Sonnen- und Windsensor.",
-        "**Gelenkarmmarkise:** klassische Terrassenmarkise mit zwei Gelenkarmen. Bis 7 m Breite und 4 m Ausfall ohne Mittelstütze. Tuch Sunbrella Acryl 300 g/m² oder Polyester-PVC. Preis 2.200–4.500 € inkl. Montage.",
+        "**Gelenkarmmarkise:** klassische Terrassenmarkise mit zwei Gelenkarmen (Vollkassette). Bis 7 m Breite und 4 m Ausfall ohne Mittelstütze. Preis 4.620–8.150 € zzgl. Montage, je nach Maß.",
         "**Fallarmmarkise:** Vor Fenstern und Schaufenstern. Stufenlos 0–140° neigbar, reduziert Hitze und Blendung um bis zu 80 %.",
         "**Senkrechtmarkise / Zip-Screen:** Tuch läuft senkrecht in Führungsschienen. Zip-Screen mit Reißverschluss in der Schiene ist windstabil bis Windstärke 7.",
         "**Aufglasmarkise:** Wird auf bestehende Glasdächer montiert (Pro-Line, Wintergarten). Kühlt den darunterliegenden Raum um 5–10 °C.",
@@ -144,9 +144,9 @@ function renderLlmsFullTxt() {
       url: "/terrassenueberdachungen",
       body: [
         "Drei Linien: Pro-Line (wandbefestigt), Cube (freistehend), Lamellendach (verstellbar). Alle aus Aluminium 6063 T6, mit VSG-Glas oder verstellbaren Lamellen.",
-        "**Pro-Line:** wandbefestigtes Glasdach. Schmale Sparren 60 × 40 mm, integrierte Regenrinne im Pfosten, bis 7 × 4 m. Preis ab 7.900 € inkl. Montage.",
+        "**Pro-Line:** wandbefestigtes Terrassendach. Schmale Sparren, integrierte Regenrinne im Pfosten, bis 9 × 4,5 m. Preis ab 5.610 € zzgl. Dacheindeckung und Montage (typisch 5 × 3 m: ca. 10.290 €).",
         "**Cube:** freistehende kubische Konstruktion ohne Wandanschluss. Bis 7 × 4,5 m. Ideal für Garten-Lounges. Preis 9.500–12.500 €.",
-        "**Lamellendach:** Aluminium-Lamellen motorisch 0–135° drehbar, wasserdicht schließend. Preis ab 14.000 €. Optional LED entlang der Lamellen, Zip-Screens, Glasschiebewände.",
+        "**Lamellendach:** Aluminium-Lamellen motorisch 0–135° drehbar, wasserdicht schließend. Preis ab 17.560 €. Optional LED entlang der Lamellen, Zip-Screens, Glasschiebewände.",
         "**Glashaus:** Pro-Line oder Cube mit komplett verglasten Wänden (rahmenlose Schiebewände, Festrahmen, Schiebetüren). Unbeheizt — baurechtlich Terrassendach, kein Wintergarten.",
       ],
     },
@@ -156,7 +156,7 @@ function renderLlmsFullTxt() {
       body: [
         "Bioklimatische Pergola mit verstellbarem Aluminium-Lamellendach. Lamellen 0–135° drehbar, wasserdicht schließend, integrierte Wasserableitung in den Pfosten.",
         "Funkfernbedienung serienmäßig, optional Wettersensor (schließt bei Regen automatisch), LED entlang der Lamellen (warm-/kaltweiß/dimmbar), Zip-Screen-Verschattung.",
-        "Maße 3–7 m × 3–4,5 m, Pfosten 15 × 15 cm. Preis 12.500–28.000 € je nach Größe und Ausstattung.",
+        "Maße 2,2–5,5 m × 1,8–4,6 m je Modul, Pfosten 15 × 15 cm. Preis ab 17.560 € (typisch 4 × 3 m: ca. 24.860 €), je nach Größe und Ausstattung.",
       ],
     },
     {

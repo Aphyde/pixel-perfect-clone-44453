@@ -10,10 +10,6 @@ const mUnterglasAnt = "/markisen/variants/unterglas-anthracite.webp";
 const mUnterglasBl = "/markisen/variants/unterglas-black.webp";
 const mUnterglasCr = "/markisen/variants/unterglas-creme.webp";
 const mUnterglasWh = "/markisen/variants/unterglas-white.webp";
-const mPlisseeAnt = "/markisen/variants/plissee-anthracite.webp";
-const mPlisseeBl = "/markisen/variants/plissee-black.webp";
-const mPlisseeCr = "/markisen/variants/plissee-creme.webp";
-const mPlisseeWh = "/markisen/variants/plissee-white.webp";
 const heroSchirm = "/architecture-detail.jpg";
 const qbusAnt = "/qbus/hero/anthracite.webp";
 const qbusBl = "/qbus/hero/black.webp";
@@ -44,7 +40,20 @@ export interface SelectCardOption {
   /** Aufpreis (€); falls Option Preis ändert */
   price?: number;
   /** Wenn das Option auch Min/Max für nachfolgenden dimensions-Step setzt */
-  dimensions?: { minW: number; maxW: number; minD: number; maxD: number };
+  dimensions?: {
+    minW: number;
+    maxW: number;
+    minD: number;
+    maxD: number;
+    /** Typ-eigener Flächenpreis (€/m² brutto); überschreibt den des dimensions-Steps */
+    pricePerArea?: number;
+    /** Bis zu dieser Fläche (m²) gilt der basePrice-Floor exklusiv */
+    floorAreaM2?: number;
+    /** Lineares Preismodell: preis = max(basePrice, priceIntercept + pricePerWidthM·Breite + pricePerArea·Fläche) */
+    priceIntercept?: number;
+    /** € pro Meter Breite (brutto) im linearen Preismodell */
+    pricePerWidthM?: number;
+  };
   /** Modell-spezifischer Basispreis */
   basePrice?: number;
   /** Modell-spezifische Lieferzeit (überschreibt Kategorie-Default), z. B. "8–10 Wochen" */
@@ -62,6 +71,10 @@ export interface DimensionsConfig {
   pricePerArea?: number;
   /** Bis zu dieser Fläche (m²) gilt der basePrice-Floor exklusiv (z. B. 15 für Terrasse). */
   floorAreaM2?: number;
+  /** Lineares Preismodell (Erhardt-Fit): preis = max(basePrice, priceIntercept + pricePerWidthM·Breite + pricePerArea·Fläche) */
+  priceIntercept?: number;
+  /** € pro Meter Breite (brutto) im linearen Preismodell */
+  pricePerWidthM?: number;
 }
 
 export interface ColorOption {
@@ -154,8 +167,8 @@ const markisenConfig: CategoryConfigurator = {
   slug: "markisen",
   label: "Markisen",
   hero: mAufglasAnt,
-  shortDesc: "Aufglas, Unterglas, Plissee oder klassisch – Sonnenschutz nach Maß für Terrasse & Veranda.",
-  basePrice: 750,
+  shortDesc: "Aufglas, Unterglas oder klassisch – Sonnenschutz nach Maß für Terrasse & Veranda.",
+  basePrice: 3400,
   deliveryTime: "2 Wochen",
   // Hero reagiert live auf Gestellfarbe × Markisenart (12 Kombinationen)
   heroVariantStepIds: ["frame", "type"],
@@ -168,10 +181,6 @@ const markisenConfig: CategoryConfigurator = {
     "black|unterglas": mUnterglasBl,
     "creme|unterglas": mUnterglasCr,
     "white|unterglas": mUnterglasWh,
-    "anthracite|plissee": mPlisseeAnt,
-    "black|plissee": mPlisseeBl,
-    "creme|plissee": mPlisseeCr,
-    "white|plissee": mPlisseeWh,
     // Gelenkarm & Senkrecht haben kein Render → fallback auf Aufglas der jeweiligen Farbe
     "anthracite|gelenkarm": mAufglasAnt,
     "black|gelenkarm": mAufglasBl,
@@ -201,11 +210,11 @@ const markisenConfig: CategoryConfigurator = {
       title: "Markisenart",
       type: "select-cards",
       options: [
-        { id: "aufglas", code: "aufglas", label: "Aufglasmarkise", desc: "Sonnenschutz über dem Glasdach – effektivster Hitzeschutz", basePrice: 2140, dimensions: { minW: 2, maxW: 6, minD: 1.5, maxD: 4 }, deliveryTime: "2 Wochen", image: mAufglasAnt },
-        { id: "unterglas", code: "unterglas", label: "Unterglasmarkise", desc: "Innenseitiger Sonnenschutz unter dem Glasdach", basePrice: 1720, dimensions: { minW: 2, maxW: 6, minD: 1.5, maxD: 4 }, deliveryTime: "2 Wochen", image: mUnterglasAnt },
-        { id: "plissee", code: "plissee", label: "Plissee-System", desc: "Faltbarer, innenliegender Lichtfilter zwischen Sparren", basePrice: 690, dimensions: { minW: 1.5, maxW: 5, minD: 1, maxD: 3 }, deliveryTime: "2 Wochen", image: mPlisseeAnt },
-        { id: "gelenkarm", code: "gelenkarm", label: "Gelenkarmmarkise", desc: "Frei stehender Klassiker für Terrasse & Balkon", basePrice: 1450, dimensions: { minW: 2, maxW: 7, minD: 1.5, maxD: 4 }, deliveryTime: "2 Wochen" },
-        { id: "senkrecht", code: "senkrecht", label: "Senkrechtmarkise (Zipscreen)", desc: "Vertikaler Sicht- und Sonnenschutz", basePrice: 470, dimensions: { minW: 1, maxW: 5, minD: 1, maxD: 3 }, deliveryTime: "2 Wochen" },
+        // Preise: Erhardt-UVP-Fit 07/2026 (netto ×1,39 ×1,19 MwSt) — lineares Modell je Typ, basePrice = Floor
+        { id: "aufglas", code: "aufglas", label: "Aufglasmarkise", desc: "Sonnenschutz über dem Glasdach – effektivster Hitzeschutz", basePrice: 3760, dimensions: { minW: 1, maxW: 5, minD: 1.5, maxD: 4, priceIntercept: 3323.26, pricePerWidthM: 256.29, pricePerArea: 120.25 }, deliveryTime: "2 Wochen", image: mAufglasAnt },
+        { id: "unterglas", code: "unterglas", label: "Unterglasmarkise", desc: "Innenseitiger Sonnenschutz unter dem Glasdach", basePrice: 3400, dimensions: { minW: 1, maxW: 6, minD: 1.5, maxD: 4.5, priceIntercept: 3013.8, pricePerWidthM: 225.01, pricePerArea: 109.07 }, deliveryTime: "2 Wochen", image: mUnterglasAnt },
+        { id: "gelenkarm", code: "gelenkarm", label: "Gelenkarmmarkise", desc: "Frei stehender Klassiker für Terrasse & Balkon", basePrice: 4620, dimensions: { minW: 2.5, maxW: 7, minD: 1.5, maxD: 4, priceIntercept: 2824.82, pricePerWidthM: 561.35, pricePerArea: 49.83 }, deliveryTime: "2 Wochen" },
+        { id: "senkrecht", code: "senkrecht", label: "Senkrechtmarkise (Zipscreen)", desc: "Vertikaler Sicht- und Sonnenschutz", basePrice: 3180, dimensions: { minW: 2, maxW: 6, minD: 1.5, maxD: 3, priceIntercept: 2506.35, pricePerWidthM: 136.41, pricePerArea: 131.97 }, deliveryTime: "2 Wochen" },
       ],
     },
     {
@@ -238,9 +247,9 @@ const markisenConfig: CategoryConfigurator = {
       title: "Antrieb",
       type: "radio-icon",
       options: [
-        { id: "kurbel", label: "Handkurbel", price: 0 },
-        { id: "motor", label: "Funkmotor", price: 690 },
-        { id: "motor-sensor", label: "Motor mit Wind/Sonnensensor", price: 1250 },
+        { id: "motor-draht", label: "Drahtgebundener Motor", price: 0 },
+        { id: "motor", label: "Funkmotor (io)", price: 570 },
+        { id: "motor-sensor", label: "Funkmotor mit Wind/Sonnensensor", price: 1040 },
       ],
     },
     {
@@ -249,8 +258,8 @@ const markisenConfig: CategoryConfigurator = {
       title: "Service & Optionen",
       type: "extras-toggle",
       extras: [
-        { id: "led-arm", label: "LED in Profil/Armen", desc: "Stimmungsvolle Abendnutzung", price: 830 },
-        { id: "volant", label: "Volant verstellbar", desc: "Zusätzlicher Blendschutz", price: 410 },
+        { id: "led-arm", label: "LED in Profil/Armen", desc: "Stimmungsvolle Abendnutzung (nur mit Funkmotor)", price: 1090 },
+        { id: "volant", label: "Volant verstellbar", desc: "Zusätzlicher Blendschutz (bis 6,5 m Breite)", price: 3000 },
         { id: "heizstrahler", label: "Heizstrahler-Vorbereitung", desc: "Kabelweg vorinstalliert", price: 340 },
         ...wartungExtrasMarkisen,
       ],
@@ -335,7 +344,8 @@ const qbusConfig: CategoryConfigurator = {
   label: "Q-Bus Lamellen-Pergola",
   hero: qbusAnt,
   shortDesc: "Premium-Lamellen-Pergola: verstellbare Aluminium-Lamellen, LED, Glaswände & Zipscreen frei kombinierbar.",
-  basePrice: 7840,
+  // Erhardt-UVP-Fit 07/2026 (Qube Plus L, Tiefe auf 4,6 m begrenzt — größere Tiefen nur auf Anfrage)
+  basePrice: 17560,
   deliveryTime: "2 Wochen",
   heroVariantStepIds: ["color"],
   heroVariants: {
@@ -363,8 +373,11 @@ const qbusConfig: CategoryConfigurator = {
       title: "Maße (Breite × Tiefe)",
       type: "dimensions",
       dimensions: {
-        width: { min: 3, max: 7, default: 5, label: "Breite" },
-        depth: { min: 3, max: 4.5, default: 3, label: "Tiefe" },
+        width: { min: 2.2, max: 5.5, default: 4.5, label: "Breite" },
+        depth: { min: 1.8, max: 4.6, default: 3, label: "Tiefe" },
+        priceIntercept: 14073.6,
+        pricePerWidthM: -79.69,
+        pricePerArea: 925.06,
       },
     },
     {
@@ -374,12 +387,12 @@ const qbusConfig: CategoryConfigurator = {
       type: "select-cards",
       options: [
         { id: "front-open", label: "Offen", desc: "Klassisch, freier Durchgang", price: 0, image: qbusImg("front/none.webp") },
-        { id: "front-schiebepui", label: "Schiebetür-System", desc: "Eleganter Übergang in den Garten", price: 3790, image: qbusImg("front/SchuifPuiVoor.001.webp") },
-        { id: "front-schiebewand", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 3790, image: qbusImg("front/SchuifWandenVoor.001.webp") },
-        { id: "front-schiebewand-tint", label: "Glas-Schiebewände getönt", desc: "Vollverglasung, getönt", price: 3790, image: qbusImg("front/SchuifWandenTintVoor.001.webp") },
-        { id: "front-glas", label: "Festes Glaselement", desc: "Festrahmen mit VSG-Glas", price: 1810, image: qbusImg("front/ZijwandGlas.013.webp") },
-        { id: "front-poly", label: "Festes Polycarbonat", desc: "Festrahmen, leichter & günstiger", price: 1390, image: qbusImg("front/ZijwandPoly.005.webp") },
-        { id: "front-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert (Alu-Schaum-Alu)", price: 2090, image: qbusImg("front/Sandwich.004.webp") },
+        { id: "front-schiebepui", label: "Schiebetür-System", desc: "Eleganter Übergang in den Garten", price: 5750, image: qbusImg("front/SchuifPuiVoor.001.webp") },
+        { id: "front-schiebewand", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 5750, image: qbusImg("front/SchuifWandenVoor.001.webp") },
+        { id: "front-schiebewand-tint", label: "Glas-Schiebewände satiniert", desc: "Vollverglasung, satiniert", price: 7670, image: qbusImg("front/SchuifWandenTintVoor.001.webp") },
+        { id: "front-glas", label: "Festes Glaselement", desc: "Festrahmen mit VSG-Glas", price: 2570, image: qbusImg("front/ZijwandGlas.013.webp") },
+        { id: "front-poly", label: "Festes Polycarbonat", desc: "Festrahmen, leichter & günstiger", price: 2570, image: qbusImg("front/ZijwandPoly.005.webp") },
+        { id: "front-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert (Alu-Schaum-Alu)", price: 12000, image: qbusImg("front/Sandwich.004.webp") },
       ],
     },
     {
@@ -389,12 +402,12 @@ const qbusConfig: CategoryConfigurator = {
       type: "select-cards",
       options: [
         { id: "back-open", label: "Offen", desc: "Wandanschluss ohne Abschluss", price: 0, image: qbusImg("back/none.webp") },
-        { id: "back-schiebepui", label: "Schiebetür-System", desc: "Eleganter Übergang", price: 3790, image: qbusImg("back/SchuifPuiVoor.002.webp") },
-        { id: "back-schiebewand", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 3790, image: qbusImg("back/SchuifWandenVoor.002.webp") },
-        { id: "back-schiebewand-tint", label: "Glas-Schiebewände getönt", desc: "Vollverglasung, getönt", price: 3790, image: qbusImg("back/SchuifWandenTintVoor.002.webp") },
-        { id: "back-glas", label: "Festes Glaselement", desc: "Festrahmen mit VSG-Glas", price: 1810, image: qbusImg("back/ZijwandGlas.014.webp") },
-        { id: "back-poly", label: "Festes Polycarbonat", desc: "Festrahmen, leichter & günstiger", price: 1390, image: qbusImg("back/ZijwandPoly.006.webp") },
-        { id: "back-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert (Alu-Schaum-Alu)", price: 2090, image: qbusImg("back/Sandwich.005.webp") },
+        { id: "back-schiebepui", label: "Schiebetür-System", desc: "Eleganter Übergang", price: 5750, image: qbusImg("back/SchuifPuiVoor.002.webp") },
+        { id: "back-schiebewand", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 5750, image: qbusImg("back/SchuifWandenVoor.002.webp") },
+        { id: "back-schiebewand-tint", label: "Glas-Schiebewände satiniert", desc: "Vollverglasung, satiniert", price: 7670, image: qbusImg("back/SchuifWandenTintVoor.002.webp") },
+        { id: "back-glas", label: "Festes Glaselement", desc: "Festrahmen mit VSG-Glas", price: 2570, image: qbusImg("back/ZijwandGlas.014.webp") },
+        { id: "back-poly", label: "Festes Polycarbonat", desc: "Festrahmen, leichter & günstiger", price: 2570, image: qbusImg("back/ZijwandPoly.006.webp") },
+        { id: "back-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert (Alu-Schaum-Alu)", price: 12000, image: qbusImg("back/Sandwich.005.webp") },
       ],
     },
     {
@@ -404,12 +417,12 @@ const qbusConfig: CategoryConfigurator = {
       type: "select-cards",
       options: [
         { id: "left-open", label: "Offen", desc: "Keine Seitenwand", price: 0, image: qbusImg("left/none.webp") },
-        { id: "left-schiebepui", label: "Schiebetür-System", desc: "Eleganter Übergang", price: 3790, image: qbusImg("left/GlazenSchuifpui.003.webp") },
-        { id: "left-schiebewand", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 3790, image: qbusImg("left/GlazenSchuifwand.003.webp") },
-        { id: "left-schiebewand-tint", label: "Glas-Schiebewände getönt", desc: "Vollverglasung, getönt", price: 3790, image: qbusImg("left/GlazenSchuifwandGetint.001.webp") },
-        { id: "left-glas", label: "Festes Glaselement", desc: "Festrahmen mit VSG-Glas", price: 1810, image: qbusImg("left/ZijwandGlas.007.webp") },
-        { id: "left-poly", label: "Festes Polycarbonat", desc: "Festrahmen, leichter & günstiger", price: 1390, image: qbusImg("left/ZijwandPoly.003.webp") },
-        { id: "left-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert (Alu-Schaum-Alu)", price: 2090, image: qbusImg("left/Sandwich.002.webp") },
+        { id: "left-schiebepui", label: "Schiebetür-System", desc: "Eleganter Übergang", price: 5750, image: qbusImg("left/GlazenSchuifpui.003.webp") },
+        { id: "left-schiebewand", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 5750, image: qbusImg("left/GlazenSchuifwand.003.webp") },
+        { id: "left-schiebewand-tint", label: "Glas-Schiebewände satiniert", desc: "Vollverglasung, satiniert", price: 7670, image: qbusImg("left/GlazenSchuifwandGetint.001.webp") },
+        { id: "left-glas", label: "Festes Glaselement", desc: "Festrahmen mit VSG-Glas", price: 2570, image: qbusImg("left/ZijwandGlas.007.webp") },
+        { id: "left-poly", label: "Festes Polycarbonat", desc: "Festrahmen, leichter & günstiger", price: 2570, image: qbusImg("left/ZijwandPoly.003.webp") },
+        { id: "left-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert (Alu-Schaum-Alu)", price: 12000, image: qbusImg("left/Sandwich.002.webp") },
       ],
     },
     {
@@ -419,12 +432,12 @@ const qbusConfig: CategoryConfigurator = {
       type: "select-cards",
       options: [
         { id: "right-open", label: "Offen", desc: "Keine Seitenwand", price: 0, image: qbusImg("right/none.webp") },
-        { id: "right-schiebepui", label: "Schiebetür-System", desc: "Eleganter Übergang", price: 3790, image: qbusImg("right/GlazenSchuifpui.001.webp") },
-        { id: "right-schiebewand", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 3790, image: qbusImg("right/GlazenSchuifwand.001.webp") },
-        { id: "right-schiebewand-tint", label: "Glas-Schiebewände getönt", desc: "Vollverglasung, getönt", price: 3790, image: qbusImg("right/GlazenSchuifwandGetint.002.webp") },
-        { id: "right-glas", label: "Festes Glaselement", desc: "Festrahmen mit VSG-Glas", price: 1810, image: qbusImg("right/ZijwandGlas.012.webp") },
-        { id: "right-poly", label: "Festes Polycarbonat", desc: "Festrahmen, leichter & günstiger", price: 1390, image: qbusImg("right/ZijwandPoly.004.webp") },
-        { id: "right-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert (Alu-Schaum-Alu)", price: 2090, image: qbusImg("right/Sandwich.003.webp") },
+        { id: "right-schiebepui", label: "Schiebetür-System", desc: "Eleganter Übergang", price: 5750, image: qbusImg("right/GlazenSchuifpui.001.webp") },
+        { id: "right-schiebewand", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 5750, image: qbusImg("right/GlazenSchuifwand.001.webp") },
+        { id: "right-schiebewand-tint", label: "Glas-Schiebewände satiniert", desc: "Vollverglasung, satiniert", price: 7670, image: qbusImg("right/GlazenSchuifwandGetint.002.webp") },
+        { id: "right-glas", label: "Festes Glaselement", desc: "Festrahmen mit VSG-Glas", price: 2570, image: qbusImg("right/ZijwandGlas.012.webp") },
+        { id: "right-poly", label: "Festes Polycarbonat", desc: "Festrahmen, leichter & günstiger", price: 2570, image: qbusImg("right/ZijwandPoly.004.webp") },
+        { id: "right-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert (Alu-Schaum-Alu)", price: 12000, image: qbusImg("right/Sandwich.003.webp") },
       ],
     },
     {
@@ -434,37 +447,28 @@ const qbusConfig: CategoryConfigurator = {
       type: "radio-icon",
       options: [
         { id: "led-none", label: "Keine Beleuchtung", price: 0, image: qbusImg("lights/none.webp") },
-        { id: "led-cold", label: "LED Kaltweiß", price: 830, image: qbusImg("lights/LightsCold.webp") },
-        { id: "led-warm", label: "LED Warmweiß", price: 830, image: qbusImg("lights/LightsWarm.webp") },
-        { id: "led-dim", label: "LED Dimmbar (Funk)", price: 1250, image: qbusImg("lights/LightsDim.webp") },
+        { id: "led-cold", label: "LED Kaltweiß (dimmbar)", price: 3440, image: qbusImg("lights/LightsCold.webp") },
+        { id: "led-warm", label: "LED Warmweiß (dimmbar)", price: 3440, image: qbusImg("lights/LightsWarm.webp") },
+        { id: "led-dim", label: "LED dimmbar + 9-Kanal-Funk", price: 3680, image: qbusImg("lights/LightsDim.webp") },
       ],
     },
-    {
-      id: "motor",
-      num: "08",
-      title: "Lamellen-Steuerung",
-      type: "radio-icon",
-      options: [
-        { id: "motor-manual", label: "Handkurbel", price: 0 },
-        { id: "motor-auto", label: "Funk-Motor (mit Fernbedienung)", price: 990 },
-      ],
-    },
+    // Lamellen-Steuerung entfernt: Funk-Motor ist bei Qube Plus im Grundpreis enthalten
     {
       id: "screen",
-      num: "09",
+      num: "08",
       title: "Zipscreen-Position",
       type: "radio-icon",
       options: [
         { id: "screen-none", label: "Kein Zipscreen", price: 0, image: qbusImg("screen/none.webp") },
-        { id: "screen-front", label: "Vorderseite", price: 3260, image: qbusImg("screen/front.webp") },
-        { id: "screen-back", label: "Rückseite", price: 3260, image: qbusImg("screen/back.webp") },
-        { id: "screen-left", label: "Linke Seite", price: 3260, image: qbusImg("screen/left.webp") },
-        { id: "screen-right", label: "Rechte Seite", price: 3260, image: qbusImg("screen/right.webp") },
+        { id: "screen-front", label: "Vorderseite", price: 4600, image: qbusImg("screen/front.webp") },
+        { id: "screen-back", label: "Rückseite", price: 4600, image: qbusImg("screen/back.webp") },
+        { id: "screen-left", label: "Linke Seite", price: 4600, image: qbusImg("screen/left.webp") },
+        { id: "screen-right", label: "Rechte Seite", price: 4600, image: qbusImg("screen/right.webp") },
       ],
     },
     {
       id: "extras",
-      num: "10",
+      num: "09",
       title: "Service & Optionen",
       type: "extras-toggle",
       extras: [
@@ -655,9 +659,9 @@ const verandaConfig: CategoryConfigurator = {
   label: "Terrassenüberdachungen",
   hero: verandaHalfrondAnthracite,
   shortDesc: "Premium-Terrassenüberdachung – Rinne, Farbe, Dach, Wände, LED & Sonnenschutz live konfigurieren.",
-  // Preislogik Mai 2026 (Nico): Produkt brutto inkl. MwSt. · zzgl. Montage & Lieferung.
-  // Floor 3.790 € (5×3 m) · 290 €/m² ab >15 m² · gerundete Marketing-Preise
-  basePrice: 3790,
+  // Preislogik 07/2026: Erhardt-UVP-Fit (T150 85 kg inkl. Rinne/Fallrohr, netto ×1,39 ×1,19 MwSt).
+  // Produkt brutto inkl. MwSt. · zzgl. Montage & Lieferung · Dacheindeckung separat kalkuliert.
+  basePrice: 5610,
   deliveryTime: "2 Wochen",
   heroVariantStepIds: ["gutter", "color"],
   heroVariants: {
@@ -685,7 +689,7 @@ const verandaConfig: CategoryConfigurator = {
       title: "Regenrinnen-Profil",
       type: "select-cards",
       options: [
-        { id: "recht", code: "recht", label: "Gerade Rinne", desc: "Klares Box-Profil, kubische Optik", price: 310, image: vGutterRecht },
+        { id: "recht", code: "recht", label: "Gerade Rinne", desc: "Klares Box-Profil, kubische Optik (Q150)", price: 190, image: vGutterRecht },
         { id: "halfrond", code: "halfrond", label: "Halbrunde Rinne", desc: "Klassiker, weiche Linienführung", price: 0, image: vGutterHalf },
         { id: "modern", code: "modern", label: "Moderne Rinne", desc: "Schlankes, modernes Profil", price: 0, image: vGutterMod },
         { id: "sier", code: "sier", label: "Zier-Rinne", desc: "Dekoratives Sims-Profil", price: 0, image: vGutterSier },
@@ -709,11 +713,11 @@ const verandaConfig: CategoryConfigurator = {
       title: "Maße (Breite × Tiefe)",
       type: "dimensions",
       dimensions: {
-        // Floor 3.790 € brutto bis 15 m² (5×3). Darüber 290 €/m² brutto.
         width: { min: 2.5, max: 9, default: 5, label: "Breite" },
         depth: { min: 2, max: 4.5, default: 3, label: "Tiefe" },
-        pricePerArea: 290,
-        floorAreaM2: 15,
+        priceIntercept: 2487.37,
+        pricePerWidthM: 629.23,
+        pricePerArea: 310.58,
       },
     },
     {
@@ -737,9 +741,9 @@ const verandaConfig: CategoryConfigurator = {
       type: "select-cards",
       options: [
         { id: "open", label: "Offen", desc: "Klassische Veranda, freier Durchgang", price: 0, image: verandaImg("front/105db456-543f-4503-8ef5-40f2d396e269.webp") },
-        { id: "schiebewand-klar", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 4050, image: verandaImg("front/d222dac9-529a-4c1d-87ee-ffbd69d0a8f6.webp") },
-        { id: "schiebewand-tint", label: "Glas-Schiebewände getönt", desc: "Vollverglasung, getönt", price: 4610, image: verandaImg("front/9827a863-e33a-4eab-8cd6-097aa6c61333.webp") },
-        { id: "schiebetuer", label: "Schiebetür", desc: "Eleganter Übergang in den Garten", price: 2650, image: verandaImg("front/c84b71ea-6699-4fd9-8562-08dfc92614cf.webp") },
+        { id: "schiebewand-klar", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 5750, image: verandaImg("front/d222dac9-529a-4c1d-87ee-ffbd69d0a8f6.webp") },
+        { id: "schiebewand-tint", label: "Glas-Schiebewände satiniert", desc: "Vollverglasung, satiniert", price: 7670, image: verandaImg("front/9827a863-e33a-4eab-8cd6-097aa6c61333.webp") },
+        { id: "schiebetuer", label: "Schiebetür", desc: "Eleganter Übergang in den Garten", price: 5750, image: verandaImg("front/c84b71ea-6699-4fd9-8562-08dfc92614cf.webp") },
       ],
     },
     {
@@ -749,19 +753,19 @@ const verandaConfig: CategoryConfigurator = {
       type: "select-cards",
       options: [
         { id: "lw-open", label: "Offen", desc: "Keine Seitenwand", price: 0, image: verandaImg("walls-left/33ecc566-3cfd-4651-939d-5132ae70b2be.webp") },
-        { id: "lw-glas-tuer", label: "Glas-Seitenwand mit Tür", desc: "Festes Glas + Drehtür", price: 2390, image: verandaImg("walls-left/53116f7e-ade4-4935-937c-946bdd821fce.webp") },
-        { id: "lw-glas", label: "Glas-Seitenwand komplett", desc: "Vollglas-Modul", price: 1810, image: verandaImg("walls-left/dfc4d02d-e244-4a4b-b144-e2def1758bf5.webp") },
-        { id: "lw-poly", label: "Polycarbonat Seitenwand", desc: "Komplett geschlossen", price: 990, image: verandaImg("walls-left/1daeb7b5-a22d-4edb-a33e-a570d5dbd028.webp") },
-        { id: "lw-alu-glas-keil", label: "Alu-Wand mit Glas-Keil", desc: "Sandwich-Paneel + Glas oben", price: 1690, image: verandaImg("walls-left/ada93be7-41e4-4a6f-850a-8fdd960a2f3b.webp") },
-        { id: "lw-alu-poly-keil", label: "Alu-Wand mit Polycarbonat-Keil", desc: "Sandwich-Paneel + PC oben", price: 1390, image: verandaImg("walls-left/71f62d80-faf3-4e65-9987-99a4742d1c17.webp") },
-        { id: "lw-schiebepui-glas-keil", label: "Schiebetür + Glas-Keil", desc: "Mit Glas-Keil", price: 3350, image: verandaImg("walls-left/81074a7b-524f-4c99-a837-77450505d438.webp") },
-        { id: "lw-schiebepui-poly-keil", label: "Schiebetür + Polycarbonat-Keil", desc: "Mit PC-Keil", price: 3090, image: verandaImg("walls-left/2750e21f-b3a6-4c90-8026-37a97aa96538.webp") },
-        { id: "lw-schiebewand-glas-keil", label: "Glas-Schiebewände + Glas-Keil", desc: "Vollverglasung + Keil", price: 3630, image: verandaImg("walls-left/566a94ea-446b-416f-b652-f02b00466053.webp") },
-        { id: "lw-schiebewand-poly-keil", label: "Glas-Schiebewände + Polycarbonat-Keil", desc: "Vollverglasung + PC-Keil", price: 3350, image: verandaImg("walls-left/c368ed92-63b3-4ead-844c-d7facdc825a6.webp") },
-        { id: "lw-keil-glas", label: "Nur Keil aus Glas", desc: "Oberer Glas-Keil, Wand offen", price: 830, image: verandaImg("walls-left/c19e6442-6443-4ff8-a521-a5e19ea997c2.webp") },
-        { id: "lw-keil-poly", label: "Nur Keil aus Polycarbonat", desc: "Oberer PC-Keil, Wand offen", price: 550, image: verandaImg("walls-left/5b46e8e2-5c2d-4f85-baf3-acade0cb10fe.webp") },
-        { id: "lw-keil-alu", label: "Nur Keil aus Aluminium", desc: "Geschlossener Alu-Keil", price: 410, image: verandaImg("walls-left/d43cb4fc-33a4-466f-8092-34861c78bec5.webp") },
-        { id: "lw-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert", price: 1250, image: verandaImg("walls-left/b3f39d47-edc3-4da4-9d86-816b73be24d9.webp") },
+        { id: "lw-glas-tuer", label: "Glas-Seitenwand mit Tür", desc: "Festes Glas + Drehtür", price: 5660, image: verandaImg("walls-left/53116f7e-ade4-4935-937c-946bdd821fce.webp") },
+        { id: "lw-glas", label: "Glas-Seitenwand komplett", desc: "Vollglas-Modul", price: 1920, image: verandaImg("walls-left/dfc4d02d-e244-4a4b-b144-e2def1758bf5.webp") },
+        { id: "lw-poly", label: "Polycarbonat Seitenwand", desc: "Komplett geschlossen", price: 1920, image: verandaImg("walls-left/1daeb7b5-a22d-4edb-a33e-a570d5dbd028.webp") },
+        { id: "lw-alu-glas-keil", label: "Alu-Wand mit Glas-Keil", desc: "Sandwich-Paneel + Glas oben", price: 9210, image: verandaImg("walls-left/ada93be7-41e4-4a6f-850a-8fdd960a2f3b.webp") },
+        { id: "lw-alu-poly-keil", label: "Alu-Wand mit Polycarbonat-Keil", desc: "Sandwich-Paneel + PC oben", price: 9210, image: verandaImg("walls-left/71f62d80-faf3-4e65-9987-99a4742d1c17.webp") },
+        { id: "lw-schiebepui-glas-keil", label: "Schiebetür + Glas-Keil", desc: "Mit Glas-Keil", price: 6890, image: verandaImg("walls-left/81074a7b-524f-4c99-a837-77450505d438.webp") },
+        { id: "lw-schiebepui-poly-keil", label: "Schiebetür + Polycarbonat-Keil", desc: "Mit PC-Keil", price: 6890, image: verandaImg("walls-left/2750e21f-b3a6-4c90-8026-37a97aa96538.webp") },
+        { id: "lw-schiebewand-glas-keil", label: "Glas-Schiebewände + Glas-Keil", desc: "Vollverglasung + Keil", price: 6890, image: verandaImg("walls-left/566a94ea-446b-416f-b652-f02b00466053.webp") },
+        { id: "lw-schiebewand-poly-keil", label: "Glas-Schiebewände + Polycarbonat-Keil", desc: "Vollverglasung + PC-Keil", price: 6890, image: verandaImg("walls-left/c368ed92-63b3-4ead-844c-d7facdc825a6.webp") },
+        { id: "lw-keil-glas", label: "Nur Keil aus Glas", desc: "Oberer Glas-Keil, Wand offen", price: 1140, image: verandaImg("walls-left/c19e6442-6443-4ff8-a521-a5e19ea997c2.webp") },
+        { id: "lw-keil-poly", label: "Nur Keil aus Polycarbonat", desc: "Oberer PC-Keil, Wand offen", price: 1140, image: verandaImg("walls-left/5b46e8e2-5c2d-4f85-baf3-acade0cb10fe.webp") },
+        { id: "lw-keil-alu", label: "Nur Keil aus Aluminium", desc: "Geschlossener Alu-Keil", price: 1140, image: verandaImg("walls-left/d43cb4fc-33a4-466f-8092-34861c78bec5.webp") },
+        { id: "lw-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert", price: 8070, image: verandaImg("walls-left/b3f39d47-edc3-4da4-9d86-816b73be24d9.webp") },
       ],
     },
     {
@@ -771,19 +775,19 @@ const verandaConfig: CategoryConfigurator = {
       type: "select-cards",
       options: [
         { id: "rw-open", label: "Offen", desc: "Keine Seitenwand", price: 0, image: verandaImg("walls-right/6af2f6da-33d7-4cbf-81cf-d16b6ed568c4.webp") },
-        { id: "rw-glas-tuer", label: "Glas-Seitenwand mit Tür", desc: "Festes Glas + Drehtür", price: 2390, image: verandaImg("walls-right/779a8571-b648-401a-8a33-79292271180e.webp") },
-        { id: "rw-glas", label: "Glas-Seitenwand komplett", desc: "Vollglas-Modul", price: 1810, image: verandaImg("walls-right/63c0da72-9bce-4c6e-a761-cd2062eb9642.webp") },
-        { id: "rw-poly", label: "Polycarbonat Seitenwand", desc: "Komplett geschlossen", price: 990, image: verandaImg("walls-right/418ca24f-239a-4e96-8e7e-a4d8cfad8a86.webp") },
-        { id: "rw-alu-glas-keil", label: "Alu-Wand mit Glas-Keil", desc: "Sandwich-Paneel + Glas oben", price: 1690, image: verandaImg("walls-right/741e6fde-01f5-4744-881a-d36830c7a669.webp") },
-        { id: "rw-alu-poly-keil", label: "Alu-Wand mit Polycarbonat-Keil", desc: "Sandwich-Paneel + PC oben", price: 1390, image: verandaImg("walls-right/ec383245-a7c8-40ee-b1c5-93b6a0b04100.webp") },
-        { id: "rw-schiebepui-glas-keil", label: "Schiebetür + Glas-Keil", desc: "Mit Glas-Keil", price: 3350, image: verandaImg("walls-right/df769a19-79d3-4300-9341-daee1eeec78e.webp") },
-        { id: "rw-schiebepui-poly-keil", label: "Schiebetür + Polycarbonat-Keil", desc: "Mit PC-Keil", price: 3090, image: verandaImg("walls-right/81b8354b-58fa-4df5-b7c0-18ccd0f89182.webp") },
-        { id: "rw-schiebewand-glas-keil", label: "Glas-Schiebewände + Glas-Keil", desc: "Vollverglasung + Keil", price: 3630, image: verandaImg("walls-right/348f05ee-b513-4e35-9df1-86f1fd3398fd.webp") },
-        { id: "rw-schiebewand-poly-keil", label: "Glas-Schiebewände + Polycarbonat-Keil", desc: "Vollverglasung + PC-Keil", price: 3350, image: verandaImg("walls-right/c8bc7665-ada6-4ca9-8bfb-c363cc2de2b8.webp") },
-        { id: "rw-keil-glas", label: "Nur Keil aus Glas", desc: "Oberer Glas-Keil, Wand offen", price: 830, image: verandaImg("walls-right/00f30151-2183-4350-b508-52bc99c56e75.webp") },
-        { id: "rw-keil-poly", label: "Nur Keil aus Polycarbonat", desc: "Oberer PC-Keil, Wand offen", price: 550, image: verandaImg("walls-right/82e56e1a-ee7f-45ec-b08e-2d72f9b6427b.webp") },
-        { id: "rw-keil-alu", label: "Nur Keil aus Aluminium", desc: "Geschlossener Alu-Keil", price: 410, image: verandaImg("walls-right/c922df5c-bb2a-463f-90bc-05fa54d0630f.webp") },
-        { id: "rw-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert", price: 1250, image: verandaImg("walls-right/e783c4de-2cec-41ab-a443-9bebd673d991.webp") },
+        { id: "rw-glas-tuer", label: "Glas-Seitenwand mit Tür", desc: "Festes Glas + Drehtür", price: 5660, image: verandaImg("walls-right/779a8571-b648-401a-8a33-79292271180e.webp") },
+        { id: "rw-glas", label: "Glas-Seitenwand komplett", desc: "Vollglas-Modul", price: 1920, image: verandaImg("walls-right/63c0da72-9bce-4c6e-a761-cd2062eb9642.webp") },
+        { id: "rw-poly", label: "Polycarbonat Seitenwand", desc: "Komplett geschlossen", price: 1920, image: verandaImg("walls-right/418ca24f-239a-4e96-8e7e-a4d8cfad8a86.webp") },
+        { id: "rw-alu-glas-keil", label: "Alu-Wand mit Glas-Keil", desc: "Sandwich-Paneel + Glas oben", price: 9210, image: verandaImg("walls-right/741e6fde-01f5-4744-881a-d36830c7a669.webp") },
+        { id: "rw-alu-poly-keil", label: "Alu-Wand mit Polycarbonat-Keil", desc: "Sandwich-Paneel + PC oben", price: 9210, image: verandaImg("walls-right/ec383245-a7c8-40ee-b1c5-93b6a0b04100.webp") },
+        { id: "rw-schiebepui-glas-keil", label: "Schiebetür + Glas-Keil", desc: "Mit Glas-Keil", price: 6890, image: verandaImg("walls-right/df769a19-79d3-4300-9341-daee1eeec78e.webp") },
+        { id: "rw-schiebepui-poly-keil", label: "Schiebetür + Polycarbonat-Keil", desc: "Mit PC-Keil", price: 6890, image: verandaImg("walls-right/81b8354b-58fa-4df5-b7c0-18ccd0f89182.webp") },
+        { id: "rw-schiebewand-glas-keil", label: "Glas-Schiebewände + Glas-Keil", desc: "Vollverglasung + Keil", price: 6890, image: verandaImg("walls-right/348f05ee-b513-4e35-9df1-86f1fd3398fd.webp") },
+        { id: "rw-schiebewand-poly-keil", label: "Glas-Schiebewände + Polycarbonat-Keil", desc: "Vollverglasung + PC-Keil", price: 6890, image: verandaImg("walls-right/c8bc7665-ada6-4ca9-8bfb-c363cc2de2b8.webp") },
+        { id: "rw-keil-glas", label: "Nur Keil aus Glas", desc: "Oberer Glas-Keil, Wand offen", price: 1140, image: verandaImg("walls-right/00f30151-2183-4350-b508-52bc99c56e75.webp") },
+        { id: "rw-keil-poly", label: "Nur Keil aus Polycarbonat", desc: "Oberer PC-Keil, Wand offen", price: 1140, image: verandaImg("walls-right/82e56e1a-ee7f-45ec-b08e-2d72f9b6427b.webp") },
+        { id: "rw-keil-alu", label: "Nur Keil aus Aluminium", desc: "Geschlossener Alu-Keil", price: 1140, image: verandaImg("walls-right/c922df5c-bb2a-463f-90bc-05fa54d0630f.webp") },
+        { id: "rw-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert", price: 8070, image: verandaImg("walls-right/e783c4de-2cec-41ab-a443-9bebd673d991.webp") },
       ],
     },
     {
@@ -793,9 +797,9 @@ const verandaConfig: CategoryConfigurator = {
       type: "radio-icon",
       options: [
         { id: "light-none", label: "Keine Beleuchtung", price: 0, image: verandaImg("lighting/a47e748d-69e2-4fe7-97b2-78443e25ff3e.webp") },
-        { id: "light-cold", label: "LED Kaltweiß", price: 830, image: verandaImg("lighting/0ceb7929-e143-49e1-a23f-394c9eec3c5d.webp") },
-        { id: "light-warm", label: "LED Warmweiß", price: 830, image: verandaImg("lighting/d41af972-2fe8-428d-8996-976f3db0097e.webp") },
-        { id: "light-dim", label: "LED dimmbar (Funk)", price: 1250, image: verandaImg("lighting/160de327-7e39-4ea5-988c-5f7c38963bd5.webp") },
+        { id: "light-cold", label: "LED Kaltweiß", price: 1600, image: verandaImg("lighting/0ceb7929-e143-49e1-a23f-394c9eec3c5d.webp") },
+        { id: "light-warm", label: "LED Warmweiß", price: 1600, image: verandaImg("lighting/d41af972-2fe8-428d-8996-976f3db0097e.webp") },
+        { id: "light-dim", label: "LED dimmbar (Funk)", price: 2030, image: verandaImg("lighting/160de327-7e39-4ea5-988c-5f7c38963bd5.webp") },
       ],
     },
     {
@@ -805,9 +809,8 @@ const verandaConfig: CategoryConfigurator = {
       type: "radio-icon",
       options: [
         { id: "sun-none", label: "Kein Sonnenschutz", price: 0, image: verandaImg("sunshade/f01e14ee-0433-4360-a202-7b460eb52aba.webp") },
-        { id: "sun-top", label: "Über-Dach Sonnenschutz", price: 2650, image: verandaImg("sunshade/bd57abb5-3ba7-43e1-bb19-6a28f676e22e.webp") },
-        { id: "sun-under", label: "Unter-Dach Sonnenschutz", price: 2090, image: verandaImg("sunshade/b305fabd-c8e7-4592-b1e6-1a8d353efd54.webp") },
-        { id: "sun-plisse", label: "Plissee (manuell)", price: 1390, image: verandaImg("sunshade/1c3de430-5dfa-4c93-9ae5-cfc124999dba.webp") },
+        { id: "sun-top", label: "Über-Dach Sonnenschutz (Aufglasmarkise)", price: 6960, image: verandaImg("sunshade/bd57abb5-3ba7-43e1-bb19-6a28f676e22e.webp") },
+        { id: "sun-under", label: "Unter-Dach Sonnenschutz (Unterglasmarkise)", price: 6330, image: verandaImg("sunshade/b305fabd-c8e7-4592-b1e6-1a8d353efd54.webp") },
       ],
     },
     {
@@ -817,9 +820,9 @@ const verandaConfig: CategoryConfigurator = {
       type: "radio-icon",
       options: [
         { id: "screen-none", label: "Keiner", price: 0, image: verandaImg("screen/19648183-afd4-4f8b-90bd-5e766e59dd1f.webp") },
-        { id: "screen-front", label: "Vorderseite", price: 1810, image: verandaImg("screen/e0b6b99b-50e2-41ad-bac0-22e9162234f2.webp") },
-        { id: "screen-left", label: "Links", price: 1690, image: verandaImg("screen/7aeb50a7-b542-4cc0-9ef7-6572a89f5f79.webp") },
-        { id: "screen-right", label: "Rechts", price: 1690, image: verandaImg("screen/442e42e0-dc83-408e-b830-39ef7130a9cc.webp") },
+        { id: "screen-front", label: "Vorderseite", price: 4780, image: verandaImg("screen/e0b6b99b-50e2-41ad-bac0-22e9162234f2.webp") },
+        { id: "screen-left", label: "Links", price: 3900, image: verandaImg("screen/7aeb50a7-b542-4cc0-9ef7-6572a89f5f79.webp") },
+        { id: "screen-right", label: "Rechts", price: 3900, image: verandaImg("screen/442e42e0-dc83-408e-b830-39ef7130a9cc.webp") },
       ],
     },
     {

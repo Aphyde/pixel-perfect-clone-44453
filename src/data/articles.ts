@@ -68,15 +68,15 @@ export const articles: Article[] = [
     readingMinutes: 9,
     image: "/catalog/hero-glashaus.jpg",
     imageAlt: "Brait Pro-Line Terrassenüberdachung mit VSG-Glasdach in Ulm",
-    tldr: "Drei Systeme, drei Anwendungsfälle: Pro-Line (wandbefestigt, ab 5.490 € inkl. Montage) für klassische Hausterrassen, Cube (freistehend, ab 6.990 €) für Gartenlounges ohne Wandanschluss, Lamellendach (verstellbar, ab 8.990 €) für Premium-Outdoor mit voller Klimakontrolle. Die Wahl hängt von Ausrichtung, Statik, Budget und gewünschter Nutzungsdauer pro Jahr ab.",
+    tldr: "Drei Systeme, drei Anwendungsfälle: Pro-Line (wandbefestigt, ab 5.610 € zzgl. Montage) für klassische Hausterrassen, Cube (freistehend, ab ca. 6.600 €) für Gartenlounges ohne Wandanschluss, Lamellendach (verstellbar, ab 17.560 €) für Premium-Outdoor mit voller Klimakontrolle. Die Wahl hängt von Ausrichtung, Statik, Budget und gewünschter Nutzungsdauer pro Jahr ab.",
     sections: [
       {
         factBox: {
           title: "Schnell-Übersicht — die drei Systeme",
           items: [
-            "Pro-Line: wandbefestigt, Polycarbonat-Dach, ab 5.490 € inkl. Montage (Aufpreis VSG-Glas +2.400 €). Ideal bei Süd-/Westausrichtung mit Hauswand.",
-            "Cube: freistehend, kubisches Design, ab 6.990 €. Ideal als Garten-Lounge ohne Wandanschluss.",
-            "Lamellendach: verstellbare Aluminium-Lamellen, ab 8.990 €. Ideal für volle Klimakontrolle und ganzjährige Nutzung.",
+            "Pro-Line: wandbefestigt, ab 5.610 € zzgl. Dacheindeckung und Montage (Polycarbonat-Eindeckung separat, Aufpreis VSG-Glas +3.360–4.060 €). Ideal bei Süd-/Westausrichtung mit Hauswand.",
+            "Cube: freistehend, kubisches Design, ab ca. 6.600 €. Ideal als Garten-Lounge ohne Wandanschluss.",
+            "Lamellendach: verstellbare Aluminium-Lamellen, ab 17.560 €. Ideal für volle Klimakontrolle und ganzjährige Nutzung.",
           ],
         },
       },
@@ -163,18 +163,18 @@ export const articles: Article[] = [
     readingMinutes: 10,
     image: "/catalog/lamellendach-1.jpg",
     imageAlt: "Vergleich Markise, Pergola und Lamellendach in Ulm",
-    tldr: "Markisen sind reine Sonnenschutz-L\u00f6sungen ab 1.200 \u20ac und nur bei trockenem Wetter einsatzbereit. Pergolen mit Stoffsegel kosten 8.000\u201315.000 \u20ac und schaffen Architektur-Statements ohne festes Dach. Lamellend\u00e4cher Q-Bus (ab 8.990 \u20ac, Vollausstattung bis 24.000 \u20ac) sind das einzige System, das Sonnen- und Regenschutz auf Knopfdruck kombiniert und 365 Tage pro Jahr nutzbar ist. Die Wahl h\u00e4ngt von drei Faktoren ab: gew\u00fcnschte Nutzungsmonate (4\u20135 vs. 12), Wetterfestigkeit und Budget.",
+    tldr: "Markisen sind reine Sonnenschutz-L\u00f6sungen ab 3.180 \u20ac und nur bei trockenem Wetter einsatzbereit. Pergolen mit Stoffsegel kosten 8.000\u201315.000 \u20ac und schaffen Architektur-Statements ohne festes Dach. Lamellend\u00e4cher Q-Bus (ab 17.560 \u20ac, Vollausstattung bis rund 50.000 \u20ac) sind das einzige System, das Sonnen- und Regenschutz auf Knopfdruck kombiniert und 365 Tage pro Jahr nutzbar ist. Die Wahl h\u00e4ngt von drei Faktoren ab: gew\u00fcnschte Nutzungsmonate (4\u20135 vs. 12), Wetterfestigkeit und Budget.",
     sections: [
       {
         heading: { text: "Wof\u00fcr ist eine Markise gemacht?" },
         paragraphs: [
           "Eine Markise ist eine reine Sonnenschutz-L\u00f6sung mit ausfahrbarem Tuch und keiner Wetterfestigkeit. Sie blockiert je nach Tuch-Typ 70\u201390 % der UV- und IR-Strahlung und reduziert die Raumtemperatur dahinter im Hochsommer messbar um 5\u201310 \u00b0C \u2014 belegt durch Messreihen des Instituts f\u00fcr Fenstertechnik (ift Rosenheim, 2024). Bei beginnendem Regen muss die Markise jedoch eingefahren werden, weil Wassers\u00e4cke das Tuch \u00fcberdehnen und Gelenkarmlager besch\u00e4digen.",
-          "Markisen-Typen unterscheiden sich nach Einbauort: Gelenkarmmarkise f\u00fcr klassische Hausterrassen (bis 7 m Breite, 4 m Ausfall), Fallarmmarkise vor Fenstern (0\u2013140\u00b0 neigbar), Senkrechtmarkise/Zip-Screen f\u00fcr seitlichen Wind- und Sichtschutz (windstabil bis Windst\u00e4rke 7) und Aufglasmarkise direkt auf bestehenden Pro-Line- oder Wintergarten-Glasd\u00e4chern. Vorteile: g\u00fcnstig (1.200\u20134.500 \u20ac inkl. Montage), schnelle Installation (1 Tag), in BW bis 30 m\u00b2 verfahrensfrei (\u00a750 LBO Anlage 1).",
+          "Markisen-Typen unterscheiden sich nach Einbauort: Gelenkarmmarkise f\u00fcr klassische Hausterrassen (bis 7 m Breite, 4 m Ausfall), Fallarmmarkise vor Fenstern (0\u2013140\u00b0 neigbar), Senkrechtmarkise/Zip-Screen f\u00fcr seitlichen Wind- und Sichtschutz (windstabil bis Windst\u00e4rke 7) und Aufglasmarkise direkt auf bestehenden Pro-Line- oder Wintergarten-Glasd\u00e4chern. Vorteile: g\u00fcnstig (3.880\u20138.950 \u20ac inkl. Montage), schnelle Installation (1 Tag), in BW bis 30 m\u00b2 verfahrensfrei (\u00a750 LBO Anlage 1).",
         ],
         factBox: {
           title: "Markise \u2014 Eckdaten",
           items: [
-            "Preis: 1.200\u20134.500 \u20ac inkl. Montage.",
+            "Preis: 3.880\u20138.950 \u20ac inkl. Montage.",
             "Tuch-Lebensdauer: 8\u201312 Jahre (Sunbrella Acryl 300 g/m\u00b2).",
             "Mechanik-Lebensdauer: 12\u201315 Jahre.",
             "Nutzungsmonate: 4\u20135 pro Jahr (Mai\u2013September).",
@@ -194,7 +194,7 @@ export const articles: Article[] = [
         heading: { text: "Was kann ein Lamellendach mehr als Pergola und Markise?" },
         paragraphs: [
           "Ein Lamellendach (auch bioklimatische Pergola) ist die einzige der drei L\u00f6sungen, die Sonnen- und Regenschutz auf Knopfdruck kombiniert. Aluminium-Lamellen rotieren motorisch von 0\u00b0 (komplett offen mit freiem Himmelsblick) bis 135\u00b0 (geschlossen, wasserdicht durch \u00fcberlappende Profilkanten und integrierte Wasserableitung in den Pfosten). Mit optionalem Wettersensor schlie\u00dfen sich die Lamellen bei beginnendem Niederschlag in unter 30 Sekunden automatisch.",
-          "Lamellend\u00e4cher Q-Bus starten bei 8.990 \u20ac (5 \u00d7 3 m, basis) und reichen bei Vollausstattung mit LED dimmbar, Zip-Screens und Glasschiebew\u00e4nden bis 18.000\u201324.000 \u20ac. Wirtschaftlich rechnen sie sich \u00fcber die Nutzungsdauer: w\u00e4hrend Markisen 4\u20135 Monate und Stoffpergolen 5\u20136 Monate im Einsatz sind, l\u00e4uft das Lamellendach 12 Monate. Bei 30+ Jahren Lebensdauer der Aluminium-Konstruktion ergibt sich eine deutlich niedrigere Kosten-pro-Nutzungstag-Rechnung als bei einer alle 12\u201315 Jahre zu erneuernden Markise.",
+          "Lamellend\u00e4cher Q-Bus starten bei 17.560 \u20ac (2,2 \u00d7 1,8 m, Basis) und reichen bei Vollausstattung mit LED dimmbar, Zip-Screens und Glasschiebew\u00e4nden bis 45.000\u201350.000 \u20ac. Wirtschaftlich rechnen sie sich \u00fcber die Nutzungsdauer: w\u00e4hrend Markisen 4\u20135 Monate und Stoffpergolen 5\u20136 Monate im Einsatz sind, l\u00e4uft das Lamellendach 12 Monate. Bei 30+ Jahren Lebensdauer der Aluminium-Konstruktion ergibt sich eine deutlich niedrigere Kosten-pro-Nutzungstag-Rechnung als bei einer alle 12\u201315 Jahre zu erneuernden Markise.",
         ],
       },
       {
@@ -204,9 +204,9 @@ export const articles: Article[] = [
           rows: [
             ["Sonnenschutz", "Ja", "Ja", "Ja, regulierbar"],
             ["Regenschutz", "Nein", "Nein (Stoff)", "Ja, wasserdicht"],
-            ["Maße", "bis 7 × 4 m", "bis 6 × 4 m", "bis 7 × 4,5 m"],
+            ["Maße", "bis 7 × 4 m", "bis 6 × 4 m", "bis 5,5 × 4,6 m je Modul"],
             ["Windklasse", "5", "5", "5+ (geschlossen)"],
-            ["Preis", "1.200–4.500 €", "8.000–15.000 €", "8.990–24.000 €"],
+            ["Preis", "3.880–8.950 €", "8.000–15.000 €", "17.560–50.000 €"],
             ["Lebensdauer", "10–15 Jahre", "15–20 Jahre", "30+ Jahre"],
             ["Genehmigung BW", "≤ 30 m² frei", "Bauanzeige möglich", "Bauanzeige möglich"],
             ["Nutzungsmonate", "4–5 / Jahr", "5–6 / Jahr", "12 / Jahr"],
@@ -216,27 +216,27 @@ export const articles: Article[] = [
       {
         heading: { text: "Welche Kombinationen sind sinnvoll?" },
         paragraphs: [
-          "Pro-Line-Glasdach mit Aufglasmarkise ist die wirtschaftlichste Kombination f\u00fcr klassische Hausterrassen mit Wandanschluss. Das Glasdach sch\u00fctzt vor Regen, die Markise reduziert Hitze unter Glas um 30\u201350 %. Gesamtinvestition ca. 10.000 \u20ac, Nutzung 7\u20138 Monate, Genehmigungspflicht erst ab 30 m\u00b2.",
-          "Lamellendach mit Zip-Screens und Glasschiebew\u00e4nden ist die Premium-Komplettl\u00f6sung f\u00fcr ganzj\u00e4hrige Outdoor-Nutzung. In Verbindung mit einer Au\u00dfen-Heizung wird das Lamellendach zum vollwertigen Outdoor-Wohnzimmer. Investition 22.000\u201328.000 \u20ac, Nutzung 12 Monate, Genehmigung als bauliche Anlage \u00fcber 30 m\u00b2 oder ab 3 m H\u00f6he in BW.",
+          "Pro-Line-Glasdach mit Aufglasmarkise ist die wirtschaftlichste Kombination f\u00fcr klassische Hausterrassen mit Wandanschluss. Das Glasdach sch\u00fctzt vor Regen, die Markise reduziert Hitze unter Glas um 30\u201350 %. Gesamtinvestition ca. 21.000 \u20ac, Nutzung 7\u20138 Monate, Genehmigungspflicht erst ab 30 m\u00b2.",
+          "Lamellendach mit Zip-Screens und Glasschiebew\u00e4nden ist die Premium-Komplettl\u00f6sung f\u00fcr ganzj\u00e4hrige Outdoor-Nutzung. In Verbindung mit einer Au\u00dfen-Heizung wird das Lamellendach zum vollwertigen Outdoor-Wohnzimmer. Investition 40.000\u201350.000 \u20ac, Nutzung 12 Monate, Genehmigung als bauliche Anlage \u00fcber 30 m\u00b2 oder ab 3 m H\u00f6he in BW.",
           "Pergola mit Stoffsegel ist die rein optische und Sommer-Lounge-orientierte L\u00f6sung. Sie passt zu mediterran inspirierten G\u00e4rten oder Garten-Pavillons in Ulmer Vororten wie Eselsberg-Lehr oder Wiblingen. Wirtschaftlich nur sinnvoll, wenn das Stoffsegel als Architektur-Statement gewollt ist \u2014 funktional schl\u00e4gt eine Aufglasmarkise auf einem Pro-Line-Dach diese Variante in fast jeder Disziplin.",
         ],
       },
       {
         heading: { text: "Drei Praxis-Beispiele aus dem Brait-Service-Gebiet" },
         paragraphs: [
-          "Familie aus Ulm-S\u00f6flingen, Doppelhaush\u00e4lfte mit S\u00fcdterrasse 4 \u00d7 3 m: Wir haben eine Pro-Line-\u00dcberdachung mit VSG-Glasdach (8.500 \u20ac) plus Aufglasmarkise (1.500 \u20ac) montiert. Gesamt 10.000 \u20ac. Ergebnis: ganzj\u00e4hriger Regenschutz, im Sommer 60 % weniger Hitze unter dem Dach. Amortisation \u00fcber Strom-Ersparnis Klimaanlage und gewonnene Au\u00dfen-Wohnfl\u00e4che innerhalb von 6\u20138 Jahren.",
-          "Architektenpaar in Neu-Ulm, freistehende Garten-Lounge 5 \u00d7 4 m ohne Hausanschluss: Q-Bus Lamellen-Pergola in Anthrazit RAL 7016 mit LED-Beleuchtung, drei Zip-Screens und Heizstrahler. Investition 24.500 \u20ac. Nutzung von M\u00e4rz bis Oktober als regul\u00e4rer Au\u00dfenraum, im Winter mit Heizung als Lounge.",
-          "Hotelbetrieb in Memmingen, Au\u00dfengastronomie 8 \u00d7 6 m: Lamellendach mit Glasschiebew\u00e4nden, Zip-Screens und Heizstrahlern \u2014 als 365-Tage-Gastronomieerweiterung. Investition 38.000 \u20ac, Amortisation \u00fcber zus\u00e4tzliche Sitzpl\u00e4tze in der Schulterzeit (April, Oktober) innerhalb der ersten Saison.",
+          "Familie aus Ulm-S\u00f6flingen, Doppelhaush\u00e4lfte mit S\u00fcdterrasse 4 \u00d7 3 m: Wir haben eine Pro-Line-\u00dcberdachung mit VSG-Glasdach (14.590 \u20ac) plus Aufglasmarkise (6.540 \u20ac) montiert. Gesamt 21.130 \u20ac. Ergebnis: ganzj\u00e4hriger Regenschutz, im Sommer 60 % weniger Hitze unter dem Dach. Amortisation \u00fcber Strom-Ersparnis Klimaanlage und gewonnene Au\u00dfen-Wohnfl\u00e4che innerhalb von 12\u201316 Jahren.",
+          "Architektenpaar in Neu-Ulm, freistehende Garten-Lounge 5 \u00d7 4 m ohne Hausanschluss: Q-Bus Lamellen-Pergola in Anthrazit RAL 7016 mit LED-Beleuchtung, drei Zip-Screens und Heizstrahler. Investition ca. 50.500 \u20ac. Nutzung von M\u00e4rz bis Oktober als regul\u00e4rer Au\u00dfenraum, im Winter mit Heizung als Lounge.",
+          "Hotelbetrieb in Memmingen, Au\u00dfengastronomie 8 \u00d7 6 m: Lamellendach mit Glasschiebew\u00e4nden, Zip-Screens und Heizstrahlern \u2014 als 365-Tage-Gastronomieerweiterung. Investition ca. 80.000 \u20ac, Amortisation \u00fcber zus\u00e4tzliche Sitzpl\u00e4tze in der Schulterzeit (April, Oktober) innerhalb der ersten Saison.",
         ],
       },
       {
         heading: { text: "Welche L\u00f6sung f\u00fcr welches Budget?" },
         bullets: [
-          "Bis 5.000 \u20ac: Gelenkarm- oder Senkrechtmarkise. Reiner Sommer-Sonnenschutz.",
-          "5.000\u201310.000 \u20ac: Pro-Line-Glasdach allein oder mit Aufglasmarkise. Regenschutz + Hitzereduktion.",
-          "10.000\u201316.000 \u20ac: Cube freistehend oder Pergola mit Stoffsegel. Architektur-Statement.",
-          "16.000\u201325.000 \u20ac: Lamellendach mit Standard-Optionen (Wettersensor, Funkfernbedienung, Zip-Screen).",
-          "25.000+ \u20ac: Lamellendach mit Vollausstattung \u2014 Glasschiebew\u00e4nde, LED, Heizung, Au\u00dfen-K\u00fcche-Anbindung.",
+          "Bis 9.000 \u20ac: Gelenkarm- oder Senkrechtmarkise. Reiner Sommer-Sonnenschutz.",
+          "11.000\u201321.000 \u20ac: Pro-Line-Glasdach allein oder mit Aufglasmarkise. Regenschutz + Hitzereduktion.",
+          "12.000\u201320.000 \u20ac: Cube freistehend oder Pergola mit Stoffsegel. Architektur-Statement.",
+          "20.000\u201338.000 \u20ac: Lamellendach mit Standard-Optionen (Wettersensor, Funkfernbedienung, Zip-Screen).",
+          "38.000+ \u20ac: Lamellendach mit Vollausstattung \u2014 Glasschiebew\u00e4nde, LED, Heizung, Au\u00dfen-K\u00fcche-Anbindung.",
         ],
       },
     ],
@@ -268,17 +268,17 @@ export const articles: Article[] = [
     readingMinutes: 8,
     image: "/catalog/cube-1.jpg",
     imageAlt: "Brait Cube Terrassenüberdachung Preisbeispiel Ulm",
-    tldr: "Eine Aluminium-Terrassenüberdachung in Ulm startet bei 4.490 € (Pro-Line wandbefestigt, 4 × 3 m, Polycarbonat, inkl. Montage) und reicht bis 24.000 € (Lamellendach 5 × 4 m mit LED, Zip-Screen und Glasschiebewänden). Die Hauptpreistreiber sind Größe, Konstruktionstyp, Dachmaterial (Polycarbonat vs. VSG-Glas), Statik (Schneelastzone) und Verschattung. Brait-Preise enthalten immer Montage durch eigenes Team.",
+    tldr: "Eine Aluminium-Terrassenüberdachung in Ulm startet bei 8.730 € (Pro-Line wandbefestigt, 4 × 3 m, zzgl. Dacheindeckung und Montage) und reicht bis rund 50.000 € (Lamellendach 5 × 4 m mit LED, Zip-Screen und Glasschiebewänden). Die Hauptpreistreiber sind Größe, Konstruktionstyp, Dachmaterial (Polycarbonat vs. VSG-Glas), Statik (Schneelastzone) und Verschattung. Die Montage durch das eigene Brait-Team wird separat kalkuliert (typisch 2.000–3.000 €, komplexe Projekte bis 5.000 €).",
     sections: [
       {
         factBox: {
-          title: "Preisspannen 2026 (inkl. Montage)",
+          title: "Preisspannen 2026 (zzgl. Montage)",
           items: [
-            "Pro-Line wandbefestigt 4 × 3 m: 4.490 – 7.500 € (Polycarbonat bis VSG-Glas + Extras)",
-            "Pro-Line wandbefestigt 5 × 3 m: 5.490 – 9.000 €",
-            "Cube freistehend 4 × 3 m: 5.890 – 9.500 €",
-            "Lamellendach Q-Bus 4 × 3 m: 8.990 – 14.000 €",
-            "Lamellendach Vollausstattung 5 × 4 m: 18.000 – 24.000 €",
+            "Pro-Line wandbefestigt 4 × 3 m: 8.730 – 13.500 € (ohne Dacheindeckung bis VSG-Glas + Extras)",
+            "Pro-Line wandbefestigt 5 × 3 m: 10.290 – 15.000 €",
+            "Cube freistehend 4 × 3 m: ca. 10.300 – 16.000 €",
+            "Lamellendach Q-Bus 4 × 3 m: 24.860 – 30.000 €",
+            "Lamellendach Vollausstattung 5 × 4 m: 45.000 – 50.000 €",
             "Glashaus = Pro-Line/Cube + 3 Glasschiebewände: +6.000 – 9.000 €",
           ],
         },
@@ -291,15 +291,15 @@ export const articles: Article[] = [
           "Glas: VSG 8–10 mm Standard, satiniertes oder Sonnenschutzglas +15–25 %.",
           "Schneelastzone: Höhenlagen Schwäbische Alb (Zone 3) +8–12 %.",
           "Sonderfarben: RAL-Maßanfertigung statt Standardfarbe +5 %.",
-          "Verschattung: Aufglasmarkise +1.500 €, Zip-Screens je Seite +800–1.400 €.",
-          "Beleuchtung: LED-Streifen entlang der Lamellen +1.200 €.",
-          "Glasschiebewände: rahmenlos +2.500–4.500 € (je nach Breite).",
+          "Verschattung: Aufglasmarkise +3.760–7.010 €, Zip-Screens je Seite +3.180–4.840 €.",
+          "Beleuchtung: LED-Streifen entlang der Lamellen +3.440–3.680 €.",
+          "Glasschiebewände: +5.750 € je Seite (satiniert +7.670 €).",
         ],
       },
       {
         heading: { text: "Was ist im Brait-Preis enthalten?" },
         paragraphs: [
-          "Bei Brait Überdachungen sind in jedem Festpreis-Angebot enthalten: digitales 3D-Aufmaß, statische Berechnung für Ihre Schneelastzone, Anlieferung, Montage durch eigenes Team (1–4 Tage), Endabnahme mit Funktionsprüfung. Es gibt keine Folgekosten für „Statiker\u201c oder „Spezialwerkzeug\u201c — alles ist im Festpreis abgedeckt.",
+          "Bei Brait Überdachungen sind in jedem Festpreis-Angebot enthalten: digitales 3D-Aufmaß, statische Berechnung für Ihre Schneelastzone, Anlieferung, Montage durch eigenes Team (1–4 Tage, als separate Position kalkuliert: typisch 2.000–3.000 €, komplexe Projekte bis 5.000 €), Endabnahme mit Funktionsprüfung. Es gibt keine Folgekosten für „Statiker\u201c oder „Spezialwerkzeug\u201c — alles ist im Festpreis abgedeckt.",
           "Was nicht enthalten ist: bauliche Vorarbeiten am Untergrund (Pflastern, Fundament gießen), Stromanschluss zum Motor, Trockenlegung der Wand bei Wandanschluss in Bestandsgebäuden mit beschädigtem Putz. Diese Kosten klären wir beim Vor-Ort-Termin transparent.",
         ],
       },
@@ -308,15 +308,15 @@ export const articles: Article[] = [
         table: {
           columns: ["Konfiguration", "Preis"],
           rows: [
-            ["Pro-Line 4 × 3 m, Polycarbonat, Anthrazit (Einstieg)", "4.490 €"],
-            ["Pro-Line 5 × 3 m, Polycarbonat (Einstiegs-Bestseller)", "5.490 €"],
-            ["Pro-Line 5 × 3 m, VSG-Klarglas, Anthrazit", "7.890 €"],
-            ["Pro-Line 6 × 4 m, VSG-Klarglas", "11.290 €"],
-            ["Cube 4 × 3,5 m, VSG, freistehend", "9.300 €"],
-            ["Cube 5 × 4 m, VSG, mit Aufglasmarkise", "14.500 €"],
-            ["Lamellendach 4 × 3 m, Standard", "8.990 €"],
-            ["Lamellendach 5 × 4 m, LED + Wettersensor + Glasschiebewand vorne", "19.500 €"],
-            ["Glashaus = Pro-Line + 3 Glasschiebewände", "11.800 €"],
+            ["Pro-Line 4 × 3 m, ohne Dacheindeckung, Anthrazit (Einstieg)", "8.730 €"],
+            ["Pro-Line 5 × 3 m, ohne Dacheindeckung (Einstiegs-Bestseller)", "10.290 €"],
+            ["Pro-Line 5 × 3 m, VSG-Klarglas, Anthrazit", "13.650 €"],
+            ["Pro-Line 6 × 4 m, VSG-Klarglas", "17.780 €"],
+            ["Cube 4 × 3,5 m, VSG, freistehend", "ca. 15.200 €"],
+            ["Cube 5 × 4 m, VSG, mit Aufglasmarkise", "ca. 25.700 €"],
+            ["Lamellendach 4 × 3 m, Standard", "24.860 €"],
+            ["Lamellendach 5 × 4 m, LED + Wettersensor + Glasschiebewand vorne", "36.880 €"],
+            ["Glashaus = Pro-Line + 3 Glasschiebewände", "21.150 €"],
           ],
         },
       },
@@ -579,7 +579,7 @@ export const articles: Article[] = [
     readingMinutes: 9,
     image: "/catalog/proline-3.jpg",
     imageAlt: "Aluminium-Terrassen\u00fcberdachung wartungsfrei vs. Holzpergola im Vergleich",
-    tldr: "Aluminium 6063 T6 mit Pulverbeschichtung h\u00e4lt 30+ Jahre nahezu wartungsfrei und ist zu 100 % recycelbar. Hochwertige H\u00f6lzer (L\u00e4rche, Douglasie) halten 20\u201325 Jahre, brauchen aber alle 2\u20133 Jahre Pflege (Lasur, Impr\u00e4gnierung) f\u00fcr 200\u2013400 \u20ac pro Behandlung. \u00dcber 20 Jahre Gesamtkosten: Aluminium ca. 20\u201330 % g\u00fcnstiger trotz h\u00f6herer Anfangsinvestition. Aluminium ist die rationale Wahl mit gleichbleibender Optik, Holz die warm-lebendige Alternative mit Patina, aber Pflegeaufwand.",
+    tldr: "Aluminium 6063 T6 mit Pulverbeschichtung h\u00e4lt 30+ Jahre nahezu wartungsfrei und ist zu 100 % recycelbar. Hochwertige H\u00f6lzer (L\u00e4rche, Douglasie) halten 20\u201325 Jahre, brauchen aber alle 2\u20133 Jahre Pflege (Lasur, Impr\u00e4gnierung) f\u00fcr 200\u2013400 \u20ac pro Behandlung. \u00dcber 20 Jahre Gesamtkosten: ca. 14.900 \u20ac f\u00fcr Aluminium gegen\u00fcber ca. 11.000 \u20ac f\u00fcr Holz \u2014 auf die Lebensdauer gerechnet liegen beide etwa gleichauf, Aluminium spart daf\u00fcr den kompletten Pflegeaufwand. Aluminium ist die rationale Wahl mit gleichbleibender Optik, Holz die warm-lebendige Alternative mit Patina, aber Pflegeaufwand.",
     sections: [
       {
         heading: { text: "Aluminium 6063 T6 \u2014 die technische L\u00f6sung" },
@@ -613,11 +613,11 @@ export const articles: Article[] = [
         table: {
           columns: ["Position", "Aluminium 6063 T6", "Lärche / Douglasie"],
           rows: [
-            ["Anfangsinvestition (4 × 3 m)", "8.500 €", "6.500 €"],
+            ["Anfangsinvestition (4 × 3 m)", "14.590 €", "6.500 €"],
             ["Pflege Jahr 1–20", "300 € (Reinigung)", "3.500 € (10× Lasur)"],
             ["Reparaturen (Schimmel, Risse)", "0 €", "1.000 € (geschätzt)"],
             ["Lebensdauer-Wertverlust", "0 % (ersetzt nach 30 J.)", "100 % (Ersatz nach 25 J.)"],
-            ["Gesamtkosten 20 Jahre", "~8.800 €", "~11.000 €"],
+            ["Gesamtkosten 20 Jahre", "~14.900 €", "~11.000 €"],
           ],
         },
       },
@@ -634,7 +634,7 @@ export const articles: Article[] = [
           "Aluminium: wartungsfrei, korrosionsbest\u00e4ndig, 30+ Jahre Lebensdauer, RAL-Farbvielfalt, perfekt kombinierbar mit Glas, Lamellen, Markisen, Heizung, LED, Sensorik.",
           "Aluminium: ideal bei Lamellend\u00e4chern \u2014 verstellbare Mechanik braucht ma\u00dfhaltige Profile mit \u00b10,1 mm Toleranz, die nur Aluminium liefert.",
           "Aluminium: ideal bei Glashaus-Konstruktionen \u2014 thermisch entkoppelte Profile (mit Polyamid-Stegen) verhindern Kondensat.",
-          "Holz: warme Optik, nat\u00fcrliche Maserung, \u00f6kologische N\u00e4he, niedrigere Anfangsinvestition (10\u201325 % g\u00fcnstiger).",
+          "Holz: warme Optik, nat\u00fcrliche Maserung, \u00f6kologische N\u00e4he, niedrigere Anfangsinvestition (40\u201355 % g\u00fcnstiger).",
           "Holz: ideal bei Pergolen mit Stoffsegel, mediterranen Pavillons, \u00d6kobau-Projekten mit klarem Fokus auf nat\u00fcrliche Materialien.",
           "Holz: ideal bei kleineren Anlagen ohne Mechanik \u2014 wo keine motorischen Lamellen oder Glasschiebew\u00e4nde gew\u00fcnscht sind.",
         ],
@@ -753,7 +753,7 @@ export const articles: Article[] = [
     readingMinutes: 8,
     image: "/markisen-types/aufglas-main.webp",
     imageAlt: "Aufglasmarkise reduziert Hitze in einem Brait Wintergarten in Ulm",
-    tldr: "Eine au\u00dfenliegende Markise oder ein Zip-Screen vor einem 3 \u00d7 2 m S\u00fcd-Fenster reduziert die solare W\u00e4rmestrahlung um 70\u201390 % und damit die Innenraum-Temperatur an einem Hochsommertag um 5\u201310 \u00b0C. Die Klimaanlage spart dadurch 30\u201350 % Strom \u2014 in Zahlen: ca. 117 \u20ac pro Sommer-Saison bei 60 hei\u00dfen Tagen, \u00fcber 10 Jahre \u00fcber 1.170 \u20ac. Eine 3 \u00d7 2 m Gelenkarmmarkise kostet etwa 2.200 \u20ac, amortisiert sich also rein finanziell in 19 Jahren \u2014 inkl. Komfortgewinn (k\u00fchler Wohnraum, kein Klima-Ger\u00e4usch, gesunde Schleimh\u00e4ute) bereits in 8 Jahren.",
+    tldr: "Eine au\u00dfenliegende Markise oder ein Zip-Screen vor einem 3 \u00d7 2 m S\u00fcd-Fenster reduziert die solare W\u00e4rmestrahlung um 70\u201390 % und damit die Innenraum-Temperatur an einem Hochsommertag um 5\u201310 \u00b0C. Die Klimaanlage spart dadurch 30\u201350 % Strom \u2014 in Zahlen: ca. 117 \u20ac pro Sommer-Saison bei 60 hei\u00dfen Tagen, \u00fcber 10 Jahre \u00fcber 1.170 \u20ac. Eine 3 \u00d7 2 m Gelenkarmmarkise kostet etwa 5.560 \u20ac inkl. Montage, amortisiert sich also rein finanziell in rund 48 Jahren \u2014 inkl. Komfortgewinn (k\u00fchler Wohnraum, kein Klima-Ger\u00e4usch, gesunde Schleimh\u00e4ute) bereits in 21 Jahren.",
     sections: [
       {
         heading: { text: "Wie viel Hitze produziert ein S\u00fcd-Fenster?" },
@@ -791,8 +791,8 @@ export const articles: Article[] = [
       {
         heading: { text: "Welche L\u00f6sung f\u00fcr welches Fenster?" },
         bullets: [
-          "S\u00fcd-Fenster im Erdgeschoss mit Terrasse: Gelenkarmmarkise (1.500\u20133.500 \u20ac) oder Aufglasmarkise auf Pro-Line-Glasdach (1.200\u20132.500 \u20ac).",
-          "West-Fenster mit tiefstehender Abendsonne: Senkrechtmarkise oder Zip-Screen (1.800\u20133.500 \u20ac), weil horizontale Markisen bei tiefem Sonnenstand wenig Schatten werfen.",
+          "S\u00fcd-Fenster im Erdgeschoss mit Terrasse: Gelenkarmmarkise (4.620\u20138.150 \u20ac) oder Aufglasmarkise auf Pro-Line-Glasdach (3.760\u20137.010 \u20ac).",
+          "West-Fenster mit tiefstehender Abendsonne: Senkrechtmarkise oder Zip-Screen (3.180\u20135.700 \u20ac), weil horizontale Markisen bei tiefem Sonnenstand wenig Schatten werfen.",
           "Winterg\u00e4rten und Pro-Line-Glasd\u00e4cher: Aufglasmarkise direkt auf der Dachneigung \u2014 reduziert sommerliche \u00dcberhitzung um bis zu 60 %.",
           "Schlafzimmer-Dachfenster (z.\u202fB. Velux): externe Senkrecht-Rollo oder Aluminium-Au\u00dfen-Verdunklung (400\u2013800 \u20ac pro Fenster).",
           "Schaufenster und Gewerbe: Senkrechtmarkise oder Fallarmmarkise mit Werbedruck \u2014 doppelter Nutzen (Hitzeschutz und Marken-Sichtbarkeit).",
@@ -802,7 +802,7 @@ export const articles: Article[] = [
         heading: { text: "F\u00f6rderprogramme f\u00fcr Sonnenschutz" },
         paragraphs: [
           "Au\u00dfenliegender Sonnenschutz wird in Deutschland im Rahmen der KfW-F\u00f6rderung \u201eEinzelma\u00dfnahmen Geb\u00e4udeh\u00fclle\u201c gef\u00f6rdert (Programm 458, Zuschuss 15\u201320 % der Kosten, max. 30.000 \u20ac pro Wohneinheit). Voraussetzung: ein Energieberater (BAFA-zertifiziert) plant und dokumentiert die Ma\u00dfnahme als Teil eines individuellen Sanierungsfahrplans (iSFP). Bei alleinigem Markisen-Tausch ohne weitere Sanierung ist die F\u00f6rderquote \u00fcblicherweise 15 %.",
-          "Konkrete Rechnung f\u00fcr eine Brait Senkrechtmarkise mit Zip-Screen-Technik (3 \u00d7 2 m, 2.800 \u20ac inkl. Montage): KfW-Zuschuss 15 % = 420 \u20ac, Eigenanteil 2.380 \u20ac. Plus die laufende Strom-Ersparnis von 117 \u20ac pro Jahr verk\u00fcrzt sich die Amortisation auf etwa 16 Jahre rein finanziell. Wir liefern auf Anfrage die n\u00f6tigen technischen Daten f\u00fcr Ihren Energieberater \u2014 G-Wert des Tuchs, Montageart, Wirkungsweise.",
+          "Konkrete Rechnung f\u00fcr eine Brait Senkrechtmarkise mit Zip-Screen-Technik (3 \u00d7 2 m, 4.460 \u20ac inkl. Montage): KfW-Zuschuss 15 % = 670 \u20ac, Eigenanteil 3.790 \u20ac. Plus die laufende Strom-Ersparnis von 117 \u20ac pro Jahr verk\u00fcrzt sich die Amortisation auf etwa 32 Jahre rein finanziell. Wir liefern auf Anfrage die n\u00f6tigen technischen Daten f\u00fcr Ihren Energieberater \u2014 G-Wert des Tuchs, Montageart, Wirkungsweise.",
         ],
       },
       {
@@ -810,13 +810,13 @@ export const articles: Article[] = [
         table: {
           columns: ["Position", "Wert"],
           rows: [
-            ["Gelenkarmmarkise 3 \u00d7 2 m inkl. Montage", "2.200 \u20ac"],
-            ["KfW-Zuschuss (15 %)", "\u2212330 \u20ac"],
-            ["Effektive Anschaffung", "1.870 \u20ac"],
+            ["Gelenkarmmarkise 3 \u00d7 2 m inkl. Montage", "5.560 \u20ac"],
+            ["KfW-Zuschuss (15 %)", "\u2212830 \u20ac"],
+            ["Effektive Anschaffung", "4.730 \u20ac"],
             ["Energie-Ersparnis pro Jahr (60 hei\u00dfe Tage)", "117 \u20ac"],
             ["Komfortgewinn pro Jahr (Sch\u00e4tzung)", "150 \u20ac"],
-            ["Amortisation rein finanziell", "\u224816 Jahre"],
-            ["Amortisation inkl. Komfort", "\u22487 Jahre"],
+            ["Amortisation rein finanziell", "\u224840 Jahre"],
+            ["Amortisation inkl. Komfort", "\u224818 Jahre"],
             ["Lebensdauer Tuch", "8\u201312 Jahre"],
             ["Lebensdauer Mechanik", "12\u201318 Jahre"],
           ],
