@@ -83,6 +83,8 @@ export interface ColorOption {
   label: string;
   /** Kurzer Code (z. B. "anthracite"), wird zur Komposition des Visualizer-Hero-Bildes verwendet */
   code?: string;
+  /** Farbaufschlag in % auf den Produktpreis (Erhardt: Trendfarbe 8 %, Sonder-RAL 15 %) */
+  surchargePct?: number;
 }
 
 export interface ExtraOption {
@@ -199,8 +201,8 @@ const markisenConfig: CategoryConfigurator = {
       type: "colors",
       colors: [
         { ral: "RAL 7016", hex: "#293133", label: "Anthrazit", code: "anthracite" },
-        { ral: "RAL 9005", hex: "#0a0a0a", label: "Schwarz", code: "black" },
-        { ral: "RAL 9001", hex: "#f1ecdb", label: "Cremeweiß", code: "creme" },
+        { ral: "RAL 9005", hex: "#0a0a0a", label: "Schwarz", code: "black", surchargePct: 8 },
+        { ral: "RAL 9001", hex: "#f1ecdb", label: "Cremeweiß", code: "creme", surchargePct: 15 },
         { ral: "RAL 9016", hex: "#F6F6F6", label: "Verkehrsweiß", code: "white" },
       ],
     },
@@ -362,8 +364,8 @@ const qbusConfig: CategoryConfigurator = {
       type: "colors",
       colors: [
         { ral: "RAL 7016", hex: "#293133", label: "Anthrazit", code: "anthracite" },
-        { ral: "RAL 9005", hex: "#0a0a0a", label: "Schwarz", code: "black" },
-        { ral: "RAL 9001", hex: "#f1ecdb", label: "Cremeweiß", code: "creme" },
+        { ral: "RAL 9005", hex: "#0a0a0a", label: "Schwarz", code: "black", surchargePct: 8 },
+        { ral: "RAL 9001", hex: "#f1ecdb", label: "Cremeweiß", code: "creme", surchargePct: 15 },
         { ral: "RAL 9016", hex: "#F6F6F6", label: "Verkehrsweiß", code: "white" },
       ],
     },
@@ -702,8 +704,8 @@ const verandaConfig: CategoryConfigurator = {
       type: "colors",
       colors: [
         { ral: "RAL 7016", hex: "#293133", label: "Anthrazit", code: "anthracite" },
-        { ral: "RAL 9005", hex: "#0a0a0a", label: "Schwarz", code: "black" },
-        { ral: "RAL 9001", hex: "#f1ecdb", label: "Cremeweiß", code: "creme" },
+        { ral: "RAL 9005", hex: "#0a0a0a", label: "Schwarz", code: "black", surchargePct: 8 },
+        { ral: "RAL 9001", hex: "#f1ecdb", label: "Cremeweiß", code: "creme", surchargePct: 15 },
         { ral: "RAL 9016", hex: "#F6F6F6", label: "Verkehrsweiß", code: "white" },
       ],
     },

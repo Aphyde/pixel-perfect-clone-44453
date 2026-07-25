@@ -150,6 +150,15 @@ const ConfiguratorEngine = ({ config }: Props) => {
 
     const area = (width || 1) * (depth || 1);
 
+    // Farbaufschlag (Erhardt): % auf den Produktpreis, nicht auf Optionen/Extras
+    let colorPct = 0;
+    config.steps.forEach((step) => {
+      if (step.type === "colors") {
+        const c = step.colors?.[selections[step.id] ?? 0];
+        if (c?.surchargePct) colorPct += c.surchargePct;
+      }
+    });
+
     let extrasTotal = 0;
     config.steps.forEach((step) => {
       if (step.type === "extras-toggle") {
@@ -175,7 +184,7 @@ const ConfiguratorEngine = ({ config }: Props) => {
           : base * Math.max(0.6, activeDims ? area / 24 : 1);
 
     // Fit-Kurve auf Marketing-Preise runden (10 €), Zuschläge/Extras sind bereits gerundete Beträge
-    return Math.round(baseTotal / 10) * 10 + surcharges + extrasTotal;
+    return Math.round((baseTotal * (1 + colorPct / 100)) / 10) * 10 + surcharges + extrasTotal;
   }, [config, selections, extras, width, depth, activeDims]);
 
   // Aktive Lieferzeit: erste select-cards-Option mit deliveryTime gewinnt, sonst Kategorie-Default
@@ -656,6 +665,9 @@ const StepRenderer = ({
                   </div>
                 </div>
                 <p className="text-[9px] md:text-[10px] mt-1 md:mt-2 text-center text-secondary uppercase tracking-tighter max-w-[60px] truncate">{c.label}</p>
+                {c.surchargePct ? (
+                  <p className="text-[9px] md:text-[10px] text-center text-secondary/80 max-w-[60px]">+{c.surchargePct} %</p>
+                ) : null}
               </div>
             );
           })}
