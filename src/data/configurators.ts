@@ -10,6 +10,14 @@ const mUnterglasAnt = "/markisen/variants/unterglas-anthracite.webp";
 const mUnterglasBl = "/markisen/variants/unterglas-black.webp";
 const mUnterglasCr = "/markisen/variants/unterglas-creme.webp";
 const mUnterglasWh = "/markisen/variants/unterglas-white.webp";
+const mGelenkarmAnt = "/markisen/variants/gelenkarm-anthracite.webp";
+const mGelenkarmBl = "/markisen/variants/gelenkarm-black.webp";
+const mGelenkarmCr = "/markisen/variants/gelenkarm-creme.webp";
+const mGelenkarmWh = "/markisen/variants/gelenkarm-white.webp";
+const mSenkrechtAnt = "/markisen/variants/senkrecht-anthracite.webp";
+const mSenkrechtBl = "/markisen/variants/senkrecht-black.webp";
+const mSenkrechtCr = "/markisen/variants/senkrecht-creme.webp";
+const mSenkrechtWh = "/markisen/variants/senkrecht-white.webp";
 const heroSchirm = "/architecture-detail.jpg";
 const qbusAnt = "/qbus/hero/anthracite.webp";
 const qbusBl = "/qbus/hero/black.webp";
@@ -183,15 +191,14 @@ const markisenConfig: CategoryConfigurator = {
     "black|unterglas": mUnterglasBl,
     "creme|unterglas": mUnterglasCr,
     "white|unterglas": mUnterglasWh,
-    // Gelenkarm & Senkrecht haben kein Render → fallback auf Aufglas der jeweiligen Farbe
-    "anthracite|gelenkarm": mAufglasAnt,
-    "black|gelenkarm": mAufglasBl,
-    "creme|gelenkarm": mAufglasCr,
-    "white|gelenkarm": mAufglasWh,
-    "anthracite|senkrecht": mAufglasAnt,
-    "black|senkrecht": mAufglasBl,
-    "creme|senkrecht": mAufglasCr,
-    "white|senkrecht": mAufglasWh,
+    "anthracite|gelenkarm": mGelenkarmAnt,
+    "black|gelenkarm": mGelenkarmBl,
+    "creme|gelenkarm": mGelenkarmCr,
+    "white|gelenkarm": mGelenkarmWh,
+    "anthracite|senkrecht": mSenkrechtAnt,
+    "black|senkrecht": mSenkrechtBl,
+    "creme|senkrecht": mSenkrechtCr,
+    "white|senkrecht": mSenkrechtWh,
   },
   steps: [
     {
@@ -215,8 +222,8 @@ const markisenConfig: CategoryConfigurator = {
         // Preise: Erhardt-UVP-Fit 07/2026 (netto ×1,39 ×1,19 MwSt) — lineares Modell je Typ, basePrice = Floor
         { id: "aufglas", code: "aufglas", label: "Aufglasmarkise", desc: "Sonnenschutz über dem Glasdach – effektivster Hitzeschutz", basePrice: 3760, dimensions: { minW: 1, maxW: 5, minD: 1.5, maxD: 4, priceIntercept: 3323.26, pricePerWidthM: 256.29, pricePerArea: 120.25 }, deliveryTime: "2 Wochen", image: mAufglasAnt },
         { id: "unterglas", code: "unterglas", label: "Unterglasmarkise", desc: "Innenseitiger Sonnenschutz unter dem Glasdach", basePrice: 3400, dimensions: { minW: 1, maxW: 6, minD: 1.5, maxD: 4.5, priceIntercept: 3013.8, pricePerWidthM: 225.01, pricePerArea: 109.07 }, deliveryTime: "2 Wochen", image: mUnterglasAnt },
-        { id: "gelenkarm", code: "gelenkarm", label: "Gelenkarmmarkise", desc: "Frei stehender Klassiker für Terrasse & Balkon", basePrice: 4620, dimensions: { minW: 2.5, maxW: 7, minD: 1.5, maxD: 4, priceIntercept: 2824.82, pricePerWidthM: 561.35, pricePerArea: 49.83 }, deliveryTime: "2 Wochen" },
-        { id: "senkrecht", code: "senkrecht", label: "Senkrechtmarkise (Zipscreen)", desc: "Vertikaler Sicht- und Sonnenschutz", basePrice: 3180, dimensions: { minW: 2, maxW: 6, minD: 1.5, maxD: 3, priceIntercept: 2506.35, pricePerWidthM: 136.41, pricePerArea: 131.97 }, deliveryTime: "2 Wochen" },
+        { id: "gelenkarm", code: "gelenkarm", label: "Gelenkarmmarkise", desc: "Frei stehender Klassiker für Terrasse & Balkon", basePrice: 4620, dimensions: { minW: 2.5, maxW: 7, minD: 1.5, maxD: 4, priceIntercept: 2824.82, pricePerWidthM: 561.35, pricePerArea: 49.83 }, deliveryTime: "2 Wochen", image: mGelenkarmAnt },
+        { id: "senkrecht", code: "senkrecht", label: "Senkrechtmarkise (Zipscreen)", desc: "Vertikaler Sicht- und Sonnenschutz", basePrice: 3180, dimensions: { minW: 2, maxW: 6, minD: 1.5, maxD: 3, priceIntercept: 2506.35, pricePerWidthM: 136.41, pricePerArea: 131.97 }, deliveryTime: "2 Wochen", image: mSenkrechtAnt },
       ],
     },
     {
