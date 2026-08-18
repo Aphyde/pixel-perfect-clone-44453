@@ -101,6 +101,20 @@ export interface ExtraOption {
   desc: string;
   price: number;
   defaultOn?: boolean;
+  /** Zusätzlicher Aufpreis je laufendem Meter Breite (brutto), z. B. verstärkte Pfette */
+  pricePerWidthM?: number;
+}
+
+/**
+ * Pfostenregel (Erhardt-Statik): bis `maxSpanM` Breite reichen 2 Pfosten, darüber wird ein
+ * Mittelpfosten nötig — außer das Extra `spanExtraId` (größerer Stützenabstand) ist gewählt.
+ * Hero-Bilder können dafür Varianten mit Suffix "|2p" / "|3p" hinterlegen.
+ */
+export interface PostRule {
+  maxSpanM: number;
+  spanExtraId?: string;
+  /** Breite, bis zu der das Extra einen Mittelpfosten einspart (Erhardt: 7 m) */
+  spanExtraMaxM?: number;
 }
 
 export interface ConfiguratorStep {
@@ -135,6 +149,8 @@ export interface CategoryConfigurator {
   heroVariantStepIds?: string[];
   /** Map von Variant-Key (Codes mit "|" getrennt) auf das zugehörige Hero-Bild */
   heroVariants?: Record<string, string>;
+  /** Optional: Pfostenregel nach Breite (siehe PostRule) */
+  postRule?: PostRule;
 }
 
 // ============================================================
@@ -638,6 +654,8 @@ const vH_HalfAnt = "/veranda/heros/halfrond-anthracite.webp";
 const vH_HalfBl = "/veranda/heros/halfrond-black.webp";
 const vH_HalfCr = "/veranda/heros/halfrond-creme.webp";
 const vH_HalfWh = "/veranda/heros/halfrond-white.webp";
+// 2-Pfosten-Varianten (< 4 m Breite bzw. mit größerem Stützenabstand): kein Mittelpfosten
+const vH2 = (rel: string) => `/veranda/heros/${rel}-2p.webp`;
 
 // Rinnen-Thumbnails
 const vGutterRecht = "/veranda/gutters/4507d804-8de1-44d0-b668-52e7cd529319.webp";
@@ -672,7 +690,19 @@ const verandaConfig: CategoryConfigurator = {
     "halfrond|black": vH_HalfBl,
     "halfrond|creme": vH_HalfCr,
     "halfrond|white": vH_HalfWh,
+    // ohne Mittelpfosten (2 Pfosten) — Auswahl per postRule
+    "recht|anthracite|2p": vH2("recht-anthracite"),
+    "recht|black|2p": vH2("recht-black"),
+    "recht|creme|2p": vH2("recht-creme"),
+    "recht|white|2p": vH2("recht-white"),
+    "halfrond|anthracite|2p": vH2("halfrond-anthracite"),
+    "halfrond|black|2p": vH2("halfrond-black"),
+    "halfrond|creme|2p": vH2("halfrond-creme"),
+    "halfrond|white|2p": vH2("halfrond-white"),
   },
+  // Erhardt-Statik T150/Q150: Pfosten-Achsabstand max. 4 m → ab 4 m Breite Mittelpfosten,
+  // außer verstärkte Pfette 210 ("größerer Stützenabstand", bis 7 m ohne 3. Stütze).
+  postRule: { maxSpanM: 4, spanExtraId: "stuetzenabstand", spanExtraMaxM: 7 },
   steps: [
     {
       id: "gutter",
@@ -820,6 +850,9 @@ const verandaConfig: CategoryConfigurator = {
       title: "Service & Optionen",
       type: "extras-toggle",
       extras: [
+        // Erhardt "größerer Stützenabstand": Pfette 210 mit Stahlverstärkung, EK 189,60 €/lfm netto
+        // → ×1,39 ×1,19 ≈ 313 €/lfm brutto, gerundet. Erspart den Mittelpfosten bis 7 m Breite.
+        { id: "stuetzenabstand", label: "Größerer Stützenabstand (kein Mittelpfosten)", desc: "Verstärkte Pfette 210 – bis 7 m Breite ohne 3. Stütze (Preis je lfm Breite)", price: 0, pricePerWidthM: 310 },
         glasImpraegnierung,
         ...wartungExtras,
       ],

@@ -163,7 +163,7 @@ const ConfiguratorEngine = ({ config }: Props) => {
     config.steps.forEach((step) => {
       if (step.type === "extras-toggle") {
         step.extras?.forEach((e) => {
-          if (extras.has(e.id)) extrasTotal += e.price;
+          if (extras.has(e.id)) extrasTotal += e.price + (e.pricePerWidthM ?? 0) * (width || 0);
         });
       }
     });
@@ -198,7 +198,18 @@ const ConfiguratorEngine = ({ config }: Props) => {
     return config.deliveryTime;
   }, [config, selections]);
 
-  // Komposition (Rinne + Farbe) – das ist die "Standard"-Vorschau
+  // Pfostenregel (Erhardt-Statik): 2 Pfosten unterhalb der Spannweite oder mit "größerem Stützenabstand"
+  const twoPosts = useMemo(() => {
+    const rule = config.postRule;
+    if (!rule) return false;
+    if (width < rule.maxSpanM) return true;
+    if (rule.spanExtraId && extras.has(rule.spanExtraId)) {
+      return rule.spanExtraMaxM === undefined || width <= rule.spanExtraMaxM;
+    }
+    return false;
+  }, [config.postRule, width, extras]);
+
+  // Komposition (Rinne + Farbe [+ Pfostenzahl]) – das ist die "Standard"-Vorschau
   const composedHero = useMemo(() => {
     if (!config.heroVariantStepIds || !config.heroVariants) return config.hero;
     const codes: string[] = [];
@@ -212,8 +223,13 @@ const ConfiguratorEngine = ({ config }: Props) => {
       if (!code) return config.hero;
       codes.push(code);
     }
-    return config.heroVariants[codes.join("|")] ?? config.hero;
-  }, [config, selections]);
+    const key = codes.join("|");
+    if (config.postRule) {
+      const keyed = config.heroVariants[`${key}|${twoPosts ? "2p" : "3p"}`];
+      if (keyed) return keyed;
+    }
+    return config.heroVariants[key] ?? config.hero;
+  }, [config, selections, twoPosts]);
 
   // Optional: Detail-Vorschau der zuletzt gewählten Option (z. B. Dachmaterial, Wand, LED, ...)
   const previewImage = useMemo(() => {
@@ -500,6 +516,8 @@ const ConfiguratorEngine = ({ config }: Props) => {
                   selectWartungTariff={selectWartungTariff}
                   wartungSubtitle={wartungSubtitle}
                   isMarkisen={config.slug === "markisen"}
+                  postRule={config.postRule}
+                  twoPosts={twoPosts}
                 />
               </div>
             ))}
@@ -586,11 +604,14 @@ interface StepRendererProps {
   selectWartungTariff: (id: string) => void;
   wartungSubtitle: string;
   isMarkisen: boolean;
+  /** Pfostenregel + aktueller Zustand (2 Pfosten ja/nein) für den Hinweis im Maße-Step */
+  postRule?: CategoryConfigurator["postRule"];
+  twoPosts?: boolean;
 }
 
 const StepRenderer = ({
   step, selectedIdx, onSelect, width, depth, setWidth, setDepth, activeDims, extras, toggleExtra,
-  selectWartungTariff, wartungSubtitle, isMarkisen,
+  selectWartungTariff, wartungSubtitle, isMarkisen, postRule, twoPosts,
 }: StepRendererProps) => {
   return (
     <div className="space-y-4 md:space-y-6">
@@ -646,6 +667,16 @@ const StepRenderer = ({
             <span className="text-xs md:text-sm text-secondary">Gesamtfläche</span>
             <span className="font-headline font-bold text-primary text-sm md:text-base">{(width * depth).toFixed(1)} m²</span>
           </div>
+          {postRule && (
+            <div className="bg-surface-container-low p-3 md:p-4 flex justify-between items-center gap-3">
+              <span className="text-xs md:text-sm text-secondary">Pfosten</span>
+              <span className="text-xs md:text-sm font-bold text-right">
+                {twoPosts
+                  ? "2 Pfosten – kein Mittelpfosten nötig"
+                  : `3 Pfosten (Achsabstand max. ${postRule.maxSpanM} m) – oder Option „Größerer Stützenabstand“ wählen`}
+              </span>
+            </div>
+          )}
         </div>
       )}
 
