@@ -629,7 +629,7 @@ const carportConfig: CategoryConfigurator = {
 // ============================================================
 const verandaHalfrondAnthracite = "/veranda/heros/halfrond-anthracite.webp";
 
-// Hero-Varianten (4 Rinnen × 4 Farben)
+// Hero-Varianten (2 Rinnenprofile Erhardt Q/T × 4 Farben)
 const vH_RechtAnt = "/veranda/heros/recht-anthracite.webp";
 const vH_RechtBl = "/veranda/heros/recht-black.webp";
 const vH_RechtCr = "/veranda/heros/recht-creme.webp";
@@ -638,20 +638,10 @@ const vH_HalfAnt = "/veranda/heros/halfrond-anthracite.webp";
 const vH_HalfBl = "/veranda/heros/halfrond-black.webp";
 const vH_HalfCr = "/veranda/heros/halfrond-creme.webp";
 const vH_HalfWh = "/veranda/heros/halfrond-white.webp";
-const vH_ModAnt = "/veranda/heros/modern-anthracite.webp";
-const vH_ModBl = "/veranda/heros/modern-black.webp";
-const vH_ModCr = "/veranda/heros/modern-creme.webp";
-const vH_ModWh = "/veranda/heros/modern-white.webp";
-const vH_SierAnt = "/veranda/heros/sier-anthracite.webp";
-const vH_SierBl = "/veranda/heros/sier-black.webp";
-const vH_SierCr = "/veranda/heros/sier-creme.webp";
-const vH_SierWh = "/veranda/heros/sier-white.webp";
 
 // Rinnen-Thumbnails
 const vGutterRecht = "/veranda/gutters/4507d804-8de1-44d0-b668-52e7cd529319.webp";
 const vGutterHalf = "/veranda/gutters/8b6ee5b4-4d2f-4f8c-aa18-04eb855f61cd.webp";
-const vGutterMod = "/veranda/gutters/1d604e3c-2580-49f2-9880-a932240ebf33.webp";
-const vGutterSier = "/veranda/gutters/2aa3e4bb-1de3-4a91-a953-64294dd61e58.webp";
 
 // Dachmaterial-Thumbnails
 const vRoofPolyOpaal = "/veranda/roof/b94d478c-9820-40d1-b686-30a4f7d2421e.webp";
@@ -682,14 +672,6 @@ const verandaConfig: CategoryConfigurator = {
     "halfrond|black": vH_HalfBl,
     "halfrond|creme": vH_HalfCr,
     "halfrond|white": vH_HalfWh,
-    "modern|anthracite": vH_ModAnt,
-    "modern|black": vH_ModBl,
-    "modern|creme": vH_ModCr,
-    "modern|white": vH_ModWh,
-    "sier|anthracite": vH_SierAnt,
-    "sier|black": vH_SierBl,
-    "sier|creme": vH_SierCr,
-    "sier|white": vH_SierWh,
   },
   steps: [
     {
@@ -698,10 +680,8 @@ const verandaConfig: CategoryConfigurator = {
       title: "Regenrinnen-Profil",
       type: "select-cards",
       options: [
-        { id: "recht", code: "recht", label: "Gerade Rinne", desc: "Klares Box-Profil, kubische Optik (Q150)", price: 190, image: vGutterRecht },
-        { id: "halfrond", code: "halfrond", label: "Halbrunde Rinne", desc: "Klassiker, weiche Linienführung", price: 0, image: vGutterHalf },
-        { id: "modern", code: "modern", label: "Moderne Rinne", desc: "Schlankes, modernes Profil", price: 0, image: vGutterMod },
-        { id: "sier", code: "sier", label: "Zier-Rinne", desc: "Dekoratives Sims-Profil", price: 0, image: vGutterSier },
+        { id: "recht", code: "recht", label: "Gerade Rinne (Q)", desc: "Klares Box-Profil, kubische Optik (Erhardt Q150)", price: 190, image: vGutterRecht },
+        { id: "halfrond", code: "halfrond", label: "Halbrunde Rinne (T)", desc: "Klassiker, weiche Linienführung (Erhardt T150)", price: 0, image: vGutterHalf },
       ],
     },
     {
