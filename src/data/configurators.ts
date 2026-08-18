@@ -645,17 +645,6 @@ const carportConfig: CategoryConfigurator = {
 // ============================================================
 const verandaHalfrondAnthracite = "/veranda/heros/halfrond-anthracite.webp";
 
-// Hero-Varianten (2 Rinnenprofile Erhardt Q/T × 4 Farben)
-const vH_RechtAnt = "/veranda/heros/recht-anthracite.webp";
-const vH_RechtBl = "/veranda/heros/recht-black.webp";
-const vH_RechtCr = "/veranda/heros/recht-creme.webp";
-const vH_RechtWh = "/veranda/heros/recht-white.webp";
-const vH_HalfAnt = "/veranda/heros/halfrond-anthracite.webp";
-const vH_HalfBl = "/veranda/heros/halfrond-black.webp";
-const vH_HalfCr = "/veranda/heros/halfrond-creme.webp";
-const vH_HalfWh = "/veranda/heros/halfrond-white.webp";
-// 2-Pfosten-Varianten (< 4 m Breite bzw. mit größerem Stützenabstand): kein Mittelpfosten
-const vH2 = (rel: string) => `/veranda/heros/${rel}-2p.webp`;
 
 // Rinnen-Thumbnails
 const vGutterRecht = "/veranda/gutters/4507d804-8de1-44d0-b668-52e7cd529319.webp";
@@ -671,6 +660,20 @@ const vRoofTinted = "/veranda/roof/cffeaca3-1a7b-4d44-b191-b7c6ef16f754.webp";
 // Front-Thumbnails (4) – wir laden die nach Bedarf, hier per Glob (Vite)
 const verandaImg = (rel: string) => `/veranda/${rel}`;
 
+// Erzeugt alle Hero-Keys: {recht|halfrond} × {4 Farben} × {5 Dächer} × {3p|2p}
+function verandaHeroVariants(): Record<string, string> {
+  const gutters = ["recht", "halfrond"] as const;
+  const colors = ["anthracite", "black", "creme", "white"] as const;
+  const roofs = ["poly-opaal", "poly-helder", "glas-helder", "glas-opaal", "glas-tint"] as const;
+  const out: Record<string, string> = {};
+  for (const g of gutters) for (const c of colors) for (const r of roofs) for (const p of ["3p", "2p"] as const) {
+    const suffix = p === "2p" ? "-2p" : "";
+    const file = r === "glas-helder" ? `${g}-${c}${suffix}` : `${g}-${c}-${r}${suffix}`;
+    out[`${g}|${c}|${r}|${p}`] = `/veranda/heros/${file}.webp`;
+  }
+  return out;
+}
+
 const verandaConfig: CategoryConfigurator = {
   slug: "terrassenueberdachungen",
   label: "Terrassenüberdachungen",
@@ -680,26 +683,10 @@ const verandaConfig: CategoryConfigurator = {
   // Produkt brutto inkl. MwSt. · zzgl. Montage & Lieferung · Dacheindeckung separat kalkuliert.
   basePrice: 5610,
   deliveryTime: "2 Wochen",
-  heroVariantStepIds: ["gutter", "color"],
-  heroVariants: {
-    "recht|anthracite": vH_RechtAnt,
-    "recht|black": vH_RechtBl,
-    "recht|creme": vH_RechtCr,
-    "recht|white": vH_RechtWh,
-    "halfrond|anthracite": vH_HalfAnt,
-    "halfrond|black": vH_HalfBl,
-    "halfrond|creme": vH_HalfCr,
-    "halfrond|white": vH_HalfWh,
-    // ohne Mittelpfosten (2 Pfosten) — Auswahl per postRule
-    "recht|anthracite|2p": vH2("recht-anthracite"),
-    "recht|black|2p": vH2("recht-black"),
-    "recht|creme|2p": vH2("recht-creme"),
-    "recht|white|2p": vH2("recht-white"),
-    "halfrond|anthracite|2p": vH2("halfrond-anthracite"),
-    "halfrond|black|2p": vH2("halfrond-black"),
-    "halfrond|creme|2p": vH2("halfrond-creme"),
-    "halfrond|white|2p": vH2("halfrond-white"),
-  },
+  heroVariantStepIds: ["gutter", "color", "roof"],
+  // Hero = Rinne × Farbe × Dachmaterial × Pfostenzahl (|2p unter 4 m bzw. mit größerem Stützenabstand).
+  // Klarglas (glas-helder) ist das Basis-Rendering; die übrigen Dächer sind daraus abgeleitet.
+  heroVariants: verandaHeroVariants(),
   // Erhardt-Statik T150/Q150: Pfosten-Achsabstand max. 4 m → ab 4 m Breite Mittelpfosten,
   // außer verstärkte Pfette 210 ("größerer Stützenabstand", bis 7 m ohne 3. Stütze).
   postRule: { maxSpanM: 4, spanExtraId: "stuetzenabstand", spanExtraMaxM: 7 },
@@ -745,12 +732,12 @@ const verandaConfig: CategoryConfigurator = {
       title: "Dachmaterial",
       type: "select-cards",
       options: [
-        { id: "poly-opaal", label: "Polycarbonat Opal", desc: "Diffuses Licht, Hitzeschutz", price: 0, image: vRoofPolyOpaal },
-        { id: "poly-helder", label: "Polycarbonat Klar", desc: "Maximaler Lichteinfall", price: 0, image: vRoofPolyHelder },
+        { id: "poly-opaal", code: "poly-opaal", label: "Polycarbonat Opal", desc: "Diffuses Licht, Hitzeschutz", price: 0, image: vRoofPolyOpaal },
+        { id: "poly-helder", code: "poly-helder", label: "Polycarbonat Klar", desc: "Maximaler Lichteinfall", price: 0, image: vRoofPolyHelder },
         // VSG-Aufpreise leicht angehoben — primärer Marge-Hebel (~45 % Marge laut Strategie)
-        { id: "glas-helder", label: "Klarglas (VSG 44.2)", desc: "Premium, kristallklar", price: 3360, image: vRoofGlas },
-        { id: "glas-opaal", label: "Opalglas (VSG 44.2)", desc: "Sichtschutz & Streulicht", price: 3790, image: vRoofOpaalGlas },
-        { id: "glas-tint", label: "Getöntes Glas (VSG)", desc: "Sonnenschutz integriert", price: 4060, image: vRoofTinted },
+        { id: "glas-helder", code: "glas-helder", label: "Klarglas (VSG 44.2)", desc: "Premium, kristallklar", price: 3360, image: vRoofGlas },
+        { id: "glas-opaal", code: "glas-opaal", label: "Opalglas (VSG 44.2)", desc: "Sichtschutz & Streulicht", price: 3790, image: vRoofOpaalGlas },
+        { id: "glas-tint", code: "glas-tint", label: "Getöntes Glas (VSG)", desc: "Sonnenschutz integriert", price: 4060, image: vRoofTinted },
       ],
     },
     {
