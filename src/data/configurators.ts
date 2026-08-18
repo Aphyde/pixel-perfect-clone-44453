@@ -660,16 +660,20 @@ const vRoofTinted = "/veranda/roof/cffeaca3-1a7b-4d44-b191-b7c6ef16f754.webp";
 // Front-Thumbnails (4) – wir laden die nach Bedarf, hier per Glob (Vite)
 const verandaImg = (rel: string) => `/veranda/${rel}`;
 
-// Erzeugt alle Hero-Keys: {recht|halfrond} × {4 Farben} × {5 Dächer} × {3p|2p}
+// Erzeugt alle Hero-Keys: {recht|halfrond} × {4 Farben} × {5 Dächer} × {4 Fronten} × {3p|2p}
+// Dateischema: heros/{rinne}-{farbe}[-{dach}][-{front}][-2p].webp — Klarglas + offene Front = Basisdatei.
 function verandaHeroVariants(): Record<string, string> {
   const gutters = ["recht", "halfrond"] as const;
   const colors = ["anthracite", "black", "creme", "white"] as const;
   const roofs = ["poly-opaal", "poly-helder", "glas-helder", "glas-opaal", "glas-tint"] as const;
+  const fronts = ["open", "schiebewand-klar", "schiebewand-tint", "schiebetuer"] as const;
   const out: Record<string, string> = {};
-  for (const g of gutters) for (const c of colors) for (const r of roofs) for (const p of ["3p", "2p"] as const) {
-    const suffix = p === "2p" ? "-2p" : "";
-    const file = r === "glas-helder" ? `${g}-${c}${suffix}` : `${g}-${c}-${r}${suffix}`;
-    out[`${g}|${c}|${r}|${p}`] = `/veranda/heros/${file}.webp`;
+  for (const g of gutters) for (const c of colors) for (const r of roofs) for (const f of fronts) for (const p of ["3p", "2p"] as const) {
+    const parts = [`${g}-${c}`];
+    if (r !== "glas-helder") parts.push(r);
+    if (f !== "open") parts.push(f);
+    if (p === "2p") parts.push("2p");
+    out[`${g}|${c}|${r}|${f}|${p}`] = `/veranda/heros/${parts.join("-")}.webp`;
   }
   return out;
 }
@@ -683,8 +687,8 @@ const verandaConfig: CategoryConfigurator = {
   // Produkt brutto inkl. MwSt. · zzgl. Montage & Lieferung · Dacheindeckung separat kalkuliert.
   basePrice: 5610,
   deliveryTime: "2 Wochen",
-  heroVariantStepIds: ["gutter", "color", "roof"],
-  // Hero = Rinne × Farbe × Dachmaterial × Pfostenzahl (|2p unter 4 m bzw. mit größerem Stützenabstand).
+  heroVariantStepIds: ["gutter", "color", "roof", "front"],
+  // Hero = Rinne × Farbe × Dachmaterial × Vorderseite × Pfostenzahl (|2p unter 4 m bzw. mit größerem Stützenabstand).
   // Klarglas (glas-helder) ist das Basis-Rendering; die übrigen Dächer sind daraus abgeleitet.
   heroVariants: verandaHeroVariants(),
   // Erhardt-Statik T150/Q150: Pfosten-Achsabstand max. 4 m → ab 4 m Breite Mittelpfosten,
@@ -746,10 +750,10 @@ const verandaConfig: CategoryConfigurator = {
       title: "Vorderseite",
       type: "select-cards",
       options: [
-        { id: "open", label: "Offen", desc: "Klassische Veranda, freier Durchgang", price: 0, image: verandaImg("front/105db456-543f-4503-8ef5-40f2d396e269.webp") },
-        { id: "schiebewand-klar", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 5750, image: verandaImg("front/d222dac9-529a-4c1d-87ee-ffbd69d0a8f6.webp") },
-        { id: "schiebewand-tint", label: "Glas-Schiebewände satiniert", desc: "Vollverglasung, satiniert", price: 7670, image: verandaImg("front/9827a863-e33a-4eab-8cd6-097aa6c61333.webp") },
-        { id: "schiebetuer", label: "Schiebetür", desc: "Eleganter Übergang in den Garten", price: 5750, image: verandaImg("front/c84b71ea-6699-4fd9-8562-08dfc92614cf.webp") },
+        { id: "open", code: "open", label: "Offen", desc: "Klassische Veranda, freier Durchgang", price: 0, image: verandaImg("front/105db456-543f-4503-8ef5-40f2d396e269.webp") },
+        { id: "schiebewand-klar", code: "schiebewand-klar", label: "Glas-Schiebewände klar", desc: "Vollverglasung, klar", price: 5750, image: verandaImg("front/d222dac9-529a-4c1d-87ee-ffbd69d0a8f6.webp") },
+        { id: "schiebewand-tint", code: "schiebewand-tint", label: "Glas-Schiebewände satiniert", desc: "Vollverglasung, satiniert", price: 7670, image: verandaImg("front/9827a863-e33a-4eab-8cd6-097aa6c61333.webp") },
+        { id: "schiebetuer", code: "schiebetuer", label: "Schiebetür", desc: "Eleganter Übergang in den Garten", price: 5750, image: verandaImg("front/c84b71ea-6699-4fd9-8562-08dfc92614cf.webp") },
       ],
     },
     {
