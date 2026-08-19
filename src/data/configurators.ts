@@ -151,6 +151,18 @@ export interface CategoryConfigurator {
   heroVariants?: Record<string, string>;
   /** Optional: Pfostenregel nach Breite (siehe PostRule) */
   postRule?: PostRule;
+  /** Optional: transparente Overlay-Ebenen über dem Hero (z. B. Seitenwände), siehe HeroLayer */
+  heroLayers?: HeroLayer[];
+}
+
+/**
+ * Overlay-Ebene über dem Hero-Bild: wird über dem komponierten Hero angezeigt (gleiche 1920×1080-Leinwand,
+ * transparent außerhalb des betroffenen Bereichs). `pattern` mit Platzhaltern {gutter} {color} {posts} {code};
+ * Optionen mit `code` "open" (oder ohne code) zeigen keine Ebene.
+ */
+export interface HeroLayer {
+  stepId: string;
+  pattern: string;
 }
 
 // ============================================================
@@ -694,6 +706,8 @@ const verandaConfig: CategoryConfigurator = {
   // Erhardt-Statik T150/Q150: Pfosten-Achsabstand max. 4 m → ab 4 m Breite Mittelpfosten,
   // außer verstärkte Pfette 210 ("größerer Stützenabstand", bis 7 m ohne 3. Stütze).
   postRule: { maxSpanM: 4, spanExtraId: "stuetzenabstand", spanExtraMaxM: 7 },
+  // Seitenwände als Overlay-Ebenen über dem Hero (Front/Dach/Farbe/Pfosten bleiben, was gewählt ist)
+  heroLayers: [{ stepId: "left-wall", pattern: "/veranda/layers/left-wall/{gutter}-{posts}-{color}-{code}.webp" }],
   steps: [
     {
       id: "gutter",
@@ -762,20 +776,20 @@ const verandaConfig: CategoryConfigurator = {
       title: "Linke Seitenwand",
       type: "select-cards",
       options: [
-        { id: "lw-open", label: "Offen", desc: "Keine Seitenwand", price: 0, image: verandaImg("walls-left/33ecc566-3cfd-4651-939d-5132ae70b2be.webp") },
-        { id: "lw-glas-tuer", label: "Glas-Seitenwand mit Tür", desc: "Festes Glas + Drehtür", price: 5660, image: verandaImg("walls-left/53116f7e-ade4-4935-937c-946bdd821fce.webp") },
-        { id: "lw-glas", label: "Glas-Seitenwand komplett", desc: "Vollglas-Modul", price: 1920, image: verandaImg("walls-left/dfc4d02d-e244-4a4b-b144-e2def1758bf5.webp") },
-        { id: "lw-poly", label: "Polycarbonat Seitenwand", desc: "Komplett geschlossen", price: 1920, image: verandaImg("walls-left/1daeb7b5-a22d-4edb-a33e-a570d5dbd028.webp") },
-        { id: "lw-alu-glas-keil", label: "Alu-Wand mit Glas-Keil", desc: "Sandwich-Paneel + Glas oben", price: 9210, image: verandaImg("walls-left/ada93be7-41e4-4a6f-850a-8fdd960a2f3b.webp") },
-        { id: "lw-alu-poly-keil", label: "Alu-Wand mit Polycarbonat-Keil", desc: "Sandwich-Paneel + PC oben", price: 9210, image: verandaImg("walls-left/71f62d80-faf3-4e65-9987-99a4742d1c17.webp") },
-        { id: "lw-schiebepui-glas-keil", label: "Schiebetür + Glas-Keil", desc: "Mit Glas-Keil", price: 6890, image: verandaImg("walls-left/81074a7b-524f-4c99-a837-77450505d438.webp") },
-        { id: "lw-schiebepui-poly-keil", label: "Schiebetür + Polycarbonat-Keil", desc: "Mit PC-Keil", price: 6890, image: verandaImg("walls-left/2750e21f-b3a6-4c90-8026-37a97aa96538.webp") },
-        { id: "lw-schiebewand-glas-keil", label: "Glas-Schiebewände + Glas-Keil", desc: "Vollverglasung + Keil", price: 6890, image: verandaImg("walls-left/566a94ea-446b-416f-b652-f02b00466053.webp") },
-        { id: "lw-schiebewand-poly-keil", label: "Glas-Schiebewände + Polycarbonat-Keil", desc: "Vollverglasung + PC-Keil", price: 6890, image: verandaImg("walls-left/c368ed92-63b3-4ead-844c-d7facdc825a6.webp") },
-        { id: "lw-keil-glas", label: "Nur Keil aus Glas", desc: "Oberer Glas-Keil, Wand offen", price: 1140, image: verandaImg("walls-left/c19e6442-6443-4ff8-a521-a5e19ea997c2.webp") },
-        { id: "lw-keil-poly", label: "Nur Keil aus Polycarbonat", desc: "Oberer PC-Keil, Wand offen", price: 1140, image: verandaImg("walls-left/5b46e8e2-5c2d-4f85-baf3-acade0cb10fe.webp") },
-        { id: "lw-keil-alu", label: "Nur Keil aus Aluminium", desc: "Geschlossener Alu-Keil", price: 1140, image: verandaImg("walls-left/d43cb4fc-33a4-466f-8092-34861c78bec5.webp") },
-        { id: "lw-sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert", price: 8070, image: verandaImg("walls-left/b3f39d47-edc3-4da4-9d86-816b73be24d9.webp") },
+        { id: "lw-open", code: "open", label: "Offen", desc: "Keine Seitenwand", price: 0, image: verandaImg("walls-left/33ecc566-3cfd-4651-939d-5132ae70b2be.webp") },
+        { id: "lw-glas-tuer", code: "glas-tuer", label: "Glas-Seitenwand mit Tür", desc: "Festes Glas + Drehtür", price: 5660, image: verandaImg("walls-left/53116f7e-ade4-4935-937c-946bdd821fce.webp") },
+        { id: "lw-glas", code: "glas", label: "Glas-Seitenwand komplett", desc: "Vollglas-Modul", price: 1920, image: verandaImg("walls-left/dfc4d02d-e244-4a4b-b144-e2def1758bf5.webp") },
+        { id: "lw-poly", code: "poly", label: "Polycarbonat Seitenwand", desc: "Komplett geschlossen", price: 1920, image: verandaImg("walls-left/1daeb7b5-a22d-4edb-a33e-a570d5dbd028.webp") },
+        { id: "lw-alu-glas-keil", code: "alu-glas-keil", label: "Alu-Wand mit Glas-Keil", desc: "Sandwich-Paneel + Glas oben", price: 9210, image: verandaImg("walls-left/ada93be7-41e4-4a6f-850a-8fdd960a2f3b.webp") },
+        { id: "lw-alu-poly-keil", code: "alu-poly-keil", label: "Alu-Wand mit Polycarbonat-Keil", desc: "Sandwich-Paneel + PC oben", price: 9210, image: verandaImg("walls-left/71f62d80-faf3-4e65-9987-99a4742d1c17.webp") },
+        { id: "lw-schiebepui-glas-keil", code: "schiebepui-glas-keil", label: "Schiebetür + Glas-Keil", desc: "Mit Glas-Keil", price: 6890, image: verandaImg("walls-left/81074a7b-524f-4c99-a837-77450505d438.webp") },
+        { id: "lw-schiebepui-poly-keil", code: "schiebepui-poly-keil", label: "Schiebetür + Polycarbonat-Keil", desc: "Mit PC-Keil", price: 6890, image: verandaImg("walls-left/2750e21f-b3a6-4c90-8026-37a97aa96538.webp") },
+        { id: "lw-schiebewand-glas-keil", code: "schiebewand-glas-keil", label: "Glas-Schiebewände + Glas-Keil", desc: "Vollverglasung + Keil", price: 6890, image: verandaImg("walls-left/566a94ea-446b-416f-b652-f02b00466053.webp") },
+        { id: "lw-schiebewand-poly-keil", code: "schiebewand-poly-keil", label: "Glas-Schiebewände + Polycarbonat-Keil", desc: "Vollverglasung + PC-Keil", price: 6890, image: verandaImg("walls-left/c368ed92-63b3-4ead-844c-d7facdc825a6.webp") },
+        { id: "lw-keil-glas", code: "keil-glas", label: "Nur Keil aus Glas", desc: "Oberer Glas-Keil, Wand offen", price: 1140, image: verandaImg("walls-left/c19e6442-6443-4ff8-a521-a5e19ea997c2.webp") },
+        { id: "lw-keil-poly", code: "keil-poly", label: "Nur Keil aus Polycarbonat", desc: "Oberer PC-Keil, Wand offen", price: 1140, image: verandaImg("walls-left/5b46e8e2-5c2d-4f85-baf3-acade0cb10fe.webp") },
+        { id: "lw-keil-alu", code: "keil-alu", label: "Nur Keil aus Aluminium", desc: "Geschlossener Alu-Keil", price: 1140, image: verandaImg("walls-left/d43cb4fc-33a4-466f-8092-34861c78bec5.webp") },
+        { id: "lw-sandwich", code: "sandwich", label: "Sandwich-Paneel", desc: "Vollflächig isoliert", price: 8070, image: verandaImg("walls-left/b3f39d47-edc3-4da4-9d86-816b73be24d9.webp") },
       ],
     },
     {

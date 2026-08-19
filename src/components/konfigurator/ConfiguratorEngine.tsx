@@ -243,11 +243,36 @@ const ConfiguratorEngine = ({ config }: Props) => {
   // Aktuell angezeigtes Hauptbild
   const activeHero = previewImage ?? composedHero ?? CONFIGURATOR_PLACEHOLDER;
 
+  // Overlay-Ebenen (z. B. Seitenwand) — nur auf der komponierten Ansicht, nicht auf Detail-Vorschauen
+  const heroLayerSrcs = useMemo(() => {
+    if (previewImage || !config.heroLayers?.length) return [] as string[];
+    const codeOf = (stepId: string) => {
+      const step = config.steps.find((s) => s.id === stepId);
+      const idx = selections[stepId] ?? 0;
+      return step?.type === "colors" ? step.colors?.[idx]?.code : step?.options?.[idx]?.code;
+    };
+    const gutter = codeOf("gutter") ?? "";
+    const color = codeOf("color") ?? "";
+    const posts = twoPosts ? "2p" : "3p";
+    const out: string[] = [];
+    for (const layer of config.heroLayers) {
+      const code = codeOf(layer.stepId);
+      if (!code || code === "open") continue;
+      out.push(
+        layer.pattern.replace("{gutter}", gutter).replace("{color}", color).replace("{posts}", posts).replace("{code}", code),
+      );
+    }
+    return out;
+  }, [config, selections, previewImage, twoPosts]);
+
+  const isHeroDrivenStep = (stepId: string) =>
+    !!config.heroVariantStepIds?.includes(stepId) || !!config.heroLayers?.some((l) => l.stepId === stepId);
+
   const setSelection = (stepId: string, idx: number) => {
     setSelections((p) => ({ ...p, [stepId]: idx }));
     // Direktes Feedback: bei Klick sofort die Detail-Vorschau dieses Steps zeigen
     // (außer es ist ein Hero-Variant-Step wie Rinne / Farbe – dort soll die Komposition bleiben)
-    if (config.heroVariantStepIds?.includes(stepId)) {
+    if (isHeroDrivenStep(stepId)) {
       setPreviewStepId(null);
     } else {
       const step = config.steps.find((s) => s.id === stepId);
@@ -293,7 +318,7 @@ const ConfiguratorEngine = ({ config }: Props) => {
       }
 
       if (!bestId) return;
-      if (config.heroVariantStepIds?.includes(bestId)) {
+      if (config.heroVariantStepIds?.includes(bestId) || config.heroLayers?.some((l) => l.stepId === bestId)) {
         setPreviewStepId(null);
       } else {
         setPreviewStepId(bestId);
@@ -420,6 +445,9 @@ const ConfiguratorEngine = ({ config }: Props) => {
             width={1920}
             height={1080}
           />
+          {heroLayerSrcs.map((src) => (
+            <img key={src} src={src} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover pointer-events-none" width={1920} height={1080} />
+          ))}
           {previewStepId && (() => {
             const step = config.steps.find((s) => s.id === previewStepId);
             const opt = step?.options?.[selections[previewStepId] ?? 0];
@@ -450,6 +478,9 @@ const ConfiguratorEngine = ({ config }: Props) => {
             width={1920}
             height={1080}
           />
+          {heroLayerSrcs.map((src) => (
+            <img key={src} src={src} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover pointer-events-none" width={1920} height={1080} />
+          ))}
           <div className="absolute inset-0 bg-foreground/5 pointer-events-none" />
 
           <div
