@@ -730,18 +730,18 @@ const verandaConfig: CategoryConfigurator = {
       id: "left", stepIds: ["left-wall"], flip: true,
       hero: "/veranda/angled/hero-{gutter}-{posts}-{color}.webp",
       layers: [
-        { stepId: "roof", pattern: "/veranda/angled/roof-{color}-{code}.webp", skipCodes: ["glas-helder"] },
+        { stepId: "roof", pattern: "/veranda/angled/roof-{posts}-{color}-{code}.webp", skipCodes: ["glas-helder"] },
         { stepId: "front", pattern: "/veranda/angled/front-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
-        { stepId: "left-wall", pattern: "/veranda/angled/wall-{color}-{code}.webp", skipCodes: ["open"] },
+        { stepId: "left-wall", pattern: "/veranda/angled/wall-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
       ],
     },
     {
       id: "right", stepIds: ["right-wall"],
       hero: "/veranda/angled/hero-{gutter}-{posts}-{color}.webp",
       layers: [
-        { stepId: "roof", pattern: "/veranda/angled/roof-{color}-{code}.webp", skipCodes: ["glas-helder"] },
+        { stepId: "roof", pattern: "/veranda/angled/roof-{posts}-{color}-{code}.webp", skipCodes: ["glas-helder"] },
         { stepId: "front", pattern: "/veranda/angled/front-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
-        { stepId: "right-wall", pattern: "/veranda/angled/wall-{color}-{code}.webp", skipCodes: ["open"] },
+        { stepId: "right-wall", pattern: "/veranda/angled/wall-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
       ],
     },
   ],
