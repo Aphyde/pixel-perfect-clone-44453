@@ -234,6 +234,7 @@ const ConfiguratorEngine = ({ config }: Props) => {
   // Optional: Detail-Vorschau der zuletzt gewählten Option (z. B. Dachmaterial, Wand, LED, ...)
   const previewImage = useMemo(() => {
     if (!previewStepId) return null;
+    if (config.altViews?.some((v) => v.stepIds.includes(previewStepId))) return null;
     const step = config.steps.find((s) => s.id === previewStepId);
     if (!step) return null;
     const idx = selections[step.id] ?? 0;
@@ -268,12 +269,39 @@ const ConfiguratorEngine = ({ config }: Props) => {
   const isHeroDrivenStep = (stepId: string) =>
     !!config.heroVariantStepIds?.includes(stepId) || !!config.heroLayers?.some((l) => l.stepId === stepId);
 
+  // Alternative Kamera (z. B. Schrägansicht für Seitenwände), aktiv wenn der Vorschau-Step dazugehört
+  const altView = useMemo(() => {
+    if (!previewStepId || !config.altViews?.length) return null;
+    const view = config.altViews.find((v) => v.stepIds.includes(previewStepId));
+    if (!view) return null;
+    const codeOf = (stepId: string) => {
+      const step = config.steps.find((s) => s.id === stepId);
+      const idx = selections[stepId] ?? 0;
+      return step?.type === "colors" ? step.colors?.[idx]?.code : step?.options?.[idx]?.code;
+    };
+    const fill = (pattern: string, code = "") =>
+      pattern
+        .replace("{gutter}", codeOf("gutter") ?? "")
+        .replace("{color}", codeOf("color") ?? "")
+        .replace("{posts}", twoPosts ? "2p" : "3p")
+        .replace("{code}", code);
+    const layers: string[] = [];
+    for (const layer of view.layers) {
+      const code = codeOf(layer.stepId);
+      if (!code || layer.skipCodes?.includes(code)) continue;
+      layers.push(fill(layer.pattern, code));
+    }
+    return { hero: fill(view.hero), layers, flip: !!view.flip };
+  }, [config, selections, previewStepId, twoPosts]);
+
   const setSelection = (stepId: string, idx: number) => {
     setSelections((p) => ({ ...p, [stepId]: idx }));
     // Direktes Feedback: bei Klick sofort die Detail-Vorschau dieses Steps zeigen
     // (außer es ist ein Hero-Variant-Step wie Rinne / Farbe – dort soll die Komposition bleiben)
     if (isHeroDrivenStep(stepId)) {
       setPreviewStepId(null);
+    } else if (config.altViews?.some((v) => v.stepIds.includes(stepId))) {
+      setPreviewStepId(stepId);
     } else {
       const step = config.steps.find((s) => s.id === stepId);
       if (step?.options?.[idx]?.image) setPreviewStepId(stepId);
@@ -438,16 +466,18 @@ const ConfiguratorEngine = ({ config }: Props) => {
           ref={mobileHeroRef}
           className="md:hidden fixed top-0 left-0 right-0 z-40 h-72 bg-surface-container-low overflow-hidden"
         >
-          <img
-            src={activeHero}
-            alt={config.label}
-            className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
-            width={1920}
-            height={1080}
-          />
-          {heroLayerSrcs.map((src) => (
-            <img key={src} src={src} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover pointer-events-none" width={1920} height={1080} />
-          ))}
+          <div className={`absolute inset-0 ${altView?.flip ? "-scale-x-100" : ""}`}>
+            <img
+              src={altView ? altView.hero : activeHero}
+              alt={config.label}
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
+              width={1920}
+              height={1080}
+            />
+            {(altView ? altView.layers : heroLayerSrcs).map((src) => (
+              <img key={src} src={src} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover pointer-events-none" width={1920} height={1080} />
+            ))}
+          </div>
           {previewStepId && (() => {
             const step = config.steps.find((s) => s.id === previewStepId);
             const opt = step?.options?.[selections[previewStepId] ?? 0];
@@ -471,16 +501,18 @@ const ConfiguratorEngine = ({ config }: Props) => {
           onMouseLeave={() => setVisualizerHovered(false)}
         >
           {/* Basis-Komposition (Rinne + Farbe) – füllt den kompletten Container */}
-          <img
-            src={activeHero}
-            className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
-            alt={config.label}
-            width={1920}
-            height={1080}
-          />
-          {heroLayerSrcs.map((src) => (
-            <img key={src} src={src} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover pointer-events-none" width={1920} height={1080} />
-          ))}
+          <div className={`absolute inset-0 ${altView?.flip ? "-scale-x-100" : ""}`}>
+            <img
+              src={altView ? altView.hero : activeHero}
+              alt={config.label}
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
+              width={1920}
+              height={1080}
+            />
+            {(altView ? altView.layers : heroLayerSrcs).map((src) => (
+              <img key={src} src={src} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover pointer-events-none" width={1920} height={1080} />
+            ))}
+          </div>
           <div className="absolute inset-0 bg-foreground/5 pointer-events-none" />
 
           <div
