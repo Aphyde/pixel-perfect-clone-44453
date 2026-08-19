@@ -727,7 +727,7 @@ const verandaConfig: CategoryConfigurator = {
   // Rechte Seite = dieselbe Kamera gespiegelt. Front/Dach/Farbe/Pfosten/Rinne bleiben, was gewählt ist.
   altViews: [
     {
-      id: "left", stepIds: ["left-wall"],
+      id: "left", stepIds: ["left-wall"], flip: true,
       hero: "/veranda/angled/hero-{gutter}-{posts}-{color}.webp",
       layers: [
         { stepId: "roof", pattern: "/veranda/angled/roof-{color}-{code}.webp", skipCodes: ["glas-helder"] },
@@ -736,7 +736,7 @@ const verandaConfig: CategoryConfigurator = {
       ],
     },
     {
-      id: "right", stepIds: ["right-wall"], flip: true,
+      id: "right", stepIds: ["right-wall"],
       hero: "/veranda/angled/hero-{gutter}-{posts}-{color}.webp",
       layers: [
         { stepId: "roof", pattern: "/veranda/angled/roof-{color}-{code}.webp", skipCodes: ["glas-helder"] },
