@@ -202,7 +202,7 @@ const ConfiguratorEngine = ({ config }: Props) => {
   const twoPosts = useMemo(() => {
     const rule = config.postRule;
     if (!rule) return false;
-    if (width < rule.maxSpanM) return true;
+    if (width <= rule.maxSpanM) return true;
     if (rule.spanExtraId && extras.has(rule.spanExtraId)) {
       return rule.spanExtraMaxM === undefined || width <= rule.spanExtraMaxM;
     }
@@ -753,7 +753,7 @@ const StepRenderer = ({
               <span className="text-xs md:text-sm font-bold text-right">
                 {twoPosts
                   ? "2 Pfosten – kein Mittelpfosten nötig"
-                  : `3 Pfosten (Achsabstand max. ${postRule.maxSpanM} m) – oder Option „Größerer Stützenabstand“ wählen`}
+                  : `3 Pfosten (ab ${postRule.maxSpanM} m Breite) – oder Option „Größerer Stützenabstand“ wählen`}
               </span>
             </div>
           )}
