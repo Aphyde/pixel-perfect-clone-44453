@@ -870,10 +870,10 @@ const verandaConfig: CategoryConfigurator = {
       title: "LED-Beleuchtung",
       type: "radio-icon",
       options: [
-        { id: "light-none", label: "Keine Beleuchtung", price: 0, image: verandaImg("lighting/a47e748d-69e2-4fe7-97b2-78443e25ff3e.webp") },
-        { id: "light-cold", label: "LED Kaltweiß", price: 1600, image: verandaImg("lighting/0ceb7929-e143-49e1-a23f-394c9eec3c5d.webp") },
-        { id: "light-warm", label: "LED Warmweiß", price: 1600, image: verandaImg("lighting/d41af972-2fe8-428d-8996-976f3db0097e.webp") },
-        { id: "light-dim", label: "LED dimmbar (Funk)", price: 2030, image: verandaImg("lighting/160de327-7e39-4ea5-988c-5f7c38963bd5.webp") },
+        { id: "light-none", code: "light-none", label: "Keine Beleuchtung", price: 0, image: verandaImg("lighting/a47e748d-69e2-4fe7-97b2-78443e25ff3e.webp") },
+        { id: "light-cold", code: "light-cold", label: "LED Kaltweiß", price: 1600, image: verandaImg("lighting/0ceb7929-e143-49e1-a23f-394c9eec3c5d.webp") },
+        { id: "light-warm", code: "light-warm", label: "LED Warmweiß", price: 1600, image: verandaImg("lighting/d41af972-2fe8-428d-8996-976f3db0097e.webp") },
+        { id: "light-dim", code: "light-dim", label: "LED dimmbar (Funk)", price: 2030, image: verandaImg("lighting/160de327-7e39-4ea5-988c-5f7c38963bd5.webp") },
       ],
     },
     {
