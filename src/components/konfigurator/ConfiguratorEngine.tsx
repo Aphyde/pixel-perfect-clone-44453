@@ -285,13 +285,24 @@ const ConfiguratorEngine = ({ config }: Props) => {
         .replace("{color}", codeOf("color") ?? "")
         .replace("{posts}", twoPosts ? "2p" : "3p")
         .replace("{code}", code);
+    // Nahtfreie Basis: Wand-Render als Grundbild (statt hero + Wand-Ebene)
+    let baseSrc: string | null = null;
+    let baseStepId: string | null = null;
+    if (view.base && (!view.base.only3p || !twoPosts)) {
+      const bc = codeOf(view.base.stepId);
+      if (bc && !view.base.skipCodes?.includes(bc)) {
+        baseSrc = fill(view.base.pattern, bc);
+        baseStepId = view.base.stepId;
+      }
+    }
     const layers: string[] = [];
     for (const layer of view.layers) {
+      if (baseStepId && layer.stepId === baseStepId) continue;
       const code = codeOf(layer.stepId);
       if (!code || layer.skipCodes?.includes(code)) continue;
       layers.push(fill(layer.pattern, code));
     }
-    return { hero: fill(view.hero), layers, flip: !!view.flip };
+    return { hero: baseSrc ?? fill(view.hero), layers, flip: !!view.flip };
   }, [config, selections, previewStepId, twoPosts]);
 
   const setSelection = (stepId: string, idx: number) => {

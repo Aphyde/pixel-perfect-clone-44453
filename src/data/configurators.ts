@@ -180,6 +180,9 @@ export interface AltView {
   hero: string;
   layers: HeroLayer[];
   flip?: boolean;
+  /** Optional: vollflächiges Basisbild je Options-Code (ersetzt hero + die Ebene dieses Steps) —
+   *  nahtfrei, da die Option im Basisrender enthalten ist. only3p: nur bei 3 Pfosten verwenden. */
+  base?: { stepId: string; pattern: string; skipCodes?: string[]; only3p?: boolean };
 }
 
 // ============================================================
@@ -727,7 +730,8 @@ const verandaConfig: CategoryConfigurator = {
   // Rechte Seite = dieselbe Kamera gespiegelt. Front/Dach/Farbe/Pfosten/Rinne bleiben, was gewählt ist.
   altViews: [
     {
-      id: "left", stepIds: ["left-wall"], flip: true,
+      id: "left", stepIds: ["left-wall"],
+      base: { stepId: "left-wall", pattern: "/veranda/angled/wallbase-{gutter}-{color}-{code}.webp", skipCodes: ["open"], only3p: true }, flip: true,
       hero: "/veranda/angled/hero-{gutter}-{posts}-{color}.webp",
       layers: [
         { stepId: "roof", pattern: "/veranda/angled/roof-{posts}-{color}-{code}.webp", skipCodes: ["glas-helder"] },
@@ -737,6 +741,7 @@ const verandaConfig: CategoryConfigurator = {
     },
     {
       id: "right", stepIds: ["right-wall"],
+      base: { stepId: "right-wall", pattern: "/veranda/angled/wallbase-{gutter}-{color}-{code}.webp", skipCodes: ["open"], only3p: true },
       hero: "/veranda/angled/hero-{gutter}-{posts}-{color}.webp",
       layers: [
         { stepId: "roof", pattern: "/veranda/angled/roof-{posts}-{color}-{code}.webp", skipCodes: ["glas-helder"] },
