@@ -183,6 +183,9 @@ export interface AltView {
   /** Optional: vollflächiges Basisbild je Options-Code (ersetzt hero + die Ebene dieses Steps) —
    *  nahtfrei, da die Option im Basisrender enthalten ist. only3p: nur bei 3 Pfosten verwenden. */
   base?: { stepId: string; pattern: string; skipCodes?: string[]; only3p?: boolean };
+  /** Optional: statt `hero`-Pattern den komponierten Haupt-Hero verwenden, mit erzwungenen
+   *  Options-Codes (z. B. Front immer "open", damit die LED sichtbar ist). */
+  heroOverrides?: Record<string, string>;
 }
 
 // ============================================================
@@ -730,8 +733,13 @@ const verandaConfig: CategoryConfigurator = {
   // Rechte Seite = dieselbe Kamera gespiegelt. Front/Dach/Farbe/Pfosten/Rinne bleiben, was gewählt ist.
   altViews: [
     {
+      id: "lighting", stepIds: ["lighting"], heroOverrides: { front: "open" },
+      hero: "", layers: [],
+      base: { stepId: "lighting", pattern: "/veranda/lighting/led-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["light-none"] },
+    },
+    {
       id: "left", stepIds: ["left-wall"],
-      base: { stepId: "left-wall", pattern: "/veranda/angled/wallbase-{gutter}-{color}-{code}.webp", skipCodes: ["open"], only3p: true }, flip: true,
+      base: { stepId: "left-wall", pattern: "/veranda/angled/wallbase-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["open"] }, flip: true,
       hero: "/veranda/angled/hero-{gutter}-{posts}-{color}.webp",
       layers: [
         { stepId: "roof", pattern: "/veranda/angled/roof-{posts}-{color}-{code}.webp", skipCodes: ["glas-helder"] },
@@ -741,7 +749,7 @@ const verandaConfig: CategoryConfigurator = {
     },
     {
       id: "right", stepIds: ["right-wall"],
-      base: { stepId: "right-wall", pattern: "/veranda/angled/wallbase-{gutter}-{color}-{code}.webp", skipCodes: ["open"], only3p: true },
+      base: { stepId: "right-wall", pattern: "/veranda/angled/wallbase-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
       hero: "/veranda/angled/hero-{gutter}-{posts}-{color}.webp",
       layers: [
         { stepId: "roof", pattern: "/veranda/angled/roof-{posts}-{color}-{code}.webp", skipCodes: ["glas-helder"] },

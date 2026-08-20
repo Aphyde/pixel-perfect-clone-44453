@@ -209,27 +209,32 @@ const ConfiguratorEngine = ({ config }: Props) => {
     return false;
   }, [config.postRule, width, extras]);
 
-  // Komposition (Rinne + Farbe [+ Pfostenzahl]) – das ist die "Standard"-Vorschau
-  const composedHero = useMemo(() => {
-    if (!config.heroVariantStepIds || !config.heroVariants) return config.hero;
-    const codes: string[] = [];
-    for (const stepId of config.heroVariantStepIds) {
-      const step = config.steps.find((s) => s.id === stepId);
-      if (!step) return config.hero;
-      const idx = selections[stepId] ?? 0;
-      let code: string | undefined;
-      if (step.type === "colors") code = step.colors?.[idx]?.code;
-      else code = step.options?.[idx]?.code;
-      if (!code) return config.hero;
-      codes.push(code);
-    }
-    const key = codes.join("|");
-    if (config.postRule) {
-      const keyed = config.heroVariants[`${key}|${twoPosts ? "2p" : "3p"}`];
-      if (keyed) return keyed;
-    }
-    return config.heroVariants[key] ?? config.hero;
+  // Komposition (Rinne + Farbe [+ Dach + Front + Pfostenzahl]) – das ist die "Standard"-Vorschau.
+  // `overrides` erzwingt einzelne Options-Codes (z. B. Front "open" in der LED-Ansicht).
+  const composeHero = useMemo(() => {
+    return (overrides?: Record<string, string>) => {
+      if (!config.heroVariantStepIds || !config.heroVariants) return config.hero;
+      const codes: string[] = [];
+      for (const stepId of config.heroVariantStepIds) {
+        if (overrides?.[stepId]) { codes.push(overrides[stepId]); continue; }
+        const step = config.steps.find((s) => s.id === stepId);
+        if (!step) return config.hero;
+        const idx = selections[stepId] ?? 0;
+        let code: string | undefined;
+        if (step.type === "colors") code = step.colors?.[idx]?.code;
+        else code = step.options?.[idx]?.code;
+        if (!code) return config.hero;
+        codes.push(code);
+      }
+      const key = codes.join("|");
+      if (config.postRule) {
+        const keyed = config.heroVariants[`${key}|${twoPosts ? "2p" : "3p"}`];
+        if (keyed) return keyed;
+      }
+      return config.heroVariants[key] ?? config.hero;
+    };
   }, [config, selections, twoPosts]);
+  const composedHero = useMemo(() => composeHero(), [composeHero]);
 
   // Optional: Detail-Vorschau der zuletzt gewählten Option (z. B. Dachmaterial, Wand, LED, ...)
   const previewImage = useMemo(() => {
@@ -302,7 +307,8 @@ const ConfiguratorEngine = ({ config }: Props) => {
       if (!code || layer.skipCodes?.includes(code)) continue;
       layers.push(fill(layer.pattern, code));
     }
-    return { hero: baseSrc ?? fill(view.hero), layers, flip: !!view.flip };
+    const fallback = view.heroOverrides ? composeHero(view.heroOverrides) : fill(view.hero);
+    return { hero: baseSrc ?? fallback, layers, flip: !!view.flip };
   }, [config, selections, previewStepId, twoPosts]);
 
   const setSelection = (stepId: string, idx: number) => {
