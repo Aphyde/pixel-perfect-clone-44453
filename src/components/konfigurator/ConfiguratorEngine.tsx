@@ -242,12 +242,14 @@ const ConfiguratorEngine = ({ config }: Props) => {
   const previewImage = useMemo(() => {
     if (!previewStepId) return null;
     if (config.altViews?.some((v) => v.stepIds.includes(previewStepId))) return null;
-    // Statische Options-Vollbilder stammen aus der 3-Pfosten-Serie — bei 2 Pfosten nie anzeigen
-    if (config.postRule && twoPosts) return null;
     const step = config.steps.find((s) => s.id === previewStepId);
     if (!step) return null;
     const idx = selections[step.id] ?? 0;
-    return step.options?.[idx]?.image ?? null;
+    const opt = step.options?.[idx];
+    // Statische Options-Vollbilder zeigen die 3-Pfosten-Überdachung — bei 2 Pfosten
+    // nur die eigens dafür erzeugte Variante, sonst gar keine Vorschau.
+    if (config.postRule && twoPosts) return opt?.image2p ?? null;
+    return opt?.image ?? null;
   }, [config, selections, previewStepId, twoPosts]);
 
   // Aktuell angezeigtes Hauptbild

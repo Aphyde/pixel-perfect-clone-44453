@@ -68,6 +68,8 @@ export interface SelectCardOption {
   deliveryTime?: string;
   /** Optionales Vorschau-Bild für die Option-Karte */
   image?: string;
+  /** Variante des Vorschau-Bildes ohne Mittelpfosten (Breite unter der Pfostenregel) */
+  image2p?: string;
   /** Kurzer Code (z. B. "halfrond"), wird zur Komposition des Visualizer-Hero-Bildes verwendet */
   code?: string;
 }
@@ -880,9 +882,9 @@ const verandaConfig: CategoryConfigurator = {
       title: "Sonnenschutz",
       type: "radio-icon",
       options: [
-        { id: "sun-none", label: "Kein Sonnenschutz", price: 0, image: verandaImg("sunshade/f01e14ee-0433-4360-a202-7b460eb52aba.webp") },
-        { id: "sun-top", label: "Über-Dach Sonnenschutz (Aufglasmarkise)", price: 6960, image: verandaImg("sunshade/bd57abb5-3ba7-43e1-bb19-6a28f676e22e.webp") },
-        { id: "sun-under", label: "Unter-Dach Sonnenschutz (Unterglasmarkise)", price: 6330, image: verandaImg("sunshade/b305fabd-c8e7-4592-b1e6-1a8d353efd54.webp") },
+        { id: "sun-none", label: "Kein Sonnenschutz", price: 0, image: verandaImg("sunshade/f01e14ee-0433-4360-a202-7b460eb52aba.webp"), image2p: verandaImg("sunshade/f01e14ee-0433-4360-a202-7b460eb52aba-2p.webp") },
+        { id: "sun-top", label: "Über-Dach Sonnenschutz (Aufglasmarkise)", price: 6960, image: verandaImg("sunshade/bd57abb5-3ba7-43e1-bb19-6a28f676e22e.webp"), image2p: verandaImg("sunshade/bd57abb5-3ba7-43e1-bb19-6a28f676e22e-2p.webp") },
+        { id: "sun-under", label: "Unter-Dach Sonnenschutz (Unterglasmarkise)", price: 6330, image: verandaImg("sunshade/b305fabd-c8e7-4592-b1e6-1a8d353efd54.webp"), image2p: verandaImg("sunshade/b305fabd-c8e7-4592-b1e6-1a8d353efd54-2p.webp") },
       ],
     },
     {
@@ -891,10 +893,10 @@ const verandaConfig: CategoryConfigurator = {
       title: "Zipscreen-Position",
       type: "radio-icon",
       options: [
-        { id: "screen-none", label: "Keiner", price: 0, image: verandaImg("screen/19648183-afd4-4f8b-90bd-5e766e59dd1f.webp") },
-        { id: "screen-front", label: "Vorderseite", price: 4780, image: verandaImg("screen/e0b6b99b-50e2-41ad-bac0-22e9162234f2.webp") },
-        { id: "screen-left", label: "Links", price: 3900, image: verandaImg("screen/7aeb50a7-b542-4cc0-9ef7-6572a89f5f79.webp") },
-        { id: "screen-right", label: "Rechts", price: 3900, image: verandaImg("screen/442e42e0-dc83-408e-b830-39ef7130a9cc.webp") },
+        { id: "screen-none", label: "Keiner", price: 0, image: verandaImg("screen/19648183-afd4-4f8b-90bd-5e766e59dd1f.webp"), image2p: verandaImg("screen/19648183-afd4-4f8b-90bd-5e766e59dd1f-2p.webp") },
+        { id: "screen-front", label: "Vorderseite", price: 4780, image: verandaImg("screen/e0b6b99b-50e2-41ad-bac0-22e9162234f2.webp"), image2p: verandaImg("screen/e0b6b99b-50e2-41ad-bac0-22e9162234f2-2p.webp") },
+        { id: "screen-left", label: "Links", price: 3900, image: verandaImg("screen/7aeb50a7-b542-4cc0-9ef7-6572a89f5f79.webp"), image2p: verandaImg("screen/7aeb50a7-b542-4cc0-9ef7-6572a89f5f79-2p.webp") },
+        { id: "screen-right", label: "Rechts", price: 3900, image: verandaImg("screen/442e42e0-dc83-408e-b830-39ef7130a9cc.webp"), image2p: verandaImg("screen/442e42e0-dc83-408e-b830-39ef7130a9cc-2p.webp") },
       ],
     },
     {
