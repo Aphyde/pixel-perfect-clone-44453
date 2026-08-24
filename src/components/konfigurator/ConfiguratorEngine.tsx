@@ -230,6 +230,8 @@ const ConfiguratorEngine = ({ config }: Props) => {
       if (config.postRule) {
         const keyed = config.heroVariants[`${key}|${twoPosts ? "2p" : "3p"}`];
         if (keyed) return keyed;
+        const alt = config.heroVariants[`${key}|3p`] ?? config.heroVariants[`${key}|2p`];
+        if (alt) return alt;
       }
       return config.heroVariants[key] ?? config.hero;
     };
@@ -240,11 +242,13 @@ const ConfiguratorEngine = ({ config }: Props) => {
   const previewImage = useMemo(() => {
     if (!previewStepId) return null;
     if (config.altViews?.some((v) => v.stepIds.includes(previewStepId))) return null;
+    // Statische Options-Vollbilder stammen aus der 3-Pfosten-Serie — bei 2 Pfosten nie anzeigen
+    if (config.postRule && twoPosts) return null;
     const step = config.steps.find((s) => s.id === previewStepId);
     if (!step) return null;
     const idx = selections[step.id] ?? 0;
     return step.options?.[idx]?.image ?? null;
-  }, [config, selections, previewStepId]);
+  }, [config, selections, previewStepId, twoPosts]);
 
   // Aktuell angezeigtes Hauptbild
   const activeHero = previewImage ?? composedHero ?? CONFIGURATOR_PLACEHOLDER;
@@ -270,6 +274,33 @@ const ConfiguratorEngine = ({ config }: Props) => {
     }
     return out;
   }, [config, selections, previewImage, twoPosts]);
+
+  // Preload: alle für den aktuellen Zustand möglichen Alt-Ansichten (Wände/LED) vorladen
+  useEffect(() => {
+    if (!config.altViews?.length || typeof window === "undefined") return;
+    const codeOf = (stepId: string) => {
+      const step = config.steps.find((s) => s.id === stepId);
+      const idx = selections[stepId] ?? 0;
+      return step?.type === "colors" ? step.colors?.[idx]?.code : step?.options?.[idx]?.code;
+    };
+    const posts = twoPosts ? "2p" : "3p";
+    const urls = new Set<string>();
+    for (const view of config.altViews) {
+      const fill = (pattern: string, code = "") =>
+        pattern.replace("{gutter}", codeOf("gutter") ?? "").replace("{color}", codeOf("color") ?? "").replace("{posts}", posts).replace("{code}", code);
+      if (view.base) {
+        const bc = codeOf(view.base.stepId);
+        if (bc && !view.base.skipCodes?.includes(bc)) urls.add(fill(view.base.pattern, bc));
+      }
+      if (view.hero) urls.add(fill(view.hero));
+      for (const layer of view.layers) {
+        const code = codeOf(layer.stepId);
+        if (!code || layer.skipCodes?.includes(code)) continue;
+        urls.add(fill(layer.pattern, code));
+      }
+    }
+    urls.forEach((u) => { const im = new window.Image(); im.src = u; });
+  }, [config, selections, twoPosts]);
 
   const isHeroDrivenStep = (stepId: string) =>
     !!config.heroVariantStepIds?.includes(stepId) || !!config.heroLayers?.some((l) => l.stepId === stepId);

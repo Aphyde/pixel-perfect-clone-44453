@@ -744,7 +744,6 @@ const verandaConfig: CategoryConfigurator = {
       layers: [
         { stepId: "roof", pattern: "/veranda/angled2/roof-{posts}-{color}-{code}.webp", skipCodes: ["glas-helder"] },
         { stepId: "front", pattern: "/veranda/angled2/front-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
-        { stepId: "left-wall", pattern: "/veranda/angled2/wall-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
       ],
     },
     {
@@ -754,7 +753,6 @@ const verandaConfig: CategoryConfigurator = {
       layers: [
         { stepId: "roof", pattern: "/veranda/angled2/roof-{posts}-{color}-{code}.webp", skipCodes: ["glas-helder"] },
         { stepId: "front", pattern: "/veranda/angled2/front-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
-        { stepId: "right-wall", pattern: "/veranda/angled2/wall-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
       ],
     },
   ],
