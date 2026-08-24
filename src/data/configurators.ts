@@ -740,6 +740,12 @@ const verandaConfig: CategoryConfigurator = {
       base: { stepId: "lighting", pattern: "/veranda/lighting/led-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["light-none"] },
     },
     {
+      // Sonnenschutz: Markise je nach Rinne, Farbe und Pfostenzahl — Kassettenform folgt dem Rinnenprofil
+      id: "sunshade", stepIds: ["sunshade"],
+      hero: "", layers: [],
+      base: { stepId: "sunshade", pattern: "/veranda/sunshade/sun-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["none"] },
+    },
+    {
       id: "left", stepIds: ["left-wall"],
       base: { stepId: "left-wall", pattern: "/veranda/angled2/wallbase-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["open"] }, flip: true,
       hero: "/veranda/angled2/hero-{gutter}-{posts}-{color}.webp",
@@ -882,9 +888,9 @@ const verandaConfig: CategoryConfigurator = {
       title: "Sonnenschutz",
       type: "radio-icon",
       options: [
-        { id: "sun-none", label: "Kein Sonnenschutz", price: 0, image: verandaImg("sunshade/f01e14ee-0433-4360-a202-7b460eb52aba.webp"), image2p: verandaImg("sunshade/f01e14ee-0433-4360-a202-7b460eb52aba-2p.webp") },
-        { id: "sun-top", label: "Über-Dach Sonnenschutz (Aufglasmarkise)", price: 6960, image: verandaImg("sunshade/bd57abb5-3ba7-43e1-bb19-6a28f676e22e.webp"), image2p: verandaImg("sunshade/bd57abb5-3ba7-43e1-bb19-6a28f676e22e-2p.webp") },
-        { id: "sun-under", label: "Unter-Dach Sonnenschutz (Unterglasmarkise)", price: 6330, image: verandaImg("sunshade/b305fabd-c8e7-4592-b1e6-1a8d353efd54.webp"), image2p: verandaImg("sunshade/b305fabd-c8e7-4592-b1e6-1a8d353efd54-2p.webp") },
+        { id: "sun-none", label: "Kein Sonnenschutz", price: 0, image: verandaImg("sunshade/f01e14ee-0433-4360-a202-7b460eb52aba.webp"), code: "none" },
+        { id: "sun-top", label: "Über-Dach Sonnenschutz (Aufglasmarkise)", price: 6960, image: verandaImg("sunshade/bd57abb5-3ba7-43e1-bb19-6a28f676e22e.webp"), code: "sun-top" },
+        { id: "sun-under", label: "Unter-Dach Sonnenschutz (Unterglasmarkise)", price: 6330, image: verandaImg("sunshade/b305fabd-c8e7-4592-b1e6-1a8d353efd54.webp"), code: "sun-under" },
       ],
     },
     {
