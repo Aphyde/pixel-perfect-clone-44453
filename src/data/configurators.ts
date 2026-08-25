@@ -742,7 +742,8 @@ const verandaConfig: CategoryConfigurator = {
     {
       // Sonnenschutz: Markise je nach Rinne, Farbe und Pfostenzahl — Kassettenform folgt dem Rinnenprofil
       id: "sunshade", stepIds: ["sunshade"],
-      hero: "", layers: [],
+      // Ohne Sonnenschutz: dieselbe Kamera, nur die Überdachung ohne Markise
+      hero: "/veranda/angled2/hero-{gutter}-{posts}-{color}.webp", layers: [],
       base: { stepId: "sunshade", pattern: "/veranda/sunshade/sun-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["none"] },
     },
     {
