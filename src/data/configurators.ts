@@ -749,6 +749,19 @@ const verandaConfig: CategoryConfigurator = {
         { stepId: "roof", pattern: "/veranda/angled2/roof-{posts}-{color}-{code}.webp", skipCodes: ["glas-helder"] },
         { stepId: "front", pattern: "/veranda/angled2/front-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
         { stepId: "sunshade", pattern: "/veranda/sunshade/sunlayer-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["none"] },
+        { stepId: "screen", pattern: "/veranda/screen/screenlayer-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["none"] },
+      ],
+    },
+    {
+      // Zipscreen: Position je nach Rinne, Farbe und Pfostenzahl; Front und Seite sichtbar
+      id: "screen", stepIds: ["screen"],
+      hero: "/veranda/angled2/hero-{gutter}-{posts}-{color}.webp",
+      base: { stepId: "right-wall", pattern: "/veranda/angled2/wallbase-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
+      layers: [
+        { stepId: "roof", pattern: "/veranda/angled2/roof-{posts}-{color}-{code}.webp", skipCodes: ["glas-helder"] },
+        { stepId: "front", pattern: "/veranda/angled2/front-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
+        { stepId: "sunshade", pattern: "/veranda/sunshade/sunlayer-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["none"] },
+        { stepId: "screen", pattern: "/veranda/screen/screenlayer-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["none"] },
       ],
     },
     {
@@ -905,10 +918,10 @@ const verandaConfig: CategoryConfigurator = {
       title: "Zipscreen-Position",
       type: "radio-icon",
       options: [
-        { id: "screen-none", label: "Keiner", price: 0, image: verandaImg("screen/19648183-afd4-4f8b-90bd-5e766e59dd1f.webp"), image2p: verandaImg("screen/19648183-afd4-4f8b-90bd-5e766e59dd1f-2p.webp") },
-        { id: "screen-front", label: "Vorderseite", price: 4780, image: verandaImg("screen/e0b6b99b-50e2-41ad-bac0-22e9162234f2.webp"), image2p: verandaImg("screen/e0b6b99b-50e2-41ad-bac0-22e9162234f2-2p.webp") },
-        { id: "screen-left", label: "Links", price: 3900, image: verandaImg("screen/7aeb50a7-b542-4cc0-9ef7-6572a89f5f79.webp"), image2p: verandaImg("screen/7aeb50a7-b542-4cc0-9ef7-6572a89f5f79-2p.webp") },
-        { id: "screen-right", label: "Rechts", price: 3900, image: verandaImg("screen/442e42e0-dc83-408e-b830-39ef7130a9cc.webp"), image2p: verandaImg("screen/442e42e0-dc83-408e-b830-39ef7130a9cc-2p.webp") },
+        { id: "screen-none", label: "Keiner", price: 0, image: verandaImg("screen/19648183-afd4-4f8b-90bd-5e766e59dd1f.webp"), code: "none" },
+        { id: "screen-front", label: "Vorderseite", price: 4780, image: verandaImg("screen/e0b6b99b-50e2-41ad-bac0-22e9162234f2.webp"), code: "screen-front" },
+        { id: "screen-left", label: "Links", price: 3900, image: verandaImg("screen/7aeb50a7-b542-4cc0-9ef7-6572a89f5f79.webp"), code: "screen-left" },
+        { id: "screen-right", label: "Rechts", price: 3900, image: verandaImg("screen/442e42e0-dc83-408e-b830-39ef7130a9cc.webp"), code: "screen-right" },
       ],
     },
     {
