@@ -188,6 +188,10 @@ export interface AltView {
   /** Optional: statt `hero`-Pattern den komponierten Haupt-Hero verwenden, mit erzwungenen
    *  Options-Codes (z. B. Front immer "open", damit die LED sichtbar ist). */
   heroOverrides?: Record<string, string>;
+  /** Optional: Ansicht zusätzlich spiegeln, wenn der gewählte Code dieses Steps in `codes` steht.
+   *  Die Kamera zeigt nur eine Schmalseite; die Gegenseite wird — wie bei der linken Seitenwand —
+   *  als gespiegelte Ansicht derselben Renders dargestellt. */
+  flipWhen?: { stepId: string; codes: string[] };
 }
 
 // ============================================================
@@ -753,8 +757,10 @@ const verandaConfig: CategoryConfigurator = {
       ],
     },
     {
-      // Zipscreen: Position je nach Rinne, Farbe und Pfostenzahl; Front und Seite sichtbar
+      // Zipscreen: Position je nach Rinne, Farbe und Pfostenzahl; Front und Seite sichtbar.
+      // "Links" = gespiegelte Ansicht derselben Schmalseite (die Kamera zeigt nur eine).
       id: "screen", stepIds: ["screen"],
+      flipWhen: { stepId: "screen", codes: ["screen-left"] },
       hero: "/veranda/angled2/hero-{gutter}-{posts}-{color}.webp",
       base: { stepId: "right-wall", pattern: "/veranda/angled2/wallbase-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
       layers: [

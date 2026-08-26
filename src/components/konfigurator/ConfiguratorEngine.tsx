@@ -341,7 +341,9 @@ const ConfiguratorEngine = ({ config }: Props) => {
       layers.push(fill(layer.pattern, code));
     }
     const fallback = view.heroOverrides ? composeHero(view.heroOverrides) : fill(view.hero);
-    return { hero: baseSrc ?? fallback, layers, flip: !!view.flip };
+    // Gegenseite: dieselbe Schmalseiten-Ansicht, horizontal gespiegelt
+    const mirrored = !!view.flipWhen?.codes.includes(codeOf(view.flipWhen.stepId) ?? "");
+    return { hero: baseSrc ?? fallback, layers, flip: !!view.flip !== mirrored };
   }, [config, selections, previewStepId, twoPosts]);
 
   const setSelection = (stepId: string, idx: number) => {
