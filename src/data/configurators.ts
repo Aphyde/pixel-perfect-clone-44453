@@ -766,7 +766,7 @@ const verandaConfig: CategoryConfigurator = {
         { stepId: "roof", pattern: "/veranda/angled2/roof-{posts}-{color}-{code}.webp", skipCodes: ["glas-helder"] },
         { stepId: "front", pattern: "/veranda/angled2/front-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
         { stepId: "sunshade", pattern: "/veranda/sunshade/sunlayer-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["none"] },
-        { stepId: "screen", pattern: "/veranda/screen/screenlayer-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["none"] },
+        { stepId: "screen", pattern: "/veranda/screen/screenlayer-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["none", "screen-left"] },
       ],
     },
     {
