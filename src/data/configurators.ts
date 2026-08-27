@@ -757,6 +757,19 @@ const verandaConfig: CategoryConfigurator = {
       ],
     },
     {
+      // Abschluss-Ansicht: zeigt die gesamte Konfiguration in einem Bild —
+      // Seitenwand, Dachmaterial, Vorderseite, Sonnenschutz und Zipscreen zusammen.
+      id: "summary", stepIds: ["extras"],
+      hero: "/veranda/angled2/hero-{gutter}-{posts}-{color}.webp",
+      base: { stepId: "right-wall", pattern: "/veranda/angled2/wallbase-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
+      layers: [
+        { stepId: "roof", pattern: "/veranda/angled2/roof-{posts}-{color}-{code}.webp", skipCodes: ["glas-helder"] },
+        { stepId: "front", pattern: "/veranda/angled2/front-{posts}-{color}-{code}.webp", skipCodes: ["open"] },
+        { stepId: "sunshade", pattern: "/veranda/sunshade/sunlayer-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["none"] },
+        { stepId: "screen", pattern: "/veranda/screen/screenlayer-{gutter}-{posts}-{color}-{code}.webp", skipCodes: ["none"] },
+      ],
+    },
+    {
       // Zipscreen: Position je nach Rinne, Farbe und Pfostenzahl; Front und Seite sichtbar.
       // "Links" = gespiegelte Ansicht derselben Schmalseite (die Kamera zeigt nur eine).
       id: "screen", stepIds: ["screen"],
