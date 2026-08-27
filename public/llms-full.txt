@@ -1,6 +1,6 @@
 # Brait Überdachungen — Vollständige Wissensbasis
 
-Stand: 2026-08-26
+Stand: 2026-08-27
 Site: https://www.brait-ueberdachung.de
 
 ## Unternehmen
@@ -119,5 +119,5 @@ Ablauf: Anfrage → Vor-Ort-Termin (60–120 min) → digitales 3D-Aufmaß → F
 
 ---
 
-Generiert: 2026-08-26T15:48:18.647Z
+Generiert: 2026-08-27T08:12:07.016Z
 Quelle: https://www.brait-ueberdachung.de
